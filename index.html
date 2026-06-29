@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selection Library</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#a7f3d0', // emerald-200
+                            DEFAULT: '#86efac', // emerald-300
+                            dark: '#10b981', // emerald-500
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for a polished look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-gray-50">
+
+    <!-- Navbar -->
+    <nav class="absolute top-0 left-0 right-0 z-40 py-6 px-6 lg:px-12 flex justify-between items-center bg-white/10 backdrop-blur-sm sm:bg-transparent sm:backdrop-blur-none">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-emerald-900 text-lg">
+                SL
+            </div>
+            <!-- Fixed: Changed text color to white for clear visibility over dark background -->
+            <span class="font-bold text-white text-xl tracking-tight">Selection Library</span>
+        </div>
+        <div class="hidden md:flex gap-8 text-sm font-medium text-gray-100">
+            <a href="#home" class="hover:text-brand transition-colors">Home</a>
+            <a href="#features" class="hover:text-brand transition-colors">Features</a>
+            <a href="#about" class="hover:text-brand transition-colors">About</a>
+            <a href="#testimonials" class="hover:text-brand transition-colors">Testimonials</a>
+            <a href="#contact" class="hover:text-brand transition-colors">Contact</a>
+        </div>
+        <!-- Mobile Menu Trigger Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors focus:outline-none">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
+        <!-- Backdrop dark overlay -->
+        <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        
+        <!-- Menu content sheet -->
+        <div id="mobile-menu-container" class="absolute top-0 left-0 right-0 bg-white px-6 py-6 border-b border-gray-100 flex flex-col transition-all duration-300 ease-out transform -translate-y-full shadow-xl">
+            <!-- Header matching screen top -->
+            <div class="flex justify-between items-center mb-10">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-emerald-900 text-lg">
+                        SL
+                    </div>
+                    <span class="font-bold text-gray-900 text-xl tracking-tight">Selection Library</span>
+                </div>
+                <!-- Peach/tan rounded-xl close button matching the screenshot 1000226874.jpg -->
+                <button id="mobile-menu-close" class="w-10 h-10 bg-[#e9b895] hover:bg-[#e2aa83] text-amber-950 rounded-xl flex items-center justify-center transition-colors shadow-sm focus:outline-none">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation Links stacked with styling matching screenshot -->
+            <div class="flex flex-col gap-8 pl-1 pb-10">
+                <a href="#home" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark transition-colors">Home</a>
+                <a href="#features" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark transition-colors">Features</a>
+                <a href="#about" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark transition-colors">About</a>
+                <a href="#testimonials" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark transition-colors">Testimonials</a>
+                <a href="#contact" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark transition-colors">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-[90vh] flex items-center justify-center px-6 pt-20">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=2000&auto=format&fit=crop" alt="Library Interior" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-black/60"></div>
+        </div>
+
+        <div class="relative z-10 text-center max-w-3xl mx-auto mt-16">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+                Your Selection, Our effort
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed max-w-2xl mx-auto">
+                Experience a peaceful, air-conditioned environment with high-speed Wi-Fi, designed to help you achieve your academic dreams
+            </p>
+            <a href="#contact" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-emerald-950 px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:-translate-y-1">
+                Book a Free Trial Seat
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-6 lg:px-12 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Premium Amenities for Serious Students</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">Every detail is designed to support your study goals and maximize your productivity</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-brand-dark mb-6">
+                        <i data-lucide="armchair"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Ergonomic Chairs</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">Premium comfortable seating designed for long study sessions, ensuring proper posture and reducing fatigue.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-brand-dark mb-6">
+                        <i data-lucide="wifi"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">High-Speed Wi-Fi</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">Blazing fast internet connectivity for seamless online research, video lectures, and digital resources.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-brand-dark mb-6">
+                        <i data-lucide="volume-x"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Noise-Free Zone</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">Strictly maintained silence policy with soundproof environment to maximize your concentration and focus.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-brand-dark mb-6">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Personal Charging Points</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">Dedicated power outlets at every seat to keep your devices charged throughout your study session.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-brand-dark mb-6">
+                        <i data-lucide="newspaper"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Current Affairs Desk</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">Daily newspapers and current affairs magazines to keep you updated with the latest developments.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-brand-dark mb-6">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">24/7 CCTV Security</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">Round-the-clock surveillance ensuring a safe and secure environment for all students.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 lg:px-12 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-12 rounded-3xl overflow-hidden shadow-lg h-[400px]">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop" alt="Study Environment" class="w-full h-full object-cover">
+            </div>
+            
+            <div class="max-w-4xl">
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">Our Mission</h2>
+                <h3 class="text-lg font-medium text-brand-dark mb-8">Provide the ultimate distraction-free environment to help students clear their dream exams</h3>
+                
+                <div class="space-y-6 text-gray-600 text-[15px] leading-relaxed">
+                    <p>
+                        At Selection Library, we understand that success in competitive exams requires more than just hard work—it demands the right environment. We've created a space where every element is carefully designed to support your focus and productivity.
+                    </p>
+                    <p>
+                        From ergonomic seating that keeps you comfortable during long study sessions to high-speed internet that connects you to unlimited resources, we've thought of everything. Our noise-free policy ensures that distractions stay outside, while our 24/7 security gives you and your family peace of mind.
+                    </p>
+                    <p>
+                        Join hundreds of successful students who have made Selection Library their study home. Your success story starts here.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 px-6 lg:px-12 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Hall of Fame</h2>
+                <p class="text-gray-500">Celebrating the success stories of students who achieved their dreams with us</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center font-bold text-emerald-700 text-lg">
+                            PS
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">Priya Sharma</h4>
+                            <div class="flex items-center gap-1 text-brand-dark text-xs mt-1">
+                                <i data-lucide="award" class="w-3 h-3"></i>
+                                <span>Cleared UPSC 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic leading-relaxed">
+                        "The peaceful environment and excellent facilities at Selection Library helped me maintain consistent focus during my preparation. The staff is supportive and the atmosphere is truly conducive to serious study."
+                    </p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center font-bold text-blue-700 text-lg">
+                            AP
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">Arjun Patel</h4>
+                            <div class="flex items-center gap-1 text-brand-dark text-xs mt-1">
+                                <i data-lucide="award" class="w-3 h-3"></i>
+                                <span>IIT-JEE Rank 147</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic leading-relaxed">
+                        "I spent countless hours here preparing for JEE. The ergonomic chairs and noise-free environment made all the difference. This place became my second home during preparation."
+                    </p>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center font-bold text-orange-700 text-lg">
+                            MR
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">Meera Reddy</h4>
+                            <div class="flex items-center gap-1 text-brand-dark text-xs mt-1">
+                                <i data-lucide="award" class="w-3 h-3"></i>
+                                <span>NEET AIR 89</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic leading-relaxed">
+                        "Selection Library provided the perfect balance of comfort and discipline. The high-speed Wi-Fi was crucial for accessing online resources, and the security made my parents feel at ease."
+                    </p>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-gray-200 rounded-xl flex items-center justify-center font-bold text-gray-700 text-lg">
+                            VS
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">Vikram Singh</h4>
+                            <div class="flex items-center gap-1 text-brand-dark text-xs mt-1">
+                                <i data-lucide="award" class="w-3 h-3"></i>
+                                <span>CAT 99.8 Percentile</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic leading-relaxed">
+                        "The distraction-free environment here is unmatched. Every detail is thoughtfully designed for students. I highly recommend this to anyone serious about their exam preparation."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 lg:px-12 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
+                <p class="text-gray-500">Book your free trial seat or send us your questions. We're here to help you succeed.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+                <!-- Contact Info -->
+                <div class="space-y-10">
+                    <div>
+                        <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            Visit Us
+                        </h3>
+                        <div class="flex gap-3 text-gray-600 text-sm">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-gray-400 shrink-0 mt-0.5"></i>
+                            <p class="leading-relaxed">
+                                Selection Library, Vivek Nagar<br>
+                                Sultanpur, Uttar Pradesh 228001<br>
+                                India
+                            </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-gray-900 mb-4">Operating Hours</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Monday - Sunday<br>
+                            7 AM to 9 PM
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-gray-900 mb-4">Contact Information</h3>
+                        <div class="text-gray-600 text-sm space-y-2">
+                            <p>Phone: 9169340586</p>
+                            <p>Email: info@selectionlibrary.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm">
+                    <h3 class="font-bold text-gray-900 text-xl mb-6">Send Us a Message</h3>
+                    <form class="space-y-5" onsubmit="event.preventDefault();">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1.5">Name</label>
+                            <input type="text" placeholder="Your full name" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand text-sm transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1.5">Email</label>
+                            <input type="email" placeholder="your.email@example.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand text-sm transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1.5">Phone</label>
+                            <input type="tel" placeholder="+91 98765 43210" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand text-sm transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1.5">Message</label>
+                            <textarea rows="4" placeholder="Tell us about your study goals and any questions you have..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand text-sm transition-colors resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand hover:bg-brand-light text-emerald-950 font-semibold py-3.5 rounded-xl transition-colors mt-2 text-sm">
+                            Submit Inquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200 pt-16 pb-8 px-6 lg:px-12">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 bg-brand rounded flex items-center justify-center font-bold text-emerald-900 text-sm">
+                            SL
+                        </div>
+                        <span class="font-bold text-gray-900">Selection Library</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed pr-4">
+                        Your dedicated space for focus and success. Providing the ultimate distraction-free environment for students.
+                    </p>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#home" class="hover:text-brand-dark transition-colors">Home</a></li>
+                        <li><a href="#features" class="hover:text-brand-dark transition-colors">Features</a></li>
+                        <li><a href="#about" class="hover:text-brand-dark transition-colors">About</a></li>
+                        <li><a href="#testimonials" class="hover:text-brand-dark transition-colors">Testimonials</a></li>
+                        <li><a href="#contact" class="hover:text-brand-dark transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social/Contact -->
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-6">Connect With Us</h4>
+                    <div class="flex gap-4 mb-6">
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-brand-dark hover:shadow-sm transition-all border border-gray-100">
+                            <i data-lucide="facebook" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-brand-dark hover:shadow-sm transition-all border border-gray-100">
+                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-brand-dark hover:shadow-sm transition-all border border-gray-100">
+                            <i data-lucide="twitter" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                    <div class="space-y-2 text-sm text-gray-500">
+                        <p class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4"></i>
+                            info@selectionlibrary.com
+                        </p>
+                        <p class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4"></i>
+                            9169340586
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <p>© 2026 Selection Library. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-gray-900">Privacy Policy</a>
+                    <a href="#" class="hover:text-gray-900">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons & Mobile Menu Action scripts -->
+    <script>
+        // Init Lucide
+        lucide.createIcons();
+
+        // Mobile Menu DOM elements
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuContainer = document.getElementById('mobile-menu-container');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        // Open menu animation helper
+        function openMenu() {
+            mobileMenu.classList.remove('hidden');
+            // Allow layout repaint then animate container sliding down
+            setTimeout(() => {
+                mobileMenuContainer.classList.remove('-translate-y-full');
+                mobileMenuContainer.classList.add('translate-y-0');
+            }, 50);
+        }
+
+        // Close menu animation helper
+        function closeMenu() {
+            mobileMenuContainer.classList.remove('translate-y-0');
+            mobileMenuContainer.classList.add('-translate-y-full');
+            // Hide container backdrop after animation is completed
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+        }
+
+        // Event listeners for open/close mechanisms
+        mobileMenuBtn.addEventListener('click', openMenu);
+        mobileMenuClose.addEventListener('click', closeMenu);
+        mobileMenuBackdrop.addEventListener('click', closeMenu);
+
+        // Auto-close menu on nav link click
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+    </script>
+</body>
+</html>
