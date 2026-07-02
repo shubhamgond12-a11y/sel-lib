@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selection Library</title>
+    <title>Selection Library | Your Selection, Our Effort</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- AOS Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
@@ -26,7 +32,7 @@
         }
     </script>
     <style>
-        /* Custom scrollbar for a polished look */
+        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -40,42 +46,60 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
+        
+        /* Smooth transitions for interactive elements */
+        .glass-nav {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
-<body class="font-sans text-gray-800 antialiased bg-gray-50">
+<body class="font-sans text-gray-800 antialiased bg-gray-50 overflow-x-hidden">
 
     <!-- Navbar -->
-    <nav class="absolute top-0 left-0 right-0 z-40 py-6 px-6 lg:px-12 flex justify-between items-center bg-white/10 backdrop-blur-sm sm:bg-transparent sm:backdrop-blur-none border-b border-white/10 sm:border-none">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-emerald-900 text-lg">
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 py-5 px-6 lg:px-12 flex justify-between items-center transition-all duration-300 bg-black/20 backdrop-blur-sm border-b border-white/10">
+        <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+            <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-emerald-900 text-lg shadow-lg shadow-brand/20 transition-transform hover:scale-105">
                 SL
             </div>
-            <!-- Text is white for better visibility over the dark background -->
             <span class="font-bold text-white text-xl tracking-tight">Selection Library</span>
         </div>
-        <!-- Links are white/gray-200 for better visibility -->
+        
         <div class="hidden md:flex gap-8 text-sm font-medium text-gray-100">
-            <a href="#home" class="hover:text-brand transition-colors">Home</a>
-            <a href="#features" class="hover:text-brand transition-colors">Features</a>
-            <a href="#about" class="hover:text-brand transition-colors">About</a>
-            <a href="#recognition" class="hover:text-brand transition-colors">Recognition</a>
-            <a href="#testimonials" class="hover:text-brand transition-colors">Testimonials</a>
-            <a href="#contact" class="hover:text-brand transition-colors">Contact</a>
+            <a href="#home" class="hover:text-brand transition-colors relative group">
+                Home
+                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#features" class="hover:text-brand transition-colors relative group">
+                Amenities
+                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#recognition" class="hover:text-brand transition-colors relative group">
+                Recognition
+                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#testimonials" class="hover:text-brand transition-colors relative group">
+                Hall of Fame
+                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#contact" class="hover:text-brand transition-colors relative group">
+                Contact
+                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
+            </a>
         </div>
-        <!-- Mobile Menu Trigger Button (Light color for visibility) -->
-        <button id="mobile-menu-btn" class="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors focus:outline-none">
+        <!-- Mobile Menu Trigger Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-white p-2 hover:bg-white/20 rounded-lg transition-colors focus:outline-none">
             <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
     </nav>
 
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
-        <!-- Backdrop dark overlay -->
         <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
         
-        <!-- Menu content sheet -->
-        <div id="mobile-menu-container" class="absolute top-0 left-0 right-0 bg-white px-6 py-6 border-b border-gray-100 flex flex-col transition-all duration-300 ease-out transform -translate-y-full shadow-xl">
-            <!-- Header matching screen top -->
+        <div id="mobile-menu-container" class="absolute top-0 left-0 right-0 bg-white px-6 py-6 border-b border-gray-100 flex flex-col transition-all duration-300 ease-out transform -translate-y-full shadow-2xl">
             <div class="flex justify-between items-center mb-10">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-emerald-900 text-lg">
@@ -83,107 +107,119 @@
                     </div>
                     <span class="font-bold text-gray-900 text-xl tracking-tight">Selection Library</span>
                 </div>
-                <!-- Close button -->
-                <button id="mobile-menu-close" class="w-10 h-10 bg-[#e9b895] hover:bg-[#e2aa83] text-amber-950 rounded-xl flex items-center justify-center transition-colors shadow-sm focus:outline-none">
+                <button id="mobile-menu-close" class="w-10 h-10 bg-[#e9b895] hover:bg-[#e2aa83] text-amber-950 rounded-xl flex items-center justify-center transition-transform hover:scale-105 shadow-sm focus:outline-none">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
             
-            <!-- Mobile Navigation Links -->
             <div class="flex flex-col gap-8 pl-1 pb-10">
-                <a href="#home" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark transition-colors">Home</a>
-                <a href="#features" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark transition-colors">Features</a>
-                <a href="#about" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark transition-colors">About</a>
-                <a href="#recognition" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark transition-colors">Recognition</a>
-                <a href="#testimonials" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark transition-colors">Testimonials</a>
-                <a href="#contact" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark transition-colors">Contact</a>
+                <a href="#home" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark hover:translate-x-2 transition-all">Home</a>
+                <a href="#features" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark hover:translate-x-2 transition-all">Amenities</a>
+                <a href="#recognition" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark hover:translate-x-2 transition-all">Recognition</a>
+                <a href="#testimonials" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark hover:translate-x-2 transition-all">Hall of Fame</a>
+                <a href="#contact" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark hover:translate-x-2 transition-all">Contact</a>
             </div>
         </div>
     </div>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-[90vh] flex items-center justify-center px-6 pt-20">
-        <!-- Background Image with Overlay -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden">
+        <!-- Background Image with Gradient Overlay -->
         <div class="absolute inset-0 z-0">
-            <!-- Using an image that resembles the wooden cubicles/study environment -->
-            <img src="https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=2000&auto=format&fit=crop" alt="Library Interior" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-black/70"></div>
+            <img src="https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=2000&auto=format&fit=crop" alt="Library Interior" class="w-full h-full object-cover scale-105 animate-[pulse_20s_ease-in-out_infinite]" />
+            <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-gray-900"></div>
         </div>
 
-        <div class="relative z-10 text-center max-w-4xl mx-auto mt-16">
-            <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
-                Your Selection, <span class="text-brand">Our Effort</span>
+        <div class="relative z-10 text-center max-w-4xl mx-auto mt-16" data-aos="fade-up" data-aos-duration="1000">
+            <span class="inline-block py-1 px-3 rounded-full bg-brand/20 border border-brand/30 text-brand-light text-sm font-semibold tracking-wider mb-6 animate-bounce">
+                Welcome to Excellence
+            </span>
+            <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
+                Your Selection, <br/><span class="text-brand drop-shadow-lg">Our Effort</span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed max-w-2xl mx-auto">
+            <p class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl mx-auto font-light" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                 Experience a peaceful, air-conditioned environment with individual desk lights, high-speed Wi-Fi, and wooden study cubicles designed to help you achieve your academic dreams.
             </p>
-            <a href="#contact" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-emerald-950 px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:-translate-y-1">
-                Book a Free Trial Seat
-                <i data-lucide="arrow-right" class="w-5 h-5"></i>
-            </a>
+            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                <a href="#contact" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-emerald-950 px-8 py-4 rounded-full font-bold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(134,239,172,0.4)]">
+                    Book a Free Trial Seat
+                    <i data-lucide="arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-1"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce text-white/50">
+            <i data-lucide="chevron-down" class="w-8 h-8"></i>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-20 px-6 lg:px-12 bg-white">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Premium Amenities for Serious Students</h2>
-                <p class="text-gray-500 max-w-2xl mx-auto">Every detail, from our personal desk lights to rolling ergonomic chairs, is designed to support your study goals.</p>
+    <section id="features" class="py-24 px-6 lg:px-12 bg-white relative">
+        <!-- Decorative background blob -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+            <div class="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-brand-light/20 blur-3xl"></div>
+            <div class="absolute -bottom-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-blue-100/40 blur-3xl"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Premium Amenities for Serious Students</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto text-lg">Every detail, from our personal desk lights to rolling ergonomic chairs, is designed to support your study goals.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-brand-dark mb-6">
-                        <i data-lucide="lamp-desk"></i>
+                <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-100 hover:border-brand/30 shadow-sm hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-emerald-950 transition-all duration-300">
+                        <i data-lucide="lamp-desk" class="w-7 h-7"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Individual Desk Lights</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Individual Desk Lights</h3>
                     <p class="text-gray-600 leading-relaxed text-sm">Personal wooden cubicles equipped with dedicated reading lights to prevent eye strain and maintain focus.</p>
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-brand-dark mb-6">
-                        <i data-lucide="armchair"></i>
+                <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-100 hover:border-brand/30 shadow-sm hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-emerald-950 transition-all duration-300">
+                        <i data-lucide="armchair" class="w-7 h-7"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Ergonomic Chairs</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Ergonomic Rolling Chairs</h3>
                     <p class="text-gray-600 leading-relaxed text-sm">Premium comfortable seating designed for long study sessions, ensuring proper posture and reducing fatigue.</p>
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-brand-dark mb-6">
-                        <i data-lucide="wifi"></i>
+                <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-100 hover:border-brand/30 shadow-sm hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-emerald-950 transition-all duration-300">
+                        <i data-lucide="wifi" class="w-7 h-7"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">High-Speed Wi-Fi</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">High-Speed Wi-Fi</h3>
                     <p class="text-gray-600 leading-relaxed text-sm">Blazing fast internet connectivity for seamless online research, video lectures, and digital resources.</p>
                 </div>
 
                 <!-- Feature 4 -->
-                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-brand-dark mb-6">
-                        <i data-lucide="volume-x"></i>
+                <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-100 hover:border-brand/30 shadow-sm hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-emerald-950 transition-all duration-300">
+                        <i data-lucide="volume-x" class="w-7 h-7"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Disciplined Zone</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Disciplined Zone</h3>
                     <p class="text-gray-600 leading-relaxed text-sm">Strictly maintained silence policy in a well-planned environment to maximize your concentration.</p>
                 </div>
 
                 <!-- Feature 5 -->
-                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-brand-dark mb-6">
-                        <i data-lucide="users"></i>
+                <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-100 hover:border-brand/30 shadow-sm hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-emerald-950 transition-all duration-300">
+                        <i data-lucide="users" class="w-7 h-7"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Expert Guidance Seminars</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Expert Guidance Seminars</h3>
                     <p class="text-gray-600 leading-relaxed text-sm">Occasional mentoring sessions by successful professionals (like Loco Pilots, Govt. Officials) to keep you motivated.</p>
                 </div>
 
                 <!-- Feature 6 -->
-                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-brand-dark mb-6">
-                        <i data-lucide="shield-check"></i>
+                <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-100 hover:border-brand/30 shadow-sm hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-emerald-950 transition-all duration-300">
+                        <i data-lucide="shield-check" class="w-7 h-7"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Safe & Secure</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Safe & Secure</h3>
                     <p class="text-gray-600 leading-relaxed text-sm">Round-the-clock surveillance and administrative support ensuring a safe and positive environment.</p>
                 </div>
             </div>
@@ -191,44 +227,53 @@
     </section>
 
     <!-- Recognition & Mentorship Section -->
-    <section id="recognition" class="py-20 px-6 lg:px-12 bg-brand-light/20">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="order-2 lg:order-1 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-light/50 text-emerald-800 text-sm font-semibold mb-2">
+    <section id="recognition" class="py-24 px-6 lg:px-12 bg-emerald-900 text-white overflow-hidden relative">
+        <div class="absolute inset-0 z-0 opacity-10">
+            <!-- Pattern overlay -->
+            <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+                <defs><pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M0 40L40 0H20L0 20M40 40V20L20 40" fill="currentColor"></path></pattern></defs>
+                <rect width="100%" height="100%" fill="url(#grid-pattern)"></rect>
+            </svg>
+        </div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1 space-y-6" data-aos="fade-right">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/20 text-brand-light text-sm font-bold tracking-wide border border-brand/30 mb-2 shadow-[0_0_15px_rgba(134,239,172,0.15)]">
                         <i data-lucide="award" class="w-4 h-4"></i>
                         Recognized by Administration
                     </div>
-                    <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">Setting a Benchmark for Education in Sultanpur</h2>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h2 class="text-3xl lg:text-5xl font-bold leading-tight">Setting a Benchmark for Education in Sultanpur</h2>
+                    <p class="text-emerald-100/80 leading-relaxed text-lg">
                         Selection Library has caught the attention of local administration for its peaceful, disciplined, and study-centric environment where students continuously achieve success. 
                     </p>
-                    <p class="text-gray-600 leading-relaxed">
-                        The <strong class="text-gray-900">SDM of Sultanpur</strong> recently visited and praised the institution, stating that Selection Library is not just paving the way for the bright future of students, but is setting a prime example of an excellent educational atmosphere in the district.
+                    <p class="text-emerald-100/80 leading-relaxed text-lg">
+                        The <strong class="text-white">SDM of Sultanpur</strong> recently visited and praised the institution, stating that Selection Library is not just paving the way for the bright future of students, but is setting a prime example of an excellent educational atmosphere in the district.
                     </p>
-                    <p class="text-gray-600 leading-relaxed">
-                        The administration also commended founder <strong class="text-gray-900">Shri Gaurav Srivastava</strong> as a successful emerging entrepreneur, noting that the institution plays an inspiring role in both education and social development.
+                    <p class="text-emerald-100/80 leading-relaxed text-lg">
+                        The administration also commended founder <strong class="text-white">Shri Gaurav Srivastava</strong> as a successful emerging entrepreneur, noting that the institution plays an inspiring role in both education and social development.
                     </p>
                     
-                    <div class="pt-4 border-t border-emerald-200/60 mt-6">
-                        <h4 class="font-bold text-gray-900 flex items-center gap-2 mb-3">
-                            <i data-lucide="mic" class="w-5 h-5 text-brand-dark"></i>
+                    <div class="pt-6 border-t border-emerald-700 mt-8">
+                        <h4 class="font-bold text-white text-xl flex items-center gap-3 mb-3">
+                            <div class="p-2 bg-brand/20 rounded-lg"><i data-lucide="mic" class="w-5 h-5 text-brand"></i></div>
                             Mentorship & Guidance
                         </h4>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            We regularly host successful professionals to guide our students. Recently, <strong class="text-gray-900">Loco Pilot Shri Rakesh Mani ji</strong> addressed our future aspirants, sharing invaluable insights and strategies for competitive exams.
+                        <p class="text-emerald-100/80 leading-relaxed">
+                            We regularly host successful professionals to guide our students. Recently, <strong class="text-white">Loco Pilot Shri Rakesh Mani ji</strong> addressed our future aspirants, sharing invaluable insights and strategies for competitive exams.
                         </p>
                     </div>
                 </div>
                 
-                <div class="order-1 lg:order-2 grid grid-cols-2 gap-4">
+                <div class="order-1 lg:order-2 grid grid-cols-2 gap-4 relative" data-aos="fade-left">
+                    <div class="absolute -inset-4 bg-brand/20 rounded-3xl blur-2xl -z-10"></div>
                     <div class="space-y-4">
-                        <img src="https://images.unsplash.com/photo-1577415124269-fc1140a69e91?q=80&w=800&auto=format&fit=crop" alt="Study Session" class="rounded-2xl shadow-lg object-cover h-48 w-full">
-                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop" alt="Mentorship" class="rounded-2xl shadow-lg object-cover h-64 w-full">
+                        <img src="https://images.unsplash.com/photo-1577415124269-fc1140a69e91?q=80&w=800&auto=format&fit=crop" alt="Study Session" class="rounded-2xl shadow-2xl object-cover h-48 w-full hover:scale-105 transition-transform duration-500 border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop" alt="Mentorship" class="rounded-2xl shadow-2xl object-cover h-64 w-full hover:scale-105 transition-transform duration-500 border border-white/10">
                     </div>
-                    <div class="space-y-4 pt-8">
-                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" alt="Library Environment" class="rounded-2xl shadow-lg object-cover h-64 w-full">
-                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop" alt="Success" class="rounded-2xl shadow-lg object-cover h-48 w-full">
+                    <div class="space-y-4 pt-12">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" alt="Library Environment" class="rounded-2xl shadow-2xl object-cover h-64 w-full hover:scale-105 transition-transform duration-500 border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop" alt="Success" class="rounded-2xl shadow-2xl object-cover h-48 w-full hover:scale-105 transition-transform duration-500 border border-white/10">
                     </div>
                 </div>
             </div>
@@ -236,98 +281,99 @@
     </section>
 
     <!-- Testimonials Section / Hall of Fame -->
-    <section id="testimonials" class="py-20 px-6 lg:px-12 bg-white">
+    <section id="testimonials" class="py-24 px-6 lg:px-12 bg-gray-50">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Hall of Fame</h2>
-                <p class="text-gray-500 max-w-2xl mx-auto">Celebrating the real success stories of our students who achieved their dreams through hard work and our dedicated environment.</p>
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-brand-dark font-bold tracking-widest uppercase text-sm mb-2 block">Success Stories</span>
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Hall of Fame</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto text-lg">Celebrating the real success stories of our students who achieved their dreams through hard work and our dedicated environment.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Testimonial 1: Abhishek Gupta -->
-                <div class="bg-gray-50 rounded-3xl p-8 border border-gray-100 hover:shadow-md transition-all">
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center font-bold text-emerald-700 text-xl">
-                                AG
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-900 text-lg">Abhishek Gupta</h4>
-                                <div class="flex items-center gap-1.5 text-brand-dark text-sm mt-1 font-medium">
-                                    <i data-lucide="briefcase" class="w-4 h-4"></i>
-                                    <span>Divisional Accountant, CAG</span>
-                                </div>
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 hover:border-brand/40 shadow-sm hover:shadow-2xl hover:shadow-brand/10 transition-all duration-300 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500">
+                        <i data-lucide="quote" class="w-16 h-16 text-brand-dark"></i>
+                    </div>
+                    <div class="flex items-start gap-4 mb-6 relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full flex items-center justify-center font-bold text-emerald-800 text-xl shadow-inner">
+                            AG
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-lg">Abhishek Gupta</h4>
+                            <div class="flex items-center gap-1.5 text-brand-dark text-sm mt-1 font-medium bg-brand/10 px-2 py-1 rounded-md inline-flex">
+                                <i data-lucide="briefcase" class="w-4 h-4"></i>
+                                <span>Divisional Accountant, CAG</span>
                             </div>
                         </div>
-                        <i data-lucide="quote" class="w-8 h-8 text-gray-200"></i>
                     </div>
-                    <p class="text-gray-600 text-[15px] italic leading-relaxed">
+                    <p class="text-gray-600 text-[15px] italic leading-relaxed relative z-10">
                         "Selected as Divisional Accountant in the Comptroller and Auditor General of India (CAG) department. The peaceful and positive environment of Selection Library helped me utilize my time with full potential for the upcoming exams. I highly recommend students to prepare here to achieve good posts quickly."
                     </p>
                 </div>
 
                 <!-- Testimonial 2: Riya Srivastava -->
-                <div class="bg-gray-50 rounded-3xl p-8 border border-gray-100 hover:shadow-md transition-all">
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-700 text-xl">
-                                RS
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-900 text-lg">Riya Srivastava</h4>
-                                <div class="flex items-center gap-1.5 text-brand-dark text-sm mt-1 font-medium">
-                                    <i data-lucide="train" class="w-4 h-4"></i>
-                                    <span>JE, UP Metro Rail Corporation</span>
-                                </div>
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 hover:border-blue-400/40 shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500">
+                        <i data-lucide="quote" class="w-16 h-16 text-blue-600"></i>
+                    </div>
+                    <div class="flex items-start gap-4 mb-6 relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center font-bold text-blue-800 text-xl shadow-inner">
+                            RS
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-lg">Riya Srivastava</h4>
+                            <div class="flex items-center gap-1.5 text-blue-600 text-sm mt-1 font-medium bg-blue-50 px-2 py-1 rounded-md inline-flex">
+                                <i data-lucide="train" class="w-4 h-4"></i>
+                                <span>JE, UP Metro Rail Corporation</span>
                             </div>
                         </div>
-                        <i data-lucide="quote" class="w-8 h-8 text-gray-200"></i>
                     </div>
-                    <p class="text-gray-600 text-[15px] italic leading-relaxed">
+                    <p class="text-gray-600 text-[15px] italic leading-relaxed relative z-10">
                         "Everyone has their own special contribution in the steps of success. My 'library' also has a special contribution in my success. A library is a miracle where you can learn a lot of things like focus, patience, and confidence. I have never found as much positivity anywhere as 'Selection Library'."
                     </p>
                 </div>
 
                 <!-- Testimonial 3: Mohit Mishra -->
-                <div class="bg-gray-50 rounded-3xl p-8 border border-gray-100 hover:shadow-md transition-all">
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center font-bold text-orange-700 text-xl">
-                                MM
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-900 text-lg">Mohit Mishra</h4>
-                                <div class="flex items-center gap-1.5 text-brand-dark text-sm mt-1 font-medium">
-                                    <i data-lucide="graduation-cap" class="w-4 h-4"></i>
-                                    <span>98.5 Percentile, JEE Mains</span>
-                                </div>
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 hover:border-orange-400/40 shadow-sm hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500">
+                        <i data-lucide="quote" class="w-16 h-16 text-orange-600"></i>
+                    </div>
+                    <div class="flex items-start gap-4 mb-6 relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center font-bold text-orange-800 text-xl shadow-inner">
+                            MM
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-lg">Mohit Mishra</h4>
+                            <div class="flex items-center gap-1.5 text-orange-600 text-sm mt-1 font-medium bg-orange-50 px-2 py-1 rounded-md inline-flex">
+                                <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                                <span>98.5 Percentile, JEE Mains</span>
                             </div>
                         </div>
-                        <i data-lucide="quote" class="w-8 h-8 text-gray-200"></i>
                     </div>
-                    <p class="text-gray-600 text-[15px] italic leading-relaxed">
+                    <p class="text-gray-600 text-[15px] italic leading-relaxed relative z-10">
                         "I got 98.5 percentile in JEE Mains. It is just like a dream that will happen. It is only possible because of a good study atmosphere that is provided by Selection Library situated in Karaundiya, Sultanpur. I feel very helpful for owner of Selection Library refer to come dream true."
                     </p>
                 </div>
 
                 <!-- Testimonial 4: Suman Mishra -->
-                <div class="bg-gray-50 rounded-3xl p-8 border border-gray-100 hover:shadow-md transition-all">
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center font-bold text-purple-700 text-xl">
-                                SM
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-900 text-lg">Suman Mishra</h4>
-                                <div class="flex items-center gap-1.5 text-brand-dark text-sm mt-1 font-medium">
-                                    <i data-lucide="book-open" class="w-4 h-4"></i>
-                                    <span>TGT Teacher (9th-10th), Bihar</span>
-                                </div>
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 hover:border-purple-400/40 shadow-sm hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500">
+                        <i data-lucide="quote" class="w-16 h-16 text-purple-600"></i>
+                    </div>
+                    <div class="flex items-start gap-4 mb-6 relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center font-bold text-purple-800 text-xl shadow-inner">
+                            SM
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-lg">Suman Mishra</h4>
+                            <div class="flex items-center gap-1.5 text-purple-600 text-sm mt-1 font-medium bg-purple-50 px-2 py-1 rounded-md inline-flex">
+                                <i data-lucide="book-open" class="w-4 h-4"></i>
+                                <span>TGT Teacher (9th-10th), Bihar</span>
                             </div>
                         </div>
-                        <i data-lucide="quote" class="w-8 h-8 text-gray-200"></i>
                     </div>
-                    <p class="text-gray-600 text-[15px] italic leading-relaxed">
+                    <p class="text-gray-600 text-[15px] italic leading-relaxed relative z-10">
                         "On this occasion of success, I want to express my gratitude to Selection Library. Here, along with a peaceful and clean environment, I received support to study in a well-planned and disciplined manner. Undoubtedly, this Library clearly justifies the meaning of its name."
                     </p>
                 </div>
@@ -336,75 +382,104 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 lg:px-12 bg-gray-50 border-t border-gray-100">
+    <section id="contact" class="py-24 px-6 lg:px-12 bg-white relative">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
-                <p class="text-gray-500">Book your free trial seat or send us your questions. Visit our library in Sultanpur.</p>
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Get in Touch</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto text-lg">Book your free trial seat or send us your questions. Visit our library in Sultanpur.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
                 <!-- Contact Info -->
-                <div class="space-y-10">
-                    <div>
-                        <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-brand-dark"></i>
+                <div class="space-y-10" data-aos="fade-right">
+                    <!-- Location -->
+                    <div class="group">
+                        <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-3 text-lg">
+                            <div class="p-2 bg-gray-50 rounded-lg group-hover:bg-brand/20 transition-colors"><i data-lucide="map-pin" class="w-5 h-5 text-brand-dark"></i></div>
                             Visit Us
                         </h3>
-                        
-                        <div class="space-y-6">
-                            <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
-                                <h4 class="font-bold text-gray-900 mb-2">Selection Library</h4>
-                                <p class="text-gray-600 text-sm leading-relaxed">
-                                    Nirala Nagar<br>
-                                    Sultanpur, Uttar Pradesh<br>
-                                    India
-                                </p>
-                            </div>
+                        <!-- Made Address Clickable linking to Google Maps -->
+                        <a href="https://maps.google.com/?q=Selection+Library,+Nirala+Nagar,+Sultanpur,+Uttar+Pradesh" target="_blank" class="block bg-gray-50 p-6 rounded-2xl border border-gray-100 hover:border-brand/50 hover:shadow-md transition-all duration-300">
+                            <h4 class="font-bold text-gray-900 mb-2">Selection Library</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Nirala Nagar<br>
+                                Sultanpur, Uttar Pradesh<br>
+                                India
+                            </p>
+                            <span class="text-brand-dark text-xs font-semibold mt-3 inline-flex items-center gap-1 group-hover:gap-2 transition-all">Get Directions <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                        </a>
+                    </div>
+
+                    <!-- Hours -->
+                    <div class="group">
+                        <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-3 text-lg">
+                            <div class="p-2 bg-gray-50 rounded-lg group-hover:bg-brand/20 transition-colors"><i data-lucide="clock" class="w-5 h-5 text-brand-dark"></i></div>
+                            Operating Hours
+                        </h3>
+                        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                <strong class="text-gray-900 block mb-1">Monday - Sunday</strong>
+                                Open for long study sessions
+                            </p>
                         </div>
                     </div>
 
-                    <div>
-                        <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                            <i data-lucide="clock" class="w-5 h-5 text-brand-dark"></i>
-                            Operating Hours
-                        </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            Monday - Sunday<br>
-                            Open for long study sessions
-                        </p>
-                    </div>
-
-                    <div>
-                        <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                            <i data-lucide="phone" class="w-5 h-5 text-brand-dark"></i>
+                    <!-- Contact details -->
+                    <div class="group">
+                        <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-3 text-lg">
+                            <div class="p-2 bg-gray-50 rounded-lg group-hover:bg-brand/20 transition-colors"><i data-lucide="phone" class="w-5 h-5 text-brand-dark"></i></div>
                             Contact Information
                         </h3>
-                        <div class="text-gray-600 text-sm space-y-2">
-                            <p class="font-medium text-lg text-brand-dark">Phone: 9169340586</p>
-                            <p>Email: info@selectionlibrary.com</p>
+                        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-4">
+                            <!-- Clickable Phone -->
+                            <a href="tel:+919169340586" class="flex items-center gap-3 text-gray-600 hover:text-brand-dark transition-colors">
+                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm"><i data-lucide="phone-call" class="w-4 h-4 text-gray-400"></i></div>
+                                <span class="font-bold text-lg">9169340586</span>
+                            </a>
+                            <!-- Clickable Email -->
+                            <a href="mailto:info@selectionlibrary.com" class="flex items-center gap-3 text-gray-600 hover:text-brand-dark transition-colors">
+                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm"><i data-lucide="mail" class="w-4 h-4 text-gray-400"></i></div>
+                                <span>info@selectionlibrary.com</span>
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Contact Form -->
-                <div class="bg-white rounded-3xl p-8 border border-gray-100 shadow-lg">
-                    <h3 class="font-bold text-gray-900 text-xl mb-6">Send Us a Message</h3>
-                    <form class="space-y-5" onsubmit="event.preventDefault();">
+                <!-- Contact Form (Now Functional with Web3Forms) -->
+                <div class="bg-white rounded-3xl p-8 lg:p-10 border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] relative overflow-hidden" data-aos="fade-left">
+                    <!-- Decorative element -->
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand/10 rounded-bl-full -z-10"></div>
+                    
+                    <h3 class="font-bold text-gray-900 text-2xl mb-8">Send Us a Message</h3>
+                    
+                    <!-- WEB3FORMS INTEGRATION -->
+                    <!-- Action points to Web3Forms API. Form submissions will be sent to the email associated with the access key. -->
+                    <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+                        
+                        <!-- REQUIRED: Replace value with your actual Web3Forms Access Key -->
+                        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                        
+                        <!-- Optional: Pre-fills subject line -->
+                        <input type="hidden" name="subject" value="New Website Inquiry: Selection Library">
+                        <!-- Optional: Redirect to a custom thank you page (defaults to web3forms basic page if removed) -->
+                        <input type="hidden" name="redirect" value="https://web3forms.com/success">
+
                         <div>
-                            <label class="block text-xs font-semibold text-gray-700 mb-1.5">Name</label>
-                            <input type="text" placeholder="Your full name" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand text-sm transition-colors bg-gray-50">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
+                            <input type="text" name="name" required placeholder="John Doe" class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 text-sm transition-all bg-gray-50/50 hover:bg-white">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-700 mb-1.5">Phone Number</label>
-                            <input type="tel" placeholder="+91 98765 43210" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand text-sm transition-colors bg-gray-50">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" name="phone" required placeholder="+91 98765 43210" class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 text-sm transition-all bg-gray-50/50 hover:bg-white">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-700 mb-1.5">Message</label>
-                            <textarea rows="4" placeholder="Tell us about your study goals..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand text-sm transition-colors resize-none bg-gray-50"></textarea>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Message</label>
+                            <textarea name="message" required rows="4" placeholder="Tell us about your study goals or ask for a trial seat..." class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 text-sm transition-all resize-none bg-gray-50/50 hover:bg-white"></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-brand hover:bg-brand-light text-emerald-950 font-bold py-4 rounded-xl transition-colors mt-2 text-sm shadow-sm">
+                        
+                        <button type="submit" class="w-full bg-gray-900 hover:bg-brand text-white hover:text-emerald-950 font-bold py-4 rounded-xl transition-all duration-300 mt-4 text-base shadow-lg hover:shadow-brand/30 flex items-center justify-center gap-2 group">
                             Submit Inquiry
+                            <i data-lucide="send" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
                         </button>
                     </form>
                 </div>
@@ -413,16 +488,20 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8 px-6 lg:px-12">
-        <div class="max-w-6xl mx-auto">
+    <footer class="bg-gray-950 text-white pt-20 pb-10 px-6 lg:px-12 border-t border-white/5 relative overflow-hidden">
+        <!-- Glow effect in footer -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-px bg-gradient-to-r from-transparent via-brand to-transparent opacity-50"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand/5 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
                 <!-- Brand -->
-                <div>
+                <div data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-emerald-900 text-lg">
+                        <div class="w-12 h-12 bg-brand rounded-xl flex items-center justify-center font-bold text-emerald-900 text-xl shadow-lg shadow-brand/20">
                             SL
                         </div>
-                        <span class="font-bold text-white text-xl">Selection Library</span>
+                        <span class="font-bold text-white text-2xl">Selection Library</span>
                     </div>
                     <p class="text-gray-400 text-sm leading-relaxed pr-4">
                         Founded by Shri Gaurav Srivastava. Your dedicated space for focus and success, providing the ultimate distraction-free environment in Sultanpur.
@@ -430,57 +509,86 @@
                 </div>
 
                 <!-- Links -->
-                <div>
-                    <h4 class="font-bold text-white mb-6">Quick Links</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="#home" class="hover:text-brand transition-colors">Home</a></li>
-                        <li><a href="#features" class="hover:text-brand transition-colors">Amenities</a></li>
-                        <li><a href="#recognition" class="hover:text-brand transition-colors">Recognition</a></li>
-                        <li><a href="#testimonials" class="hover:text-brand transition-colors">Hall of Fame</a></li>
-                        <li><a href="#contact" class="hover:text-brand transition-colors">Contact</a></li>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="font-bold text-white mb-6 text-lg tracking-wide">Quick Links</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="#home" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> Home</a></li>
+                        <li><a href="#features" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> Amenities</a></li>
+                        <li><a href="#recognition" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> Recognition</a></li>
+                        <li><a href="#testimonials" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> Hall of Fame</a></li>
+                        <li><a href="#contact" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> Contact</a></li>
                     </ul>
                 </div>
 
                 <!-- Social/Contact -->
-                <div>
-                    <h4 class="font-bold text-white mb-6">Connect With Us</h4>
-                    <div class="flex gap-4 mb-6">
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-brand hover:bg-gray-700 transition-all border border-gray-700">
-                            <i data-lucide="facebook" class="w-4 h-4"></i>
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <h4 class="font-bold text-white mb-6 text-lg tracking-wide">Connect With Us</h4>
+                    <div class="flex gap-4 mb-8">
+                        <a href="https://facebook.com" target="_blank" class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand transition-all duration-300 border border-gray-800 hover:border-brand hover:-translate-y-1 hover:shadow-lg hover:shadow-brand/20">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-brand hover:bg-gray-700 transition-all border border-gray-700">
-                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                        <a href="https://instagram.com/selectionlibraray" target="_blank" class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand transition-all duration-300 border border-gray-800 hover:border-brand hover:-translate-y-1 hover:shadow-lg hover:shadow-brand/20">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-brand hover:bg-gray-700 transition-all border border-gray-700">
-                            <i data-lucide="twitter" class="w-4 h-4"></i>
+                        <a href="https://wa.me/919169340586" target="_blank" class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand transition-all duration-300 border border-gray-800 hover:border-brand hover:-translate-y-1 hover:shadow-lg hover:shadow-brand/20">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
                         </a>
                     </div>
-                    <div class="space-y-2 text-sm text-gray-400">
-                        <p class="flex items-center gap-2">
-                            <i data-lucide="phone" class="w-4 h-4 text-brand"></i>
+                    <div class="space-y-3 text-sm text-gray-400">
+                        <a href="tel:+919169340586" class="flex items-center gap-3 hover:text-brand transition-colors">
+                            <div class="p-2 bg-gray-900 rounded-lg"><i data-lucide="phone" class="w-4 h-4 text-brand"></i></div>
                             9169340586
-                        </p>
+                        </a>
                     </div>
                 </div>
             </div>
 
             <!-- Copyright -->
-            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
                 <p>© 2026 Selection Library. All rights reserved.</p>
-                <div class="flex gap-6">
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-white transition-colors relative group">
+                        Privacy Policy
+                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#" class="hover:text-white transition-colors relative group">
+                        Terms of Service
+                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>
+                    </a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Initialize Lucide Icons & Mobile Menu Action scripts -->
+    <!-- Scripts -->
+    <!-- AOS Animation script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <script>
         // Init Lucide
         lucide.createIcons();
 
-        // Mobile Menu DOM elements
+        // Init AOS Animations
+        AOS.init({
+            once: true, // whether animation should happen only once - while scrolling down
+            offset: 100, // offset (in px) from the original trigger point
+            duration: 800, // values from 0 to 3000, with step 50ms
+            easing: 'ease-out-cubic', // default easing for AOS animations
+        });
+
+        // Dynamic Navbar Glassmorphism on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-nav');
+                navbar.classList.remove('bg-black/20', 'border-white/10');
+            } else {
+                navbar.classList.remove('glass-nav');
+                navbar.classList.add('bg-black/20', 'border-white/10');
+            }
+        });
+
+        // Mobile Menu Logic
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuContainer = document.getElementById('mobile-menu-container');
@@ -488,32 +596,26 @@
         const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-        // Open menu animation helper
         function openMenu() {
             mobileMenu.classList.remove('hidden');
-            // Allow layout repaint then animate container sliding down
             setTimeout(() => {
                 mobileMenuContainer.classList.remove('-translate-y-full');
                 mobileMenuContainer.classList.add('translate-y-0');
             }, 50);
         }
 
-        // Close menu animation helper
         function closeMenu() {
             mobileMenuContainer.classList.remove('translate-y-0');
             mobileMenuContainer.classList.add('-translate-y-full');
-            // Hide container backdrop after animation is completed
             setTimeout(() => {
                 mobileMenu.classList.add('hidden');
             }, 300);
         }
 
-        // Event listeners for open/close mechanisms
         mobileMenuBtn.addEventListener('click', openMenu);
         mobileMenuClose.addEventListener('click', closeMenu);
         mobileMenuBackdrop.addEventListener('click', closeMenu);
 
-        // Auto-close menu on nav link click
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', closeMenu);
         });
