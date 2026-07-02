@@ -22,9 +22,14 @@
                     },
                     colors: {
                         brand: {
-                            light: '#a7f3d0', // emerald-200
-                            DEFAULT: '#86efac', // emerald-300
-                            dark: '#10b981', // emerald-500
+                            light: '#38bdf8', // Lighter teal for hover states
+                            DEFAULT: '#0EA5E9', // Vibrant Teal
+                            dark: '#0284c7', // Darker teal
+                        },
+                        oasis: {
+                            ivory: '#FAFAF6', // Ivory Soft
+                            emerald: '#1E3A34', // Deep Emerald
+                            ink: '#0F172A', // Slate Ink
                         }
                     },
                     animation: {
@@ -46,7 +51,7 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #FAFAF6;
         }
         ::-webkit-scrollbar-thumb {
             background: #cbd5e1;
@@ -58,7 +63,7 @@
         
         /* Smooth transitions for interactive elements */
         .glass-nav {
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(30, 58, 52, 0.8); /* Deep Emerald base with transparency */
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -74,12 +79,12 @@
         }
     </style>
 </head>
-<body class="font-sans text-gray-800 antialiased bg-gray-50 overflow-x-hidden">
+<body class="font-sans text-slate-600 antialiased bg-oasis-ivory overflow-x-hidden">
 
     <!-- Navbar -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 py-5 px-6 lg:px-12 flex justify-between items-center transition-all duration-300 bg-black/20 backdrop-blur-sm border-b border-white/10">
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 py-5 px-6 lg:px-12 flex justify-between items-center transition-all duration-300 bg-black/30 backdrop-blur-sm border-b border-white/10">
         <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-            <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-emerald-900 text-lg shadow-lg shadow-brand/20 transition-transform hover:scale-105">
+            <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-white text-lg shadow-lg shadow-brand/20 transition-transform hover:scale-105">
                 SL
             </div>
             <span class="font-bold text-white text-xl tracking-tight">Selection Library</span>
@@ -119,28 +124,28 @@
 
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
-        <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div id="mobile-menu-backdrop" class="absolute inset-0 bg-oasis-emerald/80 backdrop-blur-md"></div>
         
-        <div id="mobile-menu-container" class="absolute top-0 left-0 right-0 bg-white px-6 py-6 border-b border-gray-100 flex flex-col transition-all duration-300 ease-out transform -translate-y-full shadow-2xl">
+        <div id="mobile-menu-container" class="absolute top-0 left-0 right-0 bg-oasis-ivory px-6 py-6 border-b border-gray-200 flex flex-col transition-all duration-300 ease-out transform -translate-y-full shadow-2xl">
             <div class="flex justify-between items-center mb-10">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-emerald-900 text-lg">
+                    <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-white text-lg">
                         SL
                     </div>
-                    <span class="font-bold text-gray-900 text-xl tracking-tight">Selection Library</span>
+                    <span class="font-bold text-oasis-ink text-xl tracking-tight">Selection Library</span>
                 </div>
-                <button id="mobile-menu-close" class="w-10 h-10 bg-[#e9b895] hover:bg-[#e2aa83] text-amber-950 rounded-xl flex items-center justify-center transition-transform hover:scale-105 shadow-sm focus:outline-none">
+                <button id="mobile-menu-close" class="w-10 h-10 bg-brand/10 hover:bg-brand/20 text-brand-dark rounded-xl flex items-center justify-center transition-transform hover:scale-105 shadow-sm focus:outline-none">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
             
             <div class="flex flex-col gap-8 pl-1 pb-10">
-                <a href="#home" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark hover:translate-x-2 transition-all">Home</a>
-                <a href="#features" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark hover:translate-x-2 transition-all">Amenities</a>
-                <a href="#recognition" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark hover:translate-x-2 transition-all">Recognition</a>
-                <a href="#testimonials" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark hover:translate-x-2 transition-all">Hall of Fame</a>
-                <a href="#google-reviews" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark hover:translate-x-2 transition-all">Reviews</a>
-                <a href="#contact" class="mobile-nav-link text-xl font-medium text-gray-900 hover:text-brand-dark hover:translate-x-2 transition-all">Contact</a>
+                <a href="#home" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Home</a>
+                <a href="#features" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Amenities</a>
+                <a href="#recognition" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Recognition</a>
+                <a href="#testimonials" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Hall of Fame</a>
+                <a href="#google-reviews" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Reviews</a>
+                <a href="#contact" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Contact</a>
             </div>
         </div>
     </div>
@@ -149,23 +154,22 @@
     <section id="home" class="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden">
         <!-- Background Image with Gradient Overlay -->
         <div class="absolute inset-0 z-0">
-            <!-- Updated to clean, premium warm library setting matching custom desks -->
             <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000&auto=format&fit=crop" alt="Library Premium Interior" class="w-full h-full object-cover scale-105 animate-[pulse_20s_ease-in-out_infinite]" />
-            <div class="absolute inset-0 bg-gradient-to-b from-black/85 via-black/65 to-gray-900"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-oasis-emerald/90 via-oasis-emerald/80 to-oasis-ink/90"></div>
         </div>
 
         <div class="relative z-10 text-center max-w-4xl mx-auto mt-16" data-aos="fade-up" data-aos-duration="1000">
-            <span class="inline-block py-1.5 px-4 rounded-full bg-brand/20 border border-brand/30 text-brand-light text-sm font-semibold tracking-wider mb-6 animate-pulse">
+            <span class="inline-block py-1.5 px-4 rounded-full bg-brand/20 border border-brand/40 text-brand-light text-sm font-semibold tracking-wider mb-6 animate-pulse">
                 Welcome to Excellence
             </span>
             <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
                 Your Selection, <br/><span class="text-brand drop-shadow-lg">Our Effort</span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl mx-auto font-light" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+            <p class="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed max-w-2xl mx-auto font-light" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                 Experience a peaceful, air-conditioned environment with individual desk lights, high-speed Wi-Fi, and wooden study cubicles designed to help you achieve your academic dreams.
             </p>
             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
-                <a href="#contact" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-emerald-950 px-8 py-4 rounded-full font-bold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(134,239,172,0.4)]">
+                <a href="#contact" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-white px-8 py-4 rounded-full font-bold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(14,165,233,0.4)]">
                     Book a Free Trial Seat
                     <i data-lucide="arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-1"></i>
                 </a>
@@ -182,77 +186,78 @@
     <section id="features" class="py-24 px-6 lg:px-12 bg-white relative">
         <!-- Decorative background blob -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-            <div class="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-brand-light/20 blur-3xl"></div>
-            <div class="absolute -bottom-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-blue-100/40 blur-3xl"></div>
+            <div class="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-brand/5 blur-3xl"></div>
+            <div class="absolute -bottom-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-oasis-emerald/5 blur-3xl"></div>
         </div>
 
         <div class="max-w-6xl mx-auto relative z-10">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Premium Amenities for Serious Students</h2>
-                <p class="text-gray-500 max-w-2xl mx-auto text-lg">Every detail, from our personal desk lights to rolling ergonomic chairs, is designed to support your study goals.</p>
+                <h2 class="text-3xl lg:text-4xl font-bold text-oasis-ink mb-4">Premium Amenities for Serious Students</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto text-lg">Every detail, from our personal desk lights to rolling ergonomic chairs, is designed to support your study goals.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-100 hover:border-brand/30 shadow-sm hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-emerald-950 transition-all duration-300">
+                <div class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
                         <i data-lucide="lamp-desk" class="w-7 h-7"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Individual Desk Lights</h3>
-                    <p class="text-gray-600 leading-relaxed text-sm">Personal wooden cubicles equipped with dedicated reading lights to prevent eye strain and maintain focus.</p>
+                    <h3 class="text-xl font-bold text-oasis-ink mb-3">Individual Desk Lights</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">Personal wooden cubicles equipped with dedicated reading lights to prevent eye strain and maintain focus.</p>
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-100 hover:border-brand/30 shadow-sm hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-emerald-950 transition-all duration-300">
+                <div class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
                         <i data-lucide="armchair" class="w-7 h-7"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Ergonomic Chairs</h3>
-                    <p class="text-gray-600 leading-relaxed text-sm">Premium comfortable seating designed for long study sessions, ensuring proper posture and reducing fatigue.</p>
+                    <h3 class="text-xl font-bold text-oasis-ink mb-3">Ergonomic Chairs</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">Premium comfortable seating designed for long study sessions, ensuring proper posture and reducing fatigue.</p>
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-100 hover:border-brand/30 shadow-sm hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-emerald-950 transition-all duration-300">
+                <div class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
                         <i data-lucide="wifi" class="w-7 h-7"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">High-Speed Wi-Fi</h3>
-                    <p class="text-gray-600 leading-relaxed text-sm">Blazing fast internet connectivity for seamless online research, video lectures, and digital resources.</p>
+                    <h3 class="text-xl font-bold text-oasis-ink mb-3">High-Speed Wi-Fi</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">Blazing fast internet connectivity for seamless online research, video lectures, and digital resources.</p>
                 </div>
 
                 <!-- Feature 4 -->
-                <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-100 hover:border-brand/30 shadow-sm hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-emerald-950 transition-all duration-300">
+                <div class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
                         <i data-lucide="volume-x" class="w-7 h-7"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Disciplined Zone</h3>
-                    <p class="text-gray-600 leading-relaxed text-sm">Strictly maintained silence policy in a well-planned environment to maximize your concentration.</p>
+                    <h3 class="text-xl font-bold text-oasis-ink mb-3">Disciplined Zone</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">Strictly maintained silence policy in a well-planned environment to maximize your concentration.</p>
                 </div>
 
                 <!-- Feature 5 -->
-                <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-100 hover:border-brand/30 shadow-sm hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-emerald-950 transition-all duration-300">
+                <div class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
                         <i data-lucide="users" class="w-7 h-7"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Expert Guidance Seminars</h3>
-                    <p class="text-gray-600 leading-relaxed text-sm">Occasional mentoring sessions by successful professionals (like Loco Pilots, Govt. Officials) to keep you motivated.</p>
+                    <h3 class="text-xl font-bold text-oasis-ink mb-3">Expert Guidance Seminars</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">Occasional mentoring sessions by successful professionals (like Loco Pilots, Govt. Officials) to keep you motivated.</p>
                 </div>
 
                 <!-- Feature 6 -->
-                <div class="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-100 hover:border-brand/30 shadow-sm hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-emerald-950 transition-all duration-300">
+                <div class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
                         <i data-lucide="shield-check" class="w-7 h-7"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Safe & Secure</h3>
-                    <p class="text-gray-600 leading-relaxed text-sm">Round-the-clock surveillance and administrative support ensuring a safe and positive environment.</p>
+                    <h3 class="text-xl font-bold text-oasis-ink mb-3">Safe & Secure</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">Round-the-clock surveillance and administrative support ensuring a safe and positive environment.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Recognition & Mentorship Section -->
-    <section id="recognition" class="py-24 px-6 lg:px-12 bg-emerald-900 text-white overflow-hidden relative">
-        <div class="absolute inset-0 z-0 opacity-10">
+    <!-- Changed background to oasis-emerald -->
+    <section id="recognition" class="py-24 px-6 lg:px-12 bg-oasis-emerald text-white overflow-hidden relative">
+        <div class="absolute inset-0 z-0 opacity-5">
             <!-- Pattern overlay -->
             <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
                 <defs><pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M0 40L40 0H20L0 20M40 40V20L20 40" fill="currentColor"></path></pattern></defs>
@@ -263,27 +268,27 @@
         <div class="max-w-6xl mx-auto relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="order-2 lg:order-1 space-y-6" data-aos="fade-right">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/20 text-brand-light text-sm font-bold tracking-wide border border-brand/30 mb-2 shadow-[0_0_15px_rgba(134,239,172,0.15)]">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/20 text-brand-light text-sm font-bold tracking-wide border border-brand/30 mb-2 shadow-[0_0_15px_rgba(14,165,233,0.15)]">
                         <i data-lucide="award" class="w-4 h-4"></i>
                         Recognized by Administration
                     </div>
                     <h2 class="text-3xl lg:text-5xl font-bold leading-tight">Setting a Benchmark for Education in Sultanpur</h2>
-                    <p class="text-emerald-100/80 leading-relaxed text-lg">
+                    <p class="text-gray-300 leading-relaxed text-lg">
                         Selection Library has caught the attention of local administration for its peaceful, disciplined, and study-centric environment where students continuously achieve success. 
                     </p>
-                    <p class="text-emerald-100/80 leading-relaxed text-lg">
+                    <p class="text-gray-300 leading-relaxed text-lg">
                         The <strong class="text-white">SDM of Sultanpur</strong> recently visited and praised the institution, stating that Selection Library is not just paving the way for the bright future of students, but is setting a prime example of an excellent educational atmosphere in the district.
                     </p>
-                    <p class="text-emerald-100/80 leading-relaxed text-lg">
+                    <p class="text-gray-300 leading-relaxed text-lg">
                         The administration also commended founder <strong class="text-white">Shri Gaurav Srivastava</strong> as a successful emerging entrepreneur, noting that the institution plays an inspiring role in both education and social development.
                     </p>
                     
-                    <div class="pt-6 border-t border-emerald-700 mt-8">
+                    <div class="pt-6 border-t border-white/10 mt-8">
                         <h4 class="font-bold text-white text-xl flex items-center gap-3 mb-3">
-                            <div class="p-2 bg-brand/20 rounded-lg"><i data-lucide="mic" class="w-5 h-5 text-brand"></i></div>
+                            <div class="p-2 bg-brand/20 rounded-lg"><i data-lucide="mic" class="w-5 h-5 text-brand-light"></i></div>
                             Mentorship & Guidance
                         </h4>
-                        <p class="text-emerald-100/80 leading-relaxed">
+                        <p class="text-gray-300 leading-relaxed">
                             We regularly host successful professionals to guide our students. Recently, <strong class="text-white">Loco Pilot Shri Rakesh Mani ji</strong> addressed our future aspirants, sharing invaluable insights and strategies for competitive exams.
                         </p>
                     </div>
@@ -305,99 +310,99 @@
     </section>
 
     <!-- Testimonials Section / Hall of Fame -->
-    <section id="testimonials" class="py-24 px-6 lg:px-12 bg-gray-50">
+    <section id="testimonials" class="py-24 px-6 lg:px-12 bg-oasis-ivory">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-brand-dark font-bold tracking-widest uppercase text-sm mb-2 block">Success Stories</span>
-                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Hall of Fame</h2>
-                <p class="text-gray-500 max-w-2xl mx-auto text-lg">Celebrating the real success stories of our students who achieved their dreams through hard work and our dedicated environment.</p>
+                <span class="text-brand font-bold tracking-widest uppercase text-sm mb-2 block">Success Stories</span>
+                <h2 class="text-3xl lg:text-4xl font-bold text-oasis-ink mb-4">Hall of Fame</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto text-lg">Celebrating the real success stories of our students who achieved their dreams through hard work and our dedicated environment.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Testimonial 1: Abhishek Gupta -->
-                <div class="bg-white rounded-3xl p-8 border border-gray-100 hover:border-brand/40 shadow-sm hover:shadow-2xl hover:shadow-brand/10 transition-all duration-300 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-brand/40 shadow-sm hover:shadow-2xl hover:shadow-brand/10 transition-all duration-300 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
                     <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500">
-                        <i data-lucide="quote" class="w-16 h-16 text-brand-dark"></i>
+                        <i data-lucide="quote" class="w-16 h-16 text-brand"></i>
                     </div>
                     <div class="flex items-start gap-4 mb-6 relative z-10">
-                        <div class="w-14 h-14 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full flex items-center justify-center font-bold text-emerald-800 text-xl shadow-inner">
+                        <div class="w-14 h-14 bg-gradient-to-br from-brand/10 to-brand/30 rounded-full flex items-center justify-center font-bold text-brand-dark text-xl shadow-inner">
                             AG
                         </div>
                         <div>
-                            <h4 class="font-bold text-gray-900 text-lg">Abhishek Gupta</h4>
-                            <div class="flex items-center gap-1.5 text-brand-dark text-sm mt-1 font-medium bg-brand/10 px-2 py-1 rounded-md inline-flex">
+                            <h4 class="font-bold text-oasis-ink text-lg">Abhishek Gupta</h4>
+                            <div class="flex items-center gap-1.5 text-brand-dark text-sm mt-1 font-semibold bg-brand/10 px-2 py-1 rounded-md inline-flex">
                                 <i data-lucide="briefcase" class="w-4 h-4"></i>
                                 <span>Divisional Accountant, CAG</span>
                             </div>
                         </div>
                     </div>
-                    <p class="text-gray-600 text-[15px] italic leading-relaxed relative z-10">
+                    <p class="text-slate-600 text-[15px] italic leading-relaxed relative z-10">
                         "Selected as Divisional Accountant in the Comptroller and Auditor General of India (CAG) department. The peaceful and positive environment of Selection Library helped me utilize my time with full potential for the upcoming exams. I highly recommend students to prepare here to achieve good posts quickly."
                     </p>
                 </div>
 
                 <!-- Testimonial 2: Riya Srivastava -->
-                <div class="bg-white rounded-3xl p-8 border border-gray-100 hover:border-blue-400/40 shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-indigo-400/40 shadow-sm hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
                     <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500">
-                        <i data-lucide="quote" class="w-16 h-16 text-blue-600"></i>
+                        <i data-lucide="quote" class="w-16 h-16 text-indigo-600"></i>
                     </div>
                     <div class="flex items-start gap-4 mb-6 relative z-10">
-                        <div class="w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center font-bold text-blue-800 text-xl shadow-inner">
+                        <div class="w-14 h-14 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-full flex items-center justify-center font-bold text-indigo-800 text-xl shadow-inner">
                             RS
                         </div>
                         <div>
-                            <h4 class="font-bold text-gray-900 text-lg">Riya Srivastava</h4>
-                            <div class="flex items-center gap-1.5 text-blue-600 text-sm mt-1 font-medium bg-blue-50 px-2 py-1 rounded-md inline-flex">
+                            <h4 class="font-bold text-oasis-ink text-lg">Riya Srivastava</h4>
+                            <div class="flex items-center gap-1.5 text-indigo-600 text-sm mt-1 font-semibold bg-indigo-50 px-2 py-1 rounded-md inline-flex">
                                 <i data-lucide="train" class="w-4 h-4"></i>
                                 <span>JE, UP Metro Rail Corporation</span>
                             </div>
                         </div>
                     </div>
-                    <p class="text-gray-600 text-[15px] italic leading-relaxed relative z-10">
+                    <p class="text-slate-600 text-[15px] italic leading-relaxed relative z-10">
                         "Everyone has their own special contribution in the steps of success. My 'library' also has a special contribution in my success. A library is a miracle where you can learn a lot of things like focus, patience, and confidence. I have never found as much positivity anywhere as 'Selection Library'."
                     </p>
                 </div>
 
                 <!-- Testimonial 3: Mohit Mishra -->
-                <div class="bg-white rounded-3xl p-8 border border-gray-100 hover:border-orange-400/40 shadow-sm hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-amber-400/40 shadow-sm hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-300 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="300">
                     <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500">
-                        <i data-lucide="quote" class="w-16 h-16 text-orange-600"></i>
+                        <i data-lucide="quote" class="w-16 h-16 text-amber-500"></i>
                     </div>
                     <div class="flex items-start gap-4 mb-6 relative z-10">
-                        <div class="w-14 h-14 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center font-bold text-orange-800 text-xl shadow-inner">
+                        <div class="w-14 h-14 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center font-bold text-amber-800 text-xl shadow-inner">
                             MM
                         </div>
                         <div>
-                            <h4 class="font-bold text-gray-900 text-lg">Mohit Mishra</h4>
-                            <div class="flex items-center gap-1.5 text-orange-600 text-sm mt-1 font-medium bg-orange-50 px-2 py-1 rounded-md inline-flex">
+                            <h4 class="font-bold text-oasis-ink text-lg">Mohit Mishra</h4>
+                            <div class="flex items-center gap-1.5 text-amber-600 text-sm mt-1 font-semibold bg-amber-50 px-2 py-1 rounded-md inline-flex">
                                 <i data-lucide="graduation-cap" class="w-4 h-4"></i>
                                 <span>98.5 Percentile, JEE Mains</span>
                             </div>
                         </div>
                     </div>
-                    <p class="text-gray-600 text-[15px] italic leading-relaxed relative z-10">
+                    <p class="text-slate-600 text-[15px] italic leading-relaxed relative z-10">
                         "I got 98.5 percentile in JEE Mains. It is just like a dream that will happen. It is only possible because of a good study atmosphere that is provided by Selection Library situated in Karaundiya, Sultanpur. I feel very helpful for owner of Selection Library refer to come dream true."
                     </p>
                 </div>
 
                 <!-- Testimonial 4: Suman Mishra -->
-                <div class="bg-white rounded-3xl p-8 border border-gray-100 hover:border-purple-400/40 shadow-sm hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="400">
+                <div class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-sky-400/40 shadow-sm hover:shadow-2xl hover:shadow-sky-500/10 transition-all duration-300 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="400">
                     <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500">
-                        <i data-lucide="quote" class="w-16 h-16 text-purple-600"></i>
+                        <i data-lucide="quote" class="w-16 h-16 text-sky-600"></i>
                     </div>
                     <div class="flex items-start gap-4 mb-6 relative z-10">
-                        <div class="w-14 h-14 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center font-bold text-purple-800 text-xl shadow-inner">
+                        <div class="w-14 h-14 bg-gradient-to-br from-sky-100 to-sky-200 rounded-full flex items-center justify-center font-bold text-sky-800 text-xl shadow-inner">
                             SM
                         </div>
                         <div>
-                            <h4 class="font-bold text-gray-900 text-lg">Suman Mishra</h4>
-                            <div class="flex items-center gap-1.5 text-purple-600 text-sm mt-1 font-medium bg-purple-50 px-2 py-1 rounded-md inline-flex">
+                            <h4 class="font-bold text-oasis-ink text-lg">Suman Mishra</h4>
+                            <div class="flex items-center gap-1.5 text-sky-600 text-sm mt-1 font-semibold bg-sky-50 px-2 py-1 rounded-md inline-flex">
                                 <i data-lucide="book-open" class="w-4 h-4"></i>
                                 <span>TGT Teacher (9th-10th), Bihar</span>
                             </div>
                         </div>
                     </div>
-                    <p class="text-gray-600 text-[15px] italic leading-relaxed relative z-10">
+                    <p class="text-slate-600 text-[15px] italic leading-relaxed relative z-10">
                         "On this occasion of success, I want to express my gratitude to Selection Library. Here, along with a peaceful and clean environment, I received support to study in a well-planned and disciplined manner. Undoubtedly, this Library clearly justifies the meaning of its name."
                     </p>
                 </div>
@@ -406,7 +411,7 @@
     </section>
 
     <!-- Google Maps Reviews Section -->
-    <section id="google-reviews" class="py-24 bg-white relative border-t border-gray-100 overflow-hidden">
+    <section id="google-reviews" class="py-24 bg-white relative border-t border-gray-200 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <!-- Header for Reviews -->
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6" data-aos="fade-up">
@@ -419,10 +424,10 @@
                             <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
                             <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                         </svg>
-                        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900">Google Reviews</h2>
+                        <h2 class="text-3xl lg:text-4xl font-bold text-oasis-ink">Google Reviews</h2>
                     </div>
-                    <div class="flex items-center gap-4 bg-gray-50 px-4 py-2 rounded-xl inline-flex border border-gray-100">
-                        <span class="text-2xl font-bold text-gray-900">4.9</span>
+                    <div class="flex items-center gap-4 bg-oasis-ivory px-4 py-2 rounded-xl inline-flex border border-gray-200">
+                        <span class="text-2xl font-bold text-oasis-ink">4.9</span>
                         <div class="flex text-yellow-400">
                             <i data-lucide="star" class="w-5 h-5 fill-current"></i>
                             <i data-lucide="star" class="w-5 h-5 fill-current"></i>
@@ -430,35 +435,35 @@
                             <i data-lucide="star" class="w-5 h-5 fill-current"></i>
                             <i data-lucide="star" class="w-5 h-5 fill-current"></i>
                         </div>
-                        <span class="text-gray-500 font-medium text-sm border-l border-gray-300 pl-4">(140+ Reviews)</span>
+                        <span class="text-slate-500 font-medium text-sm border-l border-gray-300 pl-4">(140+ Reviews)</span>
                     </div>
                 </div>
-                <a href="https://maps.google.com/?q=Selection+Library,+Nirala+Nagar,+Sultanpur" target="_blank" class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 hover:border-brand text-gray-700 hover:text-brand-dark px-6 py-3 rounded-full font-bold transition-all shadow-sm hover:shadow-md group">
+                <a href="https://maps.google.com/?q=Selection+Library,+Nirala+Nagar,+Sultanpur" target="_blank" class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 hover:border-brand text-slate-700 hover:text-brand-dark px-6 py-3 rounded-full font-bold transition-all shadow-sm hover:shadow-md group">
                     Write a Review
                     <i data-lucide="external-link" class="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform"></i>
                 </a>
             </div>
         </div>
 
-        <!-- Sliding Marquee Review Container (No images - pure reviews scrolling) -->
+        <!-- Sliding Marquee Review Container -->
         <div class="relative w-full overflow-hidden py-4" data-aos="fade-up">
             <!-- Left Gradient Shadow overlay for depth -->
             <div class="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
             <!-- Right Gradient Shadow overlay for depth -->
             <div class="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
-            <!-- Marquee scrolling track (Duplicates items to make scroll infinite) -->
+            <!-- Marquee scrolling track -->
             <div class="flex w-max gap-6 animate-marquee hover:[animation-play-state:paused] py-4 cursor-grab">
                 
                 <!-- Inner Track Block 1 -->
                 <div class="flex gap-6">
                     <!-- Review 1 -->
-                    <div class="w-[350px] md:w-[400px] shrink-0 bg-gray-50 rounded-3xl p-7 border border-gray-100 hover:border-brand/40 shadow-sm transition-all duration-300">
+                    <div class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
                         <div class="flex items-center gap-3 mb-4">
                             <img src="https://ui-avatars.com/api/?name=Rajat+Singh&background=0D8ABC&color=fff" alt="User Avatar" class="w-11 h-11 rounded-full shadow-sm">
                             <div>
-                                <h4 class="font-bold text-gray-900 text-sm">Rajat Singh</h4>
-                                <p class="text-[11px] text-gray-500 font-medium flex items-center gap-1">
+                                <h4 class="font-bold text-oasis-ink text-sm">Rajat Singh</h4>
+                                <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1">
                                     <i data-lucide="medal" class="w-3 h-3 text-yellow-500"></i> Local Guide · 12 reviews
                                 </p>
                             </div>
@@ -469,20 +474,20 @@
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <span class="text-xs text-gray-400 ml-2">2 weeks ago</span>
+                            <span class="text-xs text-slate-400 ml-2">2 weeks ago</span>
                         </div>
-                        <p class="text-gray-600 text-sm leading-relaxed">
+                        <p class="text-slate-600 text-sm leading-relaxed">
                             Best library in Sultanpur! The wooden cabins provide excellent privacy and the individual desk lights are a game changer for late-night study sessions. Very peaceful and management is very supportive.
                         </p>
                     </div>
 
                     <!-- Review 2 -->
-                    <div class="w-[350px] md:w-[400px] shrink-0 bg-gray-50 rounded-3xl p-7 border border-gray-100 hover:border-brand/40 shadow-sm transition-all duration-300">
+                    <div class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
                         <div class="flex items-center gap-3 mb-4">
                             <img src="https://ui-avatars.com/api/?name=Anjali+Verma&background=EA4335&color=fff" alt="User Avatar" class="w-11 h-11 rounded-full shadow-sm">
                             <div>
-                                <h4 class="font-bold text-gray-900 text-sm">Anjali Verma</h4>
-                                <p class="text-[11px] text-gray-500 font-medium">5 reviews</p>
+                                <h4 class="font-bold text-oasis-ink text-sm">Anjali Verma</h4>
+                                <p class="text-[11px] text-slate-500 font-medium">5 reviews</p>
                             </div>
                         </div>
                         <div class="flex text-yellow-400 mb-3 items-center">
@@ -491,20 +496,20 @@
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <span class="text-xs text-gray-400 ml-2">1 month ago</span>
+                            <span class="text-xs text-slate-400 ml-2">1 month ago</span>
                         </div>
-                        <p class="text-gray-600 text-sm leading-relaxed">
+                        <p class="text-slate-600 text-sm leading-relaxed">
                             Highly recommended for aspirants. The environment is strictly noise-free. High-speed WiFi is always working, and the AC cooling is perfect. The ergonomic green chairs really help during long study shifts.
                         </p>
                     </div>
 
                     <!-- Review 3 -->
-                    <div class="w-[350px] md:w-[400px] shrink-0 bg-gray-50 rounded-3xl p-7 border border-gray-100 hover:border-brand/40 shadow-sm transition-all duration-300">
+                    <div class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
                         <div class="flex items-center gap-3 mb-4">
                             <img src="https://ui-avatars.com/api/?name=Vikas+Yadav&background=34A853&color=fff" alt="User Avatar" class="w-11 h-11 rounded-full shadow-sm">
                             <div>
-                                <h4 class="font-bold text-gray-900 text-sm">Vikas Yadav</h4>
-                                <p class="text-[11px] text-gray-500 font-medium flex items-center gap-1">
+                                <h4 class="font-bold text-oasis-ink text-sm">Vikas Yadav</h4>
+                                <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1">
                                     <i data-lucide="medal" class="w-3 h-3 text-yellow-500"></i> Local Guide · 24 reviews
                                 </p>
                             </div>
@@ -515,20 +520,20 @@
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <span class="text-xs text-gray-400 ml-2">2 months ago</span>
+                            <span class="text-xs text-slate-400 ml-2">2 months ago</span>
                         </div>
-                        <p class="text-gray-600 text-sm leading-relaxed">
+                        <p class="text-slate-600 text-sm leading-relaxed">
                             Perfect place for serious students. Found this gem in Nirala Nagar. The owner is very cooperative and they even organize mentorship seminars which is very unique. Facilities are top notch.
                         </p>
                     </div>
 
-                    <!-- Review 4 (New) -->
-                    <div class="w-[350px] md:w-[400px] shrink-0 bg-gray-50 rounded-3xl p-7 border border-gray-100 hover:border-brand/40 shadow-sm transition-all duration-300">
+                    <!-- Review 4 -->
+                    <div class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
                         <div class="flex items-center gap-3 mb-4">
                             <img src="https://ui-avatars.com/api/?name=Shashank+Mishra&background=f59e0b&color=fff" alt="User Avatar" class="w-11 h-11 rounded-full shadow-sm">
                             <div>
-                                <h4 class="font-bold text-gray-900 text-sm">Shashank Mishra</h4>
-                                <p class="text-[11px] text-gray-500 font-medium">10 reviews</p>
+                                <h4 class="font-bold text-oasis-ink text-sm">Shashank Mishra</h4>
+                                <p class="text-[11px] text-slate-500 font-medium">10 reviews</p>
                             </div>
                         </div>
                         <div class="flex text-yellow-400 mb-3 items-center">
@@ -537,9 +542,9 @@
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <span class="text-xs text-gray-400 ml-2">3 weeks ago</span>
+                            <span class="text-xs text-slate-400 ml-2">3 weeks ago</span>
                         </div>
-                        <p class="text-gray-600 text-sm leading-relaxed">
+                        <p class="text-slate-600 text-sm leading-relaxed">
                             The best part of Selection Library is the neatness and pure drinking RO water facility. There is an absolute pin-drop silence in the hall, making it perfect for cracking state-level examinations.
                         </p>
                     </div>
@@ -547,13 +552,12 @@
 
                 <!-- Inner Track Block 2 (Exact Duplicate to make loop seamless) -->
                 <div class="flex gap-6">
-                    <!-- Review 1 -->
-                    <div class="w-[350px] md:w-[400px] shrink-0 bg-gray-50 rounded-3xl p-7 border border-gray-100 hover:border-brand/40 shadow-sm transition-all duration-300">
+                    <div class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
                         <div class="flex items-center gap-3 mb-4">
                             <img src="https://ui-avatars.com/api/?name=Rajat+Singh&background=0D8ABC&color=fff" alt="User Avatar" class="w-11 h-11 rounded-full shadow-sm">
                             <div>
-                                <h4 class="font-bold text-gray-900 text-sm">Rajat Singh</h4>
-                                <p class="text-[11px] text-gray-500 font-medium flex items-center gap-1">
+                                <h4 class="font-bold text-oasis-ink text-sm">Rajat Singh</h4>
+                                <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1">
                                     <i data-lucide="medal" class="w-3 h-3 text-yellow-500"></i> Local Guide · 12 reviews
                                 </p>
                             </div>
@@ -564,20 +568,18 @@
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <span class="text-xs text-gray-400 ml-2">2 weeks ago</span>
+                            <span class="text-xs text-slate-400 ml-2">2 weeks ago</span>
                         </div>
-                        <p class="text-gray-600 text-sm leading-relaxed">
+                        <p class="text-slate-600 text-sm leading-relaxed">
                             Best library in Sultanpur! The wooden cabins provide excellent privacy and the individual desk lights are a game changer for late-night study sessions. Very peaceful and management is very supportive.
                         </p>
                     </div>
-
-                    <!-- Review 2 -->
-                    <div class="w-[350px] md:w-[400px] shrink-0 bg-gray-50 rounded-3xl p-7 border border-gray-100 hover:border-brand/40 shadow-sm transition-all duration-300">
+                    <div class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
                         <div class="flex items-center gap-3 mb-4">
                             <img src="https://ui-avatars.com/api/?name=Anjali+Verma&background=EA4335&color=fff" alt="User Avatar" class="w-11 h-11 rounded-full shadow-sm">
                             <div>
-                                <h4 class="font-bold text-gray-900 text-sm">Anjali Verma</h4>
-                                <p class="text-[11px] text-gray-500 font-medium">5 reviews</p>
+                                <h4 class="font-bold text-oasis-ink text-sm">Anjali Verma</h4>
+                                <p class="text-[11px] text-slate-500 font-medium">5 reviews</p>
                             </div>
                         </div>
                         <div class="flex text-yellow-400 mb-3 items-center">
@@ -586,20 +588,18 @@
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <span class="text-xs text-gray-400 ml-2">1 month ago</span>
+                            <span class="text-xs text-slate-400 ml-2">1 month ago</span>
                         </div>
-                        <p class="text-gray-600 text-sm leading-relaxed">
+                        <p class="text-slate-600 text-sm leading-relaxed">
                             Highly recommended for aspirants. The environment is strictly noise-free. High-speed WiFi is always working, and the AC cooling is perfect. The ergonomic green chairs really help during long study shifts.
                         </p>
                     </div>
-
-                    <!-- Review 3 -->
-                    <div class="w-[350px] md:w-[400px] shrink-0 bg-gray-50 rounded-3xl p-7 border border-gray-100 hover:border-brand/40 shadow-sm transition-all duration-300">
+                    <div class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
                         <div class="flex items-center gap-3 mb-4">
                             <img src="https://ui-avatars.com/api/?name=Vikas+Yadav&background=34A853&color=fff" alt="User Avatar" class="w-11 h-11 rounded-full shadow-sm">
                             <div>
-                                <h4 class="font-bold text-gray-900 text-sm">Vikas Yadav</h4>
-                                <p class="text-[11px] text-gray-500 font-medium flex items-center gap-1">
+                                <h4 class="font-bold text-oasis-ink text-sm">Vikas Yadav</h4>
+                                <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1">
                                     <i data-lucide="medal" class="w-3 h-3 text-yellow-500"></i> Local Guide · 24 reviews
                                 </p>
                             </div>
@@ -610,20 +610,18 @@
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <span class="text-xs text-gray-400 ml-2">2 months ago</span>
+                            <span class="text-xs text-slate-400 ml-2">2 months ago</span>
                         </div>
-                        <p class="text-gray-600 text-sm leading-relaxed">
+                        <p class="text-slate-600 text-sm leading-relaxed">
                             Perfect place for serious students. Found this gem in Nirala Nagar. The owner is very cooperative and they even organize mentorship seminars which is very unique. Facilities are top notch.
                         </p>
                     </div>
-
-                    <!-- Review 4 (New) -->
-                    <div class="w-[350px] md:w-[400px] shrink-0 bg-gray-50 rounded-3xl p-7 border border-gray-100 hover:border-brand/40 shadow-sm transition-all duration-300">
+                    <div class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
                         <div class="flex items-center gap-3 mb-4">
                             <img src="https://ui-avatars.com/api/?name=Shashank+Mishra&background=f59e0b&color=fff" alt="User Avatar" class="w-11 h-11 rounded-full shadow-sm">
                             <div>
-                                <h4 class="font-bold text-gray-900 text-sm">Shashank Mishra</h4>
-                                <p class="text-[11px] text-gray-500 font-medium">10 reviews</p>
+                                <h4 class="font-bold text-oasis-ink text-sm">Shashank Mishra</h4>
+                                <p class="text-[11px] text-slate-500 font-medium">10 reviews</p>
                             </div>
                         </div>
                         <div class="flex text-yellow-400 mb-3 items-center">
@@ -632,9 +630,9 @@
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <span class="text-xs text-gray-400 ml-2">3 weeks ago</span>
+                            <span class="text-xs text-slate-400 ml-2">3 weeks ago</span>
                         </div>
-                        <p class="text-gray-600 text-sm leading-relaxed">
+                        <p class="text-slate-600 text-sm leading-relaxed">
                             The best part of Selection Library is the neatness and pure drinking RO water facility. There is an absolute pin-drop silence in the hall, making it perfect for cracking state-level examinations.
                         </p>
                     </div>
@@ -645,7 +643,7 @@
 
         <!-- View All Maps Link -->
         <div class="mt-8 text-center" data-aos="fade-up">
-            <a href="https://maps.google.com/?q=Selection+Library,+Nirala+Nagar,+Sultanpur" target="_blank" class="text-brand-dark font-semibold hover:text-emerald-700 transition-colors inline-flex items-center gap-1.5 hover:gap-3">
+            <a href="https://maps.google.com/?q=Selection+Library,+Nirala+Nagar,+Sultanpur" target="_blank" class="text-brand-dark font-semibold hover:text-brand transition-colors inline-flex items-center gap-1.5 hover:gap-3">
                 See all reviews on Google Maps <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
         </div>
@@ -655,8 +653,8 @@
     <section id="contact" class="py-24 px-6 lg:px-12 bg-white relative">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Get in Touch</h2>
-                <p class="text-gray-500 max-w-2xl mx-auto text-lg">Book your free trial seat or send us your questions. Visit our library in Sultanpur.</p>
+                <h2 class="text-3xl lg:text-4xl font-bold text-oasis-ink mb-4">Get in Touch</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto text-lg">Book your free trial seat or send us your questions. Visit our library in Sultanpur.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
@@ -664,14 +662,13 @@
                 <div class="space-y-10" data-aos="fade-right">
                     <!-- Location -->
                     <div class="group">
-                        <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-3 text-lg">
-                            <div class="p-2 bg-gray-50 rounded-lg group-hover:bg-brand/20 transition-colors"><i data-lucide="map-pin" class="w-5 h-5 text-brand-dark"></i></div>
+                        <h3 class="font-bold text-oasis-ink mb-4 flex items-center gap-3 text-lg">
+                            <div class="p-2 bg-oasis-ivory rounded-lg group-hover:bg-brand/10 transition-colors"><i data-lucide="map-pin" class="w-5 h-5 text-brand-dark"></i></div>
                             Visit Us
                         </h3>
-                        <!-- Made Address Clickable linking to Google Maps -->
-                        <a href="https://maps.google.com/?q=Selection+Library,+Nirala+Nagar,+Sultanpur,+Uttar+Pradesh" target="_blank" class="block bg-gray-50 p-6 rounded-2xl border border-gray-100 hover:border-brand/50 hover:shadow-md transition-all duration-300">
-                            <h4 class="font-bold text-gray-900 mb-2">Selection Library</h4>
-                            <p class="text-gray-600 text-sm leading-relaxed">
+                        <a href="https://maps.google.com/?q=Selection+Library,+Nirala+Nagar,+Sultanpur,+Uttar+Pradesh" target="_blank" class="block bg-oasis-ivory p-6 rounded-2xl border border-gray-200/60 hover:border-brand/40 hover:shadow-md transition-all duration-300">
+                            <h4 class="font-bold text-oasis-ink mb-2">Selection Library</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">
                                 Nirala Nagar<br>
                                 Sultanpur, Uttar Pradesh<br>
                                 India
@@ -682,13 +679,13 @@
 
                     <!-- Hours -->
                     <div class="group">
-                        <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-3 text-lg">
-                            <div class="p-2 bg-gray-50 rounded-lg group-hover:bg-brand/20 transition-colors"><i data-lucide="clock" class="w-5 h-5 text-brand-dark"></i></div>
+                        <h3 class="font-bold text-oasis-ink mb-4 flex items-center gap-3 text-lg">
+                            <div class="p-2 bg-oasis-ivory rounded-lg group-hover:bg-brand/10 transition-colors"><i data-lucide="clock" class="w-5 h-5 text-brand-dark"></i></div>
                             Operating Hours
                         </h3>
-                        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                <strong class="text-gray-900 block mb-1">Monday - Sunday</strong>
+                        <div class="bg-oasis-ivory p-6 rounded-2xl border border-gray-200/60">
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                <strong class="text-oasis-ink block mb-1">Monday - Sunday</strong>
                                 Open for long study sessions
                             </p>
                         </div>
@@ -696,19 +693,17 @@
 
                     <!-- Contact details -->
                     <div class="group">
-                        <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-3 text-lg">
-                            <div class="p-2 bg-gray-50 rounded-lg group-hover:bg-brand/20 transition-colors"><i data-lucide="phone" class="w-5 h-5 text-brand-dark"></i></div>
+                        <h3 class="font-bold text-oasis-ink mb-4 flex items-center gap-3 text-lg">
+                            <div class="p-2 bg-oasis-ivory rounded-lg group-hover:bg-brand/10 transition-colors"><i data-lucide="phone" class="w-5 h-5 text-brand-dark"></i></div>
                             Contact Information
                         </h3>
-                        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-4">
-                            <!-- Clickable Phone -->
-                            <a href="tel:+919169340586" class="flex items-center gap-3 text-gray-600 hover:text-brand-dark transition-colors">
-                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm"><i data-lucide="phone-call" class="w-4 h-4 text-gray-400"></i></div>
+                        <div class="bg-oasis-ivory p-6 rounded-2xl border border-gray-200/60 space-y-4">
+                            <a href="tel:+919169340586" class="flex items-center gap-3 text-slate-600 hover:text-brand-dark transition-colors">
+                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm"><i data-lucide="phone-call" class="w-4 h-4 text-slate-400"></i></div>
                                 <span class="font-bold text-lg">9169340586</span>
                             </a>
-                            <!-- Clickable Email -->
-                            <a href="mailto:info@selectionlibrary.com" class="flex items-center gap-3 text-gray-600 hover:text-brand-dark transition-colors">
-                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm"><i data-lucide="mail" class="w-4 h-4 text-gray-400"></i></div>
+                            <a href="mailto:info@selectionlibrary.com" class="flex items-center gap-3 text-slate-600 hover:text-brand-dark transition-colors">
+                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm"><i data-lucide="mail" class="w-4 h-4 text-slate-400"></i></div>
                                 <span>info@selectionlibrary.com</span>
                             </a>
                         </div>
@@ -716,35 +711,31 @@
                 </div>
 
                 <!-- Contact Form (Now Functional with Web3Forms) -->
-                <div class="bg-white rounded-3xl p-8 lg:p-10 border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] relative overflow-hidden" data-aos="fade-left">
-                    <!-- Decorative element -->
+                <div class="bg-white rounded-3xl p-8 lg:p-10 border border-gray-200 shadow-[0_20px_50px_rgba(0,0,0,0.05)] relative overflow-hidden" data-aos="fade-left">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-brand/10 rounded-bl-full -z-10"></div>
                     
-                    <h3 class="font-bold text-gray-900 text-2xl mb-8">Send Us a Message</h3>
+                    <h3 class="font-bold text-oasis-ink text-2xl mb-8">Send Us a Message</h3>
                     
                     <!-- WEB3FORMS INTEGRATION -->
                     <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
-                        
-                        <!-- REQUIRED: Replace value with your actual Web3Forms Access Key -->
                         <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-                        
                         <input type="hidden" name="subject" value="New Website Inquiry: Selection Library">
                         <input type="hidden" name="redirect" value="https://web3forms.com/success">
 
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
-                            <input type="text" name="name" required placeholder="John Doe" class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 text-sm transition-all bg-gray-50/50 hover:bg-white">
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Full Name</label>
+                            <input type="text" name="name" required placeholder="John Doe" class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 text-sm transition-all bg-oasis-ivory/50 hover:bg-white text-oasis-ink">
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
-                            <input type="tel" name="phone" required placeholder="+91 98765 43210" class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 text-sm transition-all bg-gray-50/50 hover:bg-white">
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Phone Number</label>
+                            <input type="tel" name="phone" required placeholder="+91 98765 43210" class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 text-sm transition-all bg-oasis-ivory/50 hover:bg-white text-oasis-ink">
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Message</label>
-                            <textarea name="message" required rows="4" placeholder="Tell us about your study goals or ask for a trial seat..." class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 text-sm transition-all resize-none bg-gray-50/50 hover:bg-white"></textarea>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Message</label>
+                            <textarea name="message" required rows="4" placeholder="Tell us about your study goals or ask for a trial seat..." class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 text-sm transition-all resize-none bg-oasis-ivory/50 hover:bg-white text-oasis-ink"></textarea>
                         </div>
                         
-                        <button type="submit" class="w-full bg-gray-900 hover:bg-brand text-white hover:text-emerald-950 font-bold py-4 rounded-xl transition-all duration-300 mt-4 text-base shadow-lg hover:shadow-brand/30 flex items-center justify-center gap-2 group">
+                        <button type="submit" class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-4 rounded-xl transition-all duration-300 mt-4 text-base shadow-lg hover:shadow-brand/30 flex items-center justify-center gap-2 group">
                             Submit Inquiry
                             <i data-lucide="send" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
                         </button>
@@ -755,22 +746,23 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-950 text-white pt-20 pb-10 px-6 lg:px-12 border-t border-white/5 relative overflow-hidden">
+    <!-- Changed background to oasis-emerald -->
+    <footer class="bg-oasis-emerald text-white pt-20 pb-10 px-6 lg:px-12 border-t border-white/5 relative overflow-hidden">
         <!-- Glow effect in footer -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-px bg-gradient-to-r from-transparent via-brand to-transparent opacity-50"></div>
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand/5 blur-[100px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand/10 blur-[100px] rounded-full pointer-events-none"></div>
 
         <div class="max-w-6xl mx-auto relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
                 <!-- Brand -->
                 <div data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-12 h-12 bg-brand rounded-xl flex items-center justify-center font-bold text-emerald-900 text-xl shadow-lg shadow-brand/20">
+                        <div class="w-12 h-12 bg-brand rounded-xl flex items-center justify-center font-bold text-white text-xl shadow-lg shadow-brand/20">
                             SL
                         </div>
                         <span class="font-bold text-white text-2xl">Selection Library</span>
                     </div>
-                    <p class="text-gray-400 text-sm leading-relaxed pr-4">
+                    <p class="text-gray-300 text-sm leading-relaxed pr-4">
                         Founded by Shri Gaurav Srivastava. Your dedicated space for focus and success, providing the ultimate distraction-free environment in Sultanpur.
                     </p>
                 </div>
@@ -778,7 +770,7 @@
                 <!-- Links -->
                 <div data-aos="fade-up" data-aos-delay="200">
                     <h4 class="font-bold text-white mb-6 text-lg tracking-wide">Quick Links</h4>
-                    <ul class="space-y-4 text-sm text-gray-400">
+                    <ul class="space-y-4 text-sm text-gray-300">
                         <li><a href="#home" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> Home</a></li>
                         <li><a href="#features" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> Amenities</a></li>
                         <li><a href="#recognition" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> Recognition</a></li>
@@ -791,16 +783,15 @@
                 <!-- Social/Contact -->
                 <div data-aos="fade-up" data-aos-delay="300">
                     <h4 class="font-bold text-white mb-6 text-lg tracking-wide">Connect With Us</h4>
-                    <!-- FIXED: Replaced Lucide icons for Facebook/Instagram with premium custom SVGs ensuring perfect visibility on all browsers -->
                     <div class="flex gap-4 mb-8">
                         <!-- Facebook SVG Icon -->
-                        <a href="https://facebook.com" target="_blank" class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand transition-all duration-300 border border-gray-800 hover:border-brand hover:-translate-y-1 hover:shadow-lg hover:shadow-brand/20" aria-label="Facebook">
+                        <a href="https://facebook.com" target="_blank" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand transition-all duration-300 border border-white/5 hover:border-brand hover:-translate-y-1 hover:shadow-lg hover:shadow-brand/20" aria-label="Facebook">
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                                 <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/>
                             </svg>
                         </a>
                         <!-- Instagram SVG Icon -->
-                        <a href="https://instagram.com/selectionlibraray" target="_blank" class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand transition-all duration-300 border border-gray-800 hover:border-brand hover:-translate-y-1 hover:shadow-lg hover:shadow-brand/20" aria-label="Instagram">
+                        <a href="https://instagram.com/selectionlibraray" target="_blank" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand transition-all duration-300 border border-white/5 hover:border-brand hover:-translate-y-1 hover:shadow-lg hover:shadow-brand/20" aria-label="Instagram">
                             <svg class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -808,15 +799,15 @@
                             </svg>
                         </a>
                         <!-- WhatsApp/Message Circle SVG Icon -->
-                        <a href="https://wa.me/919169340586" target="_blank" class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand transition-all duration-300 border border-gray-800 hover:border-brand hover:-translate-y-1 hover:shadow-lg hover:shadow-brand/20" aria-label="WhatsApp">
+                        <a href="https://wa.me/919169340586" target="_blank" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand transition-all duration-300 border border-white/5 hover:border-brand hover:-translate-y-1 hover:shadow-lg hover:shadow-brand/20" aria-label="WhatsApp">
                             <svg class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                             </svg>
                         </a>
                     </div>
-                    <div class="space-y-3 text-sm text-gray-400">
+                    <div class="space-y-3 text-sm text-gray-300">
                         <a href="tel:+919169340586" class="flex items-center gap-3 hover:text-brand transition-colors">
-                            <div class="p-2 bg-gray-900 rounded-lg"><i data-lucide="phone" class="w-4 h-4 text-brand"></i></div>
+                            <div class="p-2 bg-white/10 rounded-lg"><i data-lucide="phone" class="w-4 h-4 text-brand-light"></i></div>
                             9169340586
                         </a>
                     </div>
@@ -824,7 +815,7 @@
             </div>
 
             <!-- Copyright -->
-            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
                 <p>© 2026 Selection Library. All rights reserved.</p>
                 <div class="flex gap-8">
                     <a href="#" class="hover:text-white transition-colors relative group">
@@ -861,10 +852,10 @@
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 navbar.classList.add('glass-nav');
-                navbar.classList.remove('bg-black/20', 'border-white/10');
+                navbar.classList.remove('bg-black/30', 'border-white/10');
             } else {
                 navbar.classList.remove('glass-nav');
-                navbar.classList.add('bg-black/20', 'border-white/10');
+                navbar.classList.add('bg-black/30', 'border-white/10');
             }
         });
 
