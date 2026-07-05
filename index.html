@@ -546,7 +546,7 @@
         </div>
     </section>
 
-    <!-- Testimonials Section / Hall of Fame -->
+    <!-- selected students -->
     <section id="testimonials" class="py-24 px-6 lg:px-12 bg-oasis-ivory">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -555,120 +555,342 @@
                 <p class="text-slate-600 max-w-2xl mx-auto text-lg">Celebrating the real success stories of our students who achieved their dreams through hard work and our dedicated environment.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Testimonial 1: Abhishek Gupta -->
-                <div class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-brand/40 shadow-sm hover:shadow-2xl hover:shadow-brand/10 transition-all duration-300 relative overflow-hidden group flex flex-col h-full" data-aos="fade-up" data-aos-delay="100">
-                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500">
-                        <i data-lucide="quote" class="w-16 h-16 text-brand"></i>
-                    </div>
-                    <div class="flex items-start gap-4 mb-6 relative z-10">
-                        <div class="w-14 h-14 bg-gradient-to-br from-brand/10 to-brand/30 rounded-full flex items-center justify-center font-bold text-brand-dark text-xl shadow-inner shrink-0">
-                            AG
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-oasis-ink text-lg">Abhishek Gupta</h3>
-                            <div class="flex items-center gap-1.5 text-brand-dark text-sm mt-1 font-semibold bg-brand/10 px-2 py-1 rounded-md inline-flex">
-                                <i data-lucide="briefcase" class="w-4 h-4"></i>
-                                <span>Divisional Accountant, CAG</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-slate-600 text-[15px] italic leading-relaxed relative z-10 flex-grow mb-6">
-                        "Selected as Divisional Accountant in the Comptroller and Auditor General of India (CAG) department. The peaceful and positive environment of Selection Library helped me utilize my time with full potential for the upcoming exams. I highly recommend students to prepare here to achieve good posts quickly."
-                    </p>
-                    <div class="relative z-10 rounded-xl overflow-hidden border border-gray-200 bg-gray-50 h-36 mt-auto cursor-pointer group/img shadow-sm" onclick="openImageModal(this.querySelector('img').src)">
-                        <img src="webp/abhishek.webp" alt="Abhishek Gupta Selection Library Review" class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover/img:opacity-100 group-hover/img:scale-105 transition-all duration-500">
-                        <!-- Tap to enlarge overlay -->
-                        <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 group-hover/img:opacity-100 transition-all duration-300">
-                            <i data-lucide="zoom-in" class="w-8 h-8 text-white mb-2 transform scale-75 group-hover/img:scale-100 transition-transform duration-300"></i>
-                            <span class="text-white text-sm font-bold tracking-wider uppercase">Tap to Enlarge</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="relative w-full overflow-hidden py-4" data-aos="fade-up">
+                <!-- Left Gradient Shadow overlay for depth -->
+                <div class="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-oasis-ivory to-transparent z-10 pointer-events-none"></div>
+                <!-- Right Gradient Shadow overlay for depth -->
+                <div class="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-oasis-ivory to-transparent z-10 pointer-events-none"></div>
 
-                <!-- Testimonial 2: Riya Srivastava -->
-                <div class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-indigo-400/40 shadow-sm hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 relative overflow-hidden group flex flex-col h-full" data-aos="fade-up" data-aos-delay="200">
-                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500">
-                        <i data-lucide="quote" class="w-16 h-16 text-indigo-600"></i>
-                    </div>
-                    <div class="flex items-start gap-4 mb-6 relative z-10">
-                        <div class="w-14 h-14 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-full flex items-center justify-center font-bold text-indigo-800 text-xl shadow-inner shrink-0">
-                            RS
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-oasis-ink text-lg">Riya Srivastava</h3>
-                            <div class="flex items-center gap-1.5 text-indigo-600 text-sm mt-1 font-semibold bg-indigo-50 px-2 py-1 rounded-md inline-flex">
-                                <i data-lucide="train" class="w-4 h-4"></i>
-                                <span>JE, UP Metro Rail Corporation</span>
+                <!-- Marquee scrolling track (Duration customized to 70s for 18 items) -->
+                <div class="flex w-max gap-12 md:gap-16 animate-marquee hover:[animation-play-state:paused] py-8 cursor-grab" style="animation-duration: 70s;">
+                    
+                    <!-- Inner Track Block 1 -->
+                    <div class="flex gap-12 md:gap-16 items-start">
+                        <!-- Student 1 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Abhishek+Gupta&background=e0f2fe&color=0369a1&size=200&font-size=0.4" alt="Abhishek Gupta" class="w-full h-full object-cover">
                             </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Abhishek Gupta</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Divisional Accountant, CAG</p>
                         </div>
-                    </div>
-                    <p class="text-slate-600 text-[15px] italic leading-relaxed relative z-10 flex-grow mb-6">
-                        "Everyone has their own special contribution in the steps of success. My 'library' also has a special contribution in my success. A library is a miracle where you can learn a lot of things like focus, patience, and confidence. I have never found as much positivity anywhere as 'Selection Library'."
-                    </p>
-                    <div class="relative z-10 rounded-xl overflow-hidden border border-gray-200 bg-gray-50 h-36 mt-auto cursor-pointer group/img shadow-sm" onclick="openImageModal(this.querySelector('img').src)">
-                        <img src="webp/riya.webp" alt="Riya Srivastava UP Metro Selection Letter" class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover/img:opacity-100 group-hover/img:scale-105 transition-all duration-500">
-                        <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 group-hover/img:opacity-100 transition-all duration-300">
-                            <i data-lucide="zoom-in" class="w-8 h-8 text-white mb-2 transform scale-75 group-hover/img:scale-100 transition-transform duration-300"></i>
-                            <span class="text-white text-sm font-bold tracking-wider uppercase">Tap to Enlarge</span>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Testimonial 3: Mohit Mishra -->
-                <div class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-amber-400/40 shadow-sm hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-300 relative overflow-hidden group flex flex-col h-full" data-aos="fade-up" data-aos-delay="300">
-                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500">
-                        <i data-lucide="quote" class="w-16 h-16 text-amber-500"></i>
-                    </div>
-                    <div class="flex items-start gap-4 mb-6 relative z-10">
-                        <div class="w-14 h-14 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center font-bold text-amber-800 text-xl shadow-inner shrink-0">
-                            MM
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-oasis-ink text-lg">Mohit Mishra</h3>
-                            <div class="flex items-center gap-1.5 text-amber-600 text-sm mt-1 font-semibold bg-amber-50 px-2 py-1 rounded-md inline-flex">
-                                <i data-lucide="graduation-cap" class="w-4 h-4"></i>
-                                <span>98.5 Percentile, JEE Mains</span>
+                        <!-- Student 2 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Riya+Srivastava&background=fae8ff&color=86198f&size=200&font-size=0.4" alt="Riya Srivastava" class="w-full h-full object-cover">
                             </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Riya Srivastava</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">JE, UP Metro</p>
                         </div>
-                    </div>
-                    <p class="text-slate-600 text-[15px] italic leading-relaxed relative z-10 flex-grow mb-6">
-                        "I got 98.5 percentile in JEE Mains. It is just like a dream that will happen. It is only possible because of a good study atmosphere that is provided by Selection Library situated in Karaundiya, Sultanpur. I feel very helpful for owner of Selection Library refer to come dream true."
-                    </p>
-                    <div class="relative z-10 rounded-xl overflow-hidden border border-gray-200 bg-gray-50 h-36 mt-auto cursor-pointer group/img shadow-sm" onclick="openImageModal(this.querySelector('img').src)">
-                        <img src="webp/mohit.webp" alt="Mohit Mishra JEE Mains Success Selection Library" class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover/img:opacity-100 group-hover/img:scale-105 transition-all duration-500">
-                        <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 group-hover/img:opacity-100 transition-all duration-300">
-                            <i data-lucide="zoom-in" class="w-8 h-8 text-white mb-2 transform scale-75 group-hover/img:scale-100 transition-transform duration-300"></i>
-                            <span class="text-white text-sm font-bold tracking-wider uppercase">Tap to Enlarge</span>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Testimonial 4: Suman Mishra -->
-                <div class="bg-white rounded-3xl p-8 border border-gray-200 hover:border-sky-400/40 shadow-sm hover:shadow-2xl hover:shadow-sky-500/10 transition-all duration-300 relative overflow-hidden group flex flex-col h-full" data-aos="fade-up" data-aos-delay="400">
-                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-500">
-                        <i data-lucide="quote" class="w-16 h-16 text-sky-600"></i>
-                    </div>
-                    <div class="flex items-start gap-4 mb-6 relative z-10">
-                        <div class="w-14 h-14 bg-gradient-to-br from-sky-100 to-sky-200 rounded-full flex items-center justify-center font-bold text-sky-800 text-xl shadow-inner shrink-0">
-                            SM
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-oasis-ink text-lg">Suman Mishra</h3>
-                            <div class="flex items-center gap-1.5 text-sky-600 text-sm mt-1 font-semibold bg-sky-50 px-2 py-1 rounded-md inline-flex">
-                                <i data-lucide="book-open" class="w-4 h-4"></i>
-                                <span>TGT Teacher (9th-10th), Bihar</span>
+                        <!-- Student 3 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Mohit+Mishra&background=fef3c7&color=b45309&size=200&font-size=0.4" alt="Mohit Mishra" class="w-full h-full object-cover">
                             </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Mohit Mishra</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">98.5%ile, JEE Mains</p>
+                        </div>
+
+                        <!-- Student 4 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Suman+Mishra&background=f0fdf4&color=166534&size=200&font-size=0.4" alt="Suman Mishra" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Suman Mishra</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">TGT Teacher</p>
+                        </div>
+
+                        <!-- Student 5 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Rahul+Verma&background=f1f5f9&color=334155&size=200&font-size=0.4" alt="Rahul Verma" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Rahul Verma</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Sub Inspector, UP Police</p>
+                        </div>
+
+                        <!-- Student 6 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Priya+Sharma&background=fce7f3&color=be185d&size=200&font-size=0.4" alt="Priya Sharma" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Priya Sharma</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Clerk, SBI</p>
+                        </div>
+                        
+                        <!-- Student 7 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Amit+Singh&background=ede9fe&color=5b21b6&size=200&font-size=0.4" alt="Amit Singh" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Amit Singh</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">SSC CGL Selected</p>
+                        </div>
+
+                        <!-- Student 8 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Neha+Yadav&background=ecfccb&color=4d7c0f&size=200&font-size=0.4" alt="Neha Yadav" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Neha Yadav</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Assistant Teacher</p>
+                        </div>
+
+                        <!-- Student 9 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Vikram+Patel&background=ccfbf1&color=0f766e&size=200&font-size=0.4" alt="Vikram Patel" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Vikram Patel</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">RO/ARO, UPPSC</p>
+                        </div>
+
+                        <!-- Student 10 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Ananya+Pandey&background=ffe4e6&color=be123c&size=200&font-size=0.4" alt="Ananya Pandey" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Ananya Pandey</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">PGT Physics</p>
+                        </div>
+
+                        <!-- Student 11 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Rohit+Tiwari&background=f3f4f6&color=374151&size=200&font-size=0.4" alt="Rohit Tiwari" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Rohit Tiwari</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Loco Pilot, RRB</p>
+                        </div>
+
+                        <!-- Student 12 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Sneha+Gupta&background=e0f2fe&color=0369a1&size=200&font-size=0.4" alt="Sneha Gupta" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Sneha Gupta</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">IBPS PO</p>
+                        </div>
+
+                        <!-- Student 13 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Kunal+Rajput&background=ffedd5&color=c2410c&size=200&font-size=0.4" alt="Kunal Rajput" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Kunal Rajput</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">UPSSSC PET</p>
+                        </div>
+
+                        <!-- Student 14 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Pooja+Chauhan&background=fdf4ff&color=a21caf&size=200&font-size=0.4" alt="Pooja Chauhan" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Pooja Chauhan</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Staff Nurse, AIIMS</p>
+                        </div>
+
+                        <!-- Student 15 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Manish+Shukla&background=ecfdf5&color=047857&size=200&font-size=0.4" alt="Manish Shukla" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Manish Shukla</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Lekhpal, UP</p>
+                        </div>
+
+                        <!-- Student 16 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Jyoti+Yadav&background=fefce8&color=a16207&size=200&font-size=0.4" alt="Jyoti Yadav" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Jyoti Yadav</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">CTET Qualified</p>
+                        </div>
+
+                        <!-- Student 17 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Saurabh+Singh&background=eff6ff&color=1d4ed8&size=200&font-size=0.4" alt="Saurabh Singh" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Saurabh Singh</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">NDA Selected</p>
+                        </div>
+
+                        <!-- Student 18 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Kavita+Verma&background=fdf2f8&color=be185d&size=200&font-size=0.4" alt="Kavita Verma" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Kavita Verma</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">UPPCS Prelims</p>
                         </div>
                     </div>
-                    <p class="text-slate-600 text-[15px] italic leading-relaxed relative z-10 flex-grow mb-6">
-                        "On this occasion of success, I want to express my gratitude to Selection Library. Here, along with a peaceful and clean environment, I received support to study in a well-planned and disciplined manner. Undoubtedly, this Library clearly justifies the meaning of its name."
-                    </p>
-                    <div class="relative z-10 rounded-xl overflow-hidden border border-gray-200 bg-gray-50 h-36 mt-auto cursor-pointer group/img shadow-sm" onclick="openImageModal(this.querySelector('img').src)">
-                        <img src="webp/suman.webp" alt="Suman Mishra TGT Teacher Selection Library" class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover/img:opacity-100 group-hover/img:scale-105 transition-all duration-500">
-                        <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 group-hover/img:opacity-100 transition-all duration-300">
-                            <i data-lucide="zoom-in" class="w-8 h-8 text-white mb-2 transform scale-75 group-hover/img:scale-100 transition-transform duration-300"></i>
-                            <span class="text-white text-sm font-bold tracking-wider uppercase">Tap to Enlarge</span>
+
+                    <!-- Inner Track Block 2 (Exact Duplicate to make loop seamless) -->
+                    <div class="flex gap-12 md:gap-16 items-start">
+                        <!-- Student 1 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Abhishek+Gupta&background=e0f2fe&color=0369a1&size=200&font-size=0.4" alt="Abhishek Gupta" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Abhishek Gupta</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Divisional Accountant, CAG</p>
+                        </div>
+
+                        <!-- Student 2 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Riya+Srivastava&background=fae8ff&color=86198f&size=200&font-size=0.4" alt="Riya Srivastava" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Riya Srivastava</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">JE, UP Metro</p>
+                        </div>
+
+                        <!-- Student 3 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Mohit+Mishra&background=fef3c7&color=b45309&size=200&font-size=0.4" alt="Mohit Mishra" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Mohit Mishra</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">98.5%ile, JEE Mains</p>
+                        </div>
+
+                        <!-- Student 4 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Suman+Mishra&background=f0fdf4&color=166534&size=200&font-size=0.4" alt="Suman Mishra" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Suman Mishra</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">TGT Teacher</p>
+                        </div>
+
+                        <!-- Student 5 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Rahul+Verma&background=f1f5f9&color=334155&size=200&font-size=0.4" alt="Rahul Verma" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Rahul Verma</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Sub Inspector, UP Police</p>
+                        </div>
+
+                        <!-- Student 6 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Priya+Sharma&background=fce7f3&color=be185d&size=200&font-size=0.4" alt="Priya Sharma" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Priya Sharma</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Clerk, SBI</p>
+                        </div>
+                        
+                        <!-- Student 7 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Amit+Singh&background=ede9fe&color=5b21b6&size=200&font-size=0.4" alt="Amit Singh" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Amit Singh</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">SSC CGL Selected</p>
+                        </div>
+
+                        <!-- Student 8 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Neha+Yadav&background=ecfccb&color=4d7c0f&size=200&font-size=0.4" alt="Neha Yadav" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Neha Yadav</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Assistant Teacher</p>
+                        </div>
+
+                        <!-- Student 9 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Vikram+Patel&background=ccfbf1&color=0f766e&size=200&font-size=0.4" alt="Vikram Patel" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Vikram Patel</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">RO/ARO, UPPSC</p>
+                        </div>
+
+                        <!-- Student 10 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Ananya+Pandey&background=ffe4e6&color=be123c&size=200&font-size=0.4" alt="Ananya Pandey" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Ananya Pandey</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">PGT Physics</p>
+                        </div>
+
+                        <!-- Student 11 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Rohit+Tiwari&background=f3f4f6&color=374151&size=200&font-size=0.4" alt="Rohit Tiwari" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Rohit Tiwari</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Loco Pilot, RRB</p>
+                        </div>
+
+                        <!-- Student 12 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Sneha+Gupta&background=e0f2fe&color=0369a1&size=200&font-size=0.4" alt="Sneha Gupta" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Sneha Gupta</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">IBPS PO</p>
+                        </div>
+
+                        <!-- Student 13 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Kunal+Rajput&background=ffedd5&color=c2410c&size=200&font-size=0.4" alt="Kunal Rajput" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Kunal Rajput</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">UPSSSC PET</p>
+                        </div>
+
+                        <!-- Student 14 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Pooja+Chauhan&background=fdf4ff&color=a21caf&size=200&font-size=0.4" alt="Pooja Chauhan" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Pooja Chauhan</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Staff Nurse, AIIMS</p>
+                        </div>
+
+                        <!-- Student 15 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Manish+Shukla&background=ecfdf5&color=047857&size=200&font-size=0.4" alt="Manish Shukla" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Manish Shukla</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Lekhpal, UP</p>
+                        </div>
+
+                        <!-- Student 16 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Jyoti+Yadav&background=fefce8&color=a16207&size=200&font-size=0.4" alt="Jyoti Yadav" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Jyoti Yadav</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">CTET Qualified</p>
+                        </div>
+
+                        <!-- Student 17 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Saurabh+Singh&background=eff6ff&color=1d4ed8&size=200&font-size=0.4" alt="Saurabh Singh" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Saurabh Singh</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">NDA Selected</p>
+                        </div>
+
+                        <!-- Student 18 -->
+                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="https://ui-avatars.com/api/?name=Kavita+Verma&background=fdf2f8&color=be185d&size=200&font-size=0.4" alt="Kavita Verma" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Kavita Verma</h3>
+                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">UPPCS Prelims</p>
                         </div>
                     </div>
                 </div>
