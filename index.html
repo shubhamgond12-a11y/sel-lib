@@ -3,8 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1E3A34">
     
-    <!-- Favicon Links (Optimized for maximum compatibility with all browsers & platforms) -->
+    <!-- Preconnect & DNS Prefetch for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    
+    <!-- Preload Critical LCP Image -->
+    <link rel="preload" as="image" href="webp/9.webp" fetchpriority="high">
+
+    <!-- Favicon Links -->
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="shortcut icon" type="image/png" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
@@ -12,10 +22,10 @@
     <!-- Primary Meta Tags (SEO Optimization) -->
     <title>Selection Library | Best Study Space & Reading Room in Sultanpur</title>
     <meta name="title" content="Selection Library | Best Study Space & Reading Room in Sultanpur">
-    <meta name="description" content="Join Selection Library in Sultanpur. We offer a peaceful, fully air-conditioned study environment with high-speed Wi-Fi, personal desk lights, RO water, and female safety. Book a free trial today!">
-    <meta name="keywords" content="Library in Sultanpur, Best Library in Sultanpur, Study Room Sultanpur, Reading Room, Selection Library Nirala Nagar, Competitive Exam Preparation, Peaceful Study Space">
+    <meta name="description" content="Join Selection Library in Sultanpur. The best reading room and study library for competitive exam preparation (SSC, UPPSC, Bank PO, NEET). Enjoy a peaceful, fully AC environment.">
+    <meta name="keywords" content="Selection Library Sultanpur, Library in Sultanpur, Reading Room Sultanpur, Study Room Sultanpur, Study Library Sultanpur, Competitive Exam Library Sultanpur, SSC Preparation Sultanpur, Bank PO Preparation Sultanpur, IBPS Preparation Sultanpur, RRB Preparation Sultanpur, Railway Preparation Sultanpur, UP Police Preparation Sultanpur, UPPSC Preparation Sultanpur, UPSSSC Preparation Sultanpur, PET Preparation Sultanpur, CTET Preparation Sultanpur, NEET Study Library, JEE Study Library, Government Job Preparation Sultanpur, Civil Services Study Library, Best Library in Sultanpur, Best Reading Room in Sultanpur">
     <meta name="author" content="Selection Library">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="https://selectionlibrary.com/" />
 
     <!-- Open Graph / Facebook / WhatsApp (Social Media Preview) -->
@@ -23,64 +33,79 @@
     <meta property="og:url" content="https://selectionlibrary.com/">
     <meta property="og:title" content="Selection Library | Sultanpur's Premium Study Space">
     <meta property="og:description" content="Experience a peaceful, air-conditioned environment with individual desk lights and high-speed Wi-Fi designed to help you achieve your academic dreams.">
-    <meta property="og:image" content="webp/9.webp">
+    <meta property="og:image" content="https://selectionlibrary.com/webp/9.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Selection Library">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://selectionlibrary.com/">
-    <meta property="twitter:title" content="Selection Library | Sultanpur's Premium Study Space">
-    <meta property="twitter:description" content="Experience a peaceful, air-conditioned environment with individual desk lights and high-speed Wi-Fi designed to help you achieve your academic dreams.">
-    <meta property="twitter:image" content="webp/9.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://selectionlibrary.com/">
+    <meta name="twitter:title" content="Selection Library | Sultanpur's Premium Study Space">
+    <meta name="twitter:description" content="Experience a peaceful, air-conditioned environment with individual desk lights and high-speed Wi-Fi designed to help you achieve your academic dreams.">
+    <meta name="twitter:image" content="https://selectionlibrary.com/webp/9.webp">
+    <meta name="twitter:image:alt" content="Selection Library Study Room Interior">
 
-    <!-- Local Business Schema Markup -->
+    <!-- Enhanced Schema Markup (LocalBusiness, EducationalOrganization, WebSite) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Selection Library",
-      "image": "https://selectionlibrary.com/webp/9.webp",
-      "@id": "https://selectionlibrary.com/",
-      "url": "https://selectionlibrary.com/",
-      "telephone": "+919169340586",
-      "email": "gaaurav2@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Nirala Nagar",
-        "addressLocality": "Sultanpur",
-        "addressRegion": "UP",
-        "postalCode": "228001",
-        "addressCountry": "IN"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "140"
-      },
-      "priceRange": "$$",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
-        ],
-        "opens": "06:00",
-        "closes": "22:00"
-      }
+      "@graph": [
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://selectionlibrary.com/#localbusiness",
+          "name": "Selection Library",
+          "image": "https://selectionlibrary.com/webp/9.webp",
+          "url": "https://selectionlibrary.com/",
+          "telephone": "+919169340586",
+          "email": "gaaurav2@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Nirala Nagar",
+            "addressLocality": "Sultanpur",
+            "addressRegion": "UP",
+            "postalCode": "228001",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "26.2583",
+            "longitude": "82.0822"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "140"
+          },
+          "priceRange": "$$",
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "06:00",
+            "closes": "22:00"
+          }
+        },
+        {
+          "@type": "EducationalOrganization",
+          "@id": "https://selectionlibrary.com/#educationalorganization",
+          "name": "Selection Library Sultanpur",
+          "description": "Premium study space and reading room in Sultanpur for competitive exam preparation including SSC, UPPSC, Railways, Bank PO, NEET, and JEE.",
+          "url": "https://selectionlibrary.com/",
+          "logo": "https://selectionlibrary.com/logo.png"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://selectionlibrary.com/#website",
+          "url": "https://selectionlibrary.com/",
+          "name": "Selection Library",
+          "description": "Best Study Space & Reading Room in Sultanpur"
+        }
+      ]
     }
     </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <!-- AOS Animation Library CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <script>
@@ -92,14 +117,14 @@
                     },
                     colors: {
                         brand: {
-                            light: '#38bdf8', // Lighter teal for hover states
-                            DEFAULT: '#0EA5E9', // Vibrant Teal
-                            dark: '#0284c7', // Darker teal
+                            light: '#38bdf8',
+                            DEFAULT: '#0EA5E9',
+                            dark: '#0284c7',
                         },
                         oasis: {
-                            ivory: '#FAFAF6', // Ivory Soft
-                            emerald: '#1E3A34', // Deep Emerald
-                            ink: '#0F172A', // Slate Ink
+                            ivory: '#FAFAF6',
+                            emerald: '#1E3A34',
+                            ink: '#0F172A',
                         }
                     },
                     animation: {
@@ -116,1031 +141,909 @@
         }
     </script>
     <style>
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #FAFAF6;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FAFAF6; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         
-        /* Smooth transitions for interactive elements */
         .glass-nav {
-            background: rgba(30, 58, 52, 0.8); /* Deep Emerald base with transparency */
+            background: rgba(30, 58, 52, 0.8);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Hide Scrollbar for review marquee wrapper */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Fix horizontal overflow on mobile devices */
-        html, body {
-            max-width: 100vw;
-            overflow-x: hidden;
-        }
+        html, body { max-width: 100vw; overflow-x: hidden; }
 
-        /* Full Screen Image Modal Styles */
         .img-modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(8px);
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            display: none; position: fixed; z-index: 9999; left: 0; top: 0;
+            width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(8px); align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s ease;
         }
-        .img-modal.show {
-            display: flex;
-            opacity: 1;
-        }
+        .img-modal.show { display: flex; opacity: 1; }
         .img-modal img {
-            max-width: 95%;
-            max-height: 90vh;
-            border-radius: 12px;
+            max-width: 95%; max-height: 90vh; border-radius: 12px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            transform: scale(0.95);
-            transition: transform 0.3s ease;
-            object-fit: contain;
+            transform: scale(0.95); transition: transform 0.3s ease; object-fit: contain;
         }
-        .img-modal.show img {
-            transform: scale(1);
-        }
+        .img-modal.show img { transform: scale(1); }
 
-        /* Modal Custom Scrollbar */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f5f9;
-            border-radius: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
 </head>
 <body class="font-sans text-slate-600 antialiased bg-oasis-ivory overflow-x-hidden w-full">
 
-    <!-- Floating Pill Navbar -->
-    <nav id="navbar" class="fixed top-0 md:top-4 left-0 md:left-1/2 md:-translate-x-1/2 right-0 md:right-auto md:w-[96%] max-w-7xl z-40 py-4 px-6 lg:px-8 flex justify-between items-center transition-all duration-500 bg-black/40 backdrop-blur-md md:rounded-full border-b md:border border-white/10 shadow-lg">
-        <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-            <img src="logo.png" alt="Selection Library Logo" class="w-10 h-10 object-contain transition-transform hover:scale-105" onerror="this.outerHTML='<div class=\'w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-white text-lg shadow-lg shadow-brand/20 transition-transform hover:scale-105\'>SL</div>'">
-            <span class="font-bold text-white text-xl tracking-tight">Selection Library</span>
-        </div>
-        
-        <div class="hidden md:flex gap-8 text-sm font-medium text-gray-100">
-            <a href="#home" class="hover:text-brand transition-colors relative group">
-                Home
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#features" class="hover:text-brand transition-colors relative group">
-                Amenities
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#gallery" class="hover:text-brand transition-colors relative group">
-                Gallery
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#recognition" class="hover:text-brand transition-colors relative group">
-                Recognition
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#testimonials" class="hover:text-brand transition-colors relative group">
-                Selected Students
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#google-reviews" class="hover:text-brand transition-colors relative group">
-                Reviews
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#contact" class="hover:text-brand transition-colors relative group">
-                Contact
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-            </a>
-        </div>
-        <!-- Mobile Menu Trigger Button -->
-        <button id="mobile-menu-btn" class="md:hidden text-white p-2 hover:bg-white/20 rounded-lg transition-colors focus:outline-none" aria-label="Open Menu">
-            <i data-lucide="menu" class="w-6 h-6"></i>
-        </button>
-    </nav>
-
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
-        <div id="mobile-menu-backdrop" class="absolute inset-0 bg-oasis-emerald/80 backdrop-blur-md"></div>
-        
-        <div id="mobile-menu-container" class="absolute top-0 left-0 right-0 bg-oasis-ivory px-6 py-6 border-b border-gray-200 flex flex-col transition-all duration-300 ease-out transform -translate-y-full shadow-2xl">
-            <div class="flex justify-between items-center mb-10">
-                <div class="flex items-center gap-3">
-                    <img src="logo.png" alt="Selection Library Logo" class="w-10 h-10 object-contain" onerror="this.outerHTML='<div class=\'w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-white text-lg\'>SL</div>'">
-                    <span class="font-bold text-oasis-ink text-xl tracking-tight">Selection Library</span>
-                </div>
-                <button id="mobile-menu-close" class="w-10 h-10 bg-brand/10 hover:bg-brand/20 text-brand-dark rounded-xl flex items-center justify-center transition-transform hover:scale-105 shadow-sm focus:outline-none" aria-label="Close Menu">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
+    <header>
+        <!-- Floating Pill Navbar -->
+        <nav id="navbar" class="fixed top-0 md:top-4 left-0 md:left-1/2 md:-translate-x-1/2 right-0 md:right-auto md:w-[96%] max-w-7xl z-40 py-4 px-6 lg:px-8 flex justify-between items-center transition-all duration-500 bg-black/40 backdrop-blur-md md:rounded-full border-b md:border border-white/10 shadow-lg" aria-label="Main Navigation">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)" tabindex="0" role="button" aria-label="Scroll to top">
+                <img src="logo.png" alt="Selection Library Logo" width="40" height="40" decoding="async" class="w-10 h-10 object-contain transition-transform hover:scale-105" onerror="this.outerHTML='<div class=\'w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-white text-lg shadow-lg shadow-brand/20 transition-transform hover:scale-105\'>SL</div>'">
+                <span class="font-bold text-white text-xl tracking-tight">Selection Library</span>
             </div>
             
-            <div class="flex flex-col gap-8 pl-1 pb-10">
-                <a href="#home" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Home</a>
-                <a href="#features" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Amenities</a>
-                <a href="#gallery" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Gallery</a>
-                <a href="#recognition" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Recognition</a>
-                <a href="#testimonials" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Selected Students</a>
-                <a href="#google-reviews" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Reviews</a>
-                <a href="#contact" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Contact</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden">
-        <!-- Background Image with Gradient Overlay -->
-        <div class="absolute inset-0 z-0">
-            <img src="webp/9.webp" alt="Selection Library Sultanpur Interior" class="w-full h-full object-cover scale-105 animate-[pulse_20s_ease-in-out_infinite]" />
-            <div class="absolute inset-0 bg-gradient-to-b from-oasis-emerald/90 via-oasis-emerald/80 to-oasis-ink/90"></div>
-        </div>
-
-        <div class="relative z-10 text-center max-w-4xl mx-auto mt-16" data-aos="fade-up" data-aos-duration="1000">
-            <h2 class="inline-block py-1.5 px-4 rounded-full bg-brand/20 border border-brand/40 text-brand-light text-sm font-semibold tracking-wider mb-6 animate-pulse">
-                Sultanpur's Premium Study Space
-            </h2>
-            
-            <!-- Selection Library Heading -->
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-2 tracking-tight drop-shadow-xl">
-                <br class="md:hidden"/><span class="text-brand drop-shadow-lg">SELECTION LIBRARY</span>
-            </h1>
-            
-            <!-- Tagline -->
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-100 mb-6 tracking-tight leading-tight">
-                Your Selection, Our Effort
-            </h2>
-            
-            <p class="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed max-w-2xl mx-auto font-light" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                Experience a peaceful, air-conditioned environment in Sultanpur with individual desk lights, high-speed Wi-Fi, and wooden study cubicles designed to help you achieve your academic dreams.
-            </p>
-            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
-                <a href="#contact" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-white px-8 py-4 rounded-full font-bold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(14,165,233,0.4)]">
-                    Book a Free Trial Seat
-                    <i data-lucide="arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-1"></i>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-100">
+                <a href="#home" class="hover:text-brand transition-colors relative group">
+                    Home
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#features" class="hover:text-brand transition-colors relative group">
+                    Amenities
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#gallery" class="hover:text-brand transition-colors relative group">
+                    Gallery
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#recognition" class="hover:text-brand transition-colors relative group">
+                    Recognition
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#testimonials" class="hover:text-brand transition-colors relative group">
+                    Selected Students
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#google-reviews" class="hover:text-brand transition-colors relative group">
+                    Reviews
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#contact" class="hover:text-brand transition-colors relative group">
+                    Contact
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
                 </a>
             </div>
-        </div>
-        
-        <!-- Scroll indicator -->
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce text-white/50">
-            <i data-lucide="chevron-down" class="w-8 h-8"></i>
-        </div>
-    </section>
+            <!-- Mobile Menu Trigger Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white p-2 hover:bg-white/20 rounded-lg transition-colors focus:outline-none" aria-label="Open Mobile Menu" aria-expanded="false" aria-controls="mobile-menu">
+                <i data-lucide="menu" class="w-6 h-6" aria-hidden="true"></i>
+            </button>
+        </nav>
 
-    <!-- Features Section -->
-    <section id="features" class="py-24 px-6 lg:px-12 bg-white relative">
-        <!-- Decorative background blob -->
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-            <div class="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-brand/5 blur-3xl"></div>
-            <div class="absolute -bottom-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-oasis-emerald/5 blur-3xl"></div>
-        </div>
-
-        <div class="max-w-6xl mx-auto relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl lg:text-4xl font-bold text-oasis-ink mb-4">Premium Amenities for Serious Students</h2>
-                <p class="text-slate-600 max-w-2xl mx-auto text-lg">Every detail, from our personal desk lights to rolling ergonomic chairs, is designed to support your study goals.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Feature 1 -->
-                <div class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-4 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
-                        <i data-lucide="snowflake" class="w-6 h-6"></i>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 z-50 hidden transition-opacity duration-300" aria-modal="true" role="dialog">
+            <div id="mobile-menu-backdrop" class="absolute inset-0 bg-oasis-emerald/80 backdrop-blur-md" aria-hidden="true"></div>
+            
+            <nav id="mobile-menu-container" class="absolute top-0 left-0 right-0 bg-oasis-ivory px-6 py-6 border-b border-gray-200 flex flex-col transition-all duration-300 ease-out transform -translate-y-full shadow-2xl" aria-label="Mobile Navigation">
+                <div class="flex justify-between items-center mb-10">
+                    <div class="flex items-center gap-3">
+                        <img src="logo.png" alt="Selection Library Logo" width="40" height="40" loading="lazy" decoding="async" class="w-10 h-10 object-contain" onerror="this.outerHTML='<div class=\'w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-white text-lg\'>SL</div>'">
+                        <span class="font-bold text-oasis-ink text-xl tracking-tight">Selection Library</span>
                     </div>
-                    <h3 class="text-lg font-bold text-oasis-ink mb-2">Fully Air Conditioned</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">Maintained at optimal temperatures for a comfortable, sweat-free study environment year-round.</p>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="150">
-                    <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-4 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
-                        <i data-lucide="battery-charging" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-oasis-ink mb-2">24x7 Power Backup</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">Uninterrupted electricity and lighting to ensure your focus is never broken by power cuts.</p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-4 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
-                        <i data-lucide="shield-check" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-oasis-ink mb-2">Safety for Female</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">Strictly monitored, highly secure environment offering complete peace of mind for female students.</p>
-                </div>
-
-                <!-- Feature 4 -->
-                <div class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="250">
-                    <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-4 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
-                        <i data-lucide="droplet" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-oasis-ink mb-2">RO Water Cooler</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">Access to pure, chilled RO drinking water to keep you hydrated and energized.</p>
-                </div>
-
-                <!-- Feature 5 -->
-                <div class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-4 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
-                        <i data-lucide="lamp-desk" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-oasis-ink mb-2">Individual Desk Lights</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">Personal wooden cubicles equipped with dedicated reading lights to prevent eye strain.</p>
-                </div>
-
-                <!-- Feature 6 -->
-                <div class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="350">
-                    <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-4 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
-                        <i data-lucide="wifi" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-oasis-ink mb-2">High-Speed Wi-Fi</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">Blazing fast internet connectivity for seamless online research and video lectures.</p>
+                    <button id="mobile-menu-close" class="w-10 h-10 bg-brand/10 hover:bg-brand/20 text-brand-dark rounded-xl flex items-center justify-center transition-transform hover:scale-105 shadow-sm focus:outline-none" aria-label="Close Mobile Menu">
+                        <i data-lucide="x" class="w-5 h-5" aria-hidden="true"></i>
+                    </button>
                 </div>
                 
-                <!-- Feature 7 -->
-                <div class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="400">
-                    <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-4 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
-                        <i data-lucide="volume-x" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-oasis-ink mb-2">Disciplined Zone</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">Strictly maintained silence policy in a well-planned environment to maximize concentration.</p>
+                <div class="flex flex-col gap-8 pl-1 pb-10">
+                    <a href="#home" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Home</a>
+                    <a href="#features" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Amenities</a>
+                    <a href="#gallery" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Gallery</a>
+                    <a href="#recognition" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Recognition</a>
+                    <a href="#testimonials" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Selected Students</a>
+                    <a href="#google-reviews" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Reviews</a>
+                    <a href="#contact" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Contact</a>
                 </div>
+            </nav>
+        </div>
+    </header>
 
-                <!-- Feature 8 -->
-                <div class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="450">
-                    <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-4 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
-                        <i data-lucide="armchair" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-oasis-ink mb-2">Ergonomic Seating</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">Premium comfortable seating designed for long study sessions, ensuring proper posture.</p>
-                </div>
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden">
+            <!-- Background Image with Gradient Overlay -->
+            <div class="absolute inset-0 z-0">
+                <img src="webp/9.webp" alt="Selection Library Study Room Interior" width="1920" height="1080" fetchpriority="high" loading="eager" decoding="sync" class="w-full h-full object-cover scale-105 animate-[pulse_20s_ease-in-out_infinite]" />
+                <div class="absolute inset-0 bg-gradient-to-b from-oasis-emerald/90 via-oasis-emerald/80 to-oasis-ink/90"></div>
             </div>
 
-            <!-- Emergency & Safety Protocol Banner -->
-            <div class="mt-12 bg-red-50 border border-red-100 rounded-3xl p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden" data-aos="fade-up">
-                <!-- Decorative Icon Background -->
-                <div class="absolute -right-10 -top-10 text-red-100/50 pointer-events-none">
-                    <i data-lucide="shield-alert" class="w-64 h-64"></i>
-                </div>
+            <div class="relative z-10 text-center max-w-4xl mx-auto mt-16" data-aos="fade-up" data-aos-duration="1000">
+                <p class="inline-block py-1.5 px-4 rounded-full bg-brand/20 border border-brand/40 text-brand-light text-sm font-semibold tracking-wider mb-6 animate-pulse">
+                    Sultanpur's Premium Study Space
+                </p>
                 
-                <div class="flex-1 relative z-10">
-                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-100 text-red-600 text-sm font-bold tracking-wide mb-4 shadow-sm border border-red-200">
-                        <i data-lucide="siren" class="w-4 h-4"></i> Complete Safety
-                    </div>
-                    <h3 class="text-2xl lg:text-3xl font-bold text-oasis-ink mb-4">Dedicated Emergency Protocols</h3>
-                    <p class="text-slate-700 leading-relaxed text-lg">
-                        Your safety is our top priority. Selection Library spans across <strong>two spacious floors</strong>, each meticulously equipped with clearly marked <strong>emergency exit doors</strong> and a proper exit plan. We maintain easily accessible <strong>fire extinguishers</strong> throughout the premises to handle any unforeseen emergencies safely and swiftly.
-                    </p>
+                <!-- Selection Library Heading -->
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-2 tracking-tight drop-shadow-xl">
+                    <br class="md:hidden"/><span class="text-brand drop-shadow-lg">SELECTION LIBRARY</span>
+                </h1>
+                
+                <!-- Tagline -->
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-100 mb-6 tracking-tight leading-tight">
+                    Your Selection, Our Effort
+                </h2>
+                
+                <p class="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed max-w-2xl mx-auto font-light" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                    Experience a peaceful, air-conditioned environment in Sultanpur with individual desk lights, high-speed Wi-Fi, and wooden study cubicles designed to help you prepare for competitive exams like SSC, UPPSC, NEET, JEE, and achieve your academic dreams.
+                </p>
+                <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                    <a href="#contact" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-white px-8 py-4 rounded-full font-bold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(14,165,233,0.4)]">
+                        Book a Free Trial Seat
+                        <i data-lucide="arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-1" aria-hidden="true"></i>
+                    </a>
                 </div>
-                <div class="shrink-0 flex gap-4 relative z-10">
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-red-100 flex flex-col items-center justify-center text-center gap-3 w-32 h-32 md:w-36 md:h-36 transform hover:-translate-y-1 transition-transform">
-                        <div class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center text-red-500 shadow-inner">
-                            <i data-lucide="door-open" class="w-6 h-6"></i>
+            </div>
+            
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce text-white/50" aria-hidden="true">
+                <i data-lucide="chevron-down" class="w-8 h-8"></i>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-24 px-6 lg:px-12 bg-white relative">
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none" aria-hidden="true">
+                <div class="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-brand/5 blur-3xl"></div>
+                <div class="absolute -bottom-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-oasis-emerald/5 blur-3xl"></div>
+            </div>
+
+            <div class="max-w-6xl mx-auto relative z-10">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-oasis-ink mb-4">Premium Amenities for Serious Students</h2>
+                    <p class="text-slate-600 max-w-2xl mx-auto text-lg">Every detail, from our personal desk lights to rolling ergonomic chairs, is designed to support your study goals.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <article class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-4 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300" aria-hidden="true">
+                            <i data-lucide="snowflake" class="w-6 h-6"></i>
                         </div>
-                        <span class="text-sm font-bold text-slate-800 leading-tight">Emergency Exits</span>
-                    </div>
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-red-100 flex flex-col items-center justify-center text-center gap-3 w-32 h-32 md:w-36 md:h-36 transform hover:-translate-y-1 transition-transform">
-                        <div class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center text-red-500 shadow-inner">
-                            <i data-lucide="flame" class="w-6 h-6"></i>
+                        <h3 class="text-lg font-bold text-oasis-ink mb-2">Fully Air Conditioned</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm">Maintained at optimal temperatures for a comfortable, sweat-free study environment year-round.</p>
+                    </article>
+
+                    <article class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="150">
+                        <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-4 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300" aria-hidden="true">
+                            <i data-lucide="battery-charging" class="w-6 h-6"></i>
                         </div>
-                        <span class="text-sm font-bold text-slate-800 leading-tight">Fire Safety</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                        <h3 class="text-lg font-bold text-oasis-ink mb-2">24x7 Power Backup</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm">Uninterrupted electricity and lighting to ensure your focus is never broken by power cuts.</p>
+                    </article>
 
-    <!-- Gallery & Ambiance Showcase -->
-    <section id="gallery" class="py-24 px-6 lg:px-12 bg-white relative border-t border-gray-100">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-brand font-bold tracking-widest uppercase text-sm mb-2 block">Our Space</span>
-                <h2 class="text-3xl lg:text-4xl font-bold text-oasis-ink mb-4">A Glimpse of Excellence</h2>
-                <p class="text-slate-600 max-w-2xl mx-auto text-lg">Take a look inside our meticulously designed study spaces, meant to inspire and keep you motivated on your journey.</p>
-            </div>
+                    <article class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-4 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300" aria-hidden="true">
+                            <i data-lucide="shield-check" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-oasis-ink mb-2">Safety for Female</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm">Strictly monitored, highly secure environment offering complete peace of mind for female students.</p>
+                    </article>
 
-            <!-- Masonry Grid for 15 Photos/Quotes -->
-            <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-                <!-- Image 1 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
-                    <img src="webp/12.webp" alt="Selection Library Sultanpur Event" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <span class="text-white font-medium">Saraswati Pooja 2026</span>
-                    </div>
-                </div>
-                <!-- Image 2 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative bg-brand/10 p-8 flex items-center justify-center text-center border border-brand/20" data-aos="fade-up">
-                    <p class="text-2xl font-bold text-oasis-ink leading-tight">"Success is the sum of small efforts, repeated day in and day out."</p>
-                </div>
-                <!-- Image 3 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
-                    <img src="webp/1.webp" alt="Student studying at Selection Library Sultanpur" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <!-- Image 4 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
-                    <img src="webp/3.webp" alt="Peaceful Library View Sultanpur" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <!-- Image 5 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative bg-oasis-emerald text-white p-8 flex items-center justify-center text-center" data-aos="fade-up">
-                    <p class="text-xl font-medium leading-relaxed tracking-wide uppercase">Dream Big. Start Small. Act Now.</p>
-                </div>
-                <!-- Image 6 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
-                    <img src="webp/4.webp" alt="Study Desk Setup in Library" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <!-- Image 7 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
-                    <img src="webp/13.webp" alt="Personal Desk Light Reading Room" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <!-- Image 8 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
-                    <img src="webp/19.webp" alt="Students studying together in library" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                 <!-- Image 9 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative bg-gray-900 text-white p-8 flex flex-col items-center justify-center text-center" data-aos="fade-up">
-                    <i data-lucide="target" class="w-10 h-10 text-brand mb-4"></i>
-                    <p class="text-lg font-bold leading-tight">Your only limit is your mind.</p>
-                </div>
-                <!-- Image 10 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
-                    <img src="webp/20.webp" alt="Selection Library Hall View" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <!-- Image 11 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
-                    <img src="webp/15.webp" alt="Taking Notes for Competitive Exams" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <!-- Image 12 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
-                    <img src="webp/18.webp" alt="Library Setup for Civil Services Preparation" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <!-- Image 13 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
-                    <img src="webp/m6.webp" alt="Quiet Study Zone Sultanpur" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <!-- Image 14 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
-                    <img src="webp/m5.webp" alt="Close up Study Desk Setup" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <!-- Image 15 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative bg-brand-light text-oasis-ink p-8 flex items-center justify-center text-center border border-white/50" data-aos="fade-up">
-                    <p class="text-2xl font-bold leading-tight">Focus. Study. Achieve.</p>
-                </div>
-                <!-- Image 16 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
-                    <img src="webp/10.webp" alt="Quiet Corner Selection Library" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <!-- Image 17 -->
-                <div class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
-                    <img src="webp/11.webp" alt="Comfortable Environment Sultanpur" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-            </div>
-        </div>
-    </section>
+                    <article class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="250">
+                        <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-4 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300" aria-hidden="true">
+                            <i data-lucide="droplet" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-oasis-ink mb-2">RO Water Cooler</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm">Access to pure, chilled RO drinking water to keep you hydrated and energized.</p>
+                    </article>
 
-    <!-- Recognition & Mentorship Section -->
-    <section id="recognition" class="py-24 px-6 lg:px-12 bg-oasis-emerald text-white overflow-hidden relative">
-        <div class="absolute inset-0 z-0 opacity-5">
-            <!-- Pattern overlay -->
-            <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
-                <defs><pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M0 40L40 0H20L0 20M40 40V20L20 40" fill="currentColor"></path></pattern></defs>
-                <rect width="100%" height="100%" fill="url(#grid-pattern)"></rect>
-            </svg>
-        </div>
-        
-        <div class="max-w-6xl mx-auto relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="order-2 lg:order-1 space-y-6" data-aos="fade-right">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/20 text-brand-light text-sm font-bold tracking-wide border border-brand/30 mb-2 shadow-[0_0_15px_rgba(14,165,233,0.15)]">
-                        <i data-lucide="award" class="w-4 h-4"></i>
-                        Recognized by Administration
-                    </div>
-                    <h2 class="text-3xl lg:text-5xl font-bold leading-tight">Setting a Benchmark for Education in Sultanpur</h2>
-                    <p class="text-gray-300 leading-relaxed text-lg">
-                        Selection Library has caught the attention of local administration for its peaceful, disciplined, and study-centric environment where students continuously achieve success. 
-                    </p>
-                    <p class="text-gray-300 leading-relaxed text-lg">
-                        The <strong class="text-white">SDM of Sultanpur</strong> recently visited and praised the institution, stating that Selection Library is not just paving the way for the bright future of students, but is setting a prime example of an excellent educational atmosphere in the district.
-                    </p>
-                    <p class="text-gray-300 leading-relaxed text-lg">
-                        The administration also commended founder <strong class="text-white">Shri Gaurav Srivastava</strong> as a successful emerging entrepreneur, noting that the institution plays an inspiring role in both education and social development.
-                    </p>
+                    <article class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-4 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300" aria-hidden="true">
+                            <i data-lucide="lamp-desk" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-oasis-ink mb-2">Individual Desk Lights</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm">Personal wooden cubicles equipped with dedicated reading lights to prevent eye strain.</p>
+                    </article>
+
+                    <article class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="350">
+                        <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-4 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300" aria-hidden="true">
+                            <i data-lucide="wifi" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-oasis-ink mb-2">High-Speed Wi-Fi</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm">Blazing fast internet connectivity for seamless online research and video lectures.</p>
+                    </article>
                     
-                    <div class="pt-6 border-t border-white/10 mt-8">
-                        <h4 class="font-bold text-white text-xl flex items-center gap-3 mb-3">
-                            <div class="p-2 bg-brand/20 rounded-lg"><i data-lucide="mic" class="w-5 h-5 text-brand-light"></i></div>
-                            Mentorship & Guidance
-                        </h4>
-                        <p class="text-gray-300 leading-relaxed">
-                            We regularly host successful professionals to guide our students. Recently, <strong class="text-white">Loco Pilot Shri Rakesh Mani ji</strong> addressed our future aspirants, sharing invaluable insights and strategies for competitive exams.
+                    <article class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="400">
+                        <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-4 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300" aria-hidden="true">
+                            <i data-lucide="volume-x" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-oasis-ink mb-2">Disciplined Zone</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm">Strictly maintained silence policy in a well-planned environment to maximize concentration.</p>
+                    </article>
+
+                    <article class="group bg-oasis-ivory/80 backdrop-blur-sm rounded-3xl p-6 border border-gray-200/60 hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="450">
+                        <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand-dark mb-4 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300" aria-hidden="true">
+                            <i data-lucide="armchair" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-oasis-ink mb-2">Ergonomic Seating</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm">Premium comfortable seating designed for long study sessions, ensuring proper posture.</p>
+                    </article>
+                </div>
+
+                <!-- Emergency & Safety Protocol Banner -->
+                <div class="mt-12 bg-red-50 border border-red-100 rounded-3xl p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden" data-aos="fade-up">
+                    <div class="absolute -right-10 -top-10 text-red-100/50 pointer-events-none" aria-hidden="true">
+                        <i data-lucide="shield-alert" class="w-64 h-64"></i>
+                    </div>
+                    
+                    <div class="flex-1 relative z-10">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-100 text-red-600 text-sm font-bold tracking-wide mb-4 shadow-sm border border-red-200">
+                            <i data-lucide="siren" class="w-4 h-4" aria-hidden="true"></i> Complete Safety
+                        </div>
+                        <h3 class="text-2xl lg:text-3xl font-bold text-oasis-ink mb-4">Dedicated Emergency Protocols</h3>
+                        <p class="text-slate-700 leading-relaxed text-lg">
+                            Your safety is our top priority. Selection Library spans across <strong>two spacious floors</strong>, each meticulously equipped with clearly marked <strong>emergency exit doors</strong> and a proper exit plan. We maintain easily accessible <strong>fire extinguishers</strong> throughout the premises to handle any unforeseen emergencies safely and swiftly.
                         </p>
                     </div>
-                </div>
-                
-                <div class="order-1 lg:order-2 grid grid-cols-1 sm:grid-cols-2 gap-6 relative" data-aos="fade-left">
-                    <div class="absolute -inset-4 bg-brand/20 rounded-3xl blur-2xl -z-10"></div>
-                    <div class="relative group">
-                        <img src="webp/visit1.webp" alt="SDM Visit to Selection Library" class="rounded-3xl shadow-2xl object-cover h-80 lg:h-[450px] w-full hover:scale-[1.02] transition-transform duration-500 border border-white/10">
-                        <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-full border border-white/10">
-                            SDM Visit & Appreciation
+                    <div class="shrink-0 flex gap-4 relative z-10" aria-hidden="true">
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-red-100 flex flex-col items-center justify-center text-center gap-3 w-32 h-32 md:w-36 md:h-36 transform hover:-translate-y-1 transition-transform">
+                            <div class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center text-red-500 shadow-inner">
+                                <i data-lucide="door-open" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-sm font-bold text-slate-800 leading-tight">Emergency Exits</span>
                         </div>
-                    </div>
-                    <div class="relative group sm:mt-12">
-                        <img src="webp/visit2.webp" alt="SDM Visit & Appreciation" class="rounded-3xl shadow-2xl object-cover h-80 lg:h-[450px] w-full hover:scale-[1.02] transition-transform duration-500 border border-white/10">
-                        <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-full border border-white/10">
-                            SDM Visit & Appreciation
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-red-100 flex flex-col items-center justify-center text-center gap-3 w-32 h-32 md:w-36 md:h-36 transform hover:-translate-y-1 transition-transform">
+                            <div class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center text-red-500 shadow-inner">
+                                <i data-lucide="flame" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-sm font-bold text-slate-800 leading-tight">Fire Safety</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Selected Students Section -->
-    <section id="testimonials" class="py-24 px-6 lg:px-12 bg-oasis-ivory">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-brand font-bold tracking-widest uppercase text-sm mb-2 block">Success Stories</span>
-                <h2 class="text-3xl lg:text-4xl font-bold text-oasis-ink mb-4">Selected Students</h2>
-                <p class="text-slate-600 max-w-2xl mx-auto text-lg">Celebrating the real success stories of our students who achieved their dreams through hard work and our dedicated environment.</p>
+        <!-- Gallery & Ambiance Showcase -->
+        <section id="gallery" class="py-24 px-6 lg:px-12 bg-white relative border-t border-gray-100">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-brand font-bold tracking-widest uppercase text-sm mb-2 block">Our Space</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-oasis-ink mb-4">A Glimpse of Excellence</h2>
+                    <p class="text-slate-600 max-w-2xl mx-auto text-lg">Take a look inside our meticulously designed study spaces, meant to inspire and keep you motivated on your journey.</p>
+                </div>
+
+                <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+                    <figure class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
+                        <img src="webp/12.webp" alt="Selection Library Sultanpur Event - Saraswati Pooja 2026" width="600" height="600" loading="lazy" decoding="async" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+                        <figcaption class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <span class="text-white font-medium">Saraswati Pooja 2026</span>
+                        </figcaption>
+                    </figure>
+                    <div class="break-inside-avoid rounded-2xl overflow-hidden group relative bg-brand/10 p-8 flex items-center justify-center text-center border border-brand/20" data-aos="fade-up">
+                        <p class="text-2xl font-bold text-oasis-ink leading-tight">"Success is the sum of small efforts, repeated day in and day out."</p>
+                    </div>
+                    <figure class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
+                        <img src="webp/1.webp" alt="Student preparing for competitive exams at Selection Library Sultanpur" width="600" height="600" loading="lazy" decoding="async" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+                    </figure>
+                    <figure class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
+                        <img src="webp/3.webp" alt="Peaceful Library View - Best Reading Room Sultanpur" width="600" height="600" loading="lazy" decoding="async" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+                    </figure>
+                    <div class="break-inside-avoid rounded-2xl overflow-hidden group relative bg-oasis-emerald text-white p-8 flex items-center justify-center text-center" data-aos="fade-up">
+                        <p class="text-xl font-medium leading-relaxed tracking-wide uppercase">Dream Big. Start Small. Act Now.</p>
+                    </div>
+                    <figure class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
+                        <img src="webp/4.webp" alt="Study Desk Setup for IBPS and Bank PO Preparation" width="600" height="600" loading="lazy" decoding="async" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+                    </figure>
+                    <figure class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
+                        <img src="webp/13.webp" alt="Personal Desk Light in Study Room Sultanpur" width="600" height="600" loading="lazy" decoding="async" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+                    </figure>
+                    <figure class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
+                        <img src="webp/19.webp" alt="Students preparing for Civil Services at Selection Library" width="600" height="600" loading="lazy" decoding="async" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+                    </figure>
+                    <div class="break-inside-avoid rounded-2xl overflow-hidden group relative bg-gray-900 text-white p-8 flex flex-col items-center justify-center text-center" data-aos="fade-up">
+                        <i data-lucide="target" class="w-10 h-10 text-brand mb-4" aria-hidden="true"></i>
+                        <p class="text-lg font-bold leading-tight">Your only limit is your mind.</p>
+                    </div>
+                    <figure class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
+                        <img src="webp/20.webp" alt="Selection Library Hall View - Government Job Preparation Sultanpur" width="600" height="600" loading="lazy" decoding="async" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+                    </figure>
+                    <figure class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
+                        <img src="webp/15.webp" alt="Taking Notes for SSC and Railway Preparation" width="600" height="600" loading="lazy" decoding="async" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+                    </figure>
+                    <figure class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
+                        <img src="webp/18.webp" alt="Library Setup for UPPSC and Civil Services Preparation" width="600" height="600" loading="lazy" decoding="async" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+                    </figure>
+                    <figure class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
+                        <img src="webp/m6.webp" alt="Quiet Study Zone for NEET and JEE Study Library" width="600" height="600" loading="lazy" decoding="async" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+                    </figure>
+                    <figure class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
+                        <img src="webp/m5.webp" alt="Close up Study Desk Setup - CTET and PET Preparation Sultanpur" width="600" height="600" loading="lazy" decoding="async" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+                    </figure>
+                    <div class="break-inside-avoid rounded-2xl overflow-hidden group relative bg-brand-light text-oasis-ink p-8 flex items-center justify-center text-center border border-white/50" data-aos="fade-up">
+                        <p class="text-2xl font-bold leading-tight">Focus. Study. Achieve.</p>
+                    </div>
+                    <figure class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
+                        <img src="webp/10.webp" alt="Quiet Corner at Selection Library - Best Library in Sultanpur" width="600" height="600" loading="lazy" decoding="async" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+                    </figure>
+                    <figure class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
+                        <img src="webp/11.webp" alt="Comfortable Environment for UP Police Preparation Sultanpur" width="600" height="600" loading="lazy" decoding="async" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+                    </figure>
+                </div>
             </div>
+        </section>
 
-            <div class="relative w-full overflow-hidden py-4" data-aos="fade-up">
-                <!-- Left Gradient Shadow overlay for depth -->
-                <div class="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-oasis-ivory to-transparent z-10 pointer-events-none"></div>
-                <!-- Right Gradient Shadow overlay for depth -->
-                <div class="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-oasis-ivory to-transparent z-10 pointer-events-none"></div>
-
-                <!-- Marquee scrolling track (Duration customized to 50s for 20 items) -->
-                <div class="flex w-max gap-12 md:gap-16 animate-marquee hover:[animation-play-state:paused] py-8 cursor-grab" style="animation-duration: 50s;">
+        <!-- Recognition & Mentorship Section -->
+        <section id="recognition" class="py-24 px-6 lg:px-12 bg-oasis-emerald text-white overflow-hidden relative">
+            <div class="absolute inset-0 z-0 opacity-5" aria-hidden="true">
+                <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+                    <defs><pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M0 40L40 0H20L0 20M40 40V20L20 40" fill="currentColor"></path></pattern></defs>
+                    <rect width="100%" height="100%" fill="url(#grid-pattern)"></rect>
+                </svg>
+            </div>
+            
+            <div class="max-w-6xl mx-auto relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="order-2 lg:order-1 space-y-6" data-aos="fade-right">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/20 text-brand-light text-sm font-bold tracking-wide border border-brand/30 mb-2 shadow-[0_0_15px_rgba(14,165,233,0.15)]">
+                            <i data-lucide="award" class="w-4 h-4" aria-hidden="true"></i>
+                            Recognized by Administration
+                        </div>
+                        <h2 class="text-3xl lg:text-5xl font-bold leading-tight">Setting a Benchmark for Education in Sultanpur</h2>
+                        <p class="text-gray-300 leading-relaxed text-lg">
+                            Selection Library has caught the attention of local administration for its peaceful, disciplined, and study-centric environment where students continuously achieve success. 
+                        </p>
+                        <p class="text-gray-300 leading-relaxed text-lg">
+                            The <strong class="text-white">SDM of Sultanpur</strong> recently visited and praised the institution, stating that Selection Library is not just paving the way for the bright future of students, but is setting a prime example of an excellent educational atmosphere in the district.
+                        </p>
+                        <p class="text-gray-300 leading-relaxed text-lg">
+                            The administration also commended founder <strong class="text-white">Shri Gaurav Srivastava</strong> as a successful emerging entrepreneur, noting that the institution plays an inspiring role in both education and social development.
+                        </p>
+                        
+                        <div class="pt-6 border-t border-white/10 mt-8">
+                            <h3 class="font-bold text-white text-xl flex items-center gap-3 mb-3">
+                                <div class="p-2 bg-brand/20 rounded-lg" aria-hidden="true"><i data-lucide="mic" class="w-5 h-5 text-brand-light"></i></div>
+                                Mentorship & Guidance
+                            </h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                We regularly host successful professionals to guide our students. Recently, <strong class="text-white">Loco Pilot Shri Rakesh Mani ji</strong> addressed our future aspirants, sharing invaluable insights and strategies for competitive exams.
+                            </p>
+                        </div>
+                    </div>
                     
-                    <!-- Inner Track Block 1 containing all 20 students inside one wrapper -->
-                    <div class="flex gap-12 md:gap-16 items-start">
-                       <!-- Student 1 -->
-                       <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
-                           <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                           <img src="selstu/abhishekgupta.webp" alt="Abhishek Gupta" class="w-full h-full object-cover">
-                           </div>
-                           <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Abhishek Gupta</h3>
-                           <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Divisional Accountant, CAG 2023</p>
-                       </div>
+                    <div class="order-1 lg:order-2 grid grid-cols-1 sm:grid-cols-2 gap-6 relative" data-aos="fade-left">
+                        <div class="absolute -inset-4 bg-brand/20 rounded-3xl blur-2xl -z-10" aria-hidden="true"></div>
+                        <figure class="relative group">
+                            <img src="webp/visit1.webp" alt="SDM Visit to Selection Library for Study Room Appreciation" width="400" height="450" loading="lazy" decoding="async" class="rounded-3xl shadow-2xl object-cover h-80 lg:h-[450px] w-full hover:scale-[1.02] transition-transform duration-500 border border-white/10">
+                            <figcaption class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-full border border-white/10">
+                                SDM Visit & Appreciation
+                            </figcaption>
+                        </figure>
+                        <figure class="relative group sm:mt-12">
+                            <img src="webp/visit2.webp" alt="SDM Visit & Mentorship Event at Selection Library" width="400" height="450" loading="lazy" decoding="async" class="rounded-3xl shadow-2xl object-cover h-80 lg:h-[450px] w-full hover:scale-[1.02] transition-transform duration-500 border border-white/10">
+                            <figcaption class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-full border border-white/10">
+                                SDM Visit & Appreciation
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        <!-- Student 2 -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
-                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                            <img src="selstu/akritipanday.webp" alt="Akriti Panday" class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Akriti Panday</h3>
-                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">CSA, Indian Bank</p>
-                        </div>
+        <!-- Selected Students Section -->
+        <section id="testimonials" class="py-24 px-6 lg:px-12 bg-oasis-ivory">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-brand font-bold tracking-widest uppercase text-sm mb-2 block">Success Stories</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-oasis-ink mb-4">Selected Students</h2>
+                    <p class="text-slate-600 max-w-2xl mx-auto text-lg">Celebrating the real success stories of our students who achieved their dreams through hard work and our dedicated environment.</p>
+                </div>
 
-                 	  	 <!-- Student 3 -->
-                 	   <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
-                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                            <img src="selstu/adityasingh.webp" alt="Aditya Singh" class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Aditya Singh</h3>
-                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">UGC, NET(LAW) 2025</p>
-                        </div>
+                <div class="relative w-full overflow-hidden py-4" data-aos="fade-up">
+                    <div class="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-oasis-ivory to-transparent z-10 pointer-events-none" aria-hidden="true"></div>
+                    <div class="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-oasis-ivory to-transparent z-10 pointer-events-none" aria-hidden="true"></div>
 
-                        <!-- Student 4 -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
-                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                            <img src="selstu/aryangupta.webp" alt="Aryan Gupta" class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Aryan Gupta</h3>
-                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">99.5%, J.E.E. 2025</p>
-                        </div>
+                    <div class="flex w-max gap-12 md:gap-16 animate-marquee hover:[animation-play-state:paused] py-8 cursor-grab" style="animation-duration: 50s;">
+                        
+                        <div class="flex gap-12 md:gap-16 items-start">
+                           <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                               <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                               <img src="selstu/abhishekgupta.webp" alt="Abhishek Gupta" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                               </div>
+                               <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Abhishek Gupta</h3>
+                               <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Divisional Accountant, CAG 2023</p>
+                           </article>
 
-                        <!-- Student 5 -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
-                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                            <img src="selstu/anuragsharma.webp" alt="Anurag Sharma" class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Anurag Sharma</h3>
-                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Loco pilot, R.R.B. ALP 2024 </p>
-                        </div>
-
-                        <!-- Student 6 -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
-                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                            <img src="selstu/riyasrivastava.webp" alt="Riya Srivastava" class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Riya Srivastava</h3>
-                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">J.E. UP Metro 2024</p>
-                        </div>
-
-                        <!-- Student 7 -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
-                            <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                            <img src="selstu/vaibhavshekar.webp" alt="Vaibhav Shekar" class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Vaibhav Shekar Shrivastava</h3>
-                            <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Allahabad highcourt 2024</p>
-                         </div>
-
-                        <!-- Student 8 -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
                                 <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                                <img src="selstu/mohitmishra.webp" alt="Mohit Mishra" class="w-full h-full object-cover">
+                                <img src="selstu/akritipanday.webp" alt="Akriti Panday" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                                </div>
+                                <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Akriti Panday</h3>
+                                <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">CSA, Indian Bank</p>
+                            </article>
+
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                                <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="selstu/adityasingh.webp" alt="Aditya Singh" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                                </div>
+                                <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Aditya Singh</h3>
+                                <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">UGC, NET(LAW) 2025</p>
+                            </article>
+
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                                <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="selstu/aryangupta.webp" alt="Aryan Gupta" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                                </div>
+                                <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Aryan Gupta</h3>
+                                <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">99.5%, J.E.E. 2025</p>
+                            </article>
+
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                                <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="selstu/anuragsharma.webp" alt="Anurag Sharma" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                                </div>
+                                <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Anurag Sharma</h3>
+                                <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Loco pilot, R.R.B. ALP 2024 </p>
+                            </article>
+
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                                <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="selstu/riyasrivastava.webp" alt="Riya Srivastava" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                                </div>
+                                <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Riya Srivastava</h3>
+                                <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">J.E. UP Metro 2024</p>
+                            </article>
+
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                                <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="selstu/vaibhavshekar.webp" alt="Vaibhav Shekar Shrivastava" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                                </div>
+                                <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Vaibhav Shekar Shrivastava</h3>
+                                <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Allahabad highcourt 2024</p>
+                             </article>
+
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                                <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
+                                <img src="selstu/mohitmishra.webp" alt="Mohit Mishra" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
                                 </div>
                                 <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Mohit Mishra</h3>
                                 <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">98.5% J.E.E. 2024</p>
-                        </div>
+                            </article>
 
-                        <!-- Student 9 (Name Initials Avatar Placeholder) -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
                                 <div class="w-28 h-28 md:w-36 md:h-36 rounded-full flex items-center justify-center mb-4 md:mb-5 shadow-sm border-4 border-white bg-gradient-to-tr from-brand to-cyan-500 group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
                                     <span class="text-white font-bold text-2xl md:text-3xl tracking-wide select-none">AS</span>
                                 </div>
                                 <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Ashish Singh</h3>
                                 <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Primary Teacher, Bihar Govt 2024</p>
-                        </div>
+                            </article>
 
-                        <!-- Student 10 (Name Initials Avatar Placeholder) -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
                                 <div class="w-28 h-28 md:w-36 md:h-36 rounded-full flex items-center justify-center mb-4 md:mb-5 shadow-sm border-4 border-white bg-gradient-to-tr from-oasis-emerald to-teal-600 group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
                                     <span class="text-white font-bold text-2xl md:text-3xl tracking-wide select-none">AT</span>
                                 </div>
                                 <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Ashish Tiwari</h3>
                                 <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">TGT Teacher 2024</p>
-                        </div>
+                            </article>
 
-                        <!-- Student 11 -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
                                 <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                                <img src="selstu/mahimakasaudhan.webp" alt="Mahima Kasaudhan" class="w-full h-full object-cover">
+                                <img src="selstu/mahimakasaudhan.webp" alt="Mahima Kasaudhan" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
                                 </div>
                                 <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Mahima Kasaudhan</h3>
                                 <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Primary Teacher, Bihar Govt. 2024</p>
-                        </div>
+                            </article>
 
-                        <!-- Student 12 -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
                                 <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                                <img src="selstu/shehnumabano.webp" alt="Shehnuma Bano" class="w-full h-full object-cover">
+                                <img src="selstu/shehnumabano.webp" alt="Shehnuma Bano" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
                                 </div>
                                 <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Shehnuma Bano</h3>
                                 <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">Primary Teacher, Bihar Govt. 2024</p>
-                        </div>
+                            </article>
 
-                        <!-- Student 13 -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
                                 <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                                <img src="selstu/sumanmishra.webp" alt="Suman Mishra" class="w-full h-full object-cover">
+                                <img src="selstu/sumanmishra.webp" alt="Suman Mishra" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
                                 </div>
                                 <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Suman Mishra</h3>
                                 <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">TGT teacher, Bihar Govt. 2024</p>
-                        </div>
+                            </article>
 
-                        <!-- Student 14 -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
                                 <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                                <img src="selstu/upasnadubey.webp" alt="Upasna Dubey" class="w-full h-full object-cover">
+                                <img src="selstu/upasnadubey.webp" alt="Upasna Dubey" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
                                 </div>
                                 <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Upasna Dubey</h3>
                                 <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">TGT teacher, Bihar Govt. 2024</p>
-                        </div>
+                            </article>
 
-                        <!-- Student 15 (Name Initials Avatar Placeholder) -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
                                 <div class="w-28 h-28 md:w-36 md:h-36 rounded-full flex items-center justify-center mb-4 md:mb-5 shadow-sm border-4 border-white bg-gradient-to-tr from-rose-500 to-pink-500 group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
                                     <span class="text-white font-bold text-2xl md:text-3xl tracking-wide select-none">SS</span>
                                 </div>
                                 <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Sakshi Shrivastava</h3>
                                 <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">VDO</p>
-                        </div>
+                            </article>
 
-                        <!-- Student 16 -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
                                 <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                                <img src="selstu/vikashyadav.webp" alt="Vikash Yadav" class="w-full h-full object-cover">
+                                <img src="selstu/vikashyadav.webp" alt="Vikash Yadav" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
                                 </div>
                                 <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Vikash Yadav</h3>
                                 <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">UP Police Res. 2023 </p>
-                        </div>
+                            </article>
 
-                        <!-- Student 17 -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
                                 <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                                <img src="selstu/ashutoshmishra.webp" alt="Ashutosh Mishra" class="w-full h-full object-cover">
+                                <img src="selstu/ashutoshmishra.webp" alt="Ashutosh Mishra" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
                                 </div>
                                 <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Ashutosh Mishra</h3>
                                 <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">UP Police Res. 2023</p>
-                        </div>
+                            </article>
 
-                        <!-- Student 18 -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
                                 <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                                <img src="selstu/abhishekyadav.webp" alt="Abhishek Yadav" class="w-full h-full object-cover">
+                                <img src="selstu/abhishekyadav.webp" alt="Abhishek Yadav" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
                                 </div>
                                 <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Abhishek Yadav</h3>
                                 <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">UP Police Res. 2023</p>
-                        </div>
+                            </article>
 
-                        <!-- Student 19 -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
                                 <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                                <img src="selstu/shivamtiwari.webp" alt="Shivam Tiwari" class="w-full h-full object-cover">
+                                <img src="selstu/shivamtiwari.webp" alt="Shivam Tiwari" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
                                 </div>
                                 <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Shivam Tiwari</h3>
                                 <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">UP Police Res. 2023</p>
-                        </div>
+                            </article>
 
-                        <!-- Student 20 -->
-                        <div class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
+                            <article class="flex flex-col items-center justify-start w-[140px] md:w-[180px] shrink-0 group">
                                 <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden mb-4 md:mb-5 shadow-sm border-4 border-white bg-white group-hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                                <img src="selstu/divyayadav.webp" alt="Divya Yadav" class="w-full h-full object-cover">
+                                <img src="selstu/divyayadav.webp" alt="Divya Yadav" width="150" height="150" loading="lazy" decoding="async" class="w-full h-full object-cover">
                                 </div>
                                 <h3 class="font-bold text-slate-800 text-[15px] md:text-[17px] text-center leading-tight mb-1 md:mb-1.5">Divya Yadav</h3>
                                 <p class="text-[12px] md:text-[13px] font-medium text-slate-500 text-center leading-snug px-1">UP Police Res. 2023</p>
+                            </article>
                         </div>
                     </div>
-                       
+                </div>
+
+                <div class="text-center mt-6 md:mt-10" data-aos="fade-up">
+                    <button onclick="openStudentsModal()" aria-haspopup="dialog" aria-controls="studentsModal" class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 hover:border-brand text-slate-700 hover:text-brand-dark px-8 py-3 rounded-full font-bold transition-all shadow-sm hover:shadow-md group">
+                        <i data-lucide="users" class="w-5 h-5 group-hover:scale-110 transition-transform" aria-hidden="true"></i>
+                        View Full List of Selected Students
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Google Maps Reviews Section -->
+        <section id="google-reviews" class="py-24 bg-white relative border-t border-gray-200 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6" data-aos="fade-up">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <svg class="w-8 h-8" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                            </svg>
+                            <h2 class="text-3xl lg:text-4xl font-bold text-oasis-ink">Google Reviews</h2>
+                        </div>
+                        <div class="flex items-center gap-4 bg-oasis-ivory px-4 py-2 rounded-xl inline-flex border border-gray-200">
+                            <span class="text-2xl font-bold text-oasis-ink">4.9</span>
+                            <div class="flex text-yellow-400" aria-label="4.9 out of 5 stars">
+                                <i data-lucide="star" class="w-5 h-5 fill-current" aria-hidden="true"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current" aria-hidden="true"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current" aria-hidden="true"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current" aria-hidden="true"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current" aria-hidden="true"></i>
+                            </div>
+                            <span class="text-slate-500 font-medium text-sm border-l border-gray-300 pl-4">(140+ Reviews)</span>
+                        </div>
+                    </div>
+                    <a href="https://maps.google.com/?q=Selection+Library,+Nirala+Nagar,+Sultanpur" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 hover:border-brand text-slate-700 hover:text-brand-dark px-6 py-3 rounded-full font-bold transition-all shadow-sm hover:shadow-md group">
+                        Write a Review
+                        <i data-lucide="external-link" class="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
 
-            <!-- View All Students Button -->
-            <div class="text-center mt-6 md:mt-10" data-aos="fade-up">
-                <button onclick="openStudentsModal()" class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 hover:border-brand text-slate-700 hover:text-brand-dark px-8 py-3 rounded-full font-bold transition-all shadow-sm hover:shadow-md group">
-                    <i data-lucide="users" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
-                    View Full List of Selected Students
-                </button>
-            </div>
-        </div>
-    </section>
+            <div class="relative w-full overflow-hidden py-4" data-aos="fade-up">
+                <div class="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" aria-hidden="true"></div>
+                <div class="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" aria-hidden="true"></div>
 
-    <!-- Google Maps Reviews Section -->
-    <section id="google-reviews" class="py-24 bg-white relative border-t border-gray-200 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <!-- Header for Reviews -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6" data-aos="fade-up">
-                <div>
-                    <div class="flex items-center gap-3 mb-4">
-                        <!-- Google Logo SVG -->
-                        <svg class="w-8 h-8" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                        </svg>
-                        <h2 class="text-3xl lg:text-4xl font-bold text-oasis-ink">Google Reviews</h2>
+                <div class="flex w-max gap-6 animate-marquee hover:[animation-play-state:paused] py-4 cursor-grab">
+                    
+                    <div class="flex gap-6">
+                        <article class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="https://ui-avatars.com/api/?name=Rajat+Singh&background=0D8ABC&color=fff" alt="Rajat Singh" width="44" height="44" loading="lazy" decoding="async" class="w-11 h-11 rounded-full shadow-sm">
+                                <div>
+                                    <h3 class="font-bold text-oasis-ink text-sm">Rajat Singh</h3>
+                                    <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1">
+                                        <i data-lucide="medal" class="w-3 h-3 text-yellow-500" aria-hidden="true"></i> Local Guide · 12 reviews
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex text-yellow-400 mb-3 items-center" aria-hidden="true">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <span class="text-xs text-slate-400 ml-2">2 weeks ago</span>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Best library in Sultanpur! The wooden cabins provide excellent privacy and the individual desk lights are a game changer for late-night study sessions. Very peaceful and management is very supportive.
+                            </p>
+                        </article>
+
+                        <article class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="https://ui-avatars.com/api/?name=Anjali+Verma&background=EA4335&color=fff" alt="Anjali Verma" width="44" height="44" loading="lazy" decoding="async" class="w-11 h-11 rounded-full shadow-sm">
+                                <div>
+                                    <h3 class="font-bold text-oasis-ink text-sm">Anjali Verma</h3>
+                                    <p class="text-[11px] text-slate-500 font-medium">5 reviews</p>
+                                </div>
+                            </div>
+                            <div class="flex text-yellow-400 mb-3 items-center" aria-hidden="true">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <span class="text-xs text-slate-400 ml-2">1 month ago</span>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Highly recommended for aspirants. The environment is strictly noise-free. High-speed WiFi is always working, and the AC cooling is perfect. The ergonomic green chairs really help during long study shifts.
+                            </p>
+                        </article>
+
+                        <article class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="https://ui-avatars.com/api/?name=Vikas+Yadav&background=34A853&color=fff" alt="Vikas Yadav" width="44" height="44" loading="lazy" decoding="async" class="w-11 h-11 rounded-full shadow-sm">
+                                <div>
+                                    <h3 class="font-bold text-oasis-ink text-sm">Vikas Yadav</h3>
+                                    <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1">
+                                        <i data-lucide="medal" class="w-3 h-3 text-yellow-500" aria-hidden="true"></i> Local Guide · 24 reviews
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex text-yellow-400 mb-3 items-center" aria-hidden="true">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <span class="text-xs text-slate-400 ml-2">2 months ago</span>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Perfect place for serious students. Found this gem in Nirala Nagar. The owner is very cooperative and they even organize mentorship seminars which is very unique. Facilities are top notch.
+                            </p>
+                        </article>
+
+                        <article class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="https://ui-avatars.com/api/?name=Shashank+Mishra&background=f59e0b&color=fff" alt="Shashank Mishra" width="44" height="44" loading="lazy" decoding="async" class="w-11 h-11 rounded-full shadow-sm">
+                                <div>
+                                    <h3 class="font-bold text-oasis-ink text-sm">Shashank Mishra</h3>
+                                    <p class="text-[11px] text-slate-500 font-medium">10 reviews</p>
+                                </div>
+                            </div>
+                            <div class="flex text-yellow-400 mb-3 items-center" aria-hidden="true">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <span class="text-xs text-slate-400 ml-2">3 weeks ago</span>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                The best part of Selection Library is the neatness and pure drinking RO water facility. There is an absolute pin-drop silence in the hall, making it perfect for cracking state-level examinations.
+                            </p>
+                        </article>
                     </div>
-                    <div class="flex items-center gap-4 bg-oasis-ivory px-4 py-2 rounded-xl inline-flex border border-gray-200">
-                        <span class="text-2xl font-bold text-oasis-ink">4.9</span>
-                        <div class="flex text-yellow-400">
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                        </div>
-                        <span class="text-slate-500 font-medium text-sm border-l border-gray-300 pl-4">(140+ Reviews)</span>
+
+                    <div class="flex gap-6" aria-hidden="true">
+                        <!-- Duplicates for seamless looping, hidden from screen readers to prevent redundant reading -->
+                        <article class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="https://ui-avatars.com/api/?name=Rajat+Singh&background=0D8ABC&color=fff" alt="Rajat Singh" width="44" height="44" loading="lazy" decoding="async" class="w-11 h-11 rounded-full shadow-sm">
+                                <div>
+                                    <h3 class="font-bold text-oasis-ink text-sm">Rajat Singh</h3>
+                                    <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1">
+                                        <i data-lucide="medal" class="w-3 h-3 text-yellow-500"></i> Local Guide · 12 reviews
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex text-yellow-400 mb-3 items-center">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <span class="text-xs text-slate-400 ml-2">2 weeks ago</span>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Best library in Sultanpur! The wooden cabins provide excellent privacy and the individual desk lights are a game changer for late-night study sessions. Very peaceful and management is very supportive.
+                            </p>
+                        </article>
+                        <article class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="https://ui-avatars.com/api/?name=Anjali+Verma&background=EA4335&color=fff" alt="Anjali Verma" width="44" height="44" loading="lazy" decoding="async" class="w-11 h-11 rounded-full shadow-sm">
+                                <div>
+                                    <h3 class="font-bold text-oasis-ink text-sm">Anjali Verma</h3>
+                                    <p class="text-[11px] text-slate-500 font-medium">5 reviews</p>
+                                </div>
+                            </div>
+                            <div class="flex text-yellow-400 mb-3 items-center">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <span class="text-xs text-slate-400 ml-2">1 month ago</span>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Highly recommended for aspirants. The environment is strictly noise-free. High-speed WiFi is always working, and the AC cooling is perfect. The ergonomic green chairs really help during long study shifts.
+                            </p>
+                        </article>
+                        <article class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="https://ui-avatars.com/api/?name=Vikas+Yadav&background=34A853&color=fff" alt="Vikas Yadav" width="44" height="44" loading="lazy" decoding="async" class="w-11 h-11 rounded-full shadow-sm">
+                                <div>
+                                    <h3 class="font-bold text-oasis-ink text-sm">Vikas Yadav</h3>
+                                    <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1">
+                                        <i data-lucide="medal" class="w-3 h-3 text-yellow-500"></i> Local Guide · 24 reviews
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex text-yellow-400 mb-3 items-center">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <span class="text-xs text-slate-400 ml-2">2 months ago</span>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Perfect place for serious students. Found this gem in Nirala Nagar. The owner is very cooperative and they even organize mentorship seminars which is very unique. Facilities are top notch.
+                            </p>
+                        </article>
+                        <article class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="https://ui-avatars.com/api/?name=Shashank+Mishra&background=f59e0b&color=fff" alt="Shashank Mishra" width="44" height="44" loading="lazy" decoding="async" class="w-11 h-11 rounded-full shadow-sm">
+                                <div>
+                                    <h3 class="font-bold text-oasis-ink text-sm">Shashank Mishra</h3>
+                                    <p class="text-[11px] text-slate-500 font-medium">10 reviews</p>
+                                </div>
+                            </div>
+                            <div class="flex text-yellow-400 mb-3 items-center">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <span class="text-xs text-slate-400 ml-2">3 weeks ago</span>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                The best part of Selection Library is the neatness and pure drinking RO water facility. There is an absolute pin-drop silence in the hall, making it perfect for cracking state-level examinations.
+                            </p>
+                        </article>
                     </div>
+
                 </div>
-                <a href="https://maps.google.com/?q=Selection+Library,+Nirala+Nagar,+Sultanpur" target="_blank" class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 hover:border-brand text-slate-700 hover:text-brand-dark px-6 py-3 rounded-full font-bold transition-all shadow-sm hover:shadow-md group">
-                    Write a Review
-                    <i data-lucide="external-link" class="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform"></i>
+            </div>
+
+            <div class="mt-8 text-center" data-aos="fade-up">
+                <a href="https://maps.google.com/?q=Selection+Library,+Nirala+Nagar,+Sultanpur" target="_blank" rel="noopener noreferrer" class="text-brand-dark font-semibold hover:text-brand transition-colors inline-flex items-center gap-1.5 hover:gap-3">
+                    See all reviews on Google Maps <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
                 </a>
             </div>
-        </div>
+        </section>
 
-        <!-- Sliding Marquee Review Container -->
-        <div class="relative w-full overflow-hidden py-4" data-aos="fade-up">
-            <!-- Left Gradient Shadow overlay for depth -->
-            <div class="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-            <!-- Right Gradient Shadow overlay for depth -->
-            <div class="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
-
-            <!-- Marquee scrolling track -->
-            <div class="flex w-max gap-6 animate-marquee hover:[animation-play-state:paused] py-4 cursor-grab">
-                
-                <!-- Inner Track Block 1 -->
-                <div class="flex gap-6">
-                    <!-- Review 1 -->
-                    <div class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://ui-avatars.com/api/?name=Rajat+Singh&background=0D8ABC&color=fff" alt="User Avatar" class="w-11 h-11 rounded-full shadow-sm">
-                            <div>
-                                <h3 class="font-bold text-oasis-ink text-sm">Rajat Singh</h3>
-                                <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1">
-                                    <i data-lucide="medal" class="w-3 h-3 text-yellow-500"></i> Local Guide · 12 reviews
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex text-yellow-400 mb-3 items-center">
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <span class="text-xs text-slate-400 ml-2">2 weeks ago</span>
-                        </div>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            Best library in Sultanpur! The wooden cabins provide excellent privacy and the individual desk lights are a game changer for late-night study sessions. Very peaceful and management is very supportive.
-                        </p>
-                    </div>
-
-                    <!-- Review 2 -->
-                    <div class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://ui-avatars.com/api/?name=Anjali+Verma&background=EA4335&color=fff" alt="User Avatar" class="w-11 h-11 rounded-full shadow-sm">
-                            <div>
-                                <h3 class="font-bold text-oasis-ink text-sm">Anjali Verma</h3>
-                                <p class="text-[11px] text-slate-500 font-medium">5 reviews</p>
-                            </div>
-                        </div>
-                        <div class="flex text-yellow-400 mb-3 items-center">
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <span class="text-xs text-slate-400 ml-2">1 month ago</span>
-                        </div>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            Highly recommended for aspirants. The environment is strictly noise-free. High-speed WiFi is always working, and the AC cooling is perfect. The ergonomic green chairs really help during long study shifts.
-                        </p>
-                    </div>
-
-                    <!-- Review 3 -->
-                    <div class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://ui-avatars.com/api/?name=Vikas+Yadav&background=34A853&color=fff" alt="User Avatar" class="w-11 h-11 rounded-full shadow-sm">
-                            <div>
-                                <h3 class="font-bold text-oasis-ink text-sm">Vikas Yadav</h3>
-                                <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1">
-                                    <i data-lucide="medal" class="w-3 h-3 text-yellow-500"></i> Local Guide · 24 reviews
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex text-yellow-400 mb-3 items-center">
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <span class="text-xs text-slate-400 ml-2">2 months ago</span>
-                        </div>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            Perfect place for serious students. Found this gem in Nirala Nagar. The owner is very cooperative and they even organize mentorship seminars which is very unique. Facilities are top notch.
-                        </p>
-                    </div>
-
-                    <!-- Review 4 -->
-                    <div class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://ui-avatars.com/api/?name=Shashank+Mishra&background=f59e0b&color=fff" alt="User Avatar" class="w-11 h-11 rounded-full shadow-sm">
-                            <div>
-                                <h3 class="font-bold text-oasis-ink text-sm">Shashank Mishra</h3>
-                                <p class="text-[11px] text-slate-500 font-medium">10 reviews</p>
-                            </div>
-                        </div>
-                        <div class="flex text-yellow-400 mb-3 items-center">
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <span class="text-xs text-slate-400 ml-2">3 weeks ago</span>
-                        </div>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            The best part of Selection Library is the neatness and pure drinking RO water facility. There is an absolute pin-drop silence in the hall, making it perfect for cracking state-level examinations.
-                        </p>
-                    </div>
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 px-6 lg:px-12 bg-white relative">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-oasis-ink mb-4">Get in Touch</h2>
+                    <p class="text-slate-600 max-w-2xl mx-auto text-lg">Book your free trial seat or send us your questions. Visit our library in Sultanpur.</p>
                 </div>
 
-                <!-- Inner Track Block 2 (Exact Duplicate to make loop seamless) -->
-                <div class="flex gap-6">
-                    <div class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://ui-avatars.com/api/?name=Rajat+Singh&background=0D8ABC&color=fff" alt="User Avatar" class="w-11 h-11 rounded-full shadow-sm">
-                            <div>
-                                <h3 class="font-bold text-oasis-ink text-sm">Rajat Singh</h3>
-                                <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1">
-                                    <i data-lucide="medal" class="w-3 h-3 text-yellow-500"></i> Local Guide · 12 reviews
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+                    <address class="space-y-10 not-italic" data-aos="fade-right">
+                        <div class="group">
+                            <h3 class="font-bold text-oasis-ink mb-4 flex items-center gap-3 text-lg">
+                                <div class="p-2 bg-oasis-ivory rounded-lg group-hover:bg-brand/10 transition-colors" aria-hidden="true"><i data-lucide="map-pin" class="w-5 h-5 text-brand-dark"></i></div>
+                                Visit Us
+                            </h3>
+                            <a href="https://maps.google.com/?q=Selection+Library,+Nirala+Nagar,+Sultanpur,+Uttar+Pradesh" target="_blank" rel="noopener noreferrer" class="block bg-oasis-ivory p-6 rounded-2xl border border-gray-200/60 hover:border-brand/40 hover:shadow-md transition-all duration-300">
+                                <h4 class="font-bold text-oasis-ink mb-2">Selection Library</h4>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    Nirala Nagar<br>
+                                    Sultanpur, Uttar Pradesh 228001<br>
+                                    India
                                 </p>
-                            </div>
-                        </div>
-                        <div class="flex text-yellow-400 mb-3 items-center">
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <span class="text-xs text-slate-400 ml-2">2 weeks ago</span>
-                        </div>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            Best library in Sultanpur! The wooden cabins provide excellent privacy and the individual desk lights are a game changer for late-night study sessions. Very peaceful and management is very supportive.
-                        </p>
-                    </div>
-                    <div class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://ui-avatars.com/api/?name=Anjali+Verma&background=EA4335&color=fff" alt="User Avatar" class="w-11 h-11 rounded-full shadow-sm">
-                            <div>
-                                <h3 class="font-bold text-oasis-ink text-sm">Anjali Verma</h3>
-                                <p class="text-[11px] text-slate-500 font-medium">5 reviews</p>
-                            </div>
-                        </div>
-                        <div class="flex text-yellow-400 mb-3 items-center">
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <span class="text-xs text-slate-400 ml-2">1 month ago</span>
-                        </div>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            Highly recommended for aspirants. The environment is strictly noise-free. High-speed WiFi is always working, and the AC cooling is perfect. The ergonomic green chairs really help during long study shifts.
-                        </p>
-                    </div>
-                    <div class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://ui-avatars.com/api/?name=Vikas+Yadav&background=34A853&color=fff" alt="User Avatar" class="w-11 h-11 rounded-full shadow-sm">
-                            <div>
-                                <h3 class="font-bold text-oasis-ink text-sm">Vikas Yadav</h3>
-                                <p class="text-[11px] text-slate-500 font-medium flex items-center gap-1">
-                                    <i data-lucide="medal" class="w-3 h-3 text-yellow-500"></i> Local Guide · 24 reviews
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex text-yellow-400 mb-3 items-center">
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <span class="text-xs text-slate-400 ml-2">2 months ago</span>
-                        </div>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            Perfect place for serious students. Found this gem in Nirala Nagar. The owner is very cooperative and they even organize mentorship seminars which is very unique. Facilities are top notch.
-                        </p>
-                    </div>
-                    <div class="w-[350px] md:w-[400px] shrink-0 bg-oasis-ivory rounded-3xl p-7 border border-gray-200/60 hover:border-brand/40 shadow-sm transition-all duration-300">
-                        <div class="flex items-center gap-3 mb-4">
-                            <img src="https://ui-avatars.com/api/?name=Shashank+Mishra&background=f59e0b&color=fff" alt="User Avatar" class="w-11 h-11 rounded-full shadow-sm">
-                            <div>
-                                <h3 class="font-bold text-oasis-ink text-sm">Shashank Mishra</h3>
-                                <p class="text-[11px] text-slate-500 font-medium">10 reviews</p>
-                            </div>
-                        </div>
-                        <div class="flex text-yellow-400 mb-3 items-center">
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            <span class="text-xs text-slate-400 ml-2">3 weeks ago</span>
-                        </div>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            The best part of Selection Library is the neatness and pure drinking RO water facility. There is an absolute pin-drop silence in the hall, making it perfect for cracking state-level examinations.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- View All Maps Link -->
-        <div class="mt-8 text-center" data-aos="fade-up">
-            <a href="https://maps.google.com/?q=Selection+Library,+Nirala+Nagar,+Sultanpur" target="_blank" class="text-brand-dark font-semibold hover:text-brand transition-colors inline-flex items-center gap-1.5 hover:gap-3">
-                See all reviews on Google Maps <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 px-6 lg:px-12 bg-white relative">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl lg:text-4xl font-bold text-oasis-ink mb-4">Get in Touch</h2>
-                <p class="text-slate-600 max-w-2xl mx-auto text-lg">Book your free trial seat or send us your questions. Visit our library in Sultanpur.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
-                <!-- Contact Info -->
-                <div class="space-y-10" data-aos="fade-right">
-                    <!-- Location -->
-                    <div class="group">
-                        <h3 class="font-bold text-oasis-ink mb-4 flex items-center gap-3 text-lg">
-                            <div class="p-2 bg-oasis-ivory rounded-lg group-hover:bg-brand/10 transition-colors"><i data-lucide="map-pin" class="w-5 h-5 text-brand-dark"></i></div>
-                            Visit Us
-                        </h3>
-                        <a href="https://maps.google.com/?q=Selection+Library,+Nirala+Nagar,+Sultanpur,+Uttar+Pradesh" target="_blank" class="block bg-oasis-ivory p-6 rounded-2xl border border-gray-200/60 hover:border-brand/40 hover:shadow-md transition-all duration-300">
-                            <h4 class="font-bold text-oasis-ink mb-2">Selection Library</h4>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                Nirala Nagar<br>
-                                Sultanpur, Uttar Pradesh 228001<br>
-                                India
-                            </p>
-                            <span class="text-brand-dark text-xs font-semibold mt-3 inline-flex items-center gap-1 group-hover:gap-2 transition-all">Get Directions <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
-                        </a>
-                    </div>
-
-                    <!-- Hours -->
-                    <div class="group">
-                        <h3 class="font-bold text-oasis-ink mb-4 flex items-center gap-3 text-lg">
-                            <div class="p-2 bg-oasis-ivory rounded-lg group-hover:bg-brand/10 transition-colors"><i data-lucide="clock" class="w-5 h-5 text-brand-dark"></i></div>
-                            Operating Hours
-                        </h3>
-                        <div class="bg-oasis-ivory p-6 rounded-2xl border border-gray-200/60">
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                <strong class="text-oasis-ink block mb-1">Monday - Sunday</strong>
-                                Open for long study sessions (06:00 AM - 10:00 PM)
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Contact details -->
-                    <div class="group">
-                        <h3 class="font-bold text-oasis-ink mb-4 flex items-center gap-3 text-lg">
-                            <div class="p-2 bg-oasis-ivory rounded-lg group-hover:bg-brand/10 transition-colors"><i data-lucide="phone" class="w-5 h-5 text-brand-dark"></i></div>
-                            Contact Information
-                        </h3>
-                        <div class="bg-oasis-ivory p-6 rounded-2xl border border-gray-200/60 space-y-4">
-                            <a href="tel:+919169340586" class="flex items-center gap-3 text-slate-600 hover:text-brand-dark transition-colors">
-                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm"><i data-lucide="phone-call" class="w-4 h-4 text-slate-400"></i></div>
-                                <span class="font-bold text-lg">9169340586</span>
-                            </a>
-                            <a href="mailto:gaaurav2@gmail.com" class="flex items-center gap-3 text-slate-600 hover:text-brand-dark transition-colors">
-                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm"><i data-lucide="mail" class="w-4 h-4 text-slate-400"></i></div>
-                                <span>gaaurav2@gmail.com</span>
+                                <span class="text-brand-dark text-xs font-semibold mt-3 inline-flex items-center gap-1 group-hover:gap-2 transition-all">Get Directions <i data-lucide="arrow-right" class="w-3 h-3" aria-hidden="true"></i></span>
                             </a>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Contact Form (Now Functional with WhatsApp) -->
-                <div class="bg-white rounded-3xl p-8 lg:p-10 border border-gray-200 shadow-[0_20px_50px_rgba(0,0,0,0.05)] relative overflow-hidden" data-aos="fade-left">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand/10 rounded-bl-full -z-10"></div>
-                    
-                    <h3 class="font-bold text-oasis-ink text-2xl mb-8">Send Us a Message</h3>
-                    
-                    <!-- WHATSAPP INTEGRATION -->
-                    <form id="whatsappForm" class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">Full Name</label>
-                            <input type="text" id="waName" required placeholder="John Doe" class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 text-sm transition-all bg-oasis-ivory/50 hover:bg-white text-oasis-ink">
+                        <div class="group">
+                            <h3 class="font-bold text-oasis-ink mb-4 flex items-center gap-3 text-lg">
+                                <div class="p-2 bg-oasis-ivory rounded-lg group-hover:bg-brand/10 transition-colors" aria-hidden="true"><i data-lucide="clock" class="w-5 h-5 text-brand-dark"></i></div>
+                                Operating Hours
+                            </h3>
+                            <div class="bg-oasis-ivory p-6 rounded-2xl border border-gray-200/60">
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    <strong class="text-oasis-ink block mb-1">Monday - Sunday</strong>
+                                    Open for long study sessions (06:00 AM - 10:00 PM)
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">Phone Number</label>
-                            <input type="tel" id="waPhone" required placeholder="+91 98765 43210" class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 text-sm transition-all bg-oasis-ivory/50 hover:bg-white text-oasis-ink">
+
+                        <div class="group">
+                            <h3 class="font-bold text-oasis-ink mb-4 flex items-center gap-3 text-lg">
+                                <div class="p-2 bg-oasis-ivory rounded-lg group-hover:bg-brand/10 transition-colors" aria-hidden="true"><i data-lucide="phone" class="w-5 h-5 text-brand-dark"></i></div>
+                                Contact Information
+                            </h3>
+                            <div class="bg-oasis-ivory p-6 rounded-2xl border border-gray-200/60 space-y-4">
+                                <a href="tel:+919169340586" class="flex items-center gap-3 text-slate-600 hover:text-brand-dark transition-colors">
+                                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm" aria-hidden="true"><i data-lucide="phone-call" class="w-4 h-4 text-slate-400"></i></div>
+                                    <span class="font-bold text-lg">9169340586</span>
+                                </a>
+                                <a href="mailto:gaaurav2@gmail.com" class="flex items-center gap-3 text-slate-600 hover:text-brand-dark transition-colors">
+                                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm" aria-hidden="true"><i data-lucide="mail" class="w-4 h-4 text-slate-400"></i></div>
+                                    <span>gaaurav2@gmail.com</span>
+                                </a>
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">Message</label>
-                            <textarea id="waMessage" required rows="4" placeholder="Tell us about your study goals or ask for a trial seat..." class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 text-sm transition-all resize-none bg-oasis-ivory/50 hover:bg-white text-oasis-ink"></textarea>
-                        </div>
+                    </address>
+
+                    <div class="bg-white rounded-3xl p-8 lg:p-10 border border-gray-200 shadow-[0_20px_50px_rgba(0,0,0,0.05)] relative overflow-hidden" data-aos="fade-left">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand/10 rounded-bl-full -z-10" aria-hidden="true"></div>
                         
-                        <button type="submit" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-4 rounded-xl transition-all duration-300 mt-4 text-base shadow-lg hover:shadow-[#25D366]/30 flex items-center justify-center gap-2 group">
-                            <i data-lucide="message-circle" class="w-5 h-5"></i>
-                            Send via WhatsApp
-                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
-                        </button>
-                    </form>
+                        <h3 class="font-bold text-oasis-ink text-2xl mb-8">Send Us a Message</h3>
+                        
+                        <form id="whatsappForm" class="space-y-6">
+                            <div>
+                                <label for="waName" class="block text-sm font-semibold text-slate-700 mb-2">Full Name</label>
+                                <input type="text" id="waName" name="name" required placeholder="John Doe" class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 text-sm transition-all bg-oasis-ivory/50 hover:bg-white text-oasis-ink">
+                            </div>
+                            <div>
+                                <label for="waPhone" class="block text-sm font-semibold text-slate-700 mb-2">Phone Number</label>
+                                <input type="tel" id="waPhone" name="phone" required placeholder="+91 98765 43210" class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 text-sm transition-all bg-oasis-ivory/50 hover:bg-white text-oasis-ink">
+                            </div>
+                            <div>
+                                <label for="waMessage" class="block text-sm font-semibold text-slate-700 mb-2">Message</label>
+                                <textarea id="waMessage" name="message" required rows="4" placeholder="Tell us about your study goals or ask for a trial seat..." class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 text-sm transition-all resize-none bg-oasis-ivory/50 hover:bg-white text-oasis-ink"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-4 rounded-xl transition-all duration-300 mt-4 text-base shadow-lg hover:shadow-[#25D366]/30 flex items-center justify-center gap-2 group">
+                                <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i>
+                                Send via WhatsApp
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="bg-oasis-emerald text-white pt-20 pb-10 px-6 lg:px-12 border-t border-white/5 relative overflow-hidden">
-        <!-- Glow effect in footer -->
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-px bg-gradient-to-r from-transparent via-brand to-transparent opacity-50"></div>
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand/10 blur-[100px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-px bg-gradient-to-r from-transparent via-brand to-transparent opacity-50" aria-hidden="true"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand/10 blur-[100px] rounded-full pointer-events-none" aria-hidden="true"></div>
 
         <div class="max-w-6xl mx-auto relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-                <!-- Brand -->
                 <div data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center gap-3 mb-6">
-                        <img src="logo.png" alt="Selection Library Logo" class="w-12 h-12 object-contain bg-white rounded-xl shadow-lg shadow-brand/20 p-1" onerror="this.outerHTML='<div class=\'w-12 h-12 bg-brand rounded-xl flex items-center justify-center font-bold text-white text-xl shadow-lg shadow-brand/20\'>SL</div>'">
+                        <img src="logo.png" alt="Selection Library Logo" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 object-contain bg-white rounded-xl shadow-lg shadow-brand/20 p-1" onerror="this.outerHTML='<div class=\'w-12 h-12 bg-brand rounded-xl flex items-center justify-center font-bold text-white text-xl shadow-lg shadow-brand/20\'>SL</div>'">
                         <span class="font-bold text-white text-2xl">Selection Library</span>
                     </div>
                     <p class="text-gray-300 text-sm leading-relaxed pr-4">
@@ -1148,56 +1051,50 @@
                     </p>
                 </div>
 
-                <!-- Links -->
                 <div data-aos="fade-up" data-aos-delay="200">
                     <h4 class="font-bold text-white mb-6 text-lg tracking-wide">Quick Links</h4>
                     <ul class="space-y-4 text-sm text-gray-300">
-                        <li><a href="#home" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> Home</a></li>
-                        <li><a href="#features" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> Amenities</a></li>
-                        <li><a href="#gallery" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> Gallery</a></li>
-                        <li><a href="#recognition" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> Recognition</a></li>
-                        <li><a href="#testimonials" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> Selected Students</a></li>
-                        <li><a href="#google-reviews" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> Reviews</a></li>
-                        <li><a href="#contact" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> Contact</a></li>
+                        <li><a href="#home" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3" aria-hidden="true"></i> Home</a></li>
+                        <li><a href="#features" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3" aria-hidden="true"></i> Amenities</a></li>
+                        <li><a href="#gallery" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3" aria-hidden="true"></i> Gallery</a></li>
+                        <li><a href="#recognition" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3" aria-hidden="true"></i> Recognition</a></li>
+                        <li><a href="#testimonials" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3" aria-hidden="true"></i> Selected Students</a></li>
+                        <li><a href="#google-reviews" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3" aria-hidden="true"></i> Reviews</a></li>
+                        <li><a href="#contact" class="hover:text-brand transition-colors inline-flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3" aria-hidden="true"></i> Contact</a></li>
                     </ul>
                 </div>
 
-                <!-- Social/Contact -->
                 <div data-aos="fade-up" data-aos-delay="300">
                     <h4 class="font-bold text-white mb-6 text-lg tracking-wide">Connect With Us</h4>
                     <div class="flex gap-4 mb-8">
-                        
-                        <!-- Instagram SVG Icon -->
-                        <a href="https://instagram.com/selection_library" target="_blank" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand transition-all duration-300 border border-white/5 hover:border-brand hover:-translate-y-1 hover:shadow-lg hover:shadow-brand/20" aria-label="Instagram">
-                            <svg class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <a href="https://instagram.com/selection_library" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand transition-all duration-300 border border-white/5 hover:border-brand hover:-translate-y-1 hover:shadow-lg hover:shadow-brand/20" aria-label="Visit our Instagram page">
+                            <svg class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                             </svg>
                         </a>
-                        <!-- WhatsApp/Message Circle SVG Icon -->
-                        <a href="https://wa.me/919169340586" target="_blank" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand transition-all duration-300 border border-white/5 hover:border-brand hover:-translate-y-1 hover:shadow-lg hover:shadow-brand/20" aria-label="WhatsApp">
-                            <svg class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <a href="https://wa.me/919169340586" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand transition-all duration-300 border border-white/5 hover:border-brand hover:-translate-y-1 hover:shadow-lg hover:shadow-brand/20" aria-label="Contact us on WhatsApp">
+                            <svg class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                             </svg>
                         </a>
                     </div>
                     <div class="space-y-3 text-sm text-gray-300">
                         <a href="tel:+919169340586" class="flex items-center gap-3 hover:text-brand transition-colors">
-                            <div class="p-2 bg-white/10 rounded-lg"><i data-lucide="phone" class="w-4 h-4 text-brand-light"></i></div>
+                            <div class="p-2 bg-white/10 rounded-lg" aria-hidden="true"><i data-lucide="phone" class="w-4 h-4 text-brand-light"></i></div>
                             9169340586
                         </a>
                         <a href="mailto:gaaurav2@gmail.com" class="flex items-center gap-3 hover:text-brand transition-colors">
-                            <div class="p-2 bg-white/10 rounded-lg"><i data-lucide="mail" class="w-4 h-4 text-brand-light"></i></div>
+                            <div class="p-2 bg-white/10 rounded-lg" aria-hidden="true"><i data-lucide="mail" class="w-4 h-4 text-brand-light"></i></div>
                             gaaurav2@gmail.com
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Copyright -->
             <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-                <p>© 2026 Selection Library. All rights reserved.</p>
+                <p>&copy; 2026 Selection Library. All rights reserved.</p>
                 <div class="flex gap-8">
                     <a href="#" class="hover:text-white transition-colors relative group">
                         Privacy Policy
@@ -1213,32 +1110,28 @@
     </footer>
 
     <!-- Full Screen Image Modal -->
-    <div id="imageModal" class="img-modal" onclick="closeImageModal()">
-        <button class="absolute top-4 right-4 md:top-8 md:right-8 text-white/70 hover:text-white bg-black/50 hover:bg-brand rounded-full p-2 transition-colors z-50 shadow-lg" aria-label="Close Image">
-            <i data-lucide="x" class="w-8 h-8 md:w-10 md:h-10"></i>
+    <div id="imageModal" class="img-modal" role="dialog" aria-modal="true" aria-label="Expanded Image View" onclick="closeImageModal()">
+        <button class="absolute top-4 right-4 md:top-8 md:right-8 text-white/70 hover:text-white bg-black/50 hover:bg-brand rounded-full p-2 transition-colors z-50 shadow-lg" aria-label="Close Expanded Image">
+            <i data-lucide="x" class="w-8 h-8 md:w-10 md:h-10" aria-hidden="true"></i>
         </button>
-        <img id="modalImage" src="" alt="Enlarged View" onclick="event.stopPropagation()">
+        <img id="modalImage" src="" alt="Enlarged View" loading="lazy" decoding="async" onclick="event.stopPropagation()">
     </div>
 
     <!-- All Students Modal -->
-    <div id="studentsModal" class="fixed inset-0 z-[9999] hidden flex items-center justify-center bg-oasis-ink/90 backdrop-blur-sm p-4 sm:p-6 opacity-0 transition-opacity duration-300">
-        <!-- Overlay -->
-        <div class="absolute inset-0" onclick="closeStudentsModal()"></div>
+    <div id="studentsModal" class="fixed inset-0 z-[9999] hidden flex items-center justify-center bg-oasis-ink/90 backdrop-blur-sm p-4 sm:p-6 opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="studentsModalTitle">
+        <div class="absolute inset-0" aria-hidden="true" onclick="closeStudentsModal()"></div>
         
-        <!-- Modal Content -->
         <div class="relative w-full max-w-6xl max-h-[90vh] bg-oasis-ivory shadow-2xl rounded-3xl flex flex-col overflow-hidden transform scale-95 transition-transform duration-300" id="studentsModalContent">
-            <!-- Header -->
             <div class="flex justify-between items-center p-6 md:p-8 border-b border-gray-200 bg-white z-10 shrink-0">
                 <div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-oasis-ink">Selected Students</h2>
+                    <h2 id="studentsModalTitle" class="text-2xl md:text-3xl font-bold text-oasis-ink">Selected Students</h2>
                     <p class="text-sm text-slate-500 mt-1">Our complete wall of fame</p>
                 </div>
-                <button onclick="closeStudentsModal()" class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-brand bg-slate-100 hover:bg-brand/10 rounded-full transition-colors focus:outline-none shrink-0">
-                    <i data-lucide="x" class="w-6 h-6"></i>
+                <button onclick="closeStudentsModal()" class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-brand bg-slate-100 hover:bg-brand/10 rounded-full transition-colors focus:outline-none shrink-0" aria-label="Close Students Modal">
+                    <i data-lucide="x" class="w-6 h-6" aria-hidden="true"></i>
                 </button>
             </div>
             
-            <!-- Scrollable Grid Body -->
             <div class="p-6 md:p-8 overflow-y-auto w-full flex-1 custom-scrollbar">
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-10 gap-x-6" id="all-students-grid">
                     <!-- Students will be injected here dynamically by JS -->
@@ -1247,8 +1140,8 @@
         </div>
     </div>
 
-    <!-- Scripts -->
-    <!-- AOS Animation script -->
+    <!-- Performance: Deferred Script Loading -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <script>
@@ -1257,10 +1150,10 @@
 
         // Init AOS Animations
         AOS.init({
-            once: true, // whether animation should happen only once - while scrolling down
-            offset: 100, // offset (in px) from the original trigger point
-            duration: 800, // values from 0 to 3000, with step 50ms
-            easing: 'ease-out-cubic', // default easing for AOS animations
+            once: true,
+            offset: 100,
+            duration: 800,
+            easing: 'ease-out-cubic',
         });
 
         // Dynamic Navbar Glassmorphism on Scroll
@@ -1282,13 +1175,13 @@
         function openImageModal(imgSrc) {
             modalImage.src = imgSrc;
             imageModal.classList.add('show');
-            document.body.style.overflow = 'hidden'; // Stop background scrolling
+            document.body.style.overflow = 'hidden';
         }
 
         function closeImageModal() {
             imageModal.classList.remove('show');
-            setTimeout(() => { modalImage.src = ''; }, 300); // Clear source after animation
-            document.body.style.overflow = ''; // Restore background scrolling
+            setTimeout(() => { modalImage.src = ''; }, 300);
+            document.body.style.overflow = '';
         }
 
         // Selected Students Modal Logic
@@ -1308,7 +1201,6 @@
             const students = sourceTrack.querySelectorAll('.group');
             students.forEach(student => {
                 const clone = student.cloneNode(true);
-                // Clean up specific fixed width classes so it responds to the grid
                 clone.className = 'flex flex-col items-center justify-start w-full group';
                 grid.appendChild(clone);
             });
@@ -1321,7 +1213,6 @@
             studentsModal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
             
-            // Allow display block to apply before changing opacity/scale for transition
             setTimeout(() => {
                 studentsModal.classList.remove('opacity-0');
                 studentsModalContent.classList.remove('scale-95');
@@ -1349,6 +1240,7 @@
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
         function openMenu() {
+            mobileMenuBtn.setAttribute('aria-expanded', 'true');
             mobileMenu.classList.remove('hidden');
             setTimeout(() => {
                 mobileMenuContainer.classList.remove('-translate-y-full');
@@ -1356,8 +1248,8 @@
             }, 50);
         }
 
-        // Close mobile side menu
         function closeMenu() {
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
             mobileMenuContainer.classList.remove('translate-y-0');
             mobileMenuContainer.classList.add('-translate-y-full');
             setTimeout(() => {
