@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Library Management App - Smart Library Management</title>
+
+    <!-- === SEO & GOOGLE SEARCH SNIPPET TAGS (ADDED) === -->
+    <meta name="description" content="Library Management App is a premium, smart library and reading room management software. Streamline seat allocations, track admissions, manage waitlists, and monitor finances in one centralized dashboard." />
+    <meta name="keywords" content="library management, reading room software, seat allocation, user management, finance tracker" />
+    <meta name="author" content="Library Management" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Social Media Meta Tags (Improves link sharing on WhatsApp, Twitter, etc.) -->
+    <meta property="og:title" content="Library Management App - Smart Library Management" />
+    <meta property="og:description" content="Streamline seat allocations, track admissions, manage waitlists, and monitor your finances in one centralized dashboard." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Library Management" />
+    <!-- ================================================ -->
+    
+    <!-- Favicon -->
+    <link rel="icon" href="fevicon.png" type="image/png">
+    <link rel="shortcut icon" href="fevicon.png" type="image/png">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Driver.js CSS & Script for App Tour -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+    <style>
+        :root {
+            --bg-grad: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            --glass-bg: rgba(255, 255, 255, 0.4);
+            --glass-input-bg: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            --modal-bg: rgba(255, 255, 255, 0.95);
+            --modal-card-bg: rgba(240, 244, 248, 0.8);
+            --modal-border: rgba(255, 255, 255, 1);
+            
+            --text-main: #1e293b; --text-muted: #64748b;
+            --primary: #2563eb; --green: #10b981; --orange: #f59e0b; --red: #ef4444; --yellow: #eab308;
+        }
+
+        .dark-theme {
+            --bg-grad: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            --glass-bg: rgba(15, 23, 42, 0.55);
+            --glass-input-bg: rgba(0, 0, 0, 0.3);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            --modal-bg: rgba(15, 23, 42, 0.95);
+            --modal-card-bg: rgba(0, 0, 0, 0.4);
+            --modal-border: rgba(255, 255, 255, 0.1);
+
+            --text-main: #f8fafc; --text-muted: #94a3b8;
+            --primary: #3b82f6; --green: #10b981; --orange: #f59e0b; --red: #ef4444; --yellow: #eab308;
+        }
+
+        body { font-family: 'Poppins', sans-serif; background: var(--bg-grad); background-attachment: fixed; color: var(--text-main); margin: 0; padding: 10px 10px 60px 10px; transition: background 0.4s ease, color 0.4s ease; min-height: 100vh; }
+
+        /* --- DESKTOP CENTERING --- */
+        @media (min-width: 768px) {
+            #addSeatTab, #waitlistTab, #financeTab { max-width: 750px; margin: 0 auto; }
+        }
+
+        /* --- AUTHENTICATION SCREEN --- */
+        #authScreen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;
+            background-color: #6366f1;
+            background-image:
+                radial-gradient(at 0% 100%, #4f46e5 0px, transparent 60%),
+                radial-gradient(at 80% 0%, #7dd3fc 0px, transparent 60%),
+                radial-gradient(at 0% 0%, #818cf8 0px, transparent 60%);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            overflow-y: auto; padding: 10px; box-sizing: border-box;
+        }
+
+        @media (min-width: 640px) {
+            #authScreen { padding: 20px; }
+        }
+
+        .auth-brand-logo { display: flex; align-items: center; gap: 8px; color: white; font-size: 22px; font-weight: 700; margin-bottom: 25px; z-index: 10; letter-spacing: 1px; }
+        
+        .auth-card-modern { background: #ffffff; border-radius: 20px; padding: 20px; width: 100%; max-width: 420px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); text-align: center; z-index: 10; box-sizing: border-box; transition: max-width 0.3s ease; }
+        
+        @media (min-width: 640px) {
+            .auth-card-modern { padding: 40px; border-radius: 24px; }
+        }
+
+        .auth-card-modern h2 { color: #1e293b; font-size: 24px; font-weight: 700; margin-top: 0; margin-bottom: 8px; }
+        .auth-card-modern p { color: #94a3b8; font-size: 13px; margin-top: 0; margin-bottom: 30px; font-weight: 500; }
+        
+        .auth-input-group { text-align: left; margin-bottom: 16px; }
+        .auth-input-group label { display: block; font-size: 12px; color: #1e293b; font-weight: 600; margin-bottom: 8px; }
+        .auth-input-modern { width: 100%; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; color: #1e293b; background: #ffffff; outline: none; transition: all 0.2s; box-sizing: border-box; }
+        .auth-input-modern::placeholder { color: #cbd5e1; }
+        .auth-input-modern:focus { border-color: #6366f1; }
+        
+        .password-wrapper { position: relative; display: flex; align-items: center; }
+        .password-wrapper input { padding-right: 40px; }
+        .password-toggle { position: absolute; right: 12px; color: #94a3b8; cursor: pointer; width: 18px; height: 18px; transition: color 0.2s; }
+        .password-toggle:hover { color: #6366f1; }
+        
+        .btn-primary { width: 100%; background: #5b68df; color: #fff; padding: 14px; border-radius: 8px; border: none; font-weight: 600; font-size: 14px; cursor: pointer; transition: background 0.2s; margin-top: 5px; }
+        .btn-primary:hover { background: #4a56c4; }
+        .btn-google { width: 100%; background: #fff; color: #475569; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-weight: 600; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; transition: background 0.2s; }
+        .btn-google:hover { background: #f8fafc; }
+        .auth-bottom-text { margin-top: 25px; font-size: 12px; color: #64748b; font-weight: 500; }
+        .auth-bottom-text span { color: #5b68df; font-weight: 600; cursor: pointer; transition: color 0.2s; }
+
+
+        @media (max-width: 768px) {
+            #authScreen {
+                justify-content: center; /* Center vertically */
+                align-items: center; /* Center horizontally */
+                padding: 15px; /* Standard outer margins */
+            }
+            .auth-brand-logo { margin-bottom: 20px; margin-top: 0; padding-top: 0; }
+            .auth-card-modern {
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 24px !important;
+                padding: 25px 20px !important;
+                margin-top: 0; 
+                margin-bottom: 0;
+                max-height: 90vh;
+                overflow-y: auto;
+                border-bottom: none;
+            }
+        }
+
+
+        /* --- MAIN APP LAYOUT STYLES --- */
+        @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes modalPop { from { opacity: 0; transform: scale(0.92) translateY(15px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .animate-in { animation: fadeSlideUp 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+        .modal-animate { animation: modalPop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 0 5px; }
+        h2 { margin: 0; font-weight: 700; font-size: 20px; letter-spacing: -0.5px;}
+        .glass-panel { background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow); border-radius: 16px; }
+
+        .utility-bar { display: flex; gap: 8px; align-items: center; }
+        .icon-btn { border: 1px solid var(--glass-border); background: var(--glass-bg); color: var(--text-main); padding: 6px; cursor: pointer; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); transition: all 0.2s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .icon-btn:hover { transform: scale(1.05); background: var(--glass-input-bg); }
+
+        .dashboard { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 15px; padding: 12px; }
+        .stat-card { text-align: center; font-size: 11px; font-weight: 600; padding: 8px 4px; border-radius: 12px; background: var(--glass-input-bg); border: 1px solid var(--glass-border); display: flex; flex-direction: column; justify-content: center;}
+        .stat-card .num { font-size: 20px; font-weight: 700; display: block; margin-top: 2px; }
+
+        .tab-container { display: flex; gap: 8px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none;}
+        .tab-container::-webkit-scrollbar { display: none; }
+        .tab-btn { flex: 1; min-width: max-content; padding: 12px 15px; border: 1px solid var(--glass-border); font-size: 13px; font-weight: 600; background: var(--glass-bg); color: var(--text-main); border-radius: 12px; cursor: pointer; backdrop-filter: blur(10px); transition: all 0.2s ease; display:flex; gap:6px; align-items:center; justify-content:center;}
+        .tab-btn.active { background: rgba(255,255,255,0.7); box-shadow: inset 0 2px 5px rgba(0,0,0,0.05); color: var(--primary); border-color: var(--primary);}
+        .dark-theme .tab-btn.active { background: rgba(0,0,0,0.7); border-color: var(--primary);}
+
+        .search-box { width: 100%; padding: 12px 15px; border: 1px solid var(--glass-border); outline: none; background: var(--glass-input-bg); color: var(--text-main); border-radius: 12px; margin-bottom: 12px; box-sizing: border-box; }
+        .filter-btn-group { display: flex; flex-wrap: wrap; gap: 6px; }
+        .filter-btn { border: 1px solid var(--glass-border); padding: 6px 12px; font-size: 11px; font-weight: 600; background: var(--glass-bg); color: var(--text-main); border-radius: 20px; cursor: pointer; transition: all 0.2s; }
+        .filter-btn:hover { background: var(--glass-input-bg); }
+        .filter-btn.active { background: var(--primary); color: white; border-color: transparent; }
+
+        label.app-label { font-size: 13px; font-weight: 600; display: block; margin-top: 12px; margin-bottom: 4px; color: var(--text-main); }
+        .app-input { width: 100%; padding: 12px; border: 1px solid var(--glass-border); outline: none; background: var(--glass-input-bg); color: var(--text-main); border-radius: 10px; font-size: 13px; box-sizing: border-box; }
+        .action-btn { width: 100%; padding: 14px; margin-top: 15px; border: none; border-radius: 10px; background: var(--primary); color: white; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.2s ease; display: flex; justify-content: center; align-items: center; gap: 6px; }
+        .action-btn:active { transform: scale(0.96); }
+
+        /* --- VISUAL CHAIR LAYOUT GRID --- */
+        .seat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 8px; margin-top:15px;}
+        .seat { aspect-ratio: 1/1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; font-weight: 600; font-size: 14px; cursor: pointer; border: 1px solid var(--glass-border); background: var(--glass-bg); border-radius: 12px; padding: 4px; box-sizing: border-box; transition: transform 0.2s;}
+        .seat.free { color: var(--green); border: 1px solid rgba(16, 185, 129, 0.4); justify-content: center;}
+        .seat.allotted { background: rgba(37, 99, 235, 0.15); color: var(--primary); font-size: 12px; border: 1px solid var(--primary); }
+        .seat.due-alert { background: rgba(245, 158, 11, 0.15); color: var(--orange); border-color: var(--orange); }
+        .seat.warn-alert { background: rgba(234, 179, 8, 0.15); color: var(--yellow); border-color: var(--yellow); animation: pulse-yellow 2.5s infinite; }
+        .seat.expired-alert { background: rgba(239, 68, 68, 0.15); color: var(--red); border-color: var(--red); animation: pulse-red 2s infinite; }
+        .seat-number { font-size: 14px; font-weight: 700; margin-bottom: 2px;}
+        .seat-name { font-size: 9px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%; text-align: center; color: var(--text-main); font-weight: 500;}
+
+        /* Finance & Lists UI */
+        .finance-card { background: var(--glass-input-bg); border: 1px solid var(--glass-border); border-radius: 12px; padding: 15px; margin-bottom: 15px; }
+        .fin-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top:10px; }
+        .fin-box { padding: 12px; border-radius: 10px; text-align: center; border: 1px solid rgba(0,0,0,0.05); }
+        .fin-val { font-size: 18px; font-weight: 700; display: block; margin-top: 4px; }
+        .list-item { background: var(--modal-card-bg); border-radius: 10px; padding: 12px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--glass-border); }
+        .badge { padding: 4px 8px; border-radius: 6px; font-weight: 600; color: white; font-size: 10px; }
+        .date-header { font-size: 12px; font-weight: 600; color: var(--primary); margin: 15px 0 8px 0; border-bottom: 1px solid var(--glass-border); padding-bottom: 4px; }
+
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; padding: 15px; box-sizing: border-box;}
+        .modal-content { width: 100%; max-width: 420px; padding: 20px; box-sizing: border-box; border-radius: 20px; max-height: 90vh; overflow-y: auto; background: var(--modal-bg); border: 1px solid var(--modal-border); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .info-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(150,150,150,0.15); }
+        .info-label { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+        .info-value { font-size: 13px; font-weight: 600; color: var(--text-main); text-align: right; }
+
+        svg { stroke-width: 2; width: 18px; height: 18px; }
+        #toast-container { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 10009; width: max-content; max-width: 90%; pointer-events: none; }
+        .toast { background: rgba(15, 23, 42, 0.9); color: white; padding: 12px 20px; border-radius: 30px; font-size: 13px; font-weight: 500; text-align: center; margin-top: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); opacity: 0; transition: all 0.3s; transform: translateY(20px); }
+        .toast.show { opacity: 1; transform: translateY(0); }
+        .hidden { display: none !important; }
+        .flex-row { display: flex; gap: 10px; }
+
+        /* --- DRIVER.JS CUSTOM GLASSMORPHISM THEME --- */
+        .driver-popover { background: rgba(30, 41, 59, 0.95) !important; backdrop-filter: blur(10px) !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; color: white !important; border-radius: 12px !important; }
+        .driver-popover-title { font-size: 18px !important; color: #38bdf8 !important; font-weight: 700 !important; margin-bottom: 8px !important; }
+        .driver-popover-description { color: #cbd5e1 !important; font-size: 14px !important; line-height: 1.5 !important; }
+        .driver-popover-navigation-btns button { background: #3b82f6 !important; color: white !important; border: none !important; border-radius: 6px !important; padding: 6px 12px !important; }
+
+    </style>
+</head>
+<body>
+
+    <!-- AUTHENTICATION SCREEN -->
+    <div id="authScreen">
+        <div class="auth-brand-logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px; color: white;">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <span style="margin-left: 8px;">Library Management</span>
+        </div>
+        
+        <div class="auth-card-modern" id="authCard">
+            <!-- 1. LOGIN FORM -->
+            <div id="loginForm" class="animate-in">
+                <h2>Welcome Back!</h2>
+                <p>We missed you! Please enter your details.</p>
+                <div class="auth-input-group"><label>Email</label><input type="text" id="loginId" class="auth-input-modern" placeholder="Enter your Email"></div>
+                <div class="auth-input-group">
+                    <label>Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="loginPassword" class="auth-input-modern" placeholder="Enter Password">
+                        <svg id="eyeIconLogin" class="password-toggle" onclick="togglePasswordVisibility('loginPassword', 'eyeIconLogin')" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                    </div>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+                    <label style="display:flex; align-items:center; gap:8px; font-size:12px; color:#64748b; margin:0; cursor:pointer;"><input type="checkbox" style="width:auto; margin:0;"> Remember me</label>
+                    <span style="font-size:12px; color:#5b68df; font-weight:600; cursor:pointer;" onclick="toggleAuthMode('reset')">Forgot password?</span>
+                </div>
+                <button class="btn-primary" onclick="loginUser()">Sign in</button>
+                <p id="authError" style="color:var(--red); font-size: 12px; margin-top: 5px; min-height:15px; font-weight:500;"></p>
+                <button class="btn-google" onclick="loginWithGoogle()"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Sign in with Google</button>
+                
+                <div style="margin-top:20px; font-size:12px; font-weight:500; color:#64748b;">
+                    Manage your workspace from here.
+                </div>
+                <div class="auth-bottom-text">Don't have an account? <span onclick="toggleAuthMode('signup')">Sign up</span></div>
+            </div>
+
+            <!-- 3. SIGNUP FORM -->
+            <div id="signupForm" class="hidden animate-in">
+                <h2>Create Account</h2>
+                <p id="signupFormSubtitle">Sign up to create your library workspace.</p>
+                <div class="auth-input-group"><label>Admin ID (Username)</label><input type="text" id="signupUsername" class="auth-input-modern" placeholder="e.g. manager123"></div>
+                <div class="auth-input-group"><label>Email address</label><input type="email" id="signupEmail" class="auth-input-modern" placeholder="Enter your email"></div>
+                <div class="auth-input-group">
+                    <label>Create Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="signupPassword" class="auth-input-modern" placeholder="Create a password">
+                        <svg id="eyeIconSignup" class="password-toggle" onclick="togglePasswordVisibility('signupPassword', 'eyeIconSignup')" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                    </div>
+                </div>
+                <button class="btn-primary" style="margin-top: 15px;" onclick="signupUser()">Create Workspace</button>
+                <p id="signupError" style="color:var(--red); font-size: 12px; margin-top: 5px; min-height:15px; font-weight:500;"></p>
+                <div class="auth-bottom-text">Already registered? <span onclick="toggleAuthMode('login')">Log in instead</span></div>
+            </div>
+
+            <!-- 4. RESET PASSWORD FORM -->
+            <div id="resetForm" class="hidden animate-in">
+                <h2>Reset Password</h2>
+                <p>Enter your recovery email to reset password.</p>
+                <div class="auth-input-group"><label>Recovery Email</label><input type="email" id="resetEmail" class="auth-input-modern" placeholder="Enter recovery email"></div>
+                <button class="btn-primary" style="margin-top: 15px;" onclick="resetPassword()">Send Reset Link</button>
+                <p id="resetError" style="color:var(--red); font-size: 12px; margin-top: 5px; min-height:15px; font-weight:500;"></p>
+                <div class="auth-bottom-text">Remembered it? <span onclick="toggleAuthMode('login')">Return to Log in</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN USER APP -->
+    <div id="mainApp" style="display:none;">
+        <header class="animate-in">
+            <h2 id="appTitle">Library Management</h2>
+            <div class="utility-bar">
+                <button class="icon-btn" onclick="toggleTheme()" title="Toggle Theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg></button>
+                <button class="icon-btn" id="settingsTab" onclick="openSettingsModal()" title="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></button>
+                <button class="icon-btn" onclick="logoutUser()" title="Logout" style="color: var(--red);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></button>
+            </div>
+        </header>
+
+        <div class="dashboard glass-panel animate-in">
+            <div class="stat-card">Free <span class="num" id="statFree" style="color:var(--green)">0</span></div>
+            <div class="stat-card">Enrolled <span class="num" id="statOccupied" style="color:var(--primary)">0</span></div>
+            <div class="stat-card">Due Profile <span class="num" id="statDue" style="color:var(--orange)">0</span></div>
+            <div class="stat-card">Exp. <3d <span class="num" id="statWarn" style="color:var(--yellow)">0</span></div>
+        </div>
+
+        <div class="tab-container animate-in">
+            <button class="tab-btn active" id="tabMapBtn" onclick="switchTab('map')">🪑 Chairs</button>
+            <button class="tab-btn" id="tabAddBtn" onclick="switchTab('add')">📝 Admission</button>
+            <button class="tab-btn" id="tabWaitBtn" onclick="switchTab('wait')">⏳ Waitlist <span id="waitBadge" class="badge" style="background:var(--primary); margin-left:4px;">0</span></button>
+            <button class="tab-btn" id="tabFinBtn" onclick="switchTab('fin')">💰 Finance</button>
+        </div>
+
+        <!-- TAB 1: SEATS MATRIX -->
+        <div id="seatMapTab" class="animate-in">
+            <div class="glass-panel" style="padding:12px;">
+                <div class="flex-row" style="margin-bottom:8px;">
+                    <input type="text" id="searchExam" class="app-input search-box" style="margin-bottom:0; padding:10px; flex: 1;" placeholder="Search Exam..." oninput="applyFilters()">
+                    <select id="shiftFilter" class="app-input search-box" style="margin-bottom:0; padding:10px; flex: 1;" onchange="applyFilters()">
+                        <option value="all">All Shifts</option>
+                    </select>
+                </div>
+                <div class="filter-btn-group">
+                    <button class="filter-btn active" id="fltAll" onclick="setFilter('all')">All</button>
+                    <button class="filter-btn" id="fltFree" onclick="setFilter('free')">Empty</button>
+                    <button class="filter-btn" id="fltDue" onclick="setFilter('due')">Fee Due</button>
+                    <button class="filter-btn" id="fltWarn" onclick="setFilter('warn')">Exp. <3d</button>
+                    <button class="filter-btn" id="fltExpired" onclick="setFilter('expired')">Expired</button>
+                </div>
+            </div>
+            <div class="seat-grid" id="seatsContainer"></div>
+        </div>
+
+        <!-- TAB 2: ADMISSION FORM -->
+        <div id="addSeatTab" class="hidden animate-in">
+            <div class="glass-panel" style="padding: 15px;">
+                <h3 style="color:var(--primary); margin-top:0; margin-bottom:10px;">New Registration</h3>
+                <label class="app-label">Seat Number</label> <input type="text" class="app-input" id="seatNo" placeholder="e.g. 15, 6A" style="text-transform: uppercase;">
+                <label class="app-label">Student Name</label> <input type="text" class="app-input" id="studentName">
+                <label class="app-label">Phone</label> <input type="tel" class="app-input" id="phone">
+                <label class="app-label">Preparing For (Exam)</label> <input type="text" class="app-input" id="exam">
+                <label class="app-label">Shift Timing</label>
+                <select class="app-input" id="shift" onchange="toggleCustomShift('shift', 'customShift')"></select>
+                <input type="text" id="customShift" class="app-input hidden" placeholder="Custom timings" style="margin-top:10px;">
+                
+                <div class="flex-row" style="margin-top:12px;">
+                    <div style="flex:1"><label class="app-label" style="margin-top:0">Total Fee (₹)</label><input type="number" class="app-input" id="totalFee" placeholder="Auto-filled"></div>
+                    <div style="flex:1"><label class="app-label" style="margin-top:0">Paid Now (₹)</label><input type="number" class="app-input" id="initialAmount" placeholder="1500"></div>
+                </div>
+                <div class="flex-row">
+                    <div style="flex:1"><label class="app-label">Admission</label><input type="date" class="app-input" id="admDate"></div>
+                    <div style="flex:1"><label class="app-label">Valid Up To</label><input type="date" class="app-input" id="validDate"></div>
+                </div>
+                <label class="app-label">Payment Mode</label> <select class="app-input" id="initialMode"><option>Cash</option><option>UPI</option></select>
+                
+                <button class="action-btn" onclick="allotSeat()">Complete Admission</button>
+            </div>
+        </div>
+
+        <!-- TAB 3: WAITLIST -->
+        <div id="waitlistTab" class="hidden animate-in">
+            <div class="glass-panel" style="padding: 15px; margin-bottom: 15px;">
+                <h3 style="color:var(--primary); margin-top:0; margin-bottom:10px;">Add to Waitlist</h3>
+                <div class="flex-row">
+                    <div style="flex:2"><input type="text" class="app-input" id="waitName" placeholder="Student Name"></div>
+                    <div style="flex:2"><input type="tel" class="app-input" id="waitPhone" placeholder="Phone"></div>
+                </div>
+                <div class="flex-row" style="margin-top:10px;">
+                    <div style="flex:2"><select class="app-input" id="waitShift"></select></div>
+                    <button class="action-btn" style="margin-top:0; flex:1;" onclick="addWaitlist()">Add</button>
+                </div>
+            </div>
+            <h4 style="margin-bottom:8px;">Current Waiting List</h4>
+            <div id="waitlistContainer"></div>
+        </div>
+
+        <!-- TAB 4: FINANCE & LEDGER -->
+        <div id="financeTab" class="hidden animate-in">
+            <div class="glass-panel" style="padding: 15px; margin-bottom:15px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h3 style="margin:0; color:var(--primary);">Financial Overview</h3>
+                    <input type="month" class="app-input" id="finMonth" onchange="calculateFinances()" style="width:auto; padding:6px 10px;">
+                </div>
+                <div class="fin-grid">
+                    <div class="fin-box" style="background:rgba(16,185,129,0.1); border-color:var(--green);"><span style="font-size:11px; color:var(--text-muted);">Total Income</span><span class="fin-val" style="color:var(--green);" id="finIncome">₹0</span></div>
+                    <div class="fin-box" style="background:rgba(239,68,68,0.1); border-color:var(--red);"><span style="font-size:11px; color:var(--text-muted);">Total Expense</span><span class="fin-val" style="color:var(--red);" id="finExpense">₹0</span></div>
+                    <div class="fin-box" style="background:rgba(245,158,11,0.1); border-color:var(--orange);"><span style="font-size:11px; color:var(--text-muted);">Total Fee Due</span><span class="fin-val" style="color:var(--orange);" id="finTotalDue">₹0</span></div>
+                </div>
+                <div class="fin-box" style="margin-top:10px; background:var(--glass-bg);"><span style="font-size:11px; color:var(--text-muted);">Net Profit</span><span class="fin-val" style="color:var(--primary);" id="finProfit">₹0</span></div>
+            </div>
+
+            <div class="tab-container" style="margin-bottom:10px;">
+                <button class="tab-btn active" id="btnShowIncome" onclick="switchFinView('income')" style="padding:8px; font-size:12px;">Daily Income Ledger</button>
+                <button class="tab-btn" id="btnShowExpense" onclick="switchFinView('expense')" style="padding:8px; font-size:12px;">Manage Expenses</button>
+            </div>
+
+            <div id="finIncomeView"><div id="incomeLedgerContainer"></div></div>
+
+            <div id="finExpenseView" class="hidden">
+                <div class="glass-panel" style="padding: 12px; margin-bottom:10px;">
+                    <h4 style="margin-top:0; margin-bottom:8px; font-size:13px;">Add New Expense</h4>
+                    <div class="flex-row">
+                        <div style="flex:1"><input type="date" class="app-input" id="expDate"></div>
+                        <div style="flex:1"><input type="number" class="app-input" id="expAmount" placeholder="Amount (₹)"></div>
+                    </div>
+                    <input type="text" class="app-input" id="expCategory" placeholder="Category (e.g. Rent, Electricity, Cleaning)" style="margin-top:10px;">
+                    <button class="action-btn" style="padding:10px; margin-top:10px;" onclick="addExpense()">Save Expense</button>
+                </div>
+                <div id="expenseLedgerContainer"></div>
+            </div>
+        </div>
+    </div> <!-- End Main App -->
+
+    <!-- DETAILS MODAL -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content hidden" id="modalViewSection">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--glass-border); padding-bottom:10px; margin-bottom:10px;">
+                <h3 style="margin:0; color:var(--primary); font-weight:700;">Seat <span id="modSeatTitle"></span> Profile</h3>
+                <button class="icon-btn" onclick="showEditForm()" style="width:30px; height:30px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
+            </div>
+            
+            <div class="info-row"><span class="info-label">Name</span> <span class="info-value" id="modName"></span></div>
+            <div class="info-row"><span class="info-label">Phone</span> <span class="info-value" id="modPhone"></span></div>
+            <div class="info-row"><span class="info-label">Shift</span> <span class="info-value" id="modShift"></span></div>
+            <div class="info-row"><span class="info-label">Exam</span> <span class="info-value" id="modExam"></span></div>
+            <div class="info-row"><span class="info-label">Admission</span> <span class="info-value" id="modDate"></span></div>
+            <div class="info-row"><span class="info-label">Valid Up To</span> <span class="info-value" id="modValid"></span></div>
+            <div class="info-row" style="border:none;"><span class="info-label">Fee Status</span> <span class="badge" id="modFee"></span></div>
+
+            <h4 style="margin: 15px 0 5px 0; font-size: 13px; color:var(--primary);">Payment Ledger</h4>
+            <div class="payment-ledger" id="paymentLedger" style="max-height: 120px; overflow-y:auto;"></div>
+            
+            <div style="display:flex; flex-direction:column; gap:8px; margin-top:15px;">
+                <button class="action-btn" style="margin:0; background:var(--green); padding:10px;" onclick="showPaymentForm()">Record Payment / Renew</button>
+                <div style="display:flex; gap:8px;">
+                    <button class="action-btn" style="background:var(--red); margin:0; flex:1; padding:10px;" id="btnRemoveStudent" onclick="freeStudentSlot()">Remove</button>
+                    <button class="action-btn" style="background:var(--text-muted); margin:0; flex:1; padding:10px;" id="btnViewBack" onclick="backToListOrClose()">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-content hidden" id="modalListSection">
+            <h3 style="margin-top:0; color:var(--primary);">Seat <span id="listSeatNo"></span> Occupants</h3>
+            <div id="occupantsContainer" style="margin-bottom:15px;"></div>
+            <button class="action-btn" style="margin-bottom:8px; padding:10px;" onclick="addAnotherToSeat()">+ Add Another Shift Here</button>
+            <button class="action-btn" style="background:var(--text-muted); padding:10px; margin:0;" onclick="closeModal()">Close</button>
+        </div>
+
+        <div class="modal-content hidden" id="modalEditSection">
+            <h3 style="margin-top:0; color:var(--primary);">Edit Profile</h3>
+            <input type="text" class="app-input" id="editName" placeholder="Name" style="margin-bottom:8px;">
+            <input type="tel" class="app-input" id="editPhone" placeholder="Phone" style="margin-bottom:8px;">
+            <input type="text" class="app-input" id="editExam" placeholder="Exam" style="margin-bottom:8px;">
+            <input type="text" class="app-input" id="editShift" placeholder="Shift Details" style="margin-bottom:8px;">
+            <div class="flex-row" style="margin-bottom:8px;">
+                <div style="flex:1"><label class="app-label" style="margin-top:0">Admission Date</label><input type="date" class="app-input" id="editAdmDate"></div>
+                <div style="flex:1"><label class="app-label" style="margin-top:0">Valid Until</label><input type="date" class="app-input" id="editValidDate"></div>
+            </div>
+            <label class="app-label" style="margin-top:4px;">Remaining Due Amount (₹)</label>
+            <input type="number" class="app-input" id="editDueAmount" placeholder="Due Amount">
+            <div class="flex-row" style="margin-top:15px;">
+                <button class="action-btn" style="margin:0; flex:1;" onclick="saveEdit()">Save</button>
+                <button class="action-btn" style="background:var(--text-muted); margin:0; flex:1;" onclick="cancelEdit()">Cancel</button>
+            </div>
+        </div>
+
+        <div class="modal-content hidden" id="modalPaySection">
+            <h3 style="margin-top:0; color:var(--primary);">Record Payment</h3>
+            <p style="font-size: 12px; margin-bottom: 15px; color:var(--text-muted);">For: <strong id="payStudentName" style="color:var(--text-main);"></strong></p>
+            <input type="date" class="app-input" id="payDate" style="margin-bottom:8px;">
+            <div class="flex-row" style="margin-bottom:8px;">
+                <input type="number" class="app-input" id="payAmount" placeholder="Amount Paid Now (₹)">
+                <select class="app-input" id="payMode"><option>Cash</option><option>UPI</option></select>
+            </div>
+            <label class="app-label" style="margin-top:5px;">Extend Validity To (Renewal)</label>
+            <input type="date" class="app-input" id="payValidDate" style="margin-bottom:8px;">
+            
+            <label class="app-label" style="margin-top:4px; margin-bottom:0;">Resulting Due Amount (₹)</label>
+            <p style="font-size:10px; color:var(--text-muted); margin:2px 0 6px 0;">Manually adjust if adding renewal fees.</p>
+            <input type="number" class="app-input" id="payNewDue" placeholder="Remaining Due">
+            
+            <div class="flex-row" style="margin-top:15px;">
+                <button class="action-btn" style="margin:0; background:var(--green); flex:1;" onclick="savePayment()">Save</button>
+                <button class="action-btn" style="background:var(--text-muted); margin:0; flex:1;" onclick="hidePaymentForm()">Cancel</button>
+            </div>
+        </div>
+
+        <div class="modal-content hidden" id="modalSettingsSection">
+            <h3 style="margin-top:0; color:var(--primary);">⚙️ Library Settings</h3>
+            <label class="app-label">Library Name</label> <input type="text" class="app-input" id="cfgLibName">
+            <label class="app-label">Total Seats</label> <input type="number" class="app-input" id="cfgTotalSeats" min="1">
+            <label class="app-label">Custom Seats (comma separated)</label> <input type="text" class="app-input" id="cfgCustomSeats" style="text-transform: uppercase;">
+            <label class="app-label">Available Shifts</label>
+            <div class="flex-row" style="font-size:12px; margin-bottom:8px; color:var(--text-muted); gap:10px;">
+                <span style="flex:3;">Name</span>
+                <span style="flex:3;">Timing</span>
+                <span style="flex:2;">Fee (₹)</span>
+                <span style="flex:1; text-align:right;"></span>
+            </div>
+            <div id="cfgShiftRows" style="display:flex; flex-direction:column; gap:10px; margin-bottom:10px;"></div>
+            <button class="action-btn" style="width:auto; padding:10px; background:var(--green); margin-bottom:20px;" onclick="addShiftRow()">+ Add Shift</button>
+            
+            <div style="border-top:1px solid var(--glass-border); margin-top:20px; padding-top:15px;">
+                <h4 style="margin:0 0 10px 0; font-size:13px;">Advanced Data Options</h4>
+                <div class="flex-row">
+                    <button class="action-btn" style="margin:0; background:var(--green); font-size:12px; padding:8px;" onclick="exportData()">Export Backup</button>
+                    <button class="action-btn" style="margin:0; background:var(--orange); font-size:12px; padding:8px;" onclick="document.getElementById('importFileSettings').click()">Import Backup</button>
+                    <input type="file" id="importFileSettings" class="hidden" onchange="importData(this)">
+                </div>
+            </div>
+
+            <div class="flex-row" style="margin-top:20px;">
+                <button class="action-btn" style="margin:0; flex:2;" onclick="saveSettings()">Save Configuration</button>
+                <button class="action-btn" style="background:var(--text-muted); margin:0; flex:1;" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+
+    <div id="toast-container"></div>
+
+    <script>
+        // --- CENTRAL CONFIGURATION & KEY SETTINGS ---
+
+        const firebaseConfig = { apiKey: "AIzaSyCWWgKeF1bzRfrGPvPeIG7ZPfc5nHmu2h4", authDomain: "librarymgt-2026.firebaseapp.com", projectId: "librarymgt-2026", storageBucket: "librarymgt-2026.firebasestorage.app", messagingSenderId: "836897960075", appId: "1:836897960075:web:11899c0996620eb428e48e" };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth(); const db = firebase.firestore();
+
+        const rawAppId = (typeof __app_id !== 'undefined' && __app_id) ? __app_id : 'library-saas';
+        const globalAppId = rawAppId.replace(/[^a-zA-Z0-9_]/g, '_');
+
+        let currentUser = null; let unsubscribeSnapshot = null;
+
+        let appConfig = {
+            libraryName: "Library Management", totalSeats: 20, customSeats: ["1A", "1B", "2A", "2B"],
+            shifts: ["Morning Shift (06 AM - 02 PM) : 500", "Evening Shift (02 PM - 10 PM) : 500", "Full Day (06 AM - 10 PM) : 1000"]
+        };
+
+        const DB = {
+            seatsData: {}, expenses: [], waitlist: [],
+            init: function() { const rawData = {}; for(let seatId of window.seatLayout) rawData[seatId] = []; this.seatsData = rawData; },
+            save: function() { if (!currentUser) return; db.doc(`artifacts/${globalAppId}/users/${currentUser.uid}/libraryData/main`).set({ config: appConfig, seatsData: this.seatsData, expenses: this.expenses, waitlist: this.waitlist }, { merge: true }).catch(e=>{}); },
+            getOccupants: function(seatNo) { return this.seatsData[seatNo] || []; },
+            addStudent: function(seatNo, studentData) { if(!this.seatsData[seatNo]) this.seatsData[seatNo] = []; this.seatsData[seatNo].push(studentData); this.save(); },
+            updateStudent: function(seatNo, studentId, updatedData) { const idx = this.seatsData[seatNo].findIndex(s => s.id === studentId); if(idx > -1) { this.seatsData[seatNo][idx] = { ...this.seatsData[seatNo][idx], ...updatedData }; this.save(); } },
+            removeStudent: function(seatNo, studentId) { this.seatsData[seatNo] = this.seatsData[seatNo].filter(s => s.id !== studentId); this.save(); },
+            addPayment: function(seatNo, studentId, paymentObj, validDate, newDue) { const student = this.seatsData[seatNo].find(s => s.id === studentId); if(student) { if(!student.payments) student.payments = []; student.payments.push(paymentObj); if(validDate) student.validDate = validDate; if(newDue !== undefined) student.dueAmount = newDue; this.save(); } }
+        };
+
+        window.seatLayout = []; window.currentFilter = 'all'; window.activeSeatNo = null; window.activeStudentId = null; window.isDeleteConfirmStep = false; 
+
+        window.isShiftOverlap = function(shift1, shift2) {
+            const parseTime = (str) => {
+                const match = str.match(/(\d{1,2})(?:\s*:\s*(\d{2}))?\s*(AM|PM)\s*-\s*(\d{1,2})(?:\s*:\s*(\d{2}))?\s*(AM|PM)/i);
+                if (!match) return null;
+                let sH = parseInt(match[1]), sM = parseInt(match[2] || 0), sP = match[3].toUpperCase();
+                let eH = parseInt(match[4]), eM = parseInt(match[5] || 0), eP = match[6].toUpperCase();
+                if (sP === 'PM' && sH !== 12) sH += 12;
+                if (sP === 'AM' && sH === 12) sH = 0;
+                if (eP === 'PM' && eH !== 12) eH += 12;
+                if (eP === 'AM' && eH === 12) eH = 24;
+                let start = sH + sM/60; let end = eH + eM/60;
+                if (end <= start) end += 24; // Handle midnight crossing
+                return { start, end };
+            };
+            const t1 = parseTime(shift1), t2 = parseTime(shift2);
+            if (t1 && t2) {
+                if (t1.start < t2.end && t1.end > t2.start) return true;
+                if (t1.end > 24 && t1.start - 24 < t2.end && t1.end - 24 > t2.start) return true;
+                if (t2.end > 24 && t2.start - 24 < t1.end && t2.end - 24 > t1.start) return true;
+                return false;
+            }
+            const s1Base = shift1.split(':')[0].trim().toLowerCase(), s2Base = shift2.split(':')[0].trim().toLowerCase();
+            if (s1Base === s2Base || s1Base.includes('full day') || s2Base.includes('full day')) return true;
+            return false;
+        };
+
+        if(localStorage.getItem('libTheme') === 'dark') document.body.classList.add('dark-theme');
+
+        window.toast = function(message) { const container = document.getElementById('toast-container'); const el = document.createElement('div'); el.className = 'toast'; el.innerText = message; container.appendChild(el); setTimeout(() => el.classList.add('show'), 10); setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, 3000); }
+        window.toggleTheme = function() { document.body.classList.toggle('dark-theme'); localStorage.setItem('libTheme', document.body.classList.contains('dark-theme') ? 'dark' : 'light'); }
+        window.togglePasswordVisibility = function(inputId, iconId) { const input = document.getElementById(inputId); const icon = document.getElementById(iconId); if (input.type === "password") { input.type = "text"; icon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>'; } else { input.type = "password"; icon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>'; } };
+        
+        window.toggleAuthMode = function(mode) { 
+            const card = document.getElementById('authCard');
+            ['loginForm', 'signupForm', 'resetForm'].forEach(id => document.getElementById(id).classList.add('hidden')); 
+            document.getElementById(mode + 'Form').classList.remove('hidden'); 
+            document.getElementById('authError').innerText = ''; 
+            document.getElementById('signupError').innerText = ''; 
+            document.getElementById('resetError').innerText = ''; 
+        }
+
+        // Core App Routing & Auth Listener
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                currentUser = user;
+                document.getElementById('authScreen').style.display = 'none';
+                document.getElementById('mainApp').style.display = 'block';
+                document.getElementById('finMonth').value = new Date().toISOString().substring(0,7);
+                loadDataFromCloud();
+                window.toast(`Welcome back!`);
+                setTimeout(startAppTour, 1000);
+            } else { 
+                currentUser = null; 
+                document.getElementById('authScreen').style.display = 'flex'; 
+                document.getElementById('mainApp').style.display = 'none'; 
+                if(unsubscribeSnapshot) unsubscribeSnapshot(); 
+            }
+        });
+
+        window.loginUser = async () => { const idInput = document.getElementById('loginId').value.trim(); const pass = document.getElementById('loginPassword').value; const errEl = document.getElementById('authError'); if(!idInput || !pass) return errEl.innerText = "Please enter details."; errEl.innerText = "Logging in..."; try { let emailToUse = idInput; if (!idInput.includes('@')) { const res = localStorage.getItem('lib_admin_' + idInput.toLowerCase()); if (res) emailToUse = res; else throw new Error("Admin ID not recognized here. Login with email once."); } await auth.signInWithEmailAndPassword(emailToUse, pass); } catch(e) { errEl.innerText = e.message.replace('Firebase:', '').trim(); } };
+        
+        window.signupUser = async () => { 
+            const username = document.getElementById('signupUsername').value.trim(); 
+            const email = document.getElementById('signupEmail').value.trim(); 
+            const pass = document.getElementById('signupPassword').value; 
+            const errEl = document.getElementById('signupError'); 
+            if(!username || !email || !pass) return errEl.innerText = "Please fill all fields."; 
+            if(username.includes('@')) return errEl.innerText = "ID cannot contain '@'."; 
+            errEl.innerText = "Creating workspace..."; 
+            try { 
+                const cred = await auth.createUserWithEmailAndPassword(email, pass); 
+                localStorage.setItem('lib_admin_' + username.toLowerCase(), email); 
+                await db.doc(`artifacts/${globalAppId}/public/data/usernameMap/${username.toLowerCase()}`).set({ email: email, uid: cred.user.uid }); 
+                window.toast("Workspace Created! Trial started."); 
+            } catch(e) { errEl.innerText = e.message.replace('Firebase:', '').trim(); } 
+        };
+        
+        window.resetPassword = () => { const email = document.getElementById('resetEmail').value.trim(); if(!email) return document.getElementById('resetError').innerText = "Please enter email."; auth.sendPasswordResetEmail(email).then(() => { document.getElementById('resetError').innerText = "Link sent!"; setTimeout(() => window.toggleAuthMode('login'), 3000); }).catch(e => document.getElementById('resetError').innerText = e.message.replace('Firebase:', '').trim()); };
+        window.logoutUser = () => { auth.signOut().then(() => { window.toast("Logged out"); window.toggleAuthMode('login'); }); };
+        window.loginWithGoogle = async () => { try { const res = await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()); if (res.additionalUserInfo && res.additionalUserInfo.isNewUser) { await db.doc(`artifacts/${globalAppId}/public/data/usernameMap/${res.user.email.split('@')[0].toLowerCase() + Math.floor(Math.random() * 1000)}`).set({ email: res.user.email, uid: res.user.uid }); } } catch(e) { document.getElementById('authError').innerText = e.message.replace('Firebase:', '').trim(); } };
+
+
+        function loadDataFromCloud() { if(!currentUser) return; unsubscribeSnapshot = db.doc(`artifacts/${globalAppId}/users/${currentUser.uid}/libraryData/main`).onSnapshot((s) => { window.initializeAppStructure(); if (s.exists) { const d = s.data(); if(d.config) appConfig = d.config; if(d.seatsData) DB.seatsData = d.seatsData; DB.expenses = d.expenses || []; DB.waitlist = d.waitlist || []; } else { DB.init(); DB.save(); } document.getElementById('appTitle').innerText = appConfig.libraryName || 'Library Management'; window.initializeAppStructure(); window.renderSeats(); window.renderWaitlist(); window.calculateFinances(); }, ()=>{}); }
+        function startAppTour() { if (localStorage.getItem('hasSeenTour') === 'true') return; const t = window.driver.js.driver({ showProgress:true, steps:[{popover:{title:'Welcome!',description:'Quick 30s tour.'}},{element:'#settingsTab',popover:{title:'1. Setup',description:'Start here.'}},{element:'#seatMapTab',popover:{title:'2. Chairs',description:'Your seats.'}},{element:'#tabFinBtn',popover:{title:'3. Finance',description:'Track Dues.'}}], onDestroyStarted:()=>{localStorage.setItem('hasSeenTour','true');t.destroy();}}); t.drive(); }
+
+        window.switchTab = function(tab) { ['seatMapTab', 'addSeatTab', 'waitlistTab', 'financeTab'].forEach(id => document.getElementById(id).classList.add('hidden')); ['tabMapBtn', 'tabAddBtn', 'tabWaitBtn', 'tabFinBtn'].forEach(id => document.getElementById(id).classList.remove('active')); if(tab === 'map') { document.getElementById('seatMapTab').classList.remove('hidden'); document.getElementById('tabMapBtn').classList.add('active'); window.renderSeats(); } else if(tab === 'add') { document.getElementById('addSeatTab').classList.remove('hidden'); document.getElementById('tabAddBtn').classList.add('active'); document.getElementById('admDate').value = new Date().toISOString().split('T')[0]; document.getElementById('totalFee').value = ''; document.getElementById('initialAmount').value = ''; } else if(tab === 'wait') { document.getElementById('waitlistTab').classList.remove('hidden'); document.getElementById('tabWaitBtn').classList.add('active'); window.renderWaitlist(); } else if(tab === 'fin') { document.getElementById('financeTab').classList.remove('hidden'); document.getElementById('tabFinBtn').classList.add('active'); window.calculateFinances(); } }
+
+        window.initializeAppStructure = function() {
+            window.seatLayout = []; const total = parseInt(appConfig.totalSeats) || 20; const customs = appConfig.customSeats || [];
+            for (let i = 1; i <= total; i++) { window.seatLayout.push(i.toString()); window.seatLayout.push(...customs.filter(seat => { const m = seat.match(/^(\d+)[A-Za-z]+$/); return m && parseInt(m[1]) === i; })); }
+            ['shift', 'waitShift', 'shiftFilter'].forEach(id => { const el = document.getElementById(id); if (el) { el.innerHTML = id === 'shiftFilter' ? '<option value="all">All Shifts</option>' : ''; (appConfig.shifts || []).forEach(s => el.innerHTML += `<option value="${s}">${s}</option>`); if(id === 'shift') el.innerHTML += `<option value="Custom">Custom Shift...</option>`; } });
+        }
+
+        function checkExpiry(validDateStr) { if(!validDateStr) return 'ok'; const today = new Date(); today.setHours(0,0,0,0); const valid = new Date(validDateStr); valid.setHours(0,0,0,0); const diffDays = Math.ceil((valid - today) / (1000 * 60 * 60 * 24)); if(diffDays < 0) return 'expired'; if(diffDays <= 3) return 'warn'; return 'ok'; }
+        
+        window.getStudentStatus = function(s) {
+            const exp = checkExpiry(s.validDate);
+            if (exp === 'expired') return 'Expired';
+            let dueAmt = s.dueAmount !== undefined ? parseFloat(s.dueAmount) : (s.feeStatus === 'Due' ? 1 : 0);
+            if (dueAmt > 0) return 'Due';
+            return 'Paid';
+        };
+
+        function updateDashboard() {
+            let freeChairs = 0, totalEnrolled = 0, dueProfiles = 0, warnProfiles = 0;
+            for(let seatId of window.seatLayout) {
+                const occupants = DB.getOccupants(seatId);
+                if(occupants.length === 0) freeChairs++;
+                occupants.forEach(s => {
+                    totalEnrolled++;
+                    const st = window.getStudentStatus(s);
+                    if(st === 'Due') dueProfiles++;
+                    if(checkExpiry(s.validDate) === 'warn' && st !== 'Expired') warnProfiles++;
+                });
+            }
+            document.getElementById('statFree').innerText = freeChairs; document.getElementById('statOccupied').innerText = totalEnrolled;
+            document.getElementById('statDue').innerText = dueProfiles; document.getElementById('statWarn').innerText = warnProfiles;
+            document.getElementById('waitBadge').innerText = (DB.waitlist || []).length;
+        }
+
+        window.setFilter = function(type) { window.currentFilter = type; document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); document.getElementById('flt' + type.charAt(0).toUpperCase() + type.slice(1)).classList.add('active'); window.renderSeats(); }
+        window.applyFilters = function() { window.renderSeats(); }
+
+        window.renderSeats = function() {
+            const container = document.getElementById('seatsContainer'); if(!container) return; container.innerHTML = ''; updateDashboard();
+            const examQuery = document.getElementById('searchExam').value.toLowerCase(); const selectedShift = document.getElementById('shiftFilter').value;
+
+            for (let seatId of window.seatLayout) {
+                const allOccupants = DB.getOccupants(seatId); 
+                let occupants = allOccupants;
+                
+                if (selectedShift !== 'all') {
+                    occupants = allOccupants.filter(o => window.isShiftOverlap(o.shift, selectedShift));
+                }
+                
+                let hasDue = false, hasExpired = false, hasWarn = false, hasMatch = false;
+                occupants.forEach(s => {
+                    const st = window.getStudentStatus(s);
+                    if (st === 'Expired') hasExpired = true; else if (st === 'Due') hasDue = true;
+                    if (checkExpiry(s.validDate) === 'warn' && st !== 'Expired') hasWarn = true;
+                    if (!examQuery || (s.exam && s.exam.toLowerCase().includes(examQuery))) hasMatch = true;
+                });
+
+                // Check genuine availability to avoid collision rendering
+                let isAvailableForSelected = true;
+                if (selectedShift !== 'all') {
+                    for (let o of allOccupants) {
+                        if (window.isShiftOverlap(o.shift, selectedShift)) { isAvailableForSelected = false; break; }
+                    }
+                } else {
+                    isAvailableForSelected = allOccupants.length === 0;
+                }
+
+                if (window.currentFilter === 'free' && !isAvailableForSelected) continue;
+                if (window.currentFilter === 'due' && !hasDue) continue;
+                if (window.currentFilter === 'warn' && !hasWarn) continue;
+                if (window.currentFilter === 'expired' && !hasExpired) continue;
+                if (occupants.length > 0 && examQuery && !hasMatch) continue;
+
+                const div = document.createElement('div');
+                if (window.currentFilter === 'free' && isAvailableForSelected) {
+                    div.className = `seat free`; div.innerHTML = `<div class="seat-number">${seatId}</div>`;
+                    div.onclick = () => { window.switchTab('add'); document.getElementById('seatNo').value = seatId; if (selectedShift !== 'all') document.getElementById('shift').value = selectedShift; window.toggleCustomShift('shift','customShift'); };
+                } else if (occupants.length > 0) {
+                    let alertClass = 'allotted';
+                    if (hasExpired) alertClass = 'expired-alert'; else if (hasWarn) alertClass = 'warn-alert'; else if (hasDue) alertClass = 'due-alert';
+                    div.className = `seat ${alertClass}`;
+                    div.innerHTML = `<div class="seat-number">${seatId}</div>`;
+                    occupants.forEach(s => { div.innerHTML += `<div class="seat-name">${s.name.split(' ')[0]} (${s.shift.charAt(0)})</div>`; });
+                    div.onclick = () => window.handleSeatClick(seatId);
+                } else {
+                    if (window.currentFilter !== 'all' && window.currentFilter !== 'free') continue;
+                    if (selectedShift !== 'all' && !isAvailableForSelected) continue; // Hide if conflict exists
+                    
+                    div.className = `seat free`; div.innerHTML = `<div class="seat-number">${seatId}</div>`;
+                    div.onclick = () => { window.switchTab('add'); document.getElementById('seatNo').value = seatId; if (selectedShift !== 'all') document.getElementById('shift').value = selectedShift; window.toggleCustomShift('shift','customShift'); };
+                }
+                container.appendChild(div);
+            }
+        }
+
+        window.toggleCustomShift = function(selectId, inputId) { 
+            const shiftVal = document.getElementById(selectId).value;
+            document.getElementById(inputId).classList.toggle('hidden', shiftVal !== 'Custom'); 
+            if (shiftVal && shiftVal !== 'Custom') {
+                const parts = shiftVal.split(':');
+                if (parts.length > 1) { document.getElementById('totalFee').value = parseFloat(parts[parts.length - 1].trim()) || ''; } 
+                else { document.getElementById('totalFee').value = ''; }
+            } else { document.getElementById('totalFee').value = ''; }
+        }
+
+        window.allotSeat = function() {
+            const seatNo = document.getElementById('seatNo').value.toUpperCase().trim(), name = document.getElementById('studentName').value;
+            if (!seatNo || !window.seatLayout.includes(seatNo)) return window.toast('⚠️ Invalid Seat Number.'); if (!name) return window.toast('⚠️ Name required');
+            let shift = document.getElementById('shift').value === 'Custom' ? document.getElementById('customShift').value : document.getElementById('shift').value;
+            
+            // --- CONFLICT PREVENTION LOGIC ---
+            const currentOccupants = DB.getOccupants(seatNo);
+            for (let o of currentOccupants) {
+                if (window.isShiftOverlap(o.shift, shift)) {
+                    return window.toast(`⚠️ Shift collision! ${o.name} is currently occupying: ${o.shift.split(':')[0]}`);
+                }
+            }
+            // ----------------------------------
+
+            const totalFee = parseFloat(document.getElementById('totalFee').value) || 0;
+            const paid = parseFloat(document.getElementById('initialAmount').value) || 0;
+            const dueAmount = totalFee - paid;
+
+            let initialPayments = []; 
+            if(paid > 0) initialPayments.push({ date: document.getElementById('admDate').value, amount: paid, mode: document.getElementById('initialMode').value });
+
+            DB.addStudent(seatNo, { 
+                id: Date.now().toString(), name, shift, phone: document.getElementById('phone').value || 'N/A', exam: document.getElementById('exam').value || 'General', 
+                admDate: document.getElementById('admDate').value, validDate: document.getElementById('validDate').value, 
+                dueAmount: dueAmount > 0 ? dueAmount : 0, payments: initialPayments
+            });
+            ['seatNo', 'studentName', 'phone', 'exam', 'admDate', 'validDate', 'initialAmount', 'totalFee', 'customShift'].forEach(id => document.getElementById(id).value = '');
+            window.switchTab('map'); window.toast(`🎉 ${name} allocated!`);
+        }
+
+        // Waitlist functions
+        window.addWaitlist = function() { const name = document.getElementById('waitName').value; if(!name) return window.toast('⚠️ Name required'); DB.waitlist.push({ id: Date.now().toString(), name, phone: document.getElementById('waitPhone').value || 'N/A', shift: document.getElementById('waitShift').value, date: new Date().toISOString().split('T')[0] }); DB.save(); document.getElementById('waitName').value = ''; document.getElementById('waitPhone').value = ''; window.renderWaitlist(); window.toast("Added to waitlist"); }
+        window.renderWaitlist = function() { const cont = document.getElementById('waitlistContainer'); cont.innerHTML = ''; if(!DB.waitlist || DB.waitlist.length === 0) { cont.innerHTML = '<div style="font-size:12px; color:var(--text-muted); text-align:center;">Waitlist is empty.</div>'; } (DB.waitlist || []).forEach(w => { cont.innerHTML += `<div class="list-item"><div><strong style="font-size:14px; display:block;">${w.name}</strong><div style="font-size:11px; color:var(--text-muted); margin-top:2px;">${w.phone} • ${w.shift}</div><div style="font-size:10px; color:var(--text-muted); margin-top:2px;">Listed: ${w.date}</div></div><div style="display:flex; flex-direction:column; gap:6px;"><button class="filter-btn" style="background:var(--primary); color:white; padding:6px 10px;" onclick="promoteWaitlist('${w.id}')">Allot</button><button class="filter-btn" style="background:transparent; border-color:var(--red); color:var(--red); padding:6px 10px;" onclick="removeWaitlist('${w.id}')">Remove</button></div></div>`; }); document.getElementById('waitBadge').innerText = (DB.waitlist || []).length; }
+        window.removeWaitlist = function(id) { DB.waitlist = DB.waitlist.filter(w => w.id !== id); DB.save(); window.renderWaitlist(); window.toast("Removed"); }
+        window.promoteWaitlist = function(id) { const s = DB.waitlist.find(w => w.id === id); if(s) { window.switchTab('add'); document.getElementById('studentName').value = s.name; document.getElementById('phone').value = s.phone !== 'N/A' ? s.phone : ''; document.getElementById('shift').value = s.shift; window.toggleCustomShift('shift','customShift'); window.removeWaitlist(id); window.toast("Fill seat to complete."); } }
+
+        // Finance records and Income grouping
+        window.switchFinView = function(view) {
+            document.getElementById('finIncomeView').classList.toggle('hidden', view !== 'income'); document.getElementById('finExpenseView').classList.toggle('hidden', view !== 'expense');
+            document.getElementById('btnShowIncome').classList.toggle('active', view === 'income'); document.getElementById('btnShowExpense').classList.toggle('active', view === 'expense');
+        }
+        window.addExpense = function() { const amt = document.getElementById('expAmount').value, date = document.getElementById('expDate').value, cat = document.getElementById('expCategory').value; if(!amt || !date || !cat) return window.toast("⚠️ Fill details"); DB.expenses.push({ id: Date.now().toString(), date, amount: parseFloat(amt), category: cat }); DB.save(); document.getElementById('expAmount').value = ''; document.getElementById('expCategory').value = ''; window.calculateFinances(); window.toast("Expense saved"); }
+        window.removeExpense = function(id) { DB.expenses = DB.expenses.filter(e => e.id !== id); DB.save(); window.calculateFinances(); }
+        
+        window.calculateFinances = function() {
+            const monthStr = document.getElementById('finMonth').value; if(!monthStr) return;
+            let totalIncome = 0, totalExpense = 0, totalDue = 0;
+            const incCont = document.getElementById('incomeLedgerContainer'); incCont.innerHTML = '';
+            const expCont = document.getElementById('expenseLedgerContainer'); expCont.innerHTML = '';
+            
+            let incomes = [];
+            for(let seatId of window.seatLayout) {
+                const occupants = DB.getOccupants(seatId);
+                occupants.forEach(s => { 
+                    if(s.payments) s.payments.forEach(p => { if(p.date.startsWith(monthStr)) { totalIncome += parseFloat(p.amount); incomes.push({ date: p.date, name: s.name, seat: seatId, amount: p.amount, mode: p.mode }); } }); 
+                    if(window.getStudentStatus(s) !== 'Paid') totalDue += (parseFloat(s.dueAmount) || 0);
+                });
+            }
+
+            // Group Incomes Date-wise
+            let groupedInc = {};
+            incomes.forEach(i => { if(!groupedInc[i.date]) groupedInc[i.date] = []; groupedInc[i.date].push(i); });
+            const sIncDates = Object.keys(groupedInc).sort((a,b) => new Date(b) - new Date(a));
+            if(sIncDates.length === 0) incCont.innerHTML = '<div style="font-size:12px; color:var(--text-muted); text-align:center;">No income recorded.</div>';
+            sIncDates.forEach(d => {
+                incCont.innerHTML += `<div class="date-header">${formatLedgerDate(d)}</div>`;
+                groupedInc[d].forEach(i => { incCont.innerHTML += `<div class="list-item"><div><strong style="font-size:13px; display:block;">${i.name} <span style="color:var(--text-muted); font-size:11px;">(Seat ${i.seat})</span></strong><div style="font-size:10px; color:var(--text-muted); margin-top:2px;">Mode: ${i.mode}</div></div><span style="color:var(--green); font-weight:700; font-size:14px;">+₹${i.amount}</span></div>`; });
+            });
+
+            // Group Expenses Date-wise
+            let monthlyExps = (DB.expenses || []).filter(e => e.date.startsWith(monthStr));
+            let groupedExp = {};
+            monthlyExps.forEach(e => { if(!groupedExp[e.date]) groupedExp[e.date] = []; groupedExp[e.date].push(e); totalExpense += parseFloat(e.amount); });
+            const sExpDates = Object.keys(groupedExp).sort((a,b) => new Date(b) - new Date(a));
+            if(sExpDates.length === 0) expCont.innerHTML = '<div style="font-size:12px; color:var(--text-muted); text-align:center;">No expenses recorded.</div>';
+            sExpDates.forEach(d => {
+                expCont.innerHTML += `<div class="date-header">${formatLedgerDate(d)}</div>`; // Just as a fallback header format
+                groupedExp[d].forEach(e => { expCont.innerHTML += `<div class="list-item"><div><strong style="font-size:13px; display:block;">${e.category}</strong></div><div style="display:flex; align-items:center; gap:10px;"><span style="color:var(--red); font-weight:700; font-size:14px;">-₹${e.amount}</span><button style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:16px;" onclick="removeExpense('${e.id}')">×</button></div></div>`; });
+            });
+
+            document.getElementById('finIncome').innerText = `₹${totalIncome}`; document.getElementById('finExpense').innerText = `₹${totalExpense}`; 
+            document.getElementById('finTotalDue').innerText = `₹${totalDue}`; document.getElementById('finProfit').innerText = `₹${totalIncome - totalExpense}`;
+        }
+
+        function formatLedgerDate(dateStr) {
+            const d = new Date(dateStr);
+            return d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        window.parseShiftString = function(text) {
+            const match = text.match(/^\s*(.*?)\s*\((.*?)\)\s*:\s*(.*?)\s*$/);
+            if (!match) return { name: text.trim(), time: '', fee: '' };
+            return { name: match[1].trim(), time: match[2].trim(), fee: match[3].trim() };
+        }
+
+        window.formatShiftString = function(name, time, fee) {
+            return `${name} (${time}) : ${fee}`;
+        }
+
+        window.addShiftRow = function(name = '', time = '', fee = '') {
+            const container = document.getElementById('cfgShiftRows');
+            const row = document.createElement('div');
+            row.className = 'shift-row';
+            row.style.display = 'flex';
+            row.style.gap = '10px';
+            row.style.alignItems = 'center';
+            row.innerHTML = `
+                <input type="text" class="app-input" placeholder="Shift Name" value="${name}" style="flex:3; min-width:0;">
+                <input type="text" class="app-input" placeholder="Timing" value="${time}" style="flex:3; min-width:0;">
+                <input type="number" class="app-input" placeholder="Fee" value="${fee}" style="flex:2; min-width:0;">
+                <button class="action-btn" type="button" style="background:var(--text-muted); padding:8px 10px; flex:1; min-width:0;" onclick="this.closest('.shift-row').remove()">✕</button>
+            `;
+            container.appendChild(row);
+        }
+
+        window.openSettingsModal = function() {
+            hideAllModalSections();
+            document.getElementById('cfgLibName').value = appConfig.libraryName || '';
+            document.getElementById('cfgTotalSeats').value = appConfig.totalSeats || 20;
+            document.getElementById('cfgCustomSeats').value = (appConfig.customSeats || []).join(', ');
+            const rows = document.getElementById('cfgShiftRows');
+            rows.innerHTML = '';
+            const currentShifts = appConfig.shifts || [];
+            if (currentShifts.length) {
+                currentShifts.forEach(s => {
+                    const parsed = window.parseShiftString(s);
+                    window.addShiftRow(parsed.name, parsed.time, parsed.fee);
+                });
+            } else {
+                window.addShiftRow('', '', '');
+            }
+            triggerModalAnimation('modalSettingsSection');
+            document.getElementById('detailsModal').style.display = 'flex';
+        }
+
+        window.saveSettings = function() {
+            appConfig.libraryName = document.getElementById('cfgLibName').value.trim() || "Library Management";
+            appConfig.totalSeats = parseInt(document.getElementById('cfgTotalSeats').value) || 20;
+            appConfig.customSeats = document.getElementById('cfgCustomSeats').value.split(',').map(s => s.trim().toUpperCase()).filter(s => s);
+
+            const shifts = [];
+            document.querySelectorAll('#cfgShiftRows .shift-row').forEach(row => {
+                const inputs = row.querySelectorAll('input');
+                const name = inputs[0].value.trim();
+                const time = inputs[1].value.trim();
+                const fee = inputs[2].value.trim();
+                if (!name && !time && !fee) return;
+                if (!name || !time || !fee) {
+                    return window.toast('⚠️ Please fill all shift fields or remove the empty row.');
+                }
+                shifts.push(window.formatShiftString(name, time, fee));
+            });
+
+            appConfig.shifts = shifts;
+            DB.save();
+            document.getElementById('appTitle').innerText = appConfig.libraryName;
+            window.initializeAppStructure();
+            window.renderSeats();
+            window.closeModal();
+            window.toast('✅ Settings applied!');
+        }
+
+        function hideAllModalSections() { ['modalListSection', 'modalViewSection', 'modalEditSection', 'modalPaySection', 'modalSettingsSection'].forEach(id => { const el = document.getElementById(id); if(el) { el.classList.add('hidden'); el.classList.remove('modal-animate'); } }); }
+        function triggerModalAnimation(sectionId) { const el = document.getElementById(sectionId); el.classList.remove('hidden'); void el.offsetWidth; el.classList.add('modal-animate'); }
+        
+        window.handleSeatClick = function(seatNo) { window.activeSeatNo = seatNo; const occupants = DB.getOccupants(seatNo); if(occupants.length === 1) window.openStudentProfile(occupants[0].id); else window.showListMenu(); document.getElementById('detailsModal').style.display = 'flex'; }
+        
+        window.showListMenu = function() {
+            hideAllModalSections(); document.getElementById('listSeatNo').innerText = window.activeSeatNo;
+            const listCont = document.getElementById('occupantsContainer'); listCont.innerHTML = '';
+            DB.getOccupants(window.activeSeatNo).forEach(s => { 
+                const st = window.getStudentStatus(s); let badgeColor = st === 'Expired' ? 'var(--red)' : (st === 'Due' ? 'var(--orange)' : 'var(--green)');
+                let badgeText = st + (s.dueAmount > 0 ? ` (₹${s.dueAmount})` : '');
+                listCont.innerHTML += `<div class="list-item" style="cursor:pointer;" onclick="openStudentProfile('${s.id}')"><div><strong style="display:block; font-size:14px;">${s.name}</strong><div style="font-size:11px; color:var(--text-muted); margin-top:2px;">${s.shift}</div></div><span class="badge" style="background:${badgeColor};">${badgeText}</span></div>`; 
+            });
+            triggerModalAnimation('modalListSection');
+        }
+
+        window.openStudentProfile = function(studentId) {
+            window.activeStudentId = studentId; hideAllModalSections(); window.isDeleteConfirmStep = false;
+            const rmvBtn = document.getElementById('btnRemoveStudent'); if(rmvBtn) { rmvBtn.innerText = "Remove"; rmvBtn.style.background = "var(--red)"; }
+            const student = DB.getOccupants(window.activeSeatNo).find(s => s.id === studentId);
+            document.getElementById('modSeatTitle').innerText = window.activeSeatNo;
+            ['Name','Phone','Shift','Exam','Date','Valid'].forEach(k => document.getElementById('mod'+k).innerText = student[k.toLowerCase() === 'date' ? 'admDate' : k.toLowerCase() === 'valid' ? 'validDate' : k.toLowerCase()] || 'N/A');
+            
+            const st = window.getStudentStatus(student);
+            const feeEl = document.getElementById('modFee'); 
+            feeEl.innerText = st + (parseFloat(student.dueAmount) > 0 ? ` (Due: ₹${student.dueAmount})` : ''); 
+            feeEl.style.background = st === 'Expired' ? 'var(--red)' : (st === 'Due' ? 'var(--orange)' : 'var(--green)');
+            
+            const ledger = document.getElementById('paymentLedger'); ledger.innerHTML = '';
+            if(!student.payments || student.payments.length === 0) ledger.innerHTML = '<div style="font-size:11px; color:var(--text-muted); text-align:center;">No history.</div>';
+            else { [...student.payments].reverse().forEach(p => { ledger.innerHTML += `<div class="info-row"><div style="font-size:11px;"><strong style="color:var(--text-main); display:block;">${p.date}</strong>${p.mode}</div><div style="color:var(--green); font-weight:700;">₹${p.amount}</div></div>`; }); }
+            const btnBack = document.getElementById('btnViewBack'); if(DB.getOccupants(window.activeSeatNo).length > 1) { btnBack.innerHTML = "Back"; btnBack.onclick = window.backToListOrClose; } else { btnBack.innerHTML = "Close"; btnBack.onclick = window.closeModal; }
+            triggerModalAnimation('modalViewSection');
+        }
+
+        window.backToListOrClose = function() { if(DB.getOccupants(window.activeSeatNo).length > 1) window.showListMenu(); else window.closeModal(); }
+        window.closeModal = function() { document.getElementById('detailsModal').style.display = 'none'; window.activeSeatNo = null; window.activeStudentId = null; }
+        window.addAnotherToSeat = function() { const seat = window.activeSeatNo; window.closeModal(); window.switchTab('add'); document.getElementById('seatNo').value = seat; }
+        
+        window.showEditForm = function() { 
+            hideAllModalSections(); const student = DB.getOccupants(window.activeSeatNo).find(s => s.id === window.activeStudentId); 
+            ['Name','Phone','Exam','AdmDate','ValidDate','Shift'].forEach(k => document.getElementById('edit'+k).value = student[k.charAt(0).toLowerCase() + k.slice(1)] || ''); 
+            document.getElementById('editDueAmount').value = student.dueAmount !== undefined ? student.dueAmount : (student.feeStatus === 'Due' ? '' : 0);
+            triggerModalAnimation('modalEditSection'); 
+        }
+        window.saveEdit = function() { 
+            const d = {}; ['Name','Phone','Exam','AdmDate','ValidDate','Shift'].forEach(k => d[k.charAt(0).toLowerCase() + k.slice(1)] = document.getElementById('edit'+k).value); 
+            
+            // --- CONFLICT PREVENTION LOGIC IN EDIT ---
+            const currentOccupants = DB.getOccupants(window.activeSeatNo);
+            for (let o of currentOccupants) {
+                if (o.id === window.activeStudentId) continue; // Skip self
+                if (window.isShiftOverlap(o.shift, d.shift)) {
+                    return window.toast(`⚠️ Shift collision! ${o.name} is currently occupying: ${o.shift.split(':')[0]}`);
+                }
+            }
+            // ------------------------------------------
+
+            d.dueAmount = parseFloat(document.getElementById('editDueAmount').value) || 0;
+            DB.updateStudent(window.activeSeatNo, window.activeStudentId, d); window.toast("Updated"); window.renderSeats(); window.calculateFinances(); window.openStudentProfile(window.activeStudentId); 
+        }
+        window.cancelEdit = function() { window.openStudentProfile(window.activeStudentId); }
+        
+        window.showPaymentForm = function() { 
+            hideAllModalSections(); const student = DB.getOccupants(window.activeSeatNo).find(s => s.id === window.activeStudentId); 
+            document.getElementById('payStudentName').innerText = student.name; 
+            document.getElementById('payDate').value = new Date().toISOString().split('T')[0]; document.getElementById('payAmount').value = ''; 
+            document.getElementById('payValidDate').value = student.validDate || ''; 
+            
+            let currentDue = student.dueAmount !== undefined ? parseFloat(student.dueAmount) : (student.feeStatus === 'Due' ? 0 : 0);
+            document.getElementById('payNewDue').value = currentDue;
+            document.getElementById('payAmount').oninput = (e) => {
+                let p = parseFloat(e.target.value) || 0;
+                let nd = currentDue - p;
+                document.getElementById('payNewDue').value = nd > 0 ? nd : 0;
+            };
+            triggerModalAnimation('modalPaySection'); 
+        }
+        window.hidePaymentForm = function() { window.openStudentProfile(window.activeStudentId); }
+        window.savePayment = function() { 
+            const amt = document.getElementById('payAmount').value; if(!amt && amt !== '0') return window.toast('⚠️ Enter amount'); 
+            const newDue = parseFloat(document.getElementById('payNewDue').value) || 0;
+            DB.addPayment(window.activeSeatNo, window.activeStudentId, { date: document.getElementById('payDate').value, amount: amt, mode: document.getElementById('payMode').value }, document.getElementById('payValidDate').value, newDue); 
+            window.toast('Payment Saved'); window.renderSeats(); window.calculateFinances(); window.openStudentProfile(window.activeStudentId); 
+        }
+        
+        window.freeStudentSlot = function() {
+            const btn = document.getElementById('btnRemoveStudent');
+            if (!window.isDeleteConfirmStep) { window.isDeleteConfirmStep = true; btn.innerText = "Tap Again to Delete"; btn.style.background = "#991b1b"; setTimeout(() => { if (window.isDeleteConfirmStep) { window.isDeleteConfirmStep = false; btn.innerText = "Remove"; btn.style.background = "var(--red)"; } }, 4000); return; }
+            DB.removeStudent(window.activeSeatNo, window.activeStudentId); window.renderSeats(); window.calculateFinances(); window.toast(`🗑️ Removed.`); window.isDeleteConfirmStep = false; btn.innerText = "Remove"; btn.style.background = "var(--red)";
+            if(DB.getOccupants(window.activeSeatNo).length > 0) window.showListMenu(); else window.closeModal();
+        }
+
+        window.exportData = function() { const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ config: appConfig, seatsData: DB.seatsData, expenses: DB.expenses, waitlist: DB.waitlist })); const a = document.createElement('a'); a.href = dataStr; a.download = `LibraryManagement_Backup_${new Date().toISOString().split('T')[0]}.json`; document.body.appendChild(a); a.click(); a.remove(); window.toast("📥 Downloaded!"); }
+        window.importData = function(input) { const reader = new FileReader(); reader.onload = function() { try { const obj = JSON.parse(reader.result); if(obj.config) { appConfig = obj.config; DB.seatsData = obj.seatsData || {}; DB.expenses = obj.expenses || []; DB.waitlist = obj.waitlist || []; } else { DB.seatsData = obj; } DB.save(); document.getElementById('appTitle').innerText = appConfig.libraryName; window.initializeAppStructure(); window.renderSeats(); window.renderWaitlist(); window.calculateFinances(); window.closeModal(); window.toast("📤 Restored!"); } catch(e) { window.toast("⚠️ Read Error"); } }; if(input.files[0]) reader.readAsText(input.files[0]); }
+    </script>
+</body>
+</html>
