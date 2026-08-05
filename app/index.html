@@ -557,7 +557,7 @@
         <div id="seatMapTab" class="animate-in">
             <div class="glass-panel" style="padding:14px; margin-bottom: 12px;">
                 <div class="flex-row" style="margin-bottom:10px;">
-                    <input type="text" id="searchExam" class="app-input search-box" style="margin-bottom:0; padding:10px 14px; flex: 1;" placeholder="Search Exam..." oninput="applyFilters()">
+                    <input type="text" id="searchName" class="app-input search-box" style="margin-bottom:0; padding:10px 14px; flex: 1;" placeholder="Search Name..." oninput="applyFilters()">
                     <select id="shiftFilter" class="app-input search-box" style="margin-bottom:0; padding:10px 14px; flex: 1;" onchange="applyFilters()">
                         <option value="all">All Shifts</option>
                     </select>
@@ -915,7 +915,7 @@
 
         window.renderSeats = function() {
             const container = document.getElementById('seatsContainer'); if(!container) return; container.innerHTML = ''; updateDashboard();
-            const examQuery = document.getElementById('searchExam').value.toLowerCase(); const selectedShift = document.getElementById('shiftFilter').value;
+            const nameQuery = document.getElementById('searchName').value.toLowerCase(); const selectedShift = document.getElementById('shiftFilter').value;
 
             for (let seatId of window.seatLayout) {
                 const allOccupants = DB.getOccupants(seatId); 
@@ -930,7 +930,7 @@
                     const st = window.getStudentStatus(s);
                     if (st === 'Expired') hasExpired = true; else if (st === 'Due') hasDue = true;
                     if (checkExpiry(s.validDate) === 'warn' && st !== 'Expired') hasWarn = true;
-                    if (!examQuery || (s.exam && s.exam.toLowerCase().includes(examQuery))) hasMatch = true;
+                    if (!nameQuery || (s.name && s.name.toLowerCase().includes(nameQuery))) hasMatch = true;
                 });
 
                 // Check genuine availability to avoid collision rendering
@@ -947,7 +947,7 @@
                 if (window.currentFilter === 'due' && !hasDue) continue;
                 if (window.currentFilter === 'warn' && !hasWarn) continue;
                 if (window.currentFilter === 'expired' && !hasExpired) continue;
-                if (occupants.length > 0 && examQuery && !hasMatch) continue;
+                if (occupants.length > 0 && nameQuery && !hasMatch) continue;
 
                 const div = document.createElement('div');
                 if (window.currentFilter === 'free' && isAvailableForSelected) {
