@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Library Management App - Smart Library Management</title>
 
-    <!-- === SEO & GOOGLE SEARCH SNIPPET TAGS (ADDED) === -->
+    <!-- === SEO & GOOGLE SEARCH SNIPPET TAGS === -->
     <meta name="description" content="Library Management App is a premium, smart library and reading room management software. Streamline seat allocations, track admissions, manage waitlists, and monitor finances in one centralized dashboard." />
     <meta name="keywords" content="library management, reading room software, seat allocation, user management, finance tracker" />
     <meta name="author" content="Library Management" />
     <meta name="robots" content="index, follow" />
     
-    <!-- Open Graph / Social Media Meta Tags (Improves link sharing on WhatsApp, Twitter, etc.) -->
+    <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Library Management App - Smart Library Management" />
     <meta property="og:description" content="Streamline seat allocations, track admissions, manage waitlists, and monitor your finances in one centralized dashboard." />
     <meta property="og:type" content="website" />
@@ -23,7 +23,7 @@
     <link rel="shortcut icon" href="fevicon.png" type="image/png">
     
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Driver.js CSS & Script for App Tour -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"/>
@@ -36,109 +36,212 @@
 
     <style>
         :root {
-            --bg-grad: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
-            --glass-bg: rgba(255, 255, 255, 0.4);
-            --glass-input-bg: rgba(255, 255, 255, 0.6);
-            --glass-border: rgba(255, 255, 255, 0.6);
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-            --modal-bg: rgba(255, 255, 255, 0.95);
-            --modal-card-bg: rgba(240, 244, 248, 0.8);
-            --modal-border: rgba(255, 255, 255, 1);
+            /* Ambient Aurora Mesh Gradient matching reference image */
+            --bg-grad: 
+                radial-gradient(at 10% 15%, rgba(192, 132, 252, 0.45) 0px, transparent 55%),
+                radial-gradient(at 90% 20%, rgba(251, 146, 60, 0.4) 0px, transparent 55%),
+                radial-gradient(at 50% 50%, rgba(244, 114, 182, 0.35) 0px, transparent 55%),
+                radial-gradient(at 15% 85%, rgba(129, 140, 248, 0.4) 0px, transparent 55%),
+                radial-gradient(at 85% 85%, rgba(253, 186, 116, 0.35) 0px, transparent 55%),
+                linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
             
-            --text-main: #1e293b; --text-muted: #64748b;
-            --primary: #2563eb; --green: #10b981; --orange: #f59e0b; --red: #ef4444; --yellow: #eab308;
+            --glass-bg: rgba(255, 255, 255, 0.55);
+            --glass-input-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --glass-shadow: 0 12px 32px 0 rgba(31, 38, 135, 0.07), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+            --modal-bg: rgba(255, 255, 255, 0.88);
+            --modal-card-bg: rgba(248, 250, 252, 0.85);
+            --modal-border: rgba(255, 255, 255, 0.9);
+            
+            --text-main: #0f172a; 
+            --text-muted: #64748b;
+            --primary: #0f172a; 
+            --primary-accent: #2563eb;
+            --green: #10b981; 
+            --orange: #f59e0b; 
+            --red: #ef4444; 
+            --yellow: #eab308;
         }
 
         .dark-theme {
-            --bg-grad: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-            --glass-bg: rgba(15, 23, 42, 0.55);
-            --glass-input-bg: rgba(0, 0, 0, 0.3);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-            --modal-bg: rgba(15, 23, 42, 0.95);
-            --modal-card-bg: rgba(0, 0, 0, 0.4);
-            --modal-border: rgba(255, 255, 255, 0.1);
+            --bg-grad: 
+                radial-gradient(at 15% 15%, rgba(168, 85, 247, 0.25) 0px, transparent 55%),
+                radial-gradient(at 85% 20%, rgba(249, 115, 22, 0.2) 0px, transparent 55%),
+                radial-gradient(at 50% 50%, rgba(236, 72, 153, 0.2) 0px, transparent 55%),
+                radial-gradient(at 20% 80%, rgba(59, 130, 246, 0.25) 0px, transparent 55%),
+                linear-gradient(135deg, #090d16 0%, #0f172a 100%);
+            
+            --glass-bg: rgba(15, 23, 42, 0.65);
+            --glass-input-bg: rgba(0, 0, 0, 0.35);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+            --modal-bg: rgba(15, 23, 42, 0.92);
+            --modal-card-bg: rgba(0, 0, 0, 0.45);
+            --modal-border: rgba(255, 255, 255, 0.12);
 
-            --text-main: #f8fafc; --text-muted: #94a3b8;
-            --primary: #3b82f6; --green: #10b981; --orange: #f59e0b; --red: #ef4444; --yellow: #eab308;
+            --text-main: #f8fafc; 
+            --text-muted: #94a3b8;
+            --primary: #ffffff;
+            --primary-accent: #3b82f6;
+            --green: #10b981; 
+            --orange: #f59e0b; 
+            --red: #ef4444; 
+            --yellow: #eab308;
         }
 
-        body { font-family: 'Poppins', sans-serif; background: var(--bg-grad); background-attachment: fixed; color: var(--text-main); margin: 0; padding: 10px 10px 60px 10px; transition: background 0.4s ease, color 0.4s ease; min-height: 100vh; }
+        body { 
+            font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif; 
+            background: var(--bg-grad); 
+            background-attachment: fixed; 
+            color: var(--text-main); 
+            margin: 0; 
+            padding: 16px 16px 60px 16px; 
+            transition: background 0.4s ease, color 0.4s ease; 
+            min-height: 100vh; 
+            box-sizing: border-box;
+        }
 
         /* --- DESKTOP CENTERING --- */
         @media (min-width: 768px) {
-            #addSeatTab, #waitlistTab, #financeTab { max-width: 750px; margin: 0 auto; }
+            #addSeatTab, #waitlistTab, #financeTab, #seatMapTab, header, .dashboard, .tab-container { 
+                max-width: 800px; 
+                margin-left: auto; 
+                margin-right: auto; 
+            }
         }
 
         /* --- AUTHENTICATION SCREEN --- */
         #authScreen {
-        position: fixed; 
-        top: 0; 
-        left: 0; 
-        width: 100%; 
-        height: 100%; 
-        z-index: 9999;
-    
-        /* Deep slate base matching your main website's premium feel */
-        background-color: #7e8a91; 
-    
-    /* Subtle, sophisticated radial glows instead of harsh colors */
-    background-image:
-        radial-gradient(circle at 10% 10%, rgba(30, 41, 59, 0.8) 0%, transparent 40%),
-        radial-gradient(circle at 90% 90%, rgba(20, 184, 166, 0.08) 0%, transparent 40%); 
-        
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center;
-    overflow-y: auto; 
-    padding: 20px; 
-    box-sizing: border-box;
-    
-    /* Ensures any text directly inside the screen uses a clean, modern font */
-    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, sans-serif;
-    color: #f8fafc;
-}
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: 9999;
+            background: var(--bg-grad); 
+            background-attachment: fixed;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
+            overflow-y: auto; 
+            padding: 20px; 
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-main);
+        }
 
         @media (min-width: 640px) {
             #authScreen { padding: 20px; }
         }
 
-        .auth-brand-logo { display: flex; align-items: center; gap: 8px; color: white; font-size: 22px; font-weight: 700; margin-bottom: 25px; z-index: 10; letter-spacing: 1px; }
+        .auth-brand-logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            color: var(--text-main); 
+            font-size: 16px; 
+            font-weight: 600; 
+            margin-bottom: 25px; 
+            z-index: 10; 
+            letter-spacing: -0.2px; 
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            padding: 10px 22px;
+            border-radius: 9999px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
         
-        .auth-card-modern { background: #ffffff; border-radius: 20px; padding: 20px; width: 100%; max-width: 420px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); text-align: center; z-index: 10; box-sizing: border-box; transition: max-width 0.3s ease; }
+        .auth-card-modern { 
+            background: var(--glass-bg); 
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px; 
+            padding: 28px; 
+            width: 100%; 
+            max-width: 420px; 
+            box-shadow: var(--glass-shadow); 
+            text-align: center; 
+            z-index: 10; 
+            box-sizing: border-box; 
+            transition: max-width 0.3s ease; 
+        }
         
         @media (min-width: 640px) {
-            .auth-card-modern { padding: 40px; border-radius: 24px; }
+            .auth-card-modern { padding: 40px; border-radius: 28px; }
         }
 
-        .auth-card-modern h2 { color: #1e293b; font-size: 24px; font-weight: 700; margin-top: 0; margin-bottom: 8px; }
-        .auth-card-modern p { color: #94a3b8; font-size: 13px; margin-top: 0; margin-bottom: 30px; font-weight: 500; }
+        .auth-card-modern h2 { color: var(--text-main); font-size: 24px; font-weight: 700; margin-top: 0; margin-bottom: 8px; letter-spacing: -0.5px; }
+        .auth-card-modern p { color: var(--text-muted); font-size: 13px; margin-top: 0; margin-bottom: 28px; font-weight: 500; }
         
         .auth-input-group { text-align: left; margin-bottom: 16px; }
-        .auth-input-group label { display: block; font-size: 12px; color: #1e293b; font-weight: 600; margin-bottom: 8px; }
-        .auth-input-modern { width: 100%; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; color: #1e293b; background: #ffffff; outline: none; transition: all 0.2s; box-sizing: border-box; }
-        .auth-input-modern::placeholder { color: #cbd5e1; }
-        .auth-input-modern:focus { border-color: #6366f1; }
+        .auth-input-group label { display: block; font-size: 12px; color: var(--text-main); font-weight: 600; margin-bottom: 8px; }
+        .auth-input-modern { 
+            width: 100%; 
+            padding: 12px 16px; 
+            border: 1px solid var(--glass-border); 
+            border-radius: 12px; 
+            font-size: 13px; 
+            color: var(--text-main); 
+            background: var(--glass-input-bg); 
+            outline: none; 
+            transition: all 0.2s; 
+            box-sizing: border-box; 
+            backdrop-filter: blur(10px);
+        }
+        .auth-input-modern::placeholder { color: var(--text-muted); opacity: 0.7; }
+        .auth-input-modern:focus { border-color: var(--primary-accent); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
         
         .password-wrapper { position: relative; display: flex; align-items: center; }
         .password-wrapper input { padding-right: 40px; }
-        .password-toggle { position: absolute; right: 12px; color: #94a3b8; cursor: pointer; width: 18px; height: 18px; transition: color 0.2s; }
-        .password-toggle:hover { color: #6366f1; }
+        .password-toggle { position: absolute; right: 12px; color: var(--text-muted); cursor: pointer; width: 18px; height: 18px; transition: color 0.2s; }
+        .password-toggle:hover { color: var(--text-main); }
         
-        .btn-primary { width: 100%; background: #5b68df; color: #fff; padding: 14px; border-radius: 8px; border: none; font-weight: 600; font-size: 14px; cursor: pointer; transition: background 0.2s; margin-top: 5px; }
-        .btn-primary:hover { background: #4a56c4; }
-        .btn-google { width: 100%; background: #fff; color: #475569; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-weight: 600; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; transition: background 0.2s; }
-        .btn-google:hover { background: #f8fafc; }
-        .auth-bottom-text { margin-top: 25px; font-size: 12px; color: #64748b; font-weight: 500; }
-        .auth-bottom-text span { color: #5b68df; font-weight: 600; cursor: pointer; transition: color 0.2s; }
-
+        .btn-primary { 
+            width: 100%; 
+            background: var(--primary); 
+            color: var(--modal-bg); 
+            padding: 14px; 
+            border-radius: 9999px; 
+            border: none; 
+            font-weight: 600; 
+            font-size: 14px; 
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+            margin-top: 5px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .btn-primary:hover { transform: translateY(-1px); opacity: 0.92; }
+        .btn-google { 
+            width: 100%; 
+            background: var(--glass-input-bg); 
+            color: var(--text-main); 
+            padding: 12px; 
+            border-radius: 9999px; 
+            border: 1px solid var(--glass-border); 
+            font-weight: 600; 
+            font-size: 14px; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 10px; 
+            margin-top: 15px; 
+            transition: all 0.2s ease; 
+            backdrop-filter: blur(10px);
+        }
+        .btn-google:hover { background: var(--glass-bg); transform: translateY(-1px); }
+        .auth-bottom-text { margin-top: 25px; font-size: 12px; color: var(--text-muted); font-weight: 500; }
+        .auth-bottom-text span { color: var(--primary-accent); font-weight: 600; cursor: pointer; transition: color 0.2s; }
 
         @media (max-width: 768px) {
             #authScreen {
-                justify-content: center; /* Center vertically */
-                align-items: center; /* Center horizontally */
-                padding: 15px; /* Standard outer margins */
+                justify-content: center;
+                align-items: center;
+                padding: 15px;
             }
             .auth-brand-logo { margin-bottom: 20px; margin-top: 0; padding-top: 0; }
             .auth-card-modern {
@@ -150,84 +253,210 @@
                 margin-bottom: 0;
                 max-height: 90vh;
                 overflow-y: auto;
-                border-bottom: none;
             }
         }
 
-
         /* --- MAIN APP LAYOUT STYLES --- */
-        @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes modalPop { from { opacity: 0; transform: scale(0.92) translateY(15px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-        .animate-in { animation: fadeSlideUp 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
-        .modal-animate { animation: modalPop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes modalPop { from { opacity: 0; transform: scale(0.94) translateY(15px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .animate-in { animation: fadeSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .modal-animate { animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
-        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 0 5px; }
-        h2 { margin: 0; font-weight: 700; font-size: 20px; letter-spacing: -0.5px;}
-        .glass-panel { background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow); border-radius: 16px; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding: 0 4px; }
+        h2 { margin: 0; font-weight: 700; font-size: 22px; letter-spacing: -0.5px; color: var(--text-main);}
+        
+        .glass-panel { 
+            background: var(--glass-bg); 
+            backdrop-filter: blur(24px) saturate(180%); 
+            -webkit-backdrop-filter: blur(24px) saturate(180%); 
+            border: 1px solid var(--glass-border); 
+            box-shadow: var(--glass-shadow); 
+            border-radius: 22px; 
+        }
 
-        .utility-bar { display: flex; gap: 8px; align-items: center; }
-        .icon-btn { border: 1px solid var(--glass-border); background: var(--glass-bg); color: var(--text-main); padding: 6px; cursor: pointer; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); transition: all 0.2s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .icon-btn:hover { transform: scale(1.05); background: var(--glass-input-bg); }
+        .utility-bar { display: flex; gap: 10px; align-items: center; }
+        .icon-btn { 
+            border: 1px solid var(--glass-border); 
+            background: var(--glass-bg); 
+            color: var(--text-main); 
+            padding: 6px; 
+            cursor: pointer; 
+            border-radius: 50%; 
+            width: 40px; 
+            height: 40px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            backdrop-filter: blur(16px); 
+            transition: all 0.2s ease; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04); 
+        }
+        .icon-btn:hover { transform: scale(1.08); background: var(--glass-input-bg); }
 
-        .dashboard { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 15px; padding: 12px; }
-        .stat-card { text-align: center; font-size: 11px; font-weight: 600; padding: 8px 4px; border-radius: 12px; background: var(--glass-input-bg); border: 1px solid var(--glass-border); display: flex; flex-direction: column; justify-content: center;}
-        .stat-card .num { font-size: 20px; font-weight: 700; display: block; margin-top: 2px; }
+        .dashboard { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; padding: 14px; }
+        .stat-card { 
+            text-align: center; 
+            font-size: 11px; 
+            font-weight: 600; 
+            padding: 12px 6px; 
+            border-radius: 16px; 
+            background: var(--glass-input-bg); 
+            border: 1px solid var(--glass-border); 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        .stat-card .num { font-size: 22px; font-weight: 700; display: block; margin-top: 4px; letter-spacing: -0.5px;}
 
-        .tab-container { display: flex; gap: 8px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none;}
+        .tab-container { display: flex; gap: 8px; margin-bottom: 18px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none;}
         .tab-container::-webkit-scrollbar { display: none; }
-        .tab-btn { flex: 1; min-width: max-content; padding: 12px 15px; border: 1px solid var(--glass-border); font-size: 13px; font-weight: 600; background: var(--glass-bg); color: var(--text-main); border-radius: 12px; cursor: pointer; backdrop-filter: blur(10px); transition: all 0.2s ease; display:flex; gap:6px; align-items:center; justify-content:center;}
-        .tab-btn.active { background: rgba(255,255,255,0.7); box-shadow: inset 0 2px 5px rgba(0,0,0,0.05); color: var(--primary); border-color: var(--primary);}
-        .dark-theme .tab-btn.active { background: rgba(0,0,0,0.7); border-color: var(--primary);}
+        .tab-btn { 
+            flex: 1; 
+            min-width: max-content; 
+            padding: 10px 18px; 
+            border: 1px solid var(--glass-border); 
+            font-size: 13px; 
+            font-weight: 600; 
+            background: var(--glass-bg); 
+            color: var(--text-main); 
+            border-radius: 9999px; 
+            cursor: pointer; 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            transition: all 0.2s ease; 
+            display:flex; 
+            gap:6px; 
+            align-items:center; 
+            justify-content:center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .tab-btn.active { 
+            background: var(--primary); 
+            color: var(--modal-bg); 
+            border-color: var(--primary);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
 
-        .search-box { width: 100%; padding: 12px 15px; border: 1px solid var(--glass-border); outline: none; background: var(--glass-input-bg); color: var(--text-main); border-radius: 12px; margin-bottom: 12px; box-sizing: border-box; }
-        .filter-btn-group { display: flex; flex-wrap: wrap; gap: 6px; }
-        .filter-btn { border: 1px solid var(--glass-border); padding: 6px 12px; font-size: 11px; font-weight: 600; background: var(--glass-bg); color: var(--text-main); border-radius: 20px; cursor: pointer; transition: all 0.2s; }
+        .search-box { 
+            width: 100%; 
+            padding: 12px 16px; 
+            border: 1px solid var(--glass-border); 
+            outline: none; 
+            background: var(--glass-input-bg); 
+            color: var(--text-main); 
+            border-radius: 14px; 
+            margin-bottom: 12px; 
+            box-sizing: border-box; 
+            font-family: inherit;
+        }
+        .filter-btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
+        .filter-btn { 
+            border: 1px solid var(--glass-border); 
+            padding: 7px 15px; 
+            font-size: 11px; 
+            font-weight: 600; 
+            background: var(--glass-bg); 
+            color: var(--text-main); 
+            border-radius: 9999px; 
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+            backdrop-filter: blur(12px);
+        }
         .filter-btn:hover { background: var(--glass-input-bg); }
-        .filter-btn.active { background: var(--primary); color: white; border-color: transparent; }
+        .filter-btn.active { background: var(--primary); color: var(--modal-bg); border-color: transparent; }
 
-        label.app-label { font-size: 13px; font-weight: 600; display: block; margin-top: 12px; margin-bottom: 4px; color: var(--text-main); }
-        .app-input { width: 100%; padding: 12px; border: 1px solid var(--glass-border); outline: none; background: var(--glass-input-bg); color: var(--text-main); border-radius: 10px; font-size: 13px; box-sizing: border-box; }
-        .action-btn { width: 100%; padding: 14px; margin-top: 15px; border: none; border-radius: 10px; background: var(--primary); color: white; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.2s ease; display: flex; justify-content: center; align-items: center; gap: 6px; }
-        .action-btn:active { transform: scale(0.96); }
+        label.app-label { font-size: 13px; font-weight: 600; display: block; margin-top: 14px; margin-bottom: 6px; color: var(--text-main); }
+        .app-input { 
+            width: 100%; 
+            padding: 12px 14px; 
+            border: 1px solid var(--glass-border); 
+            outline: none; 
+            background: var(--glass-input-bg); 
+            color: var(--text-main); 
+            border-radius: 12px; 
+            font-size: 13px; 
+            box-sizing: border-box; 
+            font-family: inherit;
+            backdrop-filter: blur(10px);
+        }
+        .action-btn { 
+            width: 100%; 
+            padding: 14px; 
+            margin-top: 16px; 
+            border: none; 
+            border-radius: 9999px; 
+            background: var(--primary); 
+            color: var(--modal-bg); 
+            font-size: 14px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12); 
+            transition: all 0.2s ease; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 6px; 
+        }
+        .action-btn:active { transform: scale(0.98); }
 
         /* --- VISUAL CHAIR LAYOUT GRID --- */
-        .seat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 8px; margin-top:15px;}
-        .seat { aspect-ratio: 1/1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; font-weight: 600; font-size: 14px; cursor: pointer; border: 1px solid var(--glass-border); background: var(--glass-bg); border-radius: 12px; padding: 4px; box-sizing: border-box; transition: transform 0.2s;}
+        .seat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)); gap: 10px; margin-top:18px;}
+        .seat { 
+            aspect-ratio: 1/1; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: flex-start; 
+            font-weight: 600; 
+            font-size: 14px; 
+            cursor: pointer; 
+            border: 1px solid var(--glass-border); 
+            background: var(--glass-bg); 
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 18px; 
+            padding: 6px; 
+            box-sizing: border-box; 
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .seat:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
         .seat.free { color: var(--green); border: 1px solid rgba(16, 185, 129, 0.4); justify-content: center;}
-        .seat.allotted { background: rgba(37, 99, 235, 0.15); color: var(--primary); font-size: 12px; border: 1px solid var(--primary); }
-        .seat.due-alert { background: rgba(245, 158, 11, 0.15); color: var(--orange); border-color: var(--orange); }
-        .seat.warn-alert { background: rgba(234, 179, 8, 0.15); color: var(--yellow); border-color: var(--yellow); animation: pulse-yellow 2.5s infinite; }
-        .seat.expired-alert { background: rgba(239, 68, 68, 0.15); color: var(--red); border-color: var(--red); animation: pulse-red 2s infinite; }
-        .seat-number { font-size: 14px; font-weight: 700; margin-bottom: 2px;}
+        .seat.allotted { background: rgba(37, 99, 235, 0.12); color: var(--primary-accent); font-size: 12px; border: 1px solid rgba(37, 99, 235, 0.4); }
+        .seat.due-alert { background: rgba(245, 158, 11, 0.12); color: var(--orange); border-color: rgba(245, 158, 11, 0.4); }
+        .seat.warn-alert { background: rgba(234, 179, 8, 0.12); color: var(--yellow); border-color: rgba(234, 179, 8, 0.4); animation: pulse-yellow 2.5s infinite; }
+        .seat.expired-alert { background: rgba(239, 68, 68, 0.12); color: var(--red); border-color: rgba(239, 68, 68, 0.4); animation: pulse-red 2s infinite; }
+        .seat-number { font-size: 15px; font-weight: 700; margin-bottom: 2px;}
         .seat-name { font-size: 9px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%; text-align: center; color: var(--text-main); font-weight: 500;}
 
         /* Finance & Lists UI */
-        .finance-card { background: var(--glass-input-bg); border: 1px solid var(--glass-border); border-radius: 12px; padding: 15px; margin-bottom: 15px; }
-        .fin-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top:10px; }
-        .fin-box { padding: 12px; border-radius: 10px; text-align: center; border: 1px solid rgba(0,0,0,0.05); }
+        .finance-card { background: var(--glass-input-bg); border: 1px solid var(--glass-border); border-radius: 18px; padding: 18px; margin-bottom: 16px; }
+        .fin-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top:12px; }
+        .fin-box { padding: 12px; border-radius: 14px; text-align: center; border: 1px solid rgba(0,0,0,0.05); }
         .fin-val { font-size: 18px; font-weight: 700; display: block; margin-top: 4px; }
-        .list-item { background: var(--modal-card-bg); border-radius: 10px; padding: 12px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--glass-border); }
-        .badge { padding: 4px 8px; border-radius: 6px; font-weight: 600; color: white; font-size: 10px; }
-        .date-header { font-size: 12px; font-weight: 600; color: var(--primary); margin: 15px 0 8px 0; border-bottom: 1px solid var(--glass-border); padding-bottom: 4px; }
+        .list-item { background: var(--modal-card-bg); border-radius: 14px; padding: 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--glass-border); }
+        .badge { padding: 5px 10px; border-radius: 9999px; font-weight: 600; color: white; font-size: 10px; }
+        .date-header { font-size: 12px; font-weight: 600; color: var(--primary-accent); margin: 18px 0 8px 0; border-bottom: 1px solid var(--glass-border); padding-bottom: 6px; }
 
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; padding: 15px; box-sizing: border-box;}
-        .modal-content { width: 100%; max-width: 420px; padding: 20px; box-sizing: border-box; border-radius: 20px; max-height: 90vh; overflow-y: auto; background: var(--modal-bg); border: 1px solid var(--modal-border); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); z-index: 1000; justify-content: center; align-items: center; padding: 18px; box-sizing: border-box;}
+        .modal-content { width: 100%; max-width: 440px; padding: 24px; box-sizing: border-box; border-radius: 24px; max-height: 90vh; overflow-y: auto; background: var(--modal-bg); border: 1px solid var(--modal-border); box-shadow: 0 25px 50px rgba(0,0,0,0.2); }
         .info-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(150,150,150,0.15); }
         .info-label { font-size: 12px; color: var(--text-muted); font-weight: 500; }
         .info-value { font-size: 13px; font-weight: 600; color: var(--text-main); text-align: right; }
 
         svg { stroke-width: 2; width: 18px; height: 18px; }
-        #toast-container { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 10009; width: max-content; max-width: 90%; pointer-events: none; }
-        .toast { background: rgba(15, 23, 42, 0.9); color: white; padding: 12px 20px; border-radius: 30px; font-size: 13px; font-weight: 500; text-align: center; margin-top: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); opacity: 0; transition: all 0.3s; transform: translateY(20px); }
+        #toast-container { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 10009; width: max-content; max-width: 90%; pointer-events: none; }
+        .toast { background: var(--primary); color: var(--modal-bg); padding: 12px 24px; border-radius: 9999px; font-size: 13px; font-weight: 600; text-align: center; margin-top: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); opacity: 0; transition: all 0.3s ease; transform: translateY(20px); }
         .toast.show { opacity: 1; transform: translateY(0); }
         .hidden { display: none !important; }
         .flex-row { display: flex; gap: 10px; }
 
         /* --- DRIVER.JS CUSTOM GLASSMORPHISM THEME --- */
-        .driver-popover { background: rgba(30, 41, 59, 0.95) !important; backdrop-filter: blur(10px) !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; color: white !important; border-radius: 12px !important; }
+        .driver-popover { background: rgba(30, 41, 59, 0.95) !important; backdrop-filter: blur(12px) !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; color: white !important; border-radius: 16px !important; }
         .driver-popover-title { font-size: 18px !important; color: #38bdf8 !important; font-weight: 700 !important; margin-bottom: 8px !important; }
         .driver-popover-description { color: #cbd5e1 !important; font-size: 14px !important; line-height: 1.5 !important; }
-        .driver-popover-navigation-btns button { background: #3b82f6 !important; color: white !important; border: none !important; border-radius: 6px !important; padding: 6px 12px !important; }
+        .driver-popover-navigation-btns button { background: #3b82f6 !important; color: white !important; border: none !important; border-radius: 8px !important; padding: 6px 14px !important; }
 
     </style>
 </head>
@@ -236,11 +465,11 @@
     <!-- AUTHENTICATION SCREEN -->
     <div id="authScreen">
         <div class="auth-brand-logo">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px; color: white;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;">
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
             </svg>
-            <span style="margin-left: 8px;">Library Management</span>
+            <span>Library Management</span>
         </div>
         
         <div class="auth-card-modern" id="authCard">
@@ -257,15 +486,15 @@
                     </div>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
-                    <label style="display:flex; align-items:center; gap:8px; font-size:12px; color:#64748b; margin:0; cursor:pointer;"><input type="checkbox" style="width:auto; margin:0;"> Remember me</label>
-                    <span style="font-size:12px; color:#5b68df; font-weight:600; cursor:pointer;" onclick="toggleAuthMode('reset')">Forgot password?</span>
+                    <label style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text-muted); margin:0; cursor:pointer;"><input type="checkbox" style="width:auto; margin:0;"> Remember me</label>
+                    <span style="font-size:12px; color:var(--primary-accent); font-weight:600; cursor:pointer;" onclick="toggleAuthMode('reset')">Forgot password?</span>
                 </div>
                 <button class="btn-primary" onclick="loginUser()">Sign in</button>
                 <p id="authError" style="color:var(--red); font-size: 12px; margin-top: 5px; min-height:15px; font-weight:500;"></p>
                 <button class="btn-google" onclick="loginWithGoogle()"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Sign in with Google</button>
                 <div class="auth-bottom-text">Don't have an account? <span onclick="toggleAuthMode('signup')">Sign up</span></div>
-                <div style="margin-top:20px; font-size:12px; font-weight:500; color:#64748b;">
-                    HOME PAGE <a href="https://www.selectionlibrary.com/" style="font-size:12px; font-weight:500; color:#4285F4;">Selection Library</a>
+                <div style="margin-top:20px; font-size:12px; font-weight:500; color:var(--text-muted);">
+                    HOME PAGE <a href="https://www.selectionlibrary.com/" style="font-size:12px; font-weight:500; color:var(--primary-accent);">Selection Library</a>
                 </div>
             </div>
 
@@ -312,7 +541,7 @@
 
         <div class="dashboard glass-panel animate-in">
             <div class="stat-card">Free <span class="num" id="statFree" style="color:var(--green)">0</span></div>
-            <div class="stat-card">Enrolled <span class="num" id="statOccupied" style="color:var(--primary)">0</span></div>
+            <div class="stat-card">Enrolled <span class="num" id="statOccupied" style="color:var(--primary-accent)">0</span></div>
             <div class="stat-card">Due Profile <span class="num" id="statDue" style="color:var(--orange)">0</span></div>
             <div class="stat-card">Exp. <3d <span class="num" id="statWarn" style="color:var(--yellow)">0</span></div>
         </div>
@@ -320,16 +549,16 @@
         <div class="tab-container animate-in">
             <button class="tab-btn active" id="tabMapBtn" onclick="switchTab('map')">🪑 Chairs</button>
             <button class="tab-btn" id="tabAddBtn" onclick="switchTab('add')">📝 Admission</button>
-            <button class="tab-btn" id="tabWaitBtn" onclick="switchTab('wait')">⏳ Waitlist <span id="waitBadge" class="badge" style="background:var(--primary); margin-left:4px;">0</span></button>
+            <button class="tab-btn" id="tabWaitBtn" onclick="switchTab('wait')">⏳ Waitlist <span id="waitBadge" class="badge" style="background:var(--primary-accent); margin-left:4px;">0</span></button>
             <button class="tab-btn" id="tabFinBtn" onclick="switchTab('fin')">💰 Finance</button>
         </div>
 
         <!-- TAB 1: SEATS MATRIX -->
         <div id="seatMapTab" class="animate-in">
-            <div class="glass-panel" style="padding:12px;">
-                <div class="flex-row" style="margin-bottom:8px;">
-                    <input type="text" id="searchExam" class="app-input search-box" style="margin-bottom:0; padding:10px; flex: 1;" placeholder="Search Exam..." oninput="applyFilters()">
-                    <select id="shiftFilter" class="app-input search-box" style="margin-bottom:0; padding:10px; flex: 1;" onchange="applyFilters()">
+            <div class="glass-panel" style="padding:14px; margin-bottom: 12px;">
+                <div class="flex-row" style="margin-bottom:10px;">
+                    <input type="text" id="searchExam" class="app-input search-box" style="margin-bottom:0; padding:10px 14px; flex: 1;" placeholder="Search Exam..." oninput="applyFilters()">
+                    <select id="shiftFilter" class="app-input search-box" style="margin-bottom:0; padding:10px 14px; flex: 1;" onchange="applyFilters()">
                         <option value="all">All Shifts</option>
                     </select>
                 </div>
@@ -346,8 +575,8 @@
 
         <!-- TAB 2: ADMISSION FORM -->
         <div id="addSeatTab" class="hidden animate-in">
-            <div class="glass-panel" style="padding: 15px;">
-                <h3 style="color:var(--primary); margin-top:0; margin-bottom:10px;">New Registration</h3>
+            <div class="glass-panel" style="padding: 20px;">
+                <h3 style="color:var(--text-main); margin-top:0; margin-bottom:12px; font-weight:700;">New Registration</h3>
                 <label class="app-label">Seat Number</label> <input type="text" class="app-input" id="seatNo" placeholder="e.g. 15, 6A" style="text-transform: uppercase;">
                 <label class="app-label">Student Name</label> <input type="text" class="app-input" id="studentName">
                 <label class="app-label">Phone</label> <input type="tel" class="app-input" id="phone">
@@ -372,8 +601,8 @@
 
         <!-- TAB 3: WAITLIST -->
         <div id="waitlistTab" class="hidden animate-in">
-            <div class="glass-panel" style="padding: 15px; margin-bottom: 15px;">
-                <h3 style="color:var(--primary); margin-top:0; margin-bottom:10px;">Add to Waitlist</h3>
+            <div class="glass-panel" style="padding: 20px; margin-bottom: 16px;">
+                <h3 style="color:var(--text-main); margin-top:0; margin-bottom:12px; font-weight:700;">Add to Waitlist</h3>
                 <div class="flex-row">
                     <div style="flex:2"><input type="text" class="app-input" id="waitName" placeholder="Student Name"></div>
                     <div style="flex:2"><input type="tel" class="app-input" id="waitPhone" placeholder="Phone"></div>
@@ -383,41 +612,41 @@
                     <button class="action-btn" style="margin-top:0; flex:1;" onclick="addWaitlist()">Add</button>
                 </div>
             </div>
-            <h4 style="margin-bottom:8px;">Current Waiting List</h4>
+            <h4 style="margin-bottom:10px; font-size:15px; font-weight:700;">Current Waiting List</h4>
             <div id="waitlistContainer"></div>
         </div>
 
         <!-- TAB 4: FINANCE & LEDGER -->
         <div id="financeTab" class="hidden animate-in">
-            <div class="glass-panel" style="padding: 15px; margin-bottom:15px;">
+            <div class="glass-panel" style="padding: 20px; margin-bottom:16px;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <h3 style="margin:0; color:var(--primary);">Financial Overview</h3>
-                    <input type="month" class="app-input" id="finMonth" onchange="calculateFinances()" style="width:auto; padding:6px 10px;">
+                    <h3 style="margin:0; color:var(--text-main); font-weight:700;">Financial Overview</h3>
+                    <input type="month" class="app-input" id="finMonth" onchange="calculateFinances()" style="width:auto; padding:6px 12px;">
                 </div>
                 <div class="fin-grid">
                     <div class="fin-box" style="background:rgba(16,185,129,0.1); border-color:var(--green);"><span style="font-size:11px; color:var(--text-muted);">Total Income</span><span class="fin-val" style="color:var(--green);" id="finIncome">₹0</span></div>
                     <div class="fin-box" style="background:rgba(239,68,68,0.1); border-color:var(--red);"><span style="font-size:11px; color:var(--text-muted);">Total Expense</span><span class="fin-val" style="color:var(--red);" id="finExpense">₹0</span></div>
                     <div class="fin-box" style="background:rgba(245,158,11,0.1); border-color:var(--orange);"><span style="font-size:11px; color:var(--text-muted);">Total Fee Due</span><span class="fin-val" style="color:var(--orange);" id="finTotalDue">₹0</span></div>
                 </div>
-                <div class="fin-box" style="margin-top:10px; background:var(--glass-bg);"><span style="font-size:11px; color:var(--text-muted);">Net Profit</span><span class="fin-val" style="color:var(--primary);" id="finProfit">₹0</span></div>
+                <div class="fin-box" style="margin-top:12px; background:var(--glass-bg);"><span style="font-size:11px; color:var(--text-muted);">Net Profit</span><span class="fin-val" style="color:var(--primary-accent);" id="finProfit">₹0</span></div>
             </div>
 
-            <div class="tab-container" style="margin-bottom:10px;">
-                <button class="tab-btn active" id="btnShowIncome" onclick="switchFinView('income')" style="padding:8px; font-size:12px;">Daily Income Ledger</button>
-                <button class="tab-btn" id="btnShowExpense" onclick="switchFinView('expense')" style="padding:8px; font-size:12px;">Manage Expenses</button>
+            <div class="tab-container" style="margin-bottom:12px;">
+                <button class="tab-btn active" id="btnShowIncome" onclick="switchFinView('income')" style="padding:8px 14px; font-size:12px;">Daily Income Ledger</button>
+                <button class="tab-btn" id="btnShowExpense" onclick="switchFinView('expense')" style="padding:8px 14px; font-size:12px;">Manage Expenses</button>
             </div>
 
             <div id="finIncomeView"><div id="incomeLedgerContainer"></div></div>
 
             <div id="finExpenseView" class="hidden">
-                <div class="glass-panel" style="padding: 12px; margin-bottom:10px;">
-                    <h4 style="margin-top:0; margin-bottom:8px; font-size:13px;">Add New Expense</h4>
+                <div class="glass-panel" style="padding: 16px; margin-bottom:12px;">
+                    <h4 style="margin-top:0; margin-bottom:10px; font-size:13px; font-weight:700;">Add New Expense</h4>
                     <div class="flex-row">
                         <div style="flex:1"><input type="date" class="app-input" id="expDate"></div>
                         <div style="flex:1"><input type="number" class="app-input" id="expAmount" placeholder="Amount (₹)"></div>
                     </div>
                     <input type="text" class="app-input" id="expCategory" placeholder="Category (e.g. Rent, Electricity, Cleaning)" style="margin-top:10px;">
-                    <button class="action-btn" style="padding:10px; margin-top:10px;" onclick="addExpense()">Save Expense</button>
+                    <button class="action-btn" style="padding:12px; margin-top:12px;" onclick="addExpense()">Save Expense</button>
                 </div>
                 <div id="expenseLedgerContainer"></div>
             </div>
@@ -427,9 +656,9 @@
     <!-- DETAILS MODAL -->
     <div id="detailsModal" class="modal">
         <div class="modal-content hidden" id="modalViewSection">
-            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--glass-border); padding-bottom:10px; margin-bottom:10px;">
-                <h3 style="margin:0; color:var(--primary); font-weight:700;">Seat <span id="modSeatTitle"></span> Profile</h3>
-                <button class="icon-btn" onclick="showEditForm()" style="width:30px; height:30px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--glass-border); padding-bottom:12px; margin-bottom:12px;">
+                <h3 style="margin:0; color:var(--text-main); font-weight:700;">Seat <span id="modSeatTitle"></span> Profile</h3>
+                <button class="icon-btn" onclick="showEditForm()" style="width:34px; height:34px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
             </div>
             
             <div class="info-row"><span class="info-label">Name</span> <span class="info-value" id="modName"></span></div>
@@ -440,27 +669,27 @@
             <div class="info-row"><span class="info-label">Valid Up To</span> <span class="info-value" id="modValid"></span></div>
             <div class="info-row" style="border:none;"><span class="info-label">Fee Status</span> <span class="badge" id="modFee"></span></div>
 
-            <h4 style="margin: 15px 0 5px 0; font-size: 13px; color:var(--primary);">Payment Ledger</h4>
+            <h4 style="margin: 16px 0 6px 0; font-size: 13px; color:var(--text-main); font-weight:700;">Payment Ledger</h4>
             <div class="payment-ledger" id="paymentLedger" style="max-height: 120px; overflow-y:auto;"></div>
             
-            <div style="display:flex; flex-direction:column; gap:8px; margin-top:15px;">
-                <button class="action-btn" style="margin:0; background:var(--green); padding:10px;" onclick="showPaymentForm()">Record Payment / Renew</button>
-                <div style="display:flex; gap:8px;">
-                    <button class="action-btn" style="background:var(--red); margin:0; flex:1; padding:10px;" id="btnRemoveStudent" onclick="freeStudentSlot()">Remove</button>
-                    <button class="action-btn" style="background:var(--text-muted); margin:0; flex:1; padding:10px;" id="btnViewBack" onclick="backToListOrClose()">Close</button>
+            <div style="display:flex; flex-direction:column; gap:10px; margin-top:18px;">
+                <button class="action-btn" style="margin:0; background:var(--green); color:white; padding:12px;" onclick="showPaymentForm()">Record Payment / Renew</button>
+                <div style="display:flex; gap:10px;">
+                    <button class="action-btn" style="background:var(--red); color:white; margin:0; flex:1; padding:12px;" id="btnRemoveStudent" onclick="freeStudentSlot()">Remove</button>
+                    <button class="action-btn" style="background:var(--glass-bg); color:var(--text-main); border:1px solid var(--glass-border); margin:0; flex:1; padding:12px;" id="btnViewBack" onclick="backToListOrClose()">Close</button>
                 </div>
             </div>
         </div>
 
         <div class="modal-content hidden" id="modalListSection">
-            <h3 style="margin-top:0; color:var(--primary);">Seat <span id="listSeatNo"></span> Occupants</h3>
+            <h3 style="margin-top:0; color:var(--text-main); font-weight:700;">Seat <span id="listSeatNo"></span> Occupants</h3>
             <div id="occupantsContainer" style="margin-bottom:15px;"></div>
-            <button class="action-btn" style="margin-bottom:8px; padding:10px;" onclick="addAnotherToSeat()">+ Add Another Shift Here</button>
-            <button class="action-btn" style="background:var(--text-muted); padding:10px; margin:0;" onclick="closeModal()">Close</button>
+            <button class="action-btn" style="margin-bottom:10px; padding:12px;" onclick="addAnotherToSeat()">+ Add Another Shift Here</button>
+            <button class="action-btn" style="background:var(--glass-bg); color:var(--text-main); border:1px solid var(--glass-border); padding:12px; margin:0;" onclick="closeModal()">Close</button>
         </div>
 
         <div class="modal-content hidden" id="modalEditSection">
-            <h3 style="margin-top:0; color:var(--primary);">Edit Profile</h3>
+            <h3 style="margin-top:0; color:var(--text-main); font-weight:700;">Edit Profile</h3>
             <input type="text" class="app-input" id="editName" placeholder="Name" style="margin-bottom:8px;">
             <input type="tel" class="app-input" id="editPhone" placeholder="Phone" style="margin-bottom:8px;">
             <input type="text" class="app-input" id="editExam" placeholder="Exam" style="margin-bottom:8px;">
@@ -471,14 +700,14 @@
             </div>
             <label class="app-label" style="margin-top:4px;">Remaining Due Amount (₹)</label>
             <input type="number" class="app-input" id="editDueAmount" placeholder="Due Amount">
-            <div class="flex-row" style="margin-top:15px;">
+            <div class="flex-row" style="margin-top:18px;">
                 <button class="action-btn" style="margin:0; flex:1;" onclick="saveEdit()">Save</button>
-                <button class="action-btn" style="background:var(--text-muted); margin:0; flex:1;" onclick="cancelEdit()">Cancel</button>
+                <button class="action-btn" style="background:var(--glass-bg); color:var(--text-main); border:1px solid var(--glass-border); margin:0; flex:1;" onclick="cancelEdit()">Cancel</button>
             </div>
         </div>
 
         <div class="modal-content hidden" id="modalPaySection">
-            <h3 style="margin-top:0; color:var(--primary);">Record Payment</h3>
+            <h3 style="margin-top:0; color:var(--text-main); font-weight:700;">Record Payment</h3>
             <p style="font-size: 12px; margin-bottom: 15px; color:var(--text-muted);">For: <strong id="payStudentName" style="color:var(--text-main);"></strong></p>
             <input type="date" class="app-input" id="payDate" style="margin-bottom:8px;">
             <div class="flex-row" style="margin-bottom:8px;">
@@ -492,14 +721,14 @@
             <p style="font-size:10px; color:var(--text-muted); margin:2px 0 6px 0;">Manually adjust if adding renewal fees.</p>
             <input type="number" class="app-input" id="payNewDue" placeholder="Remaining Due">
             
-            <div class="flex-row" style="margin-top:15px;">
-                <button class="action-btn" style="margin:0; background:var(--green); flex:1;" onclick="savePayment()">Save</button>
-                <button class="action-btn" style="background:var(--text-muted); margin:0; flex:1;" onclick="hidePaymentForm()">Cancel</button>
+            <div class="flex-row" style="margin-top:18px;">
+                <button class="action-btn" style="margin:0; background:var(--green); color:white; flex:1;" onclick="savePayment()">Save</button>
+                <button class="action-btn" style="background:var(--glass-bg); color:var(--text-main); border:1px solid var(--glass-border); margin:0; flex:1;" onclick="hidePaymentForm()">Cancel</button>
             </div>
         </div>
 
         <div class="modal-content hidden" id="modalSettingsSection">
-            <h3 style="margin-top:0; color:var(--primary);">⚙️ Library Settings</h3>
+            <h3 style="margin-top:0; color:var(--text-main); font-weight:700;">⚙️ Library Settings</h3>
             <label class="app-label">Library Name</label> <input type="text" class="app-input" id="cfgLibName">
             <label class="app-label">Total Seats</label> <input type="number" class="app-input" id="cfgTotalSeats" min="1">
             <label class="app-label">Custom Seats (comma separated)</label> <input type="text" class="app-input" id="cfgCustomSeats" style="text-transform: uppercase;">
@@ -511,22 +740,23 @@
                 <span style="flex:1; text-align:right;"></span>
             </div>
             <div id="cfgShiftRows" style="display:flex; flex-direction:column; gap:10px; margin-bottom:10px;"></div>
-            <button class="action-btn" style="width:auto; padding:10px; background:var(--green); margin-bottom:20px;" onclick="addShiftRow()">+ Add Shift</button>
+            <button class="action-btn" style="width:auto; padding:10px 16px; background:var(--green); color:white; margin-bottom:20px;" onclick="addShiftRow()">+ Add Shift</button>
             
             <div style="border-top:1px solid var(--glass-border); margin-top:20px; padding-top:15px;">
-                <h4 style="margin:0 0 10px 0; font-size:13px;">Advanced Data Options</h4>
+                <h4 style="margin:0 0 10px 0; font-size:13px; font-weight:700;">Advanced Data Options</h4>
                 <div class="flex-row">
-                    <button class="action-btn" style="margin:0; background:var(--green); font-size:12px; padding:8px;" onclick="exportData()">Export Backup</button>
-                    <button class="action-btn" style="margin:0; background:var(--orange); font-size:12px; padding:8px;" onclick="document.getElementById('importFileSettings').click()">Import Backup</button>
+                    <button class="action-btn" style="margin:0; background:var(--green); color:white; font-size:12px; padding:10px;" onclick="exportData()">Export Backup</button>
+                    <button class="action-btn" style="margin:0; background:var(--orange); color:white; font-size:12px; padding:10px;" onclick="document.getElementById('importFileSettings').click()">Import Backup</button>
                     <input type="file" id="importFileSettings" class="hidden" onchange="importData(this)">
                 </div>
             </div>
 
             <div class="flex-row" style="margin-top:20px;">
                 <button class="action-btn" style="margin:0; flex:2;" onclick="saveSettings()">Save Configuration</button>
-                <button class="action-btn" style="background:var(--text-muted); margin:0; flex:1;" onclick="closeModal()">Close</button>
+                <button class="action-btn" style="background:var(--glass-bg); color:var(--text-main); border:1px solid var(--glass-border); margin:0; flex:1;" onclick="closeModal()">Close</button>
             </div>
         </div>
+    </div>
 
     <div id="toast-container"></div>
 
@@ -783,7 +1013,7 @@
 
         // Waitlist functions
         window.addWaitlist = function() { const name = document.getElementById('waitName').value; if(!name) return window.toast('⚠️ Name required'); DB.waitlist.push({ id: Date.now().toString(), name, phone: document.getElementById('waitPhone').value || 'N/A', shift: document.getElementById('waitShift').value, date: new Date().toISOString().split('T')[0] }); DB.save(); document.getElementById('waitName').value = ''; document.getElementById('waitPhone').value = ''; window.renderWaitlist(); window.toast("Added to waitlist"); }
-        window.renderWaitlist = function() { const cont = document.getElementById('waitlistContainer'); cont.innerHTML = ''; if(!DB.waitlist || DB.waitlist.length === 0) { cont.innerHTML = '<div style="font-size:12px; color:var(--text-muted); text-align:center;">Waitlist is empty.</div>'; } (DB.waitlist || []).forEach(w => { cont.innerHTML += `<div class="list-item"><div><strong style="font-size:14px; display:block;">${w.name}</strong><div style="font-size:11px; color:var(--text-muted); margin-top:2px;">${w.phone} • ${w.shift}</div><div style="font-size:10px; color:var(--text-muted); margin-top:2px;">Listed: ${w.date}</div></div><div style="display:flex; flex-direction:column; gap:6px;"><button class="filter-btn" style="background:var(--primary); color:white; padding:6px 10px;" onclick="promoteWaitlist('${w.id}')">Allot</button><button class="filter-btn" style="background:transparent; border-color:var(--red); color:var(--red); padding:6px 10px;" onclick="removeWaitlist('${w.id}')">Remove</button></div></div>`; }); document.getElementById('waitBadge').innerText = (DB.waitlist || []).length; }
+        window.renderWaitlist = function() { const cont = document.getElementById('waitlistContainer'); cont.innerHTML = ''; if(!DB.waitlist || DB.waitlist.length === 0) { cont.innerHTML = '<div style="font-size:12px; color:var(--text-muted); text-align:center;">Waitlist is empty.</div>'; } (DB.waitlist || []).forEach(w => { cont.innerHTML += `<div class="list-item"><div><strong style="font-size:14px; display:block;">${w.name}</strong><div style="font-size:11px; color:var(--text-muted); margin-top:2px;">${w.phone} • ${w.shift}</div><div style="font-size:10px; color:var(--text-muted); margin-top:2px;">Listed: ${w.date}</div></div><div style="display:flex; flex-direction:column; gap:6px;"><button class="filter-btn" style="background:var(--primary); color:var(--modal-bg); padding:6px 12px;" onclick="promoteWaitlist('${w.id}')">Allot</button><button class="filter-btn" style="background:transparent; border-color:var(--red); color:var(--red); padding:6px 12px;" onclick="removeWaitlist('${w.id}')">Remove</button></div></div>`; }); document.getElementById('waitBadge').innerText = (DB.waitlist || []).length; }
         window.removeWaitlist = function(id) { DB.waitlist = DB.waitlist.filter(w => w.id !== id); DB.save(); window.renderWaitlist(); window.toast("Removed"); }
         window.promoteWaitlist = function(id) { const s = DB.waitlist.find(w => w.id === id); if(s) { window.switchTab('add'); document.getElementById('studentName').value = s.name; document.getElementById('phone').value = s.phone !== 'N/A' ? s.phone : ''; document.getElementById('shift').value = s.shift; window.toggleCustomShift('shift','customShift'); window.removeWaitlist(id); window.toast("Fill seat to complete."); } }
 
@@ -827,7 +1057,7 @@
             const sExpDates = Object.keys(groupedExp).sort((a,b) => new Date(b) - new Date(a));
             if(sExpDates.length === 0) expCont.innerHTML = '<div style="font-size:12px; color:var(--text-muted); text-align:center;">No expenses recorded.</div>';
             sExpDates.forEach(d => {
-                expCont.innerHTML += `<div class="date-header">${formatLedgerDate(d)}</div>`; // Just as a fallback header format
+                expCont.innerHTML += `<div class="date-header">${formatLedgerDate(d)}</div>`; 
                 groupedExp[d].forEach(e => { expCont.innerHTML += `<div class="list-item"><div><strong style="font-size:13px; display:block;">${e.category}</strong></div><div style="display:flex; align-items:center; gap:10px;"><span style="color:var(--red); font-weight:700; font-size:14px;">-₹${e.amount}</span><button style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:16px;" onclick="removeExpense('${e.id}')">×</button></div></div>`; });
             });
 
@@ -861,7 +1091,7 @@
                 <input type="text" class="app-input" placeholder="Shift Name" value="${name}" style="flex:3; min-width:0;">
                 <input type="text" class="app-input" placeholder="Timing" value="${time}" style="flex:3; min-width:0;">
                 <input type="number" class="app-input" placeholder="Fee" value="${fee}" style="flex:2; min-width:0;">
-                <button class="action-btn" type="button" style="background:var(--text-muted); padding:8px 10px; flex:1; min-width:0;" onclick="this.closest('.shift-row').remove()">✕</button>
+                <button class="action-btn" type="button" style="background:var(--glass-bg); color:var(--text-main); border:1px solid var(--glass-border); padding:8px 10px; flex:1; min-width:0;" onclick="this.closest('.shift-row').remove()">✕</button>
             `;
             container.appendChild(row);
         }
