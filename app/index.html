@@ -104,7 +104,7 @@
 
         /* --- DESKTOP CENTERING --- */
         @media (min-width: 768px) {
-            #addSeatTab, #waitlistTab, #financeTab, #seatMapTab, header, .dashboard, .tab-container { 
+            #addSeatTab, #waitlistTab, #financeTab, #seatMapTab, #superAdminTab, header, .dashboard, .tab-container { 
                 max-width: 800px; 
                 margin-left: auto; 
                 margin-right: auto; 
@@ -459,6 +459,10 @@
         .driver-popover-description { color: #cbd5e1 !important; font-size: 14px !important; line-height: 1.5 !important; }
         .driver-popover-navigation-btns button { background: #3b82f6 !important; color: white !important; border: none !important; border-radius: 8px !important; padding: 6px 14px !important; }
 
+        /* SUPER ADMIN START */
+        .super-admin-badge { background: linear-gradient(135deg, #a855f7, #ec4899); color: white; padding: 4px 10px; border-radius: 9999px; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-left: 8px; vertical-align: middle; }
+        /* SUPER ADMIN END */
+
     </style>
 </head>
 <body>
@@ -534,124 +538,156 @@
         <header class="animate-in">
             <h2 id="appTitle">Library Management</h2>
             <div class="utility-bar">
+                
+                <!-- SUPER ADMIN START -->
+                <button class="icon-btn hidden" id="superAdminBtn" onclick="toggleSuperAdminDashboard()" title="Super Admin Dashboard" style="border-color: #a855f7; color: #a855f7;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg></button>
+                <!-- SUPER ADMIN END -->
+
                 <button class="icon-btn" onclick="toggleTheme()" title="Toggle Theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg></button>
                 <button class="icon-btn" id="settingsTab" onclick="openSettingsModal()" title="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></button>
                 <button class="icon-btn" onclick="logoutUser()" title="Logout" style="color: var(--red);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></button>
             </div>
         </header>
 
-        <div class="dashboard glass-panel animate-in">
-            <div class="stat-card">Free <span class="num" id="statFree" style="color:var(--green)">0</span></div>
-            <div class="stat-card">Enrolled <span class="num" id="statOccupied" style="color:var(--primary-accent)">0</span></div>
-            <div class="stat-card">Due Profile <span class="num" id="statDue" style="color:var(--orange)">0</span></div>
-            <div class="stat-card">Exp. <3d <span class="num" id="statWarn" style="color:var(--yellow)">0</span></div>
-        </div>
-
-        <div class="tab-container animate-in">
-            <button class="tab-btn active" id="tabMapBtn" onclick="switchTab('map')">🪑 Chairs</button>
-            <button class="tab-btn" id="tabAddBtn" onclick="switchTab('add')">📝 Admission</button>
-            <button class="tab-btn" id="tabWaitBtn" onclick="switchTab('wait')">⏳ Waitlist <span id="waitBadge" class="badge" style="background:var(--primary-accent); margin-left:4px;">0</span></button>
-            <button class="tab-btn" id="tabFinBtn" onclick="switchTab('fin')">💰 Finance</button>
-        </div>
-
-        <!-- TAB 1: SEATS MATRIX -->
-        <div id="seatMapTab" class="animate-in">
-            <div class="glass-panel" style="padding:14px; margin-bottom: 12px;">
-                <div class="flex-row" style="margin-bottom:10px;">
-                    <input type="text" id="searchName" class="app-input search-box" style="margin-bottom:0; padding:10px 14px; flex: 1;" placeholder="Search Name..." oninput="applyFilters()">
-                    <select id="shiftFilter" class="app-input search-box" style="margin-bottom:0; padding:10px 14px; flex: 1;" onchange="applyFilters()">
-                        <option value="all">All Shifts</option>
-                    </select>
-                </div>
-                <div class="filter-btn-group">
-                    <button class="filter-btn active" id="fltAll" onclick="setFilter('all')">All</button>
-                    <button class="filter-btn" id="fltFree" onclick="setFilter('free')">Empty</button>
-                    <button class="filter-btn" id="fltDue" onclick="setFilter('due')">Fee Due</button>
-                    <button class="filter-btn" id="fltWarn" onclick="setFilter('warn')">Exp. <3d</button>
-                    <button class="filter-btn" id="fltExpired" onclick="setFilter('expired')">Expired</button>
-                </div>
-            </div>
-            <div class="seat-grid" id="seatsContainer"></div>
-        </div>
-
-        <!-- TAB 2: ADMISSION FORM -->
-        <div id="addSeatTab" class="hidden animate-in">
-            <div class="glass-panel" style="padding: 20px;">
-                <h3 style="color:var(--text-main); margin-top:0; margin-bottom:12px; font-weight:700;">New Registration</h3>
-                <label class="app-label">Seat Number</label> <input type="text" class="app-input" id="seatNo" placeholder="e.g. 15, 6A" style="text-transform: uppercase;">
-                <label class="app-label">Student Name</label> <input type="text" class="app-input" id="studentName">
-                <label class="app-label">Phone</label> <input type="tel" class="app-input" id="phone">
-                <label class="app-label">Preparing For (Exam)</label> <input type="text" class="app-input" id="exam">
-                <label class="app-label">Shift Timing</label>
-                <select class="app-input" id="shift" onchange="toggleCustomShift('shift', 'customShift')"></select>
-                <input type="text" id="customShift" class="app-input hidden" placeholder="Custom timings" style="margin-top:10px;">
-                
-                <div class="flex-row" style="margin-top:12px;">
-                    <div style="flex:1"><label class="app-label" style="margin-top:0">Total Fee (₹)</label><input type="number" class="app-input" id="totalFee" placeholder="Auto-filled"></div>
-                    <div style="flex:1"><label class="app-label" style="margin-top:0">Paid Now (₹)</label><input type="number" class="app-input" id="initialAmount" placeholder="1500"></div>
-                </div>
-                <div class="flex-row">
-                    <div style="flex:1"><label class="app-label">Admission</label><input type="date" class="app-input" id="admDate"></div>
-                    <div style="flex:1"><label class="app-label">Valid Up To</label><input type="date" class="app-input" id="validDate"></div>
-                </div>
-                <label class="app-label">Payment Mode</label> <select class="app-input" id="initialMode"><option>Cash</option><option>UPI</option></select>
-                
-                <button class="action-btn" onclick="allotSeat()">Complete Admission</button>
-            </div>
-        </div>
-
-        <!-- TAB 3: WAITLIST -->
-        <div id="waitlistTab" class="hidden animate-in">
-            <div class="glass-panel" style="padding: 20px; margin-bottom: 16px;">
-                <h3 style="color:var(--text-main); margin-top:0; margin-bottom:12px; font-weight:700;">Add to Waitlist</h3>
-                <div class="flex-row">
-                    <div style="flex:2"><input type="text" class="app-input" id="waitName" placeholder="Student Name"></div>
-                    <div style="flex:2"><input type="tel" class="app-input" id="waitPhone" placeholder="Phone"></div>
-                </div>
-                <div class="flex-row" style="margin-top:10px;">
-                    <div style="flex:2"><select class="app-input" id="waitShift"></select></div>
-                    <button class="action-btn" style="margin-top:0; flex:1;" onclick="addWaitlist()">Add</button>
-                </div>
-            </div>
-            <h4 style="margin-bottom:10px; font-size:15px; font-weight:700;">Current Waiting List</h4>
-            <div id="waitlistContainer"></div>
-        </div>
-
-        <!-- TAB 4: FINANCE & LEDGER -->
-        <div id="financeTab" class="hidden animate-in">
-            <div class="glass-panel" style="padding: 20px; margin-bottom:16px;">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <h3 style="margin:0; color:var(--text-main); font-weight:700;">Financial Overview</h3>
-                    <input type="month" class="app-input" id="finMonth" onchange="calculateFinances()" style="width:auto; padding:6px 12px;">
-                </div>
-                <div class="fin-grid">
-                    <div class="fin-box" style="background:rgba(16,185,129,0.1); border-color:var(--green);"><span style="font-size:11px; color:var(--text-muted);">Total Income</span><span class="fin-val" style="color:var(--green);" id="finIncome">₹0</span></div>
-                    <div class="fin-box" style="background:rgba(239,68,68,0.1); border-color:var(--red);"><span style="font-size:11px; color:var(--text-muted);">Total Expense</span><span class="fin-val" style="color:var(--red);" id="finExpense">₹0</span></div>
-                    <div class="fin-box" style="background:rgba(245,158,11,0.1); border-color:var(--orange);"><span style="font-size:11px; color:var(--text-muted);">Total Fee Due</span><span class="fin-val" style="color:var(--orange);" id="finTotalDue">₹0</span></div>
-                </div>
-                <div class="fin-box" style="margin-top:12px; background:var(--glass-bg);"><span style="font-size:11px; color:var(--text-muted);">Net Profit</span><span class="fin-val" style="color:var(--primary-accent);" id="finProfit">₹0</span></div>
+        <!-- WRAPPER FOR NORMAL APP TABS -->
+        <div id="standardAppViews">
+            <div class="dashboard glass-panel animate-in">
+                <div class="stat-card">Free <span class="num" id="statFree" style="color:var(--green)">0</span></div>
+                <div class="stat-card">Enrolled <span class="num" id="statOccupied" style="color:var(--primary-accent)">0</span></div>
+                <div class="stat-card">Due Profile <span class="num" id="statDue" style="color:var(--orange)">0</span></div>
+                <div class="stat-card">Exp. <3d <span class="num" id="statWarn" style="color:var(--yellow)">0</span></div>
             </div>
 
-            <div class="tab-container" style="margin-bottom:12px;">
-                <button class="tab-btn active" id="btnShowIncome" onclick="switchFinView('income')" style="padding:8px 14px; font-size:12px;">Daily Income Ledger</button>
-                <button class="tab-btn" id="btnShowExpense" onclick="switchFinView('expense')" style="padding:8px 14px; font-size:12px;">Manage Expenses</button>
+            <div class="tab-container animate-in">
+                <button class="tab-btn active" id="tabMapBtn" onclick="switchTab('map')">🪑 Chairs</button>
+                <button class="tab-btn" id="tabAddBtn" onclick="switchTab('add')">📝 Admission</button>
+                <button class="tab-btn" id="tabWaitBtn" onclick="switchTab('wait')">⏳ Waitlist <span id="waitBadge" class="badge" style="background:var(--primary-accent); margin-left:4px;">0</span></button>
+                <button class="tab-btn" id="tabFinBtn" onclick="switchTab('fin')">💰 Finance</button>
             </div>
 
-            <div id="finIncomeView"><div id="incomeLedgerContainer"></div></div>
-
-            <div id="finExpenseView" class="hidden">
-                <div class="glass-panel" style="padding: 16px; margin-bottom:12px;">
-                    <h4 style="margin-top:0; margin-bottom:10px; font-size:13px; font-weight:700;">Add New Expense</h4>
-                    <div class="flex-row">
-                        <div style="flex:1"><input type="date" class="app-input" id="expDate"></div>
-                        <div style="flex:1"><input type="number" class="app-input" id="expAmount" placeholder="Amount (₹)"></div>
+            <!-- TAB 1: SEATS MATRIX -->
+            <div id="seatMapTab" class="animate-in">
+                <div class="glass-panel" style="padding:14px; margin-bottom: 12px;">
+                    <div class="flex-row" style="margin-bottom:10px;">
+                        <input type="text" id="searchName" class="app-input search-box" style="margin-bottom:0; padding:10px 14px; flex: 1;" placeholder="Search Name..." oninput="applyFilters()">
+                        <select id="shiftFilter" class="app-input search-box" style="margin-bottom:0; padding:10px 14px; flex: 1;" onchange="applyFilters()">
+                            <option value="all">All Shifts</option>
+                        </select>
                     </div>
-                    <input type="text" class="app-input" id="expCategory" placeholder="Category (e.g. Rent, Electricity, Cleaning)" style="margin-top:10px;">
-                    <button class="action-btn" style="padding:12px; margin-top:12px;" onclick="addExpense()">Save Expense</button>
+                    <div class="filter-btn-group">
+                        <button class="filter-btn active" id="fltAll" onclick="setFilter('all')">All</button>
+                        <button class="filter-btn" id="fltFree" onclick="setFilter('free')">Empty</button>
+                        <button class="filter-btn" id="fltDue" onclick="setFilter('due')">Fee Due</button>
+                        <button class="filter-btn" id="fltWarn" onclick="setFilter('warn')">Exp. <3d</button>
+                        <button class="filter-btn" id="fltExpired" onclick="setFilter('expired')">Expired</button>
+                    </div>
                 </div>
-                <div id="expenseLedgerContainer"></div>
+                <div class="seat-grid" id="seatsContainer"></div>
+            </div>
+
+            <!-- TAB 2: ADMISSION FORM -->
+            <div id="addSeatTab" class="hidden animate-in">
+                <div class="glass-panel" style="padding: 20px;">
+                    <h3 style="color:var(--text-main); margin-top:0; margin-bottom:12px; font-weight:700;">New Registration</h3>
+                    <label class="app-label">Seat Number</label> <input type="text" class="app-input" id="seatNo" placeholder="e.g. 15, 6A" style="text-transform: uppercase;">
+                    <label class="app-label">Student Name</label> <input type="text" class="app-input" id="studentName">
+                    <label class="app-label">Phone</label> <input type="tel" class="app-input" id="phone">
+                    <label class="app-label">Preparing For (Exam)</label> <input type="text" class="app-input" id="exam">
+                    <label class="app-label">Shift Timing</label>
+                    <select class="app-input" id="shift" onchange="toggleCustomShift('shift', 'customShift')"></select>
+                    <input type="text" id="customShift" class="app-input hidden" placeholder="Custom timings" style="margin-top:10px;">
+                    
+                    <div class="flex-row" style="margin-top:12px;">
+                        <div style="flex:1"><label class="app-label" style="margin-top:0">Total Fee (₹)</label><input type="number" class="app-input" id="totalFee" placeholder="Auto-filled"></div>
+                        <div style="flex:1"><label class="app-label" style="margin-top:0">Paid Now (₹)</label><input type="number" class="app-input" id="initialAmount" placeholder="1500"></div>
+                    </div>
+                    <div class="flex-row">
+                        <div style="flex:1"><label class="app-label">Admission</label><input type="date" class="app-input" id="admDate"></div>
+                        <div style="flex:1"><label class="app-label">Valid Up To</label><input type="date" class="app-input" id="validDate"></div>
+                    </div>
+                    <label class="app-label">Payment Mode</label> <select class="app-input" id="initialMode"><option>Cash</option><option>UPI</option></select>
+                    
+                    <button class="action-btn" onclick="allotSeat()">Complete Admission</button>
+                </div>
+            </div>
+
+            <!-- TAB 3: WAITLIST -->
+            <div id="waitlistTab" class="hidden animate-in">
+                <div class="glass-panel" style="padding: 20px; margin-bottom: 16px;">
+                    <h3 style="color:var(--text-main); margin-top:0; margin-bottom:12px; font-weight:700;">Add to Waitlist</h3>
+                    <div class="flex-row">
+                        <div style="flex:2"><input type="text" class="app-input" id="waitName" placeholder="Student Name"></div>
+                        <div style="flex:2"><input type="tel" class="app-input" id="waitPhone" placeholder="Phone"></div>
+                    </div>
+                    <div class="flex-row" style="margin-top:10px;">
+                        <div style="flex:2"><select class="app-input" id="waitShift"></select></div>
+                        <button class="action-btn" style="margin-top:0; flex:1;" onclick="addWaitlist()">Add</button>
+                    </div>
+                </div>
+                <h4 style="margin-bottom:10px; font-size:15px; font-weight:700;">Current Waiting List</h4>
+                <div id="waitlistContainer"></div>
+            </div>
+
+            <!-- TAB 4: FINANCE & LEDGER -->
+            <div id="financeTab" class="hidden animate-in">
+                <div class="glass-panel" style="padding: 20px; margin-bottom:16px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h3 style="margin:0; color:var(--text-main); font-weight:700;">Financial Overview</h3>
+                        <input type="month" class="app-input" id="finMonth" onchange="calculateFinances()" style="width:auto; padding:6px 12px;">
+                    </div>
+                    <div class="fin-grid">
+                        <div class="fin-box" style="background:rgba(16,185,129,0.1); border-color:var(--green);"><span style="font-size:11px; color:var(--text-muted);">Total Income</span><span class="fin-val" style="color:var(--green);" id="finIncome">₹0</span></div>
+                        <div class="fin-box" style="background:rgba(239,68,68,0.1); border-color:var(--red);"><span style="font-size:11px; color:var(--text-muted);">Total Expense</span><span class="fin-val" style="color:var(--red);" id="finExpense">₹0</span></div>
+                        <div class="fin-box" style="background:rgba(245,158,11,0.1); border-color:var(--orange);"><span style="font-size:11px; color:var(--text-muted);">Total Fee Due</span><span class="fin-val" style="color:var(--orange);" id="finTotalDue">₹0</span></div>
+                    </div>
+                    <div class="fin-box" style="margin-top:12px; background:var(--glass-bg);"><span style="font-size:11px; color:var(--text-muted);">Net Profit</span><span class="fin-val" style="color:var(--primary-accent);" id="finProfit">₹0</span></div>
+                </div>
+
+                <div class="tab-container" style="margin-bottom:12px;">
+                    <button class="tab-btn active" id="btnShowIncome" onclick="switchFinView('income')" style="padding:8px 14px; font-size:12px;">Daily Income Ledger</button>
+                    <button class="tab-btn" id="btnShowExpense" onclick="switchFinView('expense')" style="padding:8px 14px; font-size:12px;">Manage Expenses</button>
+                </div>
+
+                <div id="finIncomeView"><div id="incomeLedgerContainer"></div></div>
+
+                <div id="finExpenseView" class="hidden">
+                    <div class="glass-panel" style="padding: 16px; margin-bottom:12px;">
+                        <h4 style="margin-top:0; margin-bottom:10px; font-size:13px; font-weight:700;">Add New Expense</h4>
+                        <div class="flex-row">
+                            <div style="flex:1"><input type="date" class="app-input" id="expDate"></div>
+                            <div style="flex:1"><input type="number" class="app-input" id="expAmount" placeholder="Amount (₹)"></div>
+                        </div>
+                        <input type="text" class="app-input" id="expCategory" placeholder="Category (e.g. Rent, Electricity, Cleaning)" style="margin-top:10px;">
+                        <button class="action-btn" style="padding:12px; margin-top:12px;" onclick="addExpense()">Save Expense</button>
+                    </div>
+                    <div id="expenseLedgerContainer"></div>
+                </div>
             </div>
         </div>
+
+        <!-- SUPER ADMIN START -->
+        <!-- TAB 5: SUPER ADMIN DASHBOARD -->
+        <div id="superAdminTab" class="hidden animate-in">
+            <h3 style="margin-top:0; margin-bottom:16px; font-weight:700;">Platform Overview <span class="super-admin-badge">Super Admin</span></h3>
+            
+            <div class="dashboard glass-panel" style="grid-template-columns: repeat(3, 1fr); margin-bottom:18px;">
+                <div class="stat-card" style="background: rgba(168, 85, 247, 0.1); border-color: #a855f7;">Libraries<span class="num" id="saTotalLibs" style="color:#a855f7;">0</span></div>
+                <div class="stat-card" style="background: rgba(37, 99, 235, 0.1); border-color: var(--primary-accent);">Active Libs<span class="num" id="saActiveLibs" style="color:var(--primary-accent);">0</span></div>
+                <div class="stat-card" style="background: rgba(16, 185, 129, 0.1); border-color: var(--green);">Total Students<span class="num" id="saTotalStudents" style="color:var(--green);">0</span></div>
+                <div class="stat-card">Total Seats<span class="num" id="saTotalSeats">0</span></div>
+                <div class="stat-card">Occupied Seats<span class="num" id="saOccupiedSeats">0</span></div>
+                <div class="stat-card">Gross Collection<span class="num" id="saTotalRev" style="color:var(--primary-accent);">₹0</span></div>
+            </div>
+
+            <input type="text" id="saSearchLib" class="app-input search-box" placeholder="Search Libraries by name or email..." oninput="renderSuperAdminList()">
+            
+            <h4 style="margin-bottom:10px; font-size:15px; font-weight:700;">Registered Libraries</h4>
+            <div id="saLibrariesContainer">
+                <div style="font-size:12px; color:var(--text-muted); text-align:center; padding: 20px;">Loading platform data...</div>
+            </div>
+        </div>
+        <!-- SUPER ADMIN END -->
+
     </div> <!-- End Main App -->
 
     <!-- DETAILS MODAL -->
@@ -758,6 +794,28 @@
                 </div>
             </div>
         </div>
+
+        <!-- SUPER ADMIN START -->
+        <!-- SUPER ADMIN MODAL DETAILS SECTION -->
+        <div class="modal-content hidden" id="modalSuperAdminDetails">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--glass-border); padding-bottom:12px; margin-bottom:12px;">
+                <h3 style="margin:0; color:var(--text-main); font-weight:700;">Platform Client Details</h3>
+                <button class="icon-btn" onclick="closeModal()" style="width:34px; height:34px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"></path></svg></button>
+            </div>
+            <div class="info-row"><span class="info-label">Library Name</span> <span class="info-value" id="saModLibName"></span></div>
+            <div class="info-row"><span class="info-label">Owner Email</span> <span class="info-value" id="saModLibEmail"></span></div>
+            <div class="info-row"><span class="info-label">Username Map</span> <span class="info-value" id="saModLibUser"></span></div>
+            <div class="info-row"><span class="info-label">UID</span> <span class="info-value" id="saModLibUID" style="font-size:10px; word-break: break-all;"></span></div>
+            <div class="info-row"><span class="info-label">Total / Occupied Seats</span> <span class="info-value" id="saModLibSeats"></span></div>
+            <div class="info-row"><span class="info-label">Total Students Enrolled</span> <span class="info-value" id="saModLibStudents"></span></div>
+            <div class="info-row"><span class="info-label">Waitlist Count</span> <span class="info-value" id="saModLibWait"></span></div>
+            <div class="info-row"><span class="info-label">Gross Income Collected</span> <span class="info-value" id="saModLibIncome" style="color:var(--green)"></span></div>
+            <div class="info-row" style="border:none;"><span class="info-label">Total Expenses Logged</span> <span class="info-value" id="saModLibExpense" style="color:var(--red)"></span></div>
+            
+            <button class="action-btn" style="background:var(--glass-bg); color:var(--text-main); border:1px solid var(--glass-border); margin-top:20px;" onclick="closeModal()">Close</button>
+        </div>
+        <!-- SUPER ADMIN END -->
+
     </div>
 
     <div id="toast-container"></div>
@@ -773,6 +831,12 @@
         const globalAppId = rawAppId.replace(/[^a-zA-Z0-9_]/g, '_');
 
         let currentUser = null; let unsubscribeSnapshot = null;
+
+        // SUPER ADMIN START
+        const SUPER_ADMIN_UID = 'cwBkWqFBuHeqpLyNBKdQSeF1iu83';
+        let superAdminDataCache = [];
+        let isSuperAdminViewActive = false;
+        // SUPER ADMIN END
 
         let appConfig = {
             libraryName: "Library Management", totalSeats: 20, customSeats: ["1A", "1B", "2A", "2B"],
@@ -840,6 +904,15 @@
                 document.getElementById('authScreen').style.display = 'none';
                 document.getElementById('mainApp').style.display = 'block';
                 document.getElementById('finMonth').value = new Date().toISOString().substring(0,7);
+                
+                // SUPER ADMIN START
+                if(user.uid === SUPER_ADMIN_UID) {
+                    document.getElementById('superAdminBtn').classList.remove('hidden');
+                } else {
+                    document.getElementById('superAdminBtn').classList.add('hidden');
+                }
+                // SUPER ADMIN END
+
                 loadDataFromCloud();
                 window.toast(`Welcome back!`);
                 setTimeout(startAppTour, 1000);
@@ -877,7 +950,16 @@
         function loadDataFromCloud() { if(!currentUser) return; unsubscribeSnapshot = db.doc(`artifacts/${globalAppId}/users/${currentUser.uid}/libraryData/main`).onSnapshot((s) => { window.initializeAppStructure(); if (s.exists) { const d = s.data(); if(d.config) appConfig = d.config; if(d.seatsData) DB.seatsData = d.seatsData; DB.expenses = d.expenses || []; DB.waitlist = d.waitlist || []; } else { DB.init(); DB.save(); } document.getElementById('appTitle').innerText = appConfig.libraryName || 'Library Management'; window.initializeAppStructure(); window.renderSeats(); window.renderWaitlist(); window.calculateFinances(); }, ()=>{}); }
         function startAppTour() { if (localStorage.getItem('hasSeenTour') === 'true') return; const t = window.driver.js.driver({ showProgress:true, steps:[{popover:{title:'Welcome!',description:'Quick 30s tour.'}},{element:'#settingsTab',popover:{title:'1. Setup',description:'Start here.'}},{element:'#seatMapTab',popover:{title:'2. Chairs',description:'Your seats.'}},{element:'#tabFinBtn',popover:{title:'3. Finance',description:'Track Dues.'}}], onDestroyStarted:()=>{localStorage.setItem('hasSeenTour','true');t.destroy();}}); t.drive(); }
 
-        window.switchTab = function(tab) { ['seatMapTab', 'addSeatTab', 'waitlistTab', 'financeTab'].forEach(id => document.getElementById(id).classList.add('hidden')); ['tabMapBtn', 'tabAddBtn', 'tabWaitBtn', 'tabFinBtn'].forEach(id => document.getElementById(id).classList.remove('active')); if(tab === 'map') { document.getElementById('seatMapTab').classList.remove('hidden'); document.getElementById('tabMapBtn').classList.add('active'); window.renderSeats(); } else if(tab === 'add') { document.getElementById('addSeatTab').classList.remove('hidden'); document.getElementById('tabAddBtn').classList.add('active'); document.getElementById('admDate').value = new Date().toISOString().split('T')[0]; document.getElementById('totalFee').value = ''; document.getElementById('initialAmount').value = ''; } else if(tab === 'wait') { document.getElementById('waitlistTab').classList.remove('hidden'); document.getElementById('tabWaitBtn').classList.add('active'); window.renderWaitlist(); } else if(tab === 'fin') { document.getElementById('financeTab').classList.remove('hidden'); document.getElementById('tabFinBtn').classList.add('active'); window.calculateFinances(); } }
+        window.switchTab = function(tab) { 
+            // SUPER ADMIN START
+            if(isSuperAdminViewActive) toggleSuperAdminDashboard();
+            // SUPER ADMIN END
+
+            ['seatMapTab', 'addSeatTab', 'waitlistTab', 'financeTab'].forEach(id => document.getElementById(id).classList.add('hidden')); 
+            ['tabMapBtn', 'tabAddBtn', 'tabWaitBtn', 'tabFinBtn'].forEach(id => document.getElementById(id).classList.remove('active')); 
+            
+            if(tab === 'map') { document.getElementById('seatMapTab').classList.remove('hidden'); document.getElementById('tabMapBtn').classList.add('active'); window.renderSeats(); } else if(tab === 'add') { document.getElementById('addSeatTab').classList.remove('hidden'); document.getElementById('tabAddBtn').classList.add('active'); document.getElementById('admDate').value = new Date().toISOString().split('T')[0]; document.getElementById('totalFee').value = ''; document.getElementById('initialAmount').value = ''; } else if(tab === 'wait') { document.getElementById('waitlistTab').classList.remove('hidden'); document.getElementById('tabWaitBtn').classList.add('active'); window.renderWaitlist(); } else if(tab === 'fin') { document.getElementById('financeTab').classList.remove('hidden'); document.getElementById('tabFinBtn').classList.add('active'); window.calculateFinances(); } 
+        }
 
         window.initializeAppStructure = function() {
             window.seatLayout = []; const total = parseInt(appConfig.totalSeats) || 20; const customs = appConfig.customSeats || [];
@@ -1145,7 +1227,7 @@
             window.toast('✅ Settings applied!');
         }
 
-        function hideAllModalSections() { ['modalListSection', 'modalViewSection', 'modalEditSection', 'modalPaySection', 'modalSettingsSection'].forEach(id => { const el = document.getElementById(id); if(el) { el.classList.add('hidden'); el.classList.remove('modal-animate'); } }); }
+        function hideAllModalSections() { ['modalListSection', 'modalViewSection', 'modalEditSection', 'modalPaySection', 'modalSettingsSection', 'modalSuperAdminDetails'].forEach(id => { const el = document.getElementById(id); if(el) { el.classList.add('hidden'); el.classList.remove('modal-animate'); } }); }
         function triggerModalAnimation(sectionId) { const el = document.getElementById(sectionId); el.classList.remove('hidden'); void el.offsetWidth; el.classList.add('modal-animate'); }
         
         window.handleSeatClick = function(seatNo) { window.activeSeatNo = seatNo; const occupants = DB.getOccupants(seatNo); if(occupants.length === 1) window.openStudentProfile(occupants[0].id); else window.showListMenu(); document.getElementById('detailsModal').style.display = 'flex'; }
@@ -1235,11 +1317,156 @@
             const btn = document.getElementById('btnRemoveStudent');
             if (!window.isDeleteConfirmStep) { window.isDeleteConfirmStep = true; btn.innerText = "Tap Again to Delete"; btn.style.background = "#991b1b"; setTimeout(() => { if (window.isDeleteConfirmStep) { window.isDeleteConfirmStep = false; btn.innerText = "Remove"; btn.style.background = "var(--red)"; } }, 4000); return; }
             DB.removeStudent(window.activeSeatNo, window.activeStudentId); window.renderSeats(); window.calculateFinances(); window.toast(`🗑️ Removed.`); window.isDeleteConfirmStep = false; btn.innerText = "Remove"; btn.style.background = "var(--red)";
-            if(DB.getOccupants(window.activeSeatNo).length > 0) window.showListMenu(); else window.closeModal();
+            if(DB.getOccupants(window.activeSeatNo).length > 0) window.showListMenu(); else window.closeModal(); 
         }
 
-        window.exportData = function() { const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ config: appConfig, seatsData: DB.seatsData, expenses: DB.expenses, waitlist: DB.waitlist })); const a = document.createElement('a'); a.href = dataStr; a.download = `LibraryManagement_Backup_${new Date().toISOString().split('T')[0]}.json`; document.body.appendChild(a); a.click(); a.remove(); window.toast("📥 Downloaded!"); }
-        window.importData = function(input) { const reader = new FileReader(); reader.onload = function() { try { const obj = JSON.parse(reader.result); if(obj.config) { appConfig = obj.config; DB.seatsData = obj.seatsData || {}; DB.expenses = obj.expenses || []; DB.waitlist = obj.waitlist || []; } else { DB.seatsData = obj; } DB.save(); document.getElementById('appTitle').innerText = appConfig.libraryName; window.initializeAppStructure(); window.renderSeats(); window.renderWaitlist(); window.calculateFinances(); window.closeModal(); window.toast("📤 Restored!"); } catch(e) { window.toast("⚠️ Read Error"); } }; if(input.files[0]) reader.readAsText(input.files[0]); }
+        // SUPER ADMIN START
+        window.toggleSuperAdminDashboard = function() {
+            isSuperAdminViewActive = !isSuperAdminViewActive;
+            
+            if (isSuperAdminViewActive) {
+                document.getElementById('standardAppViews').classList.add('hidden');
+                document.getElementById('superAdminTab').classList.remove('hidden');
+                document.getElementById('appTitle').innerText = 'Super Admin Portal';
+                fetchSuperAdminData();
+            } else {
+                document.getElementById('standardAppViews').classList.remove('hidden');
+                document.getElementById('superAdminTab').classList.add('hidden');
+                document.getElementById('appTitle').innerText = appConfig.libraryName || 'Library Management';
+            }
+        }
+
+        async function fetchSuperAdminData() {
+            window.toast("Syncing Global Platform Data...");
+            try {
+                const mapSnap = await db.collection(`artifacts/${globalAppId}/public/data/usernameMap`).get();
+                superAdminDataCache = [];
+                
+                let aggLibs = 0, aggStudents = 0, aggSeats = 0, aggOccupiedSeats = 0, aggActiveLibs = 0, aggRev = 0;
+
+                for (let doc of mapSnap.docs) {
+                    const mappedUser = doc.data();
+                    const libId = doc.id;
+                    const libSnap = await db.doc(`artifacts/${globalAppId}/users/${mappedUser.uid}/libraryData/main`).get();
+                    
+                    let libProfile = { 
+                        uid: mappedUser.uid, username: libId, email: mappedUser.email, name: "Unnamed Library", 
+                        seats: 0, occupiedSeats: 0, totalStudents: 0, totalIncome: 0, totalExpense: 0, waitlist: 0, active: false 
+                    };
+
+                    aggLibs++;
+
+                    if (libSnap.exists) {
+                        const lData = libSnap.data();
+                        libProfile.name = (lData.config && lData.config.libraryName) ? lData.config.libraryName : "Library " + aggLibs;
+                        libProfile.seats = (lData.config && lData.config.totalSeats) ? parseInt(lData.config.totalSeats) : 20;
+                        if(lData.config && lData.config.customSeats) libProfile.seats += lData.config.customSeats.length;
+
+                        aggSeats += libProfile.seats;
+                        
+                        if(lData.waitlist) libProfile.waitlist = lData.waitlist.length;
+
+                        if (lData.seatsData) {
+                            for (const seatId in lData.seatsData) {
+                                const occupants = lData.seatsData[seatId];
+                                if (occupants.length > 0) {
+                                    libProfile.occupiedSeats++;
+                                    libProfile.totalStudents += occupants.length;
+                                    
+                                    occupants.forEach(stu => {
+                                        if (stu.payments) {
+                                            stu.payments.forEach(p => libProfile.totalIncome += parseFloat(p.amount));
+                                        }
+                                    });
+                                }
+                            }
+                        }
+
+                        if(lData.expenses) {
+                            lData.expenses.forEach(e => libProfile.totalExpense += parseFloat(e.amount));
+                        }
+                    }
+
+                    if (libProfile.totalStudents > 0) {
+                        libProfile.active = true;
+                        aggActiveLibs++;
+                    }
+
+                    aggStudents += libProfile.totalStudents;
+                    aggOccupiedSeats += libProfile.occupiedSeats;
+                    aggRev += libProfile.totalIncome;
+
+                    superAdminDataCache.push(libProfile);
+                }
+
+                // Update aggregate UI
+                document.getElementById('saTotalLibs').innerText = aggLibs;
+                document.getElementById('saActiveLibs').innerText = aggActiveLibs;
+                document.getElementById('saTotalStudents').innerText = aggStudents;
+                document.getElementById('saTotalSeats').innerText = aggSeats;
+                document.getElementById('saOccupiedSeats').innerText = aggOccupiedSeats;
+                document.getElementById('saTotalRev').innerText = '₹' + aggRev;
+
+                renderSuperAdminList();
+
+            } catch (e) {
+                console.error("Super Admin Data Error: ", e);
+                window.toast("Failed to load global data. Check Permissions.");
+            }
+        }
+
+        window.renderSuperAdminList = function() {
+            const container = document.getElementById('saLibrariesContainer');
+            container.innerHTML = '';
+            
+            const q = document.getElementById('saSearchLib').value.toLowerCase();
+            const filtered = superAdminDataCache.filter(l => 
+                l.name.toLowerCase().includes(q) || l.email.toLowerCase().includes(q) || l.username.toLowerCase().includes(q)
+            );
+
+            if(filtered.length === 0) {
+                container.innerHTML = '<div style="font-size:12px; color:var(--text-muted); text-align:center;">No libraries found.</div>';
+                return;
+            }
+
+            filtered.forEach(l => {
+                let statusBadge = l.active ? `<span class="badge" style="background:var(--green);">Active</span>` : `<span class="badge" style="background:var(--text-muted);">Inactive</span>`;
+                
+                container.innerHTML += `
+                    <div class="list-item" style="cursor:pointer;" onclick="openSuperAdminDetails('${l.uid}')">
+                        <div>
+                            <strong style="font-size:14px; display:block;">${l.name}</strong>
+                            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">${l.email} • @${l.username}</div>
+                        </div>
+                        <div style="text-align:right;">
+                            ${statusBadge}
+                            <div style="font-size:10px; color:var(--text-muted); margin-top:4px; font-weight:600;">${l.totalStudents} Students</div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        window.openSuperAdminDetails = function(uid) {
+            hideAllModalSections();
+            const lib = superAdminDataCache.find(l => l.uid === uid);
+            if(!lib) return;
+
+            document.getElementById('saModLibName').innerText = lib.name;
+            document.getElementById('saModLibEmail').innerText = lib.email;
+            document.getElementById('saModLibUser').innerText = '@' + lib.username;
+            document.getElementById('saModLibUID').innerText = lib.uid;
+            document.getElementById('saModLibSeats').innerText = `${lib.occupiedSeats} / ${lib.seats}`;
+            document.getElementById('saModLibStudents').innerText = lib.totalStudents;
+            document.getElementById('saModLibWait').innerText = lib.waitlist;
+            document.getElementById('saModLibIncome').innerText = '₹' + lib.totalIncome;
+            document.getElementById('saModLibExpense').innerText = '₹' + lib.totalExpense;
+
+            triggerModalAnimation('modalSuperAdminDetails');
+            document.getElementById('detailsModal').style.display = 'flex';
+        }
+        // SUPER ADMIN END
+
     </script>
 </body>
 </html>
