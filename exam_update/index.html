@@ -1,100 +1,417 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Exam Calendar - Under Development</title>
-    
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Tailwind CSS -->
+    <title>Live Exam Calendar | Student Utilities</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
-                    animation: {
-                        'spin-slow': 'spin 3s linear infinite',
-                        'float': 'float 3s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-5px)' },
+                    colors: {
+                        slate: {
+                            850: '#151e2e',
+                            900: '#0f172a',
                         }
                     }
                 }
             }
         }
     </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(51, 65, 85, 0.8);
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
 </head>
-<body class="bg-slate-900 text-slate-200 font-sans min-h-screen flex flex-col antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
-    
-    <!-- Background subtle gradient effect -->
-    <div class="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-800 via-slate-900 to-slate-950 -z-10"></div>
+<body class="bg-slate-900 text-slate-300 min-h-screen flex flex-col antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
 
-    <!-- Header -->
-    <header class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center">
-            <a href="https://www.selectionlibrary.com/tools/" class="group inline-flex items-center text-sm font-medium text-slate-400 hover:text-emerald-400 transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-md p-1">
-                <i class="fa-solid fa-arrow-left mr-2 transition-transform duration-200 group-hover:-translate-x-1"></i>
-                Back to Tools
-            </a>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8">
-        
-        <!-- Placeholder Card -->
-        <div class="bg-slate-800/40 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8 sm:p-10 max-w-lg w-full text-center shadow-2xl shadow-slate-950/50 relative overflow-hidden">
-            
-            <!-- Decorative top accent line -->
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-50"></div>
-
-            <!-- Animated Icon Container -->
-            <div class="relative inline-flex items-center justify-center w-28 h-28 mb-8">
-                <!-- Glowing backdrop -->
-                <div class="absolute inset-0 bg-emerald-500/20 blur-2xl rounded-full animate-pulse"></div>
-                
-                <!-- Main Icon Box -->
-                <div class="relative bg-slate-800/80 border border-slate-600/50 p-6 rounded-2xl shadow-lg backdrop-blur-sm animate-float">
-                    <i class="fa-regular fa-calendar-days text-5xl text-emerald-400 drop-shadow-sm"></i>
-                    
-                    <!-- Spinning Gear Badge -->
-                    <div class="absolute -bottom-3 -right-3 bg-slate-900 p-2.5 rounded-full border-2 border-slate-700 shadow-md flex items-center justify-center">
-                        <i class="fa-solid fa-gear text-xl text-emerald-500 animate-spin-slow"></i>
+    <nav class="sticky top-0 z-40 glass-panel border-b border-slate-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-4">
+                    <a href="student-utilities-hub.html" class="text-slate-400 hover:text-emerald-400 transition-colors flex items-center gap-2 text-sm font-medium">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Back to Tools</span>
+                    </a>
+                    <div class="h-6 w-px bg-slate-700 hidden sm:block"></div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                        <h1 class="text-lg font-semibold text-white tracking-tight">Live Exam Calendar</h1>
                     </div>
                 </div>
+                <div class="flex items-center gap-3">
+                    <span class="relative flex h-3 w-3">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                    </span>
+                    <span class="text-xs font-medium text-emerald-400 hidden sm:block">Live Updates</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        
+        <!-- Controls Section -->
+        <div class="mb-8 space-y-4 sm:space-y-0 sm:flex sm:items-center sm:justify-between flex-wrap gap-4">
+            <!-- Search -->
+            <div class="relative max-w-md w-full">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fa-solid fa-search text-slate-500"></i>
+                </div>
+                <input type="text" id="searchInput" placeholder="Search exams, agencies, or keywords..." 
+                    class="block w-full pl-10 pr-3 py-2.5 border border-slate-700 rounded-xl leading-5 bg-slate-800/50 text-slate-300 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all sm:text-sm shadow-sm backdrop-blur-sm">
             </div>
 
-            <!-- Typography -->
-            <h1 class="text-2xl sm:text-3xl font-bold text-slate-100 mb-4 tracking-tight">
-                Live Exam Calendar is <br class="hidden sm:block"/> Under Development
-            </h1>
-            
-            <p class="text-slate-400 text-sm sm:text-base mb-8 leading-relaxed max-w-sm mx-auto">
-                Our team is currently crafting an interactive timeline that transforms chaotic test dates into a clear, manageable roadmap for your academic success. Stay tuned!
-            </p>
+            <!-- Filters -->
+            <div class="flex overflow-x-auto pb-2 sm:pb-0 gap-2 hide-scroll" id="categoryFilters">
+                <button class="filter-btn active whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-emerald-500 text-white shadow-md shadow-emerald-500/20 transition-all" data-category="All">All</button>
+                <button class="filter-btn whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700 transition-all" data-category="UPSC">UPSC</button>
+                <button class="filter-btn whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700 transition-all" data-category="SSC">SSC</button>
+                <button class="filter-btn whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700 transition-all" data-category="Banking">Banking</button>
+                <button class="filter-btn whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700 transition-all" data-category="State PSC">State PSC</button>
+                <button class="filter-btn whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700 transition-all" data-category="Railways">Railways</button>
+            </div>
+        </div>
 
-            <!-- Action Button -->
-            <a href="https://www.selectionlibrary.com/tools/" class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium rounded-xl transition-all duration-200 border border-slate-600 hover:border-slate-500 hover:shadow-lg hover:shadow-slate-900/20 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-slate-800">
-                <i class="fa-solid fa-layer-group mr-2 opacity-80"></i>
-                Go Back to Tools
-            </a>
-            
+        <!-- Exam Grid Container -->
+        <div id="examGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Skeleton Loaders -->
+            <div class="skeleton-card glass-panel rounded-2xl p-5 border border-slate-700 shadow-sm">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="h-6 bg-slate-700 rounded-md w-1/3 animate-pulse"></div>
+                    <div class="h-5 bg-slate-700 rounded-full w-1/4 animate-pulse"></div>
+                </div>
+                <div class="h-5 bg-slate-700 rounded-md w-3/4 mb-4 animate-pulse"></div>
+                <div class="space-y-3 mb-6">
+                    <div class="h-4 bg-slate-700/50 rounded w-full animate-pulse"></div>
+                    <div class="h-4 bg-slate-700/50 rounded w-5/6 animate-pulse"></div>
+                </div>
+                <div class="flex gap-2">
+                    <div class="h-10 bg-slate-700 rounded-xl w-1/2 animate-pulse"></div>
+                    <div class="h-10 bg-slate-700 rounded-xl w-1/2 animate-pulse"></div>
+                </div>
+            </div>
+            <div class="skeleton-card glass-panel rounded-2xl p-5 border border-slate-700 shadow-sm hidden md:block">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="h-6 bg-slate-700 rounded-md w-1/3 animate-pulse"></div>
+                    <div class="h-5 bg-slate-700 rounded-full w-1/4 animate-pulse"></div>
+                </div>
+                <div class="h-5 bg-slate-700 rounded-md w-3/4 mb-4 animate-pulse"></div>
+                <div class="space-y-3 mb-6">
+                    <div class="h-4 bg-slate-700/50 rounded w-full animate-pulse"></div>
+                    <div class="h-4 bg-slate-700/50 rounded w-5/6 animate-pulse"></div>
+                </div>
+                <div class="flex gap-2">
+                    <div class="h-10 bg-slate-700 rounded-xl w-1/2 animate-pulse"></div>
+                    <div class="h-10 bg-slate-700 rounded-xl w-1/2 animate-pulse"></div>
+                </div>
+            </div>
+            <div class="skeleton-card glass-panel rounded-2xl p-5 border border-slate-700 shadow-sm hidden lg:block">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="h-6 bg-slate-700 rounded-md w-1/3 animate-pulse"></div>
+                    <div class="h-5 bg-slate-700 rounded-full w-1/4 animate-pulse"></div>
+                </div>
+                <div class="h-5 bg-slate-700 rounded-md w-3/4 mb-4 animate-pulse"></div>
+                <div class="space-y-3 mb-6">
+                    <div class="h-4 bg-slate-700/50 rounded w-full animate-pulse"></div>
+                    <div class="h-4 bg-slate-700/50 rounded w-5/6 animate-pulse"></div>
+                </div>
+                <div class="flex gap-2">
+                    <div class="h-10 bg-slate-700 rounded-xl w-1/2 animate-pulse"></div>
+                    <div class="h-10 bg-slate-700 rounded-xl w-1/2 animate-pulse"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden text-center py-20 px-4">
+            <div class="w-16 h-16 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-slate-700">
+                <i class="fa-regular fa-folder-open text-2xl text-slate-400"></i>
+            </div>
+            <h3 class="text-lg font-medium text-white mb-1">No exams found</h3>
+            <p class="text-slate-400 text-sm max-w-sm mx-auto">Try adjusting your filters or search terms to find what you're looking for.</p>
         </div>
     </main>
 
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+        import { getFirestore, collection, onSnapshot, query } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+        // Environment variables injected by platform
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'live-exam-cal-app';
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyBr3OVwa3uCbCLR9yFvHWBhYvQonqTKJ1g",
+            authDomain: "exam-calendar-247.firebaseapp.com",
+            projectId: "exam-calendar-247",
+            storageBucket: "exam-calendar-247.firebasestorage.app",
+            messagingSenderId: "427684296660",
+            appId: "1:427684296660:web:4f6b6616a450dc75b34841",
+            measurementId: "G-LYCD4JB4FF"
+        };
+        
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // State
+        let allExams = [];
+        let currentCategory = 'All';
+        let currentSearch = '';
+
+        // DOM Elements
+        const examGrid = document.getElementById('examGrid');
+        const emptyState = document.getElementById('emptyState');
+        const searchInput = document.getElementById('searchInput');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+
+        // Logic for auto-calculating status and styling
+        function calculateStatusInfo(appDeadlineStr, examDateStr) {
+            const now = new Date();
+            now.setHours(0, 0, 0, 0); // Normalize to start of day
+
+            const parseDate = (dStr) => {
+                if (!dStr) return null;
+                const d = new Date(dStr);
+                d.setHours(0,0,0,0);
+                return d;
+            };
+
+            const appDeadline = parseDate(appDeadlineStr);
+            const examDate = parseDate(examDateStr);
+
+            if (!appDeadline && !examDate) {
+                return { text: "TBA", colorClass: "bg-slate-500/20 text-slate-400 border-slate-500/30", icon: "fa-clock" };
+            }
+
+            if (appDeadline) {
+                const diffApp = Math.floor((appDeadline - now) / (1000 * 60 * 60 * 24));
+                if (diffApp >= 0 && diffApp <= 7) {
+                    return { text: "Closing Soon", colorClass: "bg-amber-500/20 text-amber-400 border-amber-500/30", icon: "fa-fire", urgency: `Ends in ${diffApp}d` };
+                }
+                if (diffApp > 7) {
+                    return { text: "Applications Open", colorClass: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30", icon: "fa-door-open" };
+                }
+            }
+
+            if (examDate) {
+                const diffExam = Math.floor((examDate - now) / (1000 * 60 * 60 * 24));
+                if (diffExam < 0) {
+                    return { text: "Completed", colorClass: "bg-slate-700/50 text-slate-400 border-slate-600", icon: "fa-check-circle" };
+                }
+                if (diffExam >= 0 && diffExam <= 14 && appDeadline && now > appDeadline) {
+                    return { text: "Admit Card Soon", colorClass: "bg-blue-500/20 text-blue-400 border-blue-500/30", icon: "fa-id-card" };
+                }
+                if (appDeadline && now > appDeadline) {
+                    return { text: "Exam Soon", colorClass: "bg-purple-500/20 text-purple-400 border-purple-500/30", icon: "fa-hourglass-half" };
+                }
+            }
+            
+            return { text: "Announced", colorClass: "bg-indigo-500/20 text-indigo-400 border-indigo-500/30", icon: "fa-bullhorn" };
+        }
+
+        // Format dates nicely
+        function formatDate(dateStr) {
+            if (!dateStr) return 'TBA';
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            const d = new Date(dateStr);
+            // fix timezone offset issues for local display
+            d.setMinutes(d.getMinutes() + d.getTimezoneOffset());
+            return d.toLocaleDateString(undefined, options);
+        }
+
+        function renderExams() {
+            // Remove skeletons
+            document.querySelectorAll('.skeleton-card').forEach(el => el.remove());
+
+            // Filter logic (JS memory as per requirements)
+            const filtered = allExams.filter(exam => {
+                const matchesCategory = currentCategory === 'All' || exam.category === currentCategory;
+                const searchLower = currentSearch.toLowerCase();
+                const matchesSearch = !currentSearch || 
+                                      (exam.title && exam.title.toLowerCase().includes(searchLower)) ||
+                                      (exam.category && exam.category.toLowerCase().includes(searchLower));
+                return matchesCategory && matchesSearch;
+            });
+
+            // Sort logic (Closing soonest, etc. - simple sort by app deadline then exam date)
+            filtered.sort((a, b) => {
+                const da = new Date(a.applicationDeadline || '2099-01-01').getTime();
+                const db = new Date(b.applicationDeadline || '2099-01-01').getTime();
+                return da - db;
+            });
+
+            // Clear current grid (except skeletons if we were keeping them, but we wiped them)
+            examGrid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                
+                filtered.forEach(exam => {
+                    const statusInfo = calculateStatusInfo(exam.applicationDeadline, exam.examDate);
+                    const lastUpdated = exam.lastUpdated ? new Date(exam.lastUpdated.toDate()).toLocaleDateString() : 'Recently';
+
+                    const card = document.createElement('div');
+                    card.className = "glass-panel rounded-2xl p-5 border border-slate-700 shadow-sm hover:border-emerald-500/50 transition-all duration-300 group flex flex-col h-full";
+                    
+                    card.innerHTML = `
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-slate-800 text-slate-300 border border-slate-700 shadow-sm">${exam.category || 'General'}</span>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${statusInfo.colorClass}">
+                                <i class="fa-solid ${statusInfo.icon} text-[10px]"></i>
+                                ${statusInfo.text}
+                            </span>
+                        </div>
+                        <h2 class="text-lg font-bold text-white mb-4 line-clamp-2 group-hover:text-emerald-400 transition-colors">${exam.title}</h2>
+                        
+                        <div class="space-y-3 mb-6 flex-1">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 text-slate-400">
+                                    <i class="fa-regular fa-file-lines"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 font-medium">Apply By</p>
+                                    <p class="text-sm font-semibold text-slate-200">${formatDate(exam.applicationDeadline)}</p>
+                                    ${statusInfo.urgency ? `<p class="text-xs text-amber-400 font-medium mt-0.5"><i class="fa-solid fa-bolt mr-1"></i>${statusInfo.urgency}</p>` : ''}
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 text-slate-400">
+                                    <i class="fa-regular fa-calendar-check"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 font-medium">Exam Date</p>
+                                    <p class="text-sm font-semibold text-slate-200">${formatDate(exam.examDate)}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-3 mt-auto">
+                            <div class="grid grid-cols-2 gap-2">
+                                ${exam.officialLink ? 
+                                    `<a href="${exam.officialLink}" target="_blank" rel="noopener noreferrer" class="flex-1 flex justify-center items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold py-2.5 px-4 rounded-xl transition-colors shadow-lg shadow-emerald-500/20">
+                                        Official Link <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                    </a>` : 
+                                    `<button disabled class="flex-1 flex justify-center items-center gap-2 bg-slate-800 text-slate-500 text-sm font-semibold py-2.5 px-4 rounded-xl border border-slate-700 cursor-not-allowed">
+                                        No Link Added
+                                    </button>`
+                                }
+                                <button class="flex-1 flex justify-center items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-semibold py-2.5 px-4 rounded-xl transition-colors border border-slate-700">
+                                    <i class="fa-regular fa-bell"></i> Remind Me
+                                </button>
+                            </div>
+                            <div class="text-[10px] text-slate-500 text-center flex items-center justify-center gap-1.5">
+                                ${exam.verified ? '<i class="fa-solid fa-shield-check text-emerald-500" title="Verified Data"></i>' : ''}
+                                Last updated: ${lastUpdated}
+                            </div>
+                        </div>
+                    `;
+                    examGrid.appendChild(card);
+                });
+            }
+        }
+
+        // Setup Interactions
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value;
+            renderExams();
+        });
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // Update active state visually
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-emerald-500', 'text-white', 'shadow-md', 'shadow-emerald-500/20');
+                    b.classList.add('bg-slate-800', 'text-slate-400', 'border', 'border-slate-700');
+                });
+                
+                const target = e.target;
+                target.classList.remove('bg-slate-800', 'text-slate-400', 'border', 'border-slate-700');
+                target.classList.add('bg-emerald-500', 'text-white', 'shadow-md', 'shadow-emerald-500/20');
+
+                currentCategory = target.dataset.category;
+                renderExams();
+            });
+        });
+
+        async function fetchExams() {
+            try {
+                // Try robust authentication sequence
+                try {
+                    if (initialAuthToken) {
+                        await signInWithCustomToken(auth, initialAuthToken);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                } catch (authError) {
+                    console.warn("Primary auth method failed:", authError.message);
+                    try {
+                        if (initialAuthToken) {
+                            console.log("Attempting fallback to anonymous auth...");
+                            await signInAnonymously(auth);
+                        }
+                    } catch (fallbackError) {
+                        console.warn("Fallback auth also failed, proceeding unauthenticated.", fallbackError.message);
+                    }
+                }
+
+                // Strict path requirement: public data
+                const examsRef = collection(db, 'artifacts', appId, 'public', 'data', 'exams');
+                const q = query(examsRef); // No complex queries allowed
+
+                onSnapshot(q, (snapshot) => {
+                    const fetchedExams = [];
+                    snapshot.forEach(doc => {
+                        const data = doc.data();
+                        // JS memory filtering: Only show published exams on the live calendar
+                        if (data.published === true) {
+                            fetchedExams.push({ id: doc.id, ...data });
+                        }
+                    });
+                    
+                    allExams = fetchedExams;
+                    renderExams();
+                }, (error) => {
+                    console.error("Firestore error:", error);
+                    examGrid.innerHTML = `<div class="col-span-full text-center text-red-400 py-10 bg-red-500/10 rounded-2xl border border-red-500/20">Failed to load data. Please try again later.</div>`;
+                });
+
+            } catch (error) {
+                console.error("Auth or Init Error:", error);
+                document.querySelectorAll('.skeleton-card').forEach(el => el.remove());
+                examGrid.innerHTML = `<div class="col-span-full text-center text-amber-400 py-10 bg-amber-500/10 rounded-2xl border border-amber-500/20">Authentication required to view data.</div>`;
+            }
+        }
+
+        // Start
+        fetchExams();
+
+    </script>
 </body>
 </html>
