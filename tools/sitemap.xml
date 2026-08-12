@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  <!-- Student Utilities & Tools Page -->
   <url>
-    <loc>https://www.selectionlibrary.com/tools/</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://www.selectionlibrary.com/tools</loc>
   </url>
-
-  <!-- Main Website Homepage -->
-  <url>
-    <loc>https://www.selectionlibrary.com/</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.00</priority>
-  </url>
-
-  <!-- Live Exam Calendar Page -->
-  <url>
-    <loc>https://www.selectionlibrary.com/exam_update/</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.90</priority>
-  </url>
-
 </urlset>
