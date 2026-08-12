@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Utilities Hub - Selection Library</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Configuration for Custom Colors/Fonts -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151f32', // Custom shade between 800 and 900
+                            950: '#0b1120',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- PDF-Lib for Client-Side PDF Operations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b1120; /* slate-950 */
+            color: #f8fafc; /* slate-50 */
+        }
+        
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; /* slate-900 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; /* slate-700 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; /* slate-600 */
+        }
+
+        /* Input styling overrides for dark mode */
+        input[type="file"]::file-selector-button {
+            border: none;
+            background: #34d399; /* emerald-400 */
+            color: #064e3b; /* emerald-900 */
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: 500;
+        }
+        input[type="file"]::file-selector-button:hover {
+            background: #10b981; /* emerald-500 */
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-slate-900 border-b border-slate-800 py-6 sticky top-0 z-40 shadow-md">
+        <div class="container mx-auto px-4 max-w-5xl flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-emerald-400/10 p-2 rounded-lg border border-emerald-400/20">
+                    <i class="fa-solid fa-book-open text-emerald-400 text-xl"></i>
+                </div>
+                <h1 class="text-2xl font-bold tracking-tight text-white">
+                    Selection Library <span class="text-emerald-400">Utilities</span>
+                </h1>
+            </div>
+            <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-400">
+                <a href="#image-tool" class="hover:text-emerald-400 transition-colors">Image Compressor</a>
+                <a href="#pdf-tool" class="hover:text-emerald-400 transition-colors">PDF Tools</a>
+                <a href="#age-tool" class="hover:text-emerald-400 transition-colors">Age Calculator</a>
+                <a href="live-exam-calendar.html" class="hover:text-emerald-400 transition-colors">Exam Calendar</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-10 max-w-5xl">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Essential Tools for <span class="text-emerald-400">Aspirants</span></h2>
+            <p class="text-slate-400 max-w-2xl mx-auto text-lg">Streamline your exam application process with our client-side, privacy-focused utilities. No data leaves your browser.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Tool 1: Image Compressor & Resizer -->
+            <section id="image-tool" class="bg-slate-900 rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl flex flex-col relative overflow-hidden">
+                <!-- Decorative glow -->
+                <div class="absolute -top-20 -right-20 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="bg-slate-800 p-2 rounded-md text-emerald-400">
+                        <i class="fa-solid fa-crop-simple text-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white">Image Formatter & Cropper</h3>
+                </div>
+                
+                <p class="text-sm text-slate-400 mb-6">Crop, resize, and compress your documents strictly as per exam guidelines. 100% secure, processes locally.</p>
+
+                <div class="space-y-5 flex-grow">
+                    <!-- File Upload -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Upload Image (JPG/PNG)</label>
+                        <div class="flex items-center justify-center w-full">
+                            <label for="img-upload" class="flex flex-col items-center justify-center w-full h-32 border-2 border-slate-700 border-dashed rounded-lg cursor-pointer bg-slate-850 hover:bg-slate-800 transition-colors">
+                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                    <i class="fa-solid fa-cloud-arrow-up text-3xl text-slate-500 mb-3"></i>
+                                    <p class="mb-2 text-sm text-slate-400"><span class="font-semibold text-emerald-400">Click to upload</span> or drag and drop</p>
+                                </div>
+                                <input id="img-upload" type="file" accept="image/jpeg, image/png" class="hidden" />
+                            </label>
+                        </div>
+                        <p id="file-info" class="text-xs text-emerald-400 mt-2 hidden">File selected: <span id="file-name"></span> (<span id="file-orig-size"></span>)</p>
+                    </div>
+
+                    <!-- Guidelines & Specs -->
+                    <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Format Guidelines</label>
+                            <select id="doc-preset" class="w-full bg-slate-900 border border-slate-700 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-1 focus:ring-emerald-400 focus:border-emerald-400 transition-shadow text-sm cursor-pointer">
+                                <option value="custom">Custom Format</option>
+                                <option value="photo" data-w="3.5" data-h="4.5" data-u="cm" data-kb="50" selected>Passport Photo (3.5 x 4.5 cm)</option>
+                                <option value="sig" data-w="4.0" data-h="2.0" data-u="cm" data-kb="20">Signature (4.0 x 2.0 cm)</option>
+                                <option value="thumb" data-w="3.0" data-h="3.0" data-u="cm" data-kb="20">Thumb Impression (3.0 x 3.0 cm)</option>
+                                <option value="decl" data-w="800" data-h="400" data-u="px" data-kb="100">Self Declaration (800 x 400 px)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-slate-400 mb-1">Max Size (KB)</label>
+                                <div class="relative">
+                                    <input type="number" id="target-kb" value="50" class="w-full bg-slate-900 border border-slate-700 rounded-md py-2 px-3 text-white text-sm focus:outline-none focus:ring-1 focus:ring-emerald-400 transition-shadow">
+                                    <span class="absolute right-3 top-2 text-slate-500 text-sm pointer-events-none">KB</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                 <label class="block text-xs font-medium text-slate-400 mb-1">Target Dimensions</label>
+                                 <div class="flex items-center gap-1.5">
+                                    <input type="number" step="0.1" id="target-width" value="3.5" class="w-full bg-slate-900 border border-slate-700 rounded-md py-2 px-2 text-white text-sm focus:outline-none focus:ring-1 focus:ring-emerald-400 transition-shadow text-center">
+                                    <span class="text-slate-500 text-xs">x</span>
+                                    <input type="number" step="0.1" id="target-height" value="4.5" class="w-full bg-slate-900 border border-slate-700 rounded-md py-2 px-2 text-white text-sm focus:outline-none focus:ring-1 focus:ring-emerald-400 transition-shadow text-center">
+                                    <select id="dim-unit" class="bg-slate-800 border border-slate-700 rounded-md py-2 px-1 text-white text-sm focus:outline-none cursor-pointer">
+                                        <option value="cm" selected>cm</option>
+                                        <option value="px">px</option>
+                                    </select>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Cropper (Hidden initially) -->
+                    <div id="cropper-ui" class="hidden flex-col items-center bg-slate-950 rounded-lg p-4 border border-slate-800">
+                        <div class="w-full flex justify-between items-center mb-3">
+                            <span class="text-sm font-medium text-slate-300"><i class="fa-solid fa-expand text-emerald-400 mr-2"></i>Adjust & Crop</span>
+                            <span class="text-xs px-2 py-1 bg-slate-800 text-slate-400 rounded">Drag to Pan</span>
+                        </div>
+                        
+                        <div id="canvas-wrapper" class="relative w-full flex justify-center items-center bg-slate-900 rounded border border-slate-700 overflow-hidden cursor-move touch-none" style="min-height: 250px;">
+                            <!-- Canvas injected here -->
+                            <canvas id="crop-canvas"></canvas>
+                        </div>
+                        
+                        <div class="w-full flex items-center gap-3 mt-4">
+                            <i class="fa-solid fa-magnifying-glass-minus text-slate-500 text-sm"></i>
+                            <input type="range" id="zoom-slider" class="flex-grow accent-emerald-400 h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer" min="0.1" max="3" step="0.01">
+                            <i class="fa-solid fa-magnifying-glass-plus text-slate-500 text-sm"></i>
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <button id="process-btn" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 px-4 rounded-md transition-all shadow-lg hover:shadow-emerald-500/20 flex items-center justify-center gap-2 mt-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Process Image
+                    </button>
+
+                    <!-- Results Area (Hidden initially) -->
+                    <div id="img-result-area" class="hidden mt-6 p-4 bg-slate-950 rounded-lg border border-slate-800">
+                        <h4 class="text-sm font-medium text-slate-300 mb-3 border-b border-slate-800 pb-2">Final Output</h4>
+                        <div class="flex flex-col sm:flex-row items-center gap-4">
+                            <div class="w-24 h-24 bg-slate-900 rounded border border-slate-800 flex items-center justify-center overflow-hidden shrink-0 relative checkerboard-bg">
+                                <!-- Minimal CSS for transparent image preview background -->
+                                <style>.checkerboard-bg { background-image: linear-gradient(45deg, #1e293b 25%, transparent 25%), linear-gradient(-45deg, #1e293b 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #1e293b 75%), linear-gradient(-45deg, transparent 75%, #1e293b 75%); background-size: 10px 10px; background-position: 0 0, 0 5px, 5px -5px, -5px 0px; }</style>
+                                <img id="preview-img" src="" alt="Preview" class="max-w-full max-h-full object-contain">
+                            </div>
+                            <div class="flex-grow w-full">
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-400">Final Size:</span>
+                                    <span id="final-size" class="font-bold text-emerald-400"></span>
+                                </div>
+                                <div class="flex justify-between text-sm mb-3">
+                                    <span class="text-slate-400">Dimensions (px):</span>
+                                    <span id="final-dims" class="font-medium text-slate-200"></span>
+                                </div>
+                                <a id="download-btn" href="#" download="processed_image.jpg" class="block w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-medium py-2 px-4 rounded-md transition-colors border border-slate-700 shadow-sm">
+                                    <i class="fa-solid fa-download mr-2"></i>Download File
+                                </a>
+                            </div>
+                        </div>
+                        <p id="compression-msg" class="text-xs mt-3 text-center"></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tool 1.5: PDF Editor Tool -->
+            <section id="pdf-tool" class="bg-slate-900 rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl flex flex-col relative overflow-hidden">
+                <!-- Decorative glow -->
+                <div class="absolute -top-20 -left-20 w-40 h-40 bg-rose-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="bg-slate-800 p-2 rounded-md text-rose-400">
+                        <i class="fa-solid fa-file-pdf text-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white">PDF Master Tools</h3>
+                </div>
+                
+                <p class="text-sm text-slate-400 mb-6">Convert, merge, and split PDFs entirely in your browser. Fast, secure, and completely offline.</p>
+
+                <div class="space-y-5 flex-grow">
+                    <!-- Tabs -->
+                    <div class="flex gap-1 mb-2 border-b border-slate-800/50 pb-2 overflow-x-auto">
+                        <button class="pdf-tab-btn active bg-slate-800 text-rose-400 font-medium px-3 py-2 rounded-md text-sm transition-colors whitespace-nowrap" data-target="pdf-img2pdf">Img to PDF</button>
+                        <button class="pdf-tab-btn text-slate-400 hover:text-slate-200 font-medium px-3 py-2 rounded-md text-sm transition-colors whitespace-nowrap" data-target="pdf-merge">Merge</button>
+                        <button class="pdf-tab-btn text-slate-400 hover:text-slate-200 font-medium px-3 py-2 rounded-md text-sm transition-colors whitespace-nowrap" data-target="pdf-split">Split</button>
+                    </div>
+
+                    <!-- Img to PDF -->
+                    <div id="pdf-img2pdf" class="pdf-pane block space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Upload Images (JPG/PNG)</label>
+                            <input type="file" id="pdf-img-upload" multiple accept="image/jpeg, image/png" class="w-full bg-slate-950 border border-slate-700 rounded-md p-2 text-sm text-slate-300">
+                            <p class="text-xs text-slate-500 mt-1">Select multiple images to combine into one PDF document.</p>
+                        </div>
+                        <button id="btn-img2pdf" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-3 px-4 rounded-md transition-all shadow-lg hover:shadow-rose-500/20 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-circle-plus"></i> Convert to PDF
+                        </button>
+                    </div>
+
+                    <!-- Merge PDF -->
+                    <div id="pdf-merge" class="pdf-pane hidden space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Upload PDFs to Merge</label>
+                            <input type="file" id="pdf-merge-upload" multiple accept="application/pdf" class="w-full bg-slate-950 border border-slate-700 rounded-md p-2 text-sm text-slate-300">
+                            <p class="text-xs text-slate-500 mt-1">Select multiple PDF files in the order you want them merged.</p>
+                        </div>
+                        <button id="btn-merge-pdf" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-3 px-4 rounded-md transition-all shadow-lg hover:shadow-rose-500/20 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-object-group"></i> Merge PDFs
+                        </button>
+                    </div>
+
+                    <!-- Split PDF -->
+                    <div id="pdf-split" class="pdf-pane hidden space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Upload PDF to Split</label>
+                            <input type="file" id="pdf-split-upload" accept="application/pdf" class="w-full bg-slate-950 border border-slate-700 rounded-md p-2 text-sm text-slate-300">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Pages to Extract</label>
+                            <input type="text" id="pdf-split-pages" placeholder="e.g. 1, 3, 5-8" class="w-full bg-slate-950 border border-slate-700 rounded-md py-2 px-3 text-white text-sm focus:outline-none focus:ring-1 focus:ring-rose-500 transition-shadow">
+                            <p class="text-xs text-slate-500 mt-1">Specify page numbers or ranges separated by commas.</p>
+                        </div>
+                        <button id="btn-split-pdf" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-3 px-4 rounded-md transition-all shadow-lg hover:shadow-rose-500/20 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-scissors"></i> Extract Pages
+                        </button>
+                    </div>
+
+                    <!-- Global PDF Result -->
+                    <div id="pdf-result" class="hidden mt-6 p-4 bg-slate-950 rounded-lg border border-slate-800 text-center">
+                        <p class="text-rose-400 text-sm font-medium mb-3" id="pdf-status-msg"><i class="fa-solid fa-circle-check"></i> Processing complete!</p>
+                        <a id="pdf-download-link" href="#" class="inline-flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium py-2.5 px-6 rounded-md transition-colors border border-slate-700">
+                            <i class="fa-solid fa-download mr-2"></i> Download Document
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tool 2: Age Calculator -->
+            <section id="age-tool" class="bg-slate-900 rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl flex flex-col relative overflow-hidden">
+                <!-- Decorative glow -->
+                <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="bg-slate-800 p-2 rounded-md text-emerald-400">
+                        <i class="fa-solid fa-calendar-days text-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white">Exact Age Calculator</h3>
+                </div>
+                
+                <p class="text-sm text-slate-400 mb-6">Calculate your exact age in years, months, and days for filling out strict examination forms.</p>
+
+                <div class="space-y-6 flex-grow">
+                    <!-- Date Inputs -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Date of Birth (DOB)</label>
+                        <input type="date" id="dob-input" class="w-full bg-slate-950 border border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-1 focus:ring-emerald-400 focus:border-emerald-400 transition-shadow">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">As of Date (from Notification)</label>
+                        <input type="date" id="as-of-date-input" class="w-full bg-slate-950 border border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-1 focus:ring-emerald-400 focus:border-emerald-400 transition-shadow">
+                    </div>
+
+                    <!-- Action Button -->
+                    <button id="calc-age-btn" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold py-3 px-4 rounded-md transition-colors flex items-center justify-center gap-2 mt-4">
+                        <i class="fa-solid fa-calculator"></i> Calculate Age
+                    </button>
+
+                    <!-- Results Area -->
+                    <div id="age-result-area" class="hidden mt-6 p-5 bg-slate-950 rounded-lg border border-slate-800 text-center">
+                        <p class="text-sm text-slate-400 mb-2">Your exact age is:</p>
+                        <div class="flex justify-center items-end gap-2 mb-4">
+                            <div class="text-center">
+                                <span id="res-years" class="text-3xl font-bold text-emerald-400 block">--</span>
+                                <span class="text-xs text-slate-500 uppercase tracking-wide">Years</span>
+                            </div>
+                            <div class="text-slate-700 text-3xl font-light pb-5">/</div>
+                            <div class="text-center">
+                                <span id="res-months" class="text-3xl font-bold text-emerald-400 block">--</span>
+                                <span class="text-xs text-slate-500 uppercase tracking-wide">Months</span>
+                            </div>
+                            <div class="text-slate-700 text-3xl font-light pb-5">/</div>
+                            <div class="text-center">
+                                <span id="res-days" class="text-3xl font-bold text-emerald-400 block">--</span>
+                                <span class="text-xs text-slate-500 uppercase tracking-wide">Days</span>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900 rounded p-3 border border-slate-800 flex items-center justify-between">
+                            <span id="copy-text" class="text-sm font-mono text-slate-300"></span>
+                            <button id="copy-btn" class="text-slate-400 hover:text-emerald-400 transition-colors" title="Copy to clipboard">
+                                <i class="fa-regular fa-copy text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Tool 3: Live Exam Calendar Redirect -->
+        <section id="exam-tool" class="mt-12 bg-slate-900 rounded-2xl border border-slate-800 p-6 sm:p-10 shadow-xl relative overflow-hidden flex flex-col items-center text-center">
+            <!-- Decorative glow -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="bg-slate-800 p-4 rounded-full text-emerald-400 border border-slate-700/50 mb-5 inline-flex relative z-10">
+                <i class="fa-solid fa-calendar-check text-3xl"></i>
+            </div>
+            
+            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-3 relative z-10">Live Exam Calendar</h3>
+            <p class="text-slate-400 max-w-xl mb-8 text-sm sm:text-base relative z-10">We've moved our Live Exam Calendar, notifications, and application deadlines to a brand new, dedicated page with advanced tracking features.</p>
+            
+            <a href="live-exam-calendar.html" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 px-8 rounded-xl transition-all shadow-lg hover:shadow-emerald-500/20 flex items-center gap-3 text-sm sm:text-base relative z-10">
+                Open Live Exam Calendar <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </section>
+
+        <!-- Sultanpur Dedicated Study Desk Conversion Card -->
+        <div class="mt-8 bg-gradient-to-r from-slate-900 via-slate-850 to-emerald-950/30 border border-emerald-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-6 relative z-10">
+                <div class="flex items-start gap-4">
+                    <div class="bg-emerald-500/10 p-3.5 rounded-2xl border border-emerald-500/20 text-emerald-400 shrink-0 hidden sm:block">
+                        <i class="fa-solid fa-chair text-3xl"></i>
+                    </div>
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 tracking-wider uppercase mb-1">
+                            <i class="fa-solid fa-location-dot"></i> Selection Library, Sultanpur
+                        </div>
+                        <h4 class="text-xl sm:text-2xl font-bold text-white mb-2">Never miss a deadline while studying in peace.</h4>
+                        <p class="text-slate-300 text-sm max-w-2xl leading-relaxed">
+                            Reserve your dedicated, noise-free study desk at Selection Library, Sultanpur. Complete with high-speed optical Wi-Fi, personal charging points, ergonomic seating, and 24/7 power backup.
+                        </p>
+                    </div>
+                </div>
+                <button id="check-seats-btn" class="shrink-0 bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold py-3.5 px-6 rounded-xl transition-all shadow-lg hover:shadow-emerald-400/20 flex items-center gap-2 text-sm">
+                    <i class="fa-solid fa-square-check text-base"></i> Check Seat Availability
+                </button>
+            </div>
+        </div>
+
+        <!-- Promotional Banner -->
+        <div class="mt-12 bg-gradient-to-r from-slate-900 via-slate-850 to-emerald-950/20 border border-slate-800 rounded-xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg">
+            <div class="flex items-start gap-4">
+                <div class="bg-slate-950 p-3 rounded-full border border-slate-800 shrink-0 mt-1">
+                    <i class="fa-solid fa-graduation-cap text-2xl text-emerald-400"></i>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold text-white mb-2">Need a quiet place to prepare for your exams?</h4>
+                    <p class="text-slate-400 text-sm max-w-xl">Selection Library offers high-speed Wi-Fi, comfortable ergonomic seating, and a distraction-free environment tailored for serious aspirants.</p>
+                </div>
+            </div>
+            <a href="#" class="shrink-0 bg-white hover:bg-slate-200 text-slate-950 font-semibold py-3 px-6 rounded-md transition-colors whitespace-nowrap">
+                Join Library Today
+            </a>
+        </div>
+    </main>
+
+    <footer class="bg-slate-950 border-t border-slate-900 py-8 mt-auto">
+        <div class="container mx-auto px-4 text-center text-slate-500 text-sm">
+            <p>&copy; 2026 Selection Library. All tools run locally in your browser.</p>
+        </div>
+    </footer>
+
+    <!-- Seat Availability Modal -->
+    <div id="seats-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl p-1">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-4">
+                <div class="bg-emerald-400/10 p-2.5 rounded-lg border border-emerald-400/20 text-emerald-400">
+                    <i class="fa-solid fa-graduation-cap text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white">Selection Library, Sultanpur</h3>
+                    <p class="text-xs text-slate-400">Live Desk & Shift Availability</p>
+                </div>
+            </div>
+
+            <div class="space-y-3 my-6">
+                <!-- Shift Item 1 -->
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex justify-between items-center">
+                    <div>
+                        <div class="text-sm font-semibold text-white">Morning Shift</div>
+                        <div class="text-xs text-slate-400">07:00 AM - 02:00 PM</div>
+                    </div>
+                    <div class="text-right">
+                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            14 Seats Left
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Shift Item 2 -->
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex justify-between items-center">
+                    <div>
+                        <div class="text-sm font-semibold text-white">Evening Shift</div>
+                        <div class="text-xs text-slate-400">02:00 PM - 9:00 PM</div>
+                    </div>
+                    <div class="text-right">
+                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            8 Seats Left
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Shift Item 3 -->
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex justify-between items-center">
+                    <div>
+                        <div class="text-sm font-semibold text-white">Full Day</div>
+                        <div class="text-xs text-slate-400">Reserve Personal Cabin</div>
+                    </div>
+                    <div class="text-right">
+                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                            3 Seats Left
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-850 p-4 rounded-xl border border-slate-800 text-center mb-6">
+                <p class="text-xs text-slate-300">
+                    <i class="fa-solid fa-location-dot text-emerald-400 mr-1"></i> nirala nagar, Sultanpur, Uttar Pradesh
+                </p>
+            </div>
+
+            <a href="https://wa.me/919169340586?text=Hi%20Selection%20Library%20Sultanpur%2C%20I%20would%20like%20to%20reserve%20a%20study%20desk." target="_blank" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm">
+                <i class="fa-brands fa-whatsapp text-lg"></i> Reserve Desk via WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- Global UI Scripts -->
+    <script>
+        // Modal elements
+        const checkSeatsBtn = document.getElementById('check-seats-btn');
+        const seatsModal = document.getElementById('seats-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        checkSeatsBtn.addEventListener('click', () => seatsModal.classList.remove('hidden'));
+        closeModalBtn.addEventListener('click', () => seatsModal.classList.add('hidden'));
+        seatsModal.addEventListener('click', (e) => {
+            if (e.target === seatsModal) seatsModal.classList.add('hidden');
+        });
+    </script>
+
+    <!-- Scripts -->
+    <script>
+        // ==========================================
+        // Tool 1: Image Compressor & Resizer Logic
+        // ==========================================
+        
+        const uploadInput = document.getElementById('img-upload');
+        const fileInfo = document.getElementById('file-info');
+        const fileNameSpan = document.getElementById('file-name');
+        const fileOrigSizeSpan = document.getElementById('file-orig-size');
+        const processBtn = document.getElementById('process-btn');
+        
+        const presetSelect = document.getElementById('doc-preset');
+        const targetKbInput = document.getElementById('target-kb');
+        const targetWidthInput = document.getElementById('target-width');
+        const targetHeightInput = document.getElementById('target-height');
+        const dimUnitSelect = document.getElementById('dim-unit');
+        
+        // Cropper elements
+        const cropperUI = document.getElementById('cropper-ui');
+        const canvasWrapper = document.getElementById('canvas-wrapper');
+        const cropCanvas = document.getElementById('crop-canvas');
+        const zoomSlider = document.getElementById('zoom-slider');
+        const ctx = cropCanvas.getContext('2d');
+        
+        // Result elements
+        const resultArea = document.getElementById('img-result-area');
+        const previewImg = document.getElementById('preview-img');
+        const finalSizeSpan = document.getElementById('final-size');
+        const finalDimsSpan = document.getElementById('final-dims');
+        const downloadBtn = document.getElementById('download-btn');
+        const compressionMsg = document.getElementById('compression-msg');
+
+        let currentFile = null;
+        let originalImgObj = new Image();
+
+        // Cropper State
+        let cropState = {
+            imgW: 0, imgH: 0,
+            targetPxW: 0, targetPxH: 0,
+            cropW: 0, cropH: 0, // visual mask dimensions
+            panX: 0, panY: 0,
+            scale: 1, minScale: 0.1,
+            isDragging: false,
+            startX: 0, startY: 0
+        };
+
+        const DPI = 300;
+        const CM_TO_PX = DPI / 2.54;
+
+        function formatBytes(bytes, decimals = 2) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['Bytes', 'KB', 'MB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        }
+
+        // Preset Change Logic
+        presetSelect.addEventListener('change', (e) => {
+            if (e.target.value !== 'custom') {
+                const opt = e.target.options[e.target.selectedIndex];
+                targetWidthInput.value = opt.getAttribute('data-w');
+                targetHeightInput.value = opt.getAttribute('data-h');
+                dimUnitSelect.value = opt.getAttribute('data-u');
+                targetKbInput.value = opt.getAttribute('data-kb');
+            }
+            if (currentFile && originalImgObj.src) {
+                initCropper();
+            }
+        });
+
+        // Trigger cropper re-init on dimension change
+        [targetWidthInput, targetHeightInput, dimUnitSelect].forEach(el => {
+            el.addEventListener('change', () => {
+                presetSelect.value = 'custom';
+                if (currentFile && originalImgObj.src) initCropper();
+            });
+        });
+
+        // Handle file selection
+        uploadInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            if (!file.type.match('image/jpeg') && !file.type.match('image/png')) {
+                alert('Please upload a valid JPG or PNG image.'); 
+                return;
+            }
+
+            currentFile = file;
+            fileNameSpan.textContent = file.name;
+            fileOrigSizeSpan.textContent = formatBytes(file.size);
+            fileInfo.classList.remove('hidden');
+            resultArea.classList.add('hidden');
+            
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                originalImgObj.onload = () => {
+                    initCropper();
+                    cropperUI.classList.remove('hidden');
+                    cropperUI.classList.add('flex');
+                    processBtn.disabled = false;
+                };
+                originalImgObj.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // --- Cropper Logic ---
+        function initCropper() {
+            cropState.imgW = originalImgObj.width;
+            cropState.imgH = originalImgObj.height;
+
+            // Calculate exact target pixels based on input
+            const wVal = parseFloat(targetWidthInput.value) || 3.5;
+            const hVal = parseFloat(targetHeightInput.value) || 4.5;
+            
+            if (dimUnitSelect.value === 'cm') {
+                cropState.targetPxW = Math.round(wVal * CM_TO_PX);
+                cropState.targetPxH = Math.round(hVal * CM_TO_PX);
+            } else {
+                cropState.targetPxW = Math.round(wVal);
+                cropState.targetPxH = Math.round(hVal);
+            }
+
+            // Calculate visual crop mask size (fit inside canvas wrapper)
+            const targetRatio = cropState.targetPxW / cropState.targetPxH;
+            const maxMaskW = canvasWrapper.clientWidth - 40;
+            const maxMaskH = 220; // Fixed max height for UI
+
+            if (targetRatio > maxMaskW / maxMaskH) {
+                cropState.cropW = maxMaskW;
+                cropState.cropH = maxMaskW / targetRatio;
+            } else {
+                cropState.cropH = maxMaskH;
+                cropState.cropW = maxMaskH * targetRatio;
+            }
+
+            // Set canvas size (pad around mask)
+            cropCanvas.width = cropState.cropW + 40;
+            cropCanvas.height = cropState.cropH + 40;
+
+            // Initial Scale to cover the mask completely
+            cropState.minScale = Math.max(cropState.cropW / cropState.imgW, cropState.cropH / cropState.imgH);
+            cropState.scale = cropState.minScale;
+            cropState.panX = 0;
+            cropState.panY = 0;
+
+            // Configure Slider
+            zoomSlider.min = cropState.minScale;
+            zoomSlider.max = cropState.minScale * 5;
+            zoomSlider.value = cropState.scale;
+
+            drawCropper();
+        }
+
+        function drawCropper() {
+            ctx.clearRect(0, 0, cropCanvas.width, cropCanvas.height);
+            
+            // 1. Draw Image
+            ctx.save();
+            ctx.translate(cropCanvas.width / 2 + cropState.panX, cropCanvas.height / 2 + cropState.panY);
+            ctx.scale(cropState.scale, cropState.scale);
+            ctx.drawImage(originalImgObj, -cropState.imgW / 2, -cropState.imgH / 2);
+            ctx.restore();
+            
+            // 2. Draw Dark Overlay Mask
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.75)'; // slate-900 with opacity
+            ctx.beginPath();
+            ctx.rect(0, 0, cropCanvas.width, cropCanvas.height);
+            const cx = (cropCanvas.width - cropState.cropW) / 2;
+            const cy = (cropCanvas.height - cropState.cropH) / 2;
+            ctx.rect(cx, cy, cropState.cropW, cropState.cropH);
+            ctx.fill('evenodd'); 
+            
+            // 3. Draw Cutout Border
+            ctx.strokeStyle = '#34d399'; // emerald-400
+            ctx.lineWidth = 2;
+            ctx.strokeRect(cx, cy, cropState.cropW, cropState.cropH);
+            
+            // 4. Draw Guidelines (Rule of Thirds)
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgba(52, 211, 153, 0.4)';
+            ctx.lineWidth = 1;
+            ctx.moveTo(cx + cropState.cropW/3, cy); ctx.lineTo(cx + cropState.cropW/3, cy + cropState.cropH);
+            ctx.moveTo(cx + cropState.cropW*2/3, cy); ctx.lineTo(cx + cropState.cropW*2/3, cy + cropState.cropH);
+            ctx.moveTo(cx, cy + cropState.cropH/3); ctx.lineTo(cx + cropState.cropW, cy + cropState.cropH/3);
+            ctx.moveTo(cx, cy + cropState.cropH*2/3); ctx.lineTo(cx + cropState.cropW, cy + cropState.cropH*2/3);
+            ctx.stroke();
+        }
+
+        // Cropper Event Listeners
+        zoomSlider.addEventListener('input', (e) => {
+            cropState.scale = parseFloat(e.target.value);
+            drawCropper();
+        });
+
+        function getPos(e) {
+            if (e.touches && e.touches.length > 0) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            return { x: e.clientX, y: e.clientY };
+        }
+
+        function handleStart(e) {
+            cropState.isDragging = true;
+            const pos = getPos(e);
+            cropState.startX = pos.x;
+            cropState.startY = pos.y;
+        }
+
+        function handleMove(e) {
+            if (!cropState.isDragging) return;
+            e.preventDefault(); // Prevent scrolling while panning image
+            const pos = getPos(e);
+            cropState.panX += (pos.x - cropState.startX);
+            cropState.panY += (pos.y - cropState.startY);
+            cropState.startX = pos.x;
+            cropState.startY = pos.y;
+            drawCropper();
+        }
+
+        function handleEnd() {
+            cropState.isDragging = false;
+        }
+
+        canvasWrapper.addEventListener('mousedown', handleStart);
+        canvasWrapper.addEventListener('touchstart', handleStart, {passive: false});
+        window.addEventListener('mousemove', handleMove, {passive: false});
+        window.addEventListener('touchmove', handleMove, {passive: false});
+        window.addEventListener('mouseup', handleEnd);
+        window.addEventListener('touchend', handleEnd);
+
+        // --- Processing & Compression ---
+        processBtn.addEventListener('click', async () => {
+            if (!currentFile || !originalImgObj.src) return;
+            
+            const targetKB = parseFloat(targetKbInput.value) || 50;
+            const targetBytes = targetKB * 1024;
+
+            processBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+            processBtn.disabled = true;
+
+            // Small delay to allow UI to render spinner
+            setTimeout(() => {
+                // 1. Extract Cropped Area to Offscreen Canvas at Target Pixel Resolution
+                const offCanvas = document.createElement('canvas');
+                offCanvas.width = cropState.targetPxW;
+                offCanvas.height = cropState.targetPxH;
+                const oCtx = offCanvas.getContext('2d');
+
+                // White background for transparent PNGs
+                oCtx.fillStyle = '#FFFFFF';
+                oCtx.fillRect(0, 0, offCanvas.width, offCanvas.height);
+
+                // Map visual transformations to exact pixel target output
+                const ratio = cropState.targetPxW / cropState.cropW;
+                const finalScale = cropState.scale * ratio;
+                const finalPanX = cropState.panX * ratio;
+                const finalPanY = cropState.panY * ratio;
+
+                oCtx.save();
+                oCtx.translate(offCanvas.width / 2 + finalPanX, offCanvas.height / 2 + finalPanY);
+                oCtx.scale(finalScale, finalScale);
+                oCtx.drawImage(originalImgObj, -cropState.imgW / 2, -cropState.imgH / 2);
+                oCtx.restore();
+
+                // 2. Compress the extracted canvas
+                compressCanvas(offCanvas, targetBytes);
+            }, 50);
+        });
+
+        function compressCanvas(canvas, targetBytes) {
+            let quality = 0.9;
+            let compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+            
+            const getApproxBytes = (dataURL) => Math.round((dataURL.length - 22) * 3 / 4);
+
+            let iterations = 0;
+            let maxIterations = 15;
+            let minQuality = 0.05;
+            let maxQuality = 1.0;
+
+            let currentBytes = getApproxBytes(compressedDataUrl);
+            let bestDataUrl = compressedDataUrl;
+            let bestQuality = quality;
+
+            if (currentBytes > targetBytes) {
+                while (iterations < maxIterations) {
+                    quality = (minQuality + maxQuality) / 2;
+                    compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+                    currentBytes = getApproxBytes(compressedDataUrl);
+
+                    if (currentBytes > targetBytes) {
+                        maxQuality = quality; // Need lower size/quality
+                    } else {
+                        minQuality = quality; // Can afford higher quality
+                        bestDataUrl = compressedDataUrl;
+                        bestQuality = quality;
+                        if (currentBytes > targetBytes * 0.90) break; // Within 10% tolerance, stop
+                    }
+                    iterations++;
+                }
+            }
+
+            // Fallback if still too large
+            if (getApproxBytes(bestDataUrl) > targetBytes && bestQuality > 0.1) {
+                 bestDataUrl = canvas.toDataURL('image/jpeg', 0.1);
+            }
+
+            displayResult(bestDataUrl, canvas.width, canvas.height);
+        }
+
+        function displayResult(dataUrl, width, height) {
+            const finalBytes = Math.round((dataUrl.length - 22) * 3 / 4);
+            
+            previewImg.src = dataUrl;
+            finalSizeSpan.textContent = formatBytes(finalBytes);
+            finalDimsSpan.textContent = `${width} x ${height}`;
+            
+            downloadBtn.href = dataUrl;
+            const originalName = currentFile.name.substring(0, currentFile.name.lastIndexOf('.')) || 'document';
+            const suffix = presetSelect.value === 'custom' ? 'formatted' : presetSelect.value;
+            downloadBtn.download = `${originalName}_${suffix}.jpg`;
+
+            const targetKB = parseFloat(targetKbInput.value);
+            if (targetKB && finalBytes > targetKB * 1024) {
+                compressionMsg.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-1"></i> Warning: Could not compress below target size without losing structure. Try lowering resolution.';
+                compressionMsg.className = "text-xs mt-3 text-center text-amber-400";
+            } else {
+                compressionMsg.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Success! Image optimized for upload.';
+                compressionMsg.className = "text-xs mt-3 text-center text-emerald-400";
+            }
+
+            resultArea.classList.remove('hidden');
+            processBtn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Process Image';
+            processBtn.disabled = false;
+            
+            // Scroll to result
+            setTimeout(() => {
+                resultArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+
+        // ==========================================
+        // Tool 1.5: PDF Editor Logic
+        // ==========================================
+        
+        const pdfTabBtns = document.querySelectorAll('.pdf-tab-btn');
+        const pdfPanes = document.querySelectorAll('.pdf-pane');
+        const pdfResult = document.getElementById('pdf-result');
+        const pdfStatusMsg = document.getElementById('pdf-status-msg');
+        const pdfDownloadLink = document.getElementById('pdf-download-link');
+
+        // Tab Switching Logic
+        pdfTabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                pdfTabBtns.forEach(b => {
+                    b.classList.remove('bg-slate-800', 'text-rose-400');
+                    b.classList.add('text-slate-400');
+                });
+                btn.classList.add('bg-slate-800', 'text-rose-400');
+                btn.classList.remove('text-slate-400');
+                
+                pdfPanes.forEach(p => p.classList.add('hidden'));
+                document.getElementById(btn.dataset.target).classList.remove('hidden');
+                pdfResult.classList.add('hidden');
+            });
+        });
+
+        function finishPdfProcess(pdfBytes, filename) {
+            const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+            const url = URL.createObjectURL(blob);
+            pdfDownloadLink.href = url;
+            pdfDownloadLink.download = filename;
+            pdfStatusMsg.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Processing complete!';
+            pdfStatusMsg.className = 'text-emerald-400 text-sm font-medium mb-3';
+            pdfDownloadLink.classList.remove('hidden');
+            pdfResult.classList.remove('hidden');
+        }
+
+        function showPdfError(msg) {
+            pdfStatusMsg.innerHTML = `<i class="fa-solid fa-triangle-exclamation mr-1"></i> ${msg}`;
+            pdfStatusMsg.className = 'text-amber-400 text-sm font-medium mb-3';
+            pdfDownloadLink.classList.add('hidden');
+            pdfResult.classList.remove('hidden');
+        }
+
+        // Img to PDF Feature
+        document.getElementById('btn-img2pdf').addEventListener('click', async (e) => {
+            const btn = e.target.closest('button');
+            const files = document.getElementById('pdf-img-upload').files;
+            
+            if (!files.length) return showPdfError('Please select at least one image.');
+            
+            pdfResult.classList.add('hidden');
+            const origHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+            btn.disabled = true;
+
+            try {
+                const { PDFDocument } = PDFLib;
+                const pdfDoc = await PDFDocument.create();
+
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const imgBytes = await file.arrayBuffer();
+                    let img;
+                    
+                    if (file.type === 'image/jpeg') {
+                        img = await pdfDoc.embedJpg(imgBytes);
+                    } else if (file.type === 'image/png') {
+                        img = await pdfDoc.embedPng(imgBytes);
+                    } else continue;
+                    
+                    const page = pdfDoc.addPage([img.width, img.height]);
+                    page.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height });
+                }
+
+                const pdfBytes = await pdfDoc.save();
+                finishPdfProcess(pdfBytes, 'converted_images.pdf');
+            } catch (err) {
+                console.error(err);
+                showPdfError('Failed to generate PDF. Make sure your files are valid JPGs or PNGs.');
+            } finally {
+                btn.innerHTML = origHTML;
+                btn.disabled = false;
+            }
+        });
+
+        // Merge PDFs Feature
+        document.getElementById('btn-merge-pdf').addEventListener('click', async (e) => {
+            const btn = e.target.closest('button');
+            const files = document.getElementById('pdf-merge-upload').files;
+            
+            if (files.length < 2) return showPdfError('Please select at least two PDFs to merge.');
+            
+            pdfResult.classList.add('hidden');
+            const origHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Merging...';
+            btn.disabled = true;
+
+            try {
+                const { PDFDocument } = PDFLib;
+                const mergedPdf = await PDFDocument.create();
+
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    if (file.type !== 'application/pdf') continue;
+                    
+                    const pdfBytes = await file.arrayBuffer();
+                    const pdf = await PDFDocument.load(pdfBytes);
+                    const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+                    copiedPages.forEach((page) => mergedPdf.addPage(page));
+                }
+
+                const mergedBytes = await mergedPdf.save();
+                finishPdfProcess(mergedBytes, 'merged_document.pdf');
+            } catch (err) {
+                console.error(err);
+                showPdfError('Failed to merge PDFs. Ensure they are valid and not password protected.');
+            } finally {
+                btn.innerHTML = origHTML;
+                btn.disabled = false;
+            }
+        });
+
+        // Split PDF Feature
+        document.getElementById('btn-split-pdf').addEventListener('click', async (e) => {
+            const btn = e.target.closest('button');
+            const file = document.getElementById('pdf-split-upload').files[0];
+            const pagesStr = document.getElementById('pdf-split-pages').value;
+            
+            if (!file) return showPdfError('Please select a PDF file.');
+            if (!pagesStr.trim()) return showPdfError('Please specify pages to extract (e.g., 1, 3, 5-8).');
+            
+            pdfResult.classList.add('hidden');
+            const origHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Extracting...';
+            btn.disabled = true;
+
+            try {
+                const { PDFDocument } = PDFLib;
+                const pdfBytes = await file.arrayBuffer();
+                const srcPdf = await PDFDocument.load(pdfBytes);
+                const maxPages = srcPdf.getPageCount();
+                
+                const pagesToKeep = new Set();
+                const parts = pagesStr.split(',');
+                
+                for (let part of parts) {
+                    part = part.trim();
+                    if (!part) continue;
+                    
+                    if (part.includes('-')) {
+                        const [start, end] = part.split('-').map(Number);
+                        if (start && end && start <= end) {
+                            for (let i = start; i <= end; i++) {
+                                if (i >= 1 && i <= maxPages) pagesToKeep.add(i - 1);
+                            }
+                        }
+                    } else {
+                        const num = Number(part);
+                        if (num >= 1 && num <= maxPages) pagesToKeep.add(num - 1);
+                    }
+                }
+                
+                const pagesArr = Array.from(pagesToKeep).sort((a, b) => a - b);
+                if (pagesArr.length === 0) throw new Error('No valid pages found in range.');
+
+                const newPdf = await PDFDocument.create();
+                const copiedPages = await newPdf.copyPages(srcPdf, pagesArr);
+                copiedPages.forEach((page) => newPdf.addPage(page));
+
+                const splitBytes = await newPdf.save();
+                finishPdfProcess(splitBytes, 'extracted_pages.pdf');
+            } catch (err) {
+                console.error(err);
+                showPdfError(err.message === 'No valid pages found in range.' ? err.message : 'Failed to split PDF. Ensure it is not encrypted.');
+            } finally {
+                btn.innerHTML = origHTML;
+                btn.disabled = false;
+            }
+        });
+
+        // ==========================================
+        // Tool 2: Exact Age Calculator Logic
+        // ==========================================
+        
+        const dobInput = document.getElementById('dob-input');
+        const asOfInput = document.getElementById('as-of-date-input');
+        const calcAgeBtn = document.getElementById('calc-age-btn');
+        const ageResultArea = document.getElementById('age-result-area');
+        
+        const resYears = document.getElementById('res-years');
+        const resMonths = document.getElementById('res-months');
+        const resDays = document.getElementById('res-days');
+        const copyText = document.getElementById('copy-text');
+        const copyBtn = document.getElementById('copy-btn');
+
+        // Set default "As of Date" to today for convenience
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        asOfInput.value = `${yyyy}-${mm}-${dd}`;
+
+        calcAgeBtn.addEventListener('click', () => {
+            if (!dobInput.value || !asOfInput.value) {
+                // simple visual feedback instead of alert
+                calcAgeBtn.classList.add('ring-2', 'ring-red-500');
+                setTimeout(() => calcAgeBtn.classList.remove('ring-2', 'ring-red-500'), 1000);
+                return;
+            }
+
+            const dob = new Date(dobInput.value);
+            const asOf = new Date(asOfInput.value);
+
+            if (dob > asOf) {
+                 resYears.textContent = "0";
+                 resMonths.textContent = "0";
+                 resDays.textContent = "0";
+                 copyText.textContent = "Invalid dates: DOB is after 'As of' date.";
+                 ageResultArea.classList.remove('hidden');
+                 return;
+            }
+
+            calculateExactAge(dob, asOf);
+        });
+
+        function calculateExactAge(birthDate, targetDate) {
+            let bYear = birthDate.getFullYear();
+            let bMonth = birthDate.getMonth();
+            let bDay = birthDate.getDate();
+
+            let tYear = targetDate.getFullYear();
+            let tMonth = targetDate.getMonth();
+            let tDay = targetDate.getDate();
+
+            let years = tYear - bYear;
+            let months = tMonth - bMonth;
+            let days = tDay - bDay;
+
+            // Adjust for negative days
+            if (days < 0) {
+                months--;
+                // Get days in the previous month of the target date
+                // Note: new Date(year, month, 0) gives the last day of the previous month
+                let prevMonth = tMonth === 0 ? 12 : tMonth;
+                let prevYear = tMonth === 0 ? tYear - 1 : tYear;
+                let daysInPrevMonth = new Date(prevYear, prevMonth, 0).getDate();
+                days += daysInPrevMonth;
+            }
+
+            // Adjust for negative months
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            // Display results
+            resYears.textContent = years;
+            resMonths.textContent = months;
+            resDays.textContent = days;
+
+            const formattedString = `${years} Years, ${months} Months, ${days} Days`;
+            copyText.textContent = formattedString;
+            
+            ageResultArea.classList.remove('hidden');
+        }
+
+        // Copy functionality
+        copyBtn.addEventListener('click', () => {
+            const textToCopy = copyText.textContent;
+            
+            // Create temporary textarea for copying
+            const textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            
+            // Avoid scrolling to bottom
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                // Visual feedback on button
+                const icon = copyBtn.querySelector('i');
+                icon.className = 'fa-solid fa-check text-emerald-400';
+                setTimeout(() => {
+                    icon.className = 'fa-regular fa-copy text-lg';
+                }, 2000);
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+            
+            document.body.removeChild(textArea);
+        });
+    </script>
+</body>
+</html>
