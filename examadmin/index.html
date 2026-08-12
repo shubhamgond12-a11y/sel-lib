@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Center | Exam Calendar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        slate: { 850: '#151e2e', 900: '#0f172a' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #cbd5e1; }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(51, 65, 85, 0.8); }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        .tab-active { border-bottom: 2px solid #10b981; color: #10b981; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <nav class="sticky top-0 z-40 bg-slate-900 border-b border-slate-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-8 rounded bg-emerald-600 text-white flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h1 class="text-lg font-bold text-white">Data Control Center</h1>
+                    <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded text-xs font-medium uppercase tracking-wider ml-2 hidden sm:inline-block">Admin</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <!-- Schema Explanation Note -->
+                    <button onclick="toggleInfoModal()" class="text-slate-400 hover:text-white transition-colors" title="Schema Info">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                    <a href="live-exam-calendar.html" target="_blank" class="text-sm font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors">
+                        View Live <i class="fa-solid fa-external-link-alt ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        
+        <!-- Stats Row -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="glass-panel p-4 rounded-xl border border-slate-700">
+                <p class="text-slate-400 text-sm font-medium">Total Tracked</p>
+                <p class="text-2xl font-bold text-white mt-1" id="statTotal">-</p>
+            </div>
+            <div class="glass-panel p-4 rounded-xl border border-emerald-900/50 relative overflow-hidden">
+                <div class="absolute inset-0 bg-emerald-500/5 pointer-events-none"></div>
+                <p class="text-emerald-400 text-sm font-medium">Published Live</p>
+                <p class="text-2xl font-bold text-white mt-1" id="statPublished">-</p>
+            </div>
+            <div class="glass-panel p-4 rounded-xl border border-amber-900/50 relative overflow-hidden">
+                <div class="absolute inset-0 bg-amber-500/5 pointer-events-none"></div>
+                <p class="text-amber-400 text-sm font-medium">Pending Review</p>
+                <p class="text-2xl font-bold text-white mt-1" id="statPending">-</p>
+            </div>
+            <div class="glass-panel p-4 rounded-xl border border-purple-900/50 relative overflow-hidden">
+                <div class="absolute inset-0 bg-purple-500/5 pointer-events-none"></div>
+                <p class="text-purple-400 text-sm font-medium">Changes Detected</p>
+                <p class="text-2xl font-bold text-white mt-1" id="statChanges">-</p>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="glass-panel rounded-2xl border border-slate-700 overflow-hidden flex flex-col">
+            <!-- Tabs & Actions -->
+            <div class="border-b border-slate-700 bg-slate-800/50 px-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 sm:pt-0">
+                <div class="flex overflow-x-auto hide-scroll" id="adminTabs">
+                    <button class="px-4 py-4 text-sm font-medium tab-active transition-colors" data-tab="published">Published</button>
+                    <button class="px-4 py-4 text-sm font-medium text-slate-400 hover:text-slate-200 transition-colors" data-tab="pending_review">Pending Review</button>
+                    <button class="px-4 py-4 text-sm font-medium text-slate-400 hover:text-slate-200 transition-colors flex items-center gap-2" data-tab="changes">
+                        Changes 
+                        <span class="bg-purple-500/20 text-purple-400 text-[10px] px-1.5 rounded hidden" id="changeBadge">New</span>
+                    </button>
+                    <button class="px-4 py-4 text-sm font-medium text-slate-400 hover:text-slate-200 transition-colors" data-tab="rejected">Rejected</button>
+                </div>
+                <div class="pb-4 sm:pb-0 shrink-0">
+                    <button onclick="openModal()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold py-2 px-4 rounded-lg shadow-sm transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-plus"></i> New Exam
+                    </button>
+                </div>
+            </div>
+
+            <!-- Data Table -->
+            <div class="overflow-x-auto min-h-[400px]">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-700 bg-slate-800/80">
+                            <th class="px-6 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Exam Name & Source</th>
+                            <th class="px-6 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Dates</th>
+                            <th class="px-6 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Status/Info</th>
+                            <th class="px-6 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="divide-y divide-slate-700/50">
+                        <!-- Rows rendered via JS -->
+                        <tr>
+                            <td colspan="4" class="px-6 py-12 text-center text-slate-500">
+                                <i class="fa-solid fa-spinner fa-spin text-2xl mb-2"></i>
+                                <p>Loading data...</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit/Create Modal -->
+    <div id="editModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity">
+        <div class="glass-panel rounded-2xl border border-slate-700 shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 transition-transform" id="editModalContent">
+            <div class="flex items-center justify-between p-6 border-b border-slate-700">
+                <h2 class="text-xl font-bold text-white" id="modalTitle">Add New Exam</h2>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white transition-colors p-2"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            
+            <div class="p-6 space-y-5">
+                <input type="hidden" id="examId">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-slate-300 mb-1">Exam Title *</label>
+                        <input type="text" id="title" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1">Category *</label>
+                        <select id="category" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all">
+                            <option value="UPSC">UPSC</option>
+                            <option value="SSC">SSC</option>
+                            <option value="Banking">Banking</option>
+                            <option value="State PSC">State PSC</option>
+                            <option value="Railways">Railways</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1">Application Deadline</label>
+                        <input type="date" id="applicationDeadline" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all" style="color-scheme: dark;">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1">Exam Date</label>
+                        <input type="date" id="examDate" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all" style="color-scheme: dark;">
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-slate-300 mb-1">Official Link</label>
+                        <input type="url" id="officialLink" placeholder="https://" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all">
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-slate-300 mb-1">Source URL (for verification)</label>
+                        <input type="url" id="sourceUrl" placeholder="https://" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all">
+                    </div>
+                </div>
+
+                <!-- Display Old Values if changes detected -->
+                <div id="diffViewer" class="hidden mt-4 bg-purple-500/10 border border-purple-500/30 rounded-xl p-4">
+                    <h3 class="text-sm font-bold text-purple-400 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-code-compare"></i> Updates Detected (Auto-tracked)
+                    </h3>
+                    <div id="diffContent" class="text-sm text-slate-300 space-y-2"></div>
+                </div>
+
+            </div>
+
+            <!-- Modal Actions -->
+            <div class="bg-slate-800/80 px-6 py-4 border-t border-slate-700 flex justify-end gap-3 rounded-b-2xl">
+                <button onclick="closeModal()" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-700 transition-colors">Cancel</button>
+                <button onclick="saveRecord('draft')" id="btnDraft" class="px-4 py-2 rounded-lg text-sm font-medium bg-slate-700 text-white hover:bg-slate-600 transition-colors shadow-sm">Save Draft</button>
+                <button onclick="saveRecord('reject')" id="btnReject" class="hidden px-4 py-2 rounded-lg text-sm font-medium bg-red-600/20 text-red-400 hover:bg-red-600/30 border border-red-500/30 transition-colors">Reject Change</button>
+                <button onclick="saveRecord('publish')" id="btnPublish" class="px-4 py-2 rounded-lg text-sm font-medium bg-emerald-600 text-white hover:bg-emerald-500 transition-colors shadow-sm">Approve & Publish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Modal -->
+    <div id="infoModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="glass-panel rounded-2xl border border-slate-700 shadow-2xl w-full max-w-lg p-6">
+            <h2 class="text-xl font-bold text-white mb-4"><i class="fa-brands fa-github mr-2"></i>Automation Ready Schema</h2>
+            <div class="space-y-3 text-sm text-slate-300">
+                <p>This system is designed so standard GitHub Actions scripts can push data directly to Firestore without paid Firebase functions.</p>
+                <p class="font-semibold text-emerald-400 mt-2">External Script Workflow:</p>
+                <ol class="list-decimal pl-5 space-y-1">
+                    <li>Script scrapes official websites daily.</li>
+                    <li>Finds a matching existing exam doc.</li>
+                    <li>If dates changed, script updates doc setting <code>changesDetected: true</code> and adds an <code>oldValues</code> map.</li>
+                    <li>If new, pushes a doc with <code>status: 'pending_review'</code>.</li>
+                    <li>Admin reviews in this UI, approves (which flags it <code>verified: true</code> and clears change flags).</li>
+                </ol>
+                <p class="text-xs text-slate-400 mt-4 italic">Note: Real-world scripts authenticate with a Service Account to bypass client security rules. Admin actions here modify standard <code>/artifacts/appId/public/data/exams</code> path.</p>
+            </div>
+            <div class="mt-6 flex justify-end">
+                <button onclick="document.getElementById('infoModal').classList.add('hidden')" class="px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600">Got it</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+        import { getFirestore, collection, onSnapshot, query, doc, setDoc, updateDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'live-exam-cal-app';
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyBr3OVwa3uCbCLR9yFvHWBhYvQonqTKJ1g",
+            authDomain: "exam-calendar-247.firebaseapp.com",
+            projectId: "exam-calendar-247",
+            storageBucket: "exam-calendar-247.firebasestorage.app",
+            messagingSenderId: "427684296660",
+            appId: "1:427684296660:web:4f6b6616a450dc75b34841",
+            measurementId: "G-LYCD4JB4FF"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let allExams = [];
+        let currentTab = 'published';
+
+        // UI Elements
+        const tableBody = document.getElementById('tableBody');
+        const adminTabs = document.getElementById('adminTabs').querySelectorAll('button');
+        const editModal = document.getElementById('editModal');
+        const editModalContent = document.getElementById('editModalContent');
+        const changeBadge = document.getElementById('changeBadge');
+        
+        // Form Elements
+        const formFields = {
+            id: document.getElementById('examId'),
+            title: document.getElementById('title'),
+            category: document.getElementById('category'),
+            applicationDeadline: document.getElementById('applicationDeadline'),
+            examDate: document.getElementById('examDate'),
+            officialLink: document.getElementById('officialLink'),
+            sourceUrl: document.getElementById('sourceUrl')
+        };
+        const diffViewer = document.getElementById('diffViewer');
+        const diffContent = document.getElementById('diffContent');
+
+        async function init() {
+            try {
+                // Try robust authentication sequence
+                try {
+                    if (initialAuthToken) {
+                        await signInWithCustomToken(auth, initialAuthToken);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                } catch (authError) {
+                    console.warn("Primary auth method failed:", authError.message);
+                    try {
+                        if (initialAuthToken) {
+                            console.log("Attempting fallback to anonymous auth...");
+                            await signInAnonymously(auth);
+                        }
+                    } catch (fallbackError) {
+                        console.warn("Fallback auth also failed, proceeding unauthenticated.", fallbackError.message);
+                    }
+                }
+                
+                const examsRef = collection(db, 'artifacts', appId, 'public', 'data', 'exams');
+                
+                onSnapshot(query(examsRef), (snapshot) => {
+                    allExams = [];
+                    snapshot.forEach(doc => {
+                        allExams.push({ id: doc.id, ...doc.data() });
+                    });
+                    updateStats();
+                    renderTable();
+                }, (error) => {
+                    showToast("Error loading data: " + error.message, "error");
+                });
+            } catch (error) {
+                showToast("Auth Error: " + error.message, "error");
+            }
+        }
+
+        function updateStats() {
+            const published = allExams.filter(e => e.status === 'published' || e.published === true).length;
+            const pending = allExams.filter(e => e.status === 'pending_review').length;
+            const changes = allExams.filter(e => e.changesDetected === true).length;
+            
+            document.getElementById('statTotal').innerText = allExams.length;
+            document.getElementById('statPublished').innerText = published;
+            document.getElementById('statPending').innerText = pending;
+            document.getElementById('statChanges').innerText = changes;
+
+            if (changes > 0) {
+                changeBadge.classList.remove('hidden');
+            } else {
+                changeBadge.classList.add('hidden');
+            }
+        }
+
+        window.switchTab = function(tabName) {
+            currentTab = tabName;
+            adminTabs.forEach(btn => {
+                if (btn.dataset.tab === tabName) {
+                    btn.classList.add('tab-active');
+                    btn.classList.remove('text-slate-400');
+                } else {
+                    btn.classList.remove('tab-active');
+                    btn.classList.add('text-slate-400');
+                }
+            });
+            renderTable();
+        };
+
+        // Attach tab listeners
+        adminTabs.forEach(btn => {
+            btn.addEventListener('click', (e) => switchTab(e.currentTarget.dataset.tab));
+        });
+
+        function formatDate(dateStr) {
+            if (!dateStr) return 'TBA';
+            return new Date(dateStr).toLocaleDateString();
+        }
+
+        function renderTable() {
+            const filtered = allExams.filter(exam => {
+                if (currentTab === 'published') return (exam.status === 'published' || exam.published === true) && !exam.changesDetected;
+                if (currentTab === 'pending_review') return exam.status === 'pending_review';
+                if (currentTab === 'changes') return exam.changesDetected === true;
+                if (currentTab === 'rejected') return exam.status === 'rejected';
+                return false;
+            });
+
+            if (filtered.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="4" class="px-6 py-12 text-center text-slate-500">No records found for this category.</td></tr>`;
+                return;
+            }
+
+            tableBody.innerHTML = filtered.map(exam => `
+                <tr class="hover:bg-slate-800/30 transition-colors">
+                    <td class="px-6 py-4 border-t border-slate-700/50">
+                        <div class="font-medium text-white">${exam.title}</div>
+                        <div class="text-xs text-slate-500 mt-1 flex items-center gap-2">
+                            <span class="bg-slate-800 px-2 py-0.5 rounded border border-slate-700">${exam.category || 'Other'}</span>
+                            ${exam.sourceUrl ? `<a href="${exam.sourceUrl}" target="_blank" class="hover:text-emerald-400"><i class="fa-solid fa-link"></i> Source</a>` : 'Manual Entry'}
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-slate-300 border-t border-slate-700/50">
+                        <div><span class="text-slate-500 inline-block w-14">Apply:</span> ${formatDate(exam.applicationDeadline)}</div>
+                        <div class="mt-1"><span class="text-slate-500 inline-block w-14">Exam:</span> ${formatDate(exam.examDate)}</div>
+                    </td>
+                    <td class="px-6 py-4 border-t border-slate-700/50">
+                        ${exam.changesDetected ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border bg-purple-500/20 text-purple-400 border-purple-500/30"><i class="fa-solid fa-code-compare"></i> Update Found</span>` : 
+                          exam.status === 'pending_review' ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border bg-amber-500/20 text-amber-400 border-amber-500/30"><i class="fa-solid fa-hourglass-half"></i> Pending</span>` :
+                          exam.status === 'published' ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border bg-emerald-500/20 text-emerald-400 border-emerald-500/30"><i class="fa-solid fa-check"></i> Live</span>` :
+                          `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border bg-red-500/20 text-red-400 border-red-500/30"><i class="fa-solid fa-xmark"></i> Rejected</span>`
+                        }
+                    </td>
+                    <td class="px-6 py-4 text-right border-t border-slate-700/50">
+                        <button onclick="openModal('${exam.id}')" class="text-slate-400 hover:text-white bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors shadow-sm text-sm">
+                            <i class="fa-solid fa-pen-to-square mr-1"></i> Review
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        window.openModal = function(id = null) {
+            diffViewer.classList.add('hidden');
+            diffContent.innerHTML = '';
+            
+            if (id) {
+                const exam = allExams.find(e => e.id === id);
+                if (!exam) return;
+                
+                document.getElementById('modalTitle').innerText = 'Edit Exam Record';
+                formFields.id.value = exam.id;
+                formFields.title.value = exam.title || '';
+                formFields.category.value = exam.category || 'Other';
+                formFields.applicationDeadline.value = exam.applicationDeadline || '';
+                formFields.examDate.value = exam.examDate || '';
+                formFields.officialLink.value = exam.officialLink || '';
+                formFields.sourceUrl.value = exam.sourceUrl || '';
+
+                if (exam.changesDetected && exam.oldValues) {
+                    diffViewer.classList.remove('hidden');
+                    let diffHtml = '';
+                    if (exam.oldValues.applicationDeadline !== exam.applicationDeadline) {
+                        diffHtml += `<div><span class="text-slate-500">Apply Date:</span> <s class="text-red-400">${exam.oldValues.applicationDeadline || 'TBA'}</s> <i class="fa-solid fa-arrow-right text-xs mx-1"></i> <span class="text-emerald-400">${exam.applicationDeadline || 'TBA'}</span></div>`;
+                    }
+                    if (exam.oldValues.examDate !== exam.examDate) {
+                        diffHtml += `<div><span class="text-slate-500">Exam Date:</span> <s class="text-red-400">${exam.oldValues.examDate || 'TBA'}</s> <i class="fa-solid fa-arrow-right text-xs mx-1"></i> <span class="text-emerald-400">${exam.examDate || 'TBA'}</span></div>`;
+                    }
+                    diffContent.innerHTML = diffHtml || '<div>Fields updated by automation script.</div>';
+                }
+                
+                document.getElementById('btnReject').classList.remove('hidden');
+            } else {
+                document.getElementById('modalTitle').innerText = 'Add New Exam';
+                formFields.id.value = '';
+                formFields.title.value = '';
+                formFields.category.value = 'Other';
+                formFields.applicationDeadline.value = '';
+                formFields.examDate.value = '';
+                formFields.officialLink.value = '';
+                formFields.sourceUrl.value = '';
+                document.getElementById('btnReject').classList.add('hidden');
+            }
+
+            editModal.classList.remove('hidden');
+            editModal.classList.add('flex');
+            
+            // Allow display: flex to apply before transitioning opacity/scale
+            setTimeout(() => {
+                editModal.classList.remove('opacity-0');
+                editModalContent.classList.remove('scale-95');
+            }, 10);
+        };
+
+        window.closeModal = function() {
+            editModal.classList.add('opacity-0');
+            editModalContent.classList.add('scale-95');
+            setTimeout(() => {
+                editModal.classList.add('hidden');
+                editModal.classList.remove('flex');
+            }, 200);
+        };
+
+        window.saveRecord = async function(action) {
+            const id = formFields.id.value;
+            const data = {
+                title: formFields.title.value,
+                category: formFields.category.value,
+                applicationDeadline: formFields.applicationDeadline.value,
+                examDate: formFields.examDate.value,
+                officialLink: formFields.officialLink.value,
+                sourceUrl: formFields.sourceUrl.value,
+                lastUpdated: serverTimestamp()
+            };
+
+            if (!data.title) {
+                showToast("Title is required", "error");
+                return;
+            }
+
+            try {
+                if (action === 'publish') {
+                    data.status = 'published';
+                    data.published = true;
+                    data.verified = true;
+                    data.changesDetected = false;
+                    data.oldValues = null;
+                } else if (action === 'reject') {
+                    data.status = 'rejected';
+                    data.published = false;
+                    data.changesDetected = false;
+                } else {
+                    data.status = 'pending_review';
+                    data.published = false;
+                }
+
+                if (id) {
+                    await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'exams', id), data);
+                    showToast("Record updated successfully");
+                } else {
+                    data.createdAt = serverTimestamp();
+                    await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'exams'), data);
+                    showToast("New record created");
+                }
+                closeModal();
+            } catch (error) {
+                console.error("Save Error:", error);
+                showToast("Error saving record", "error");
+            }
+        };
+
+        window.toggleInfoModal = function() {
+            const modal = document.getElementById('infoModal');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        };
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            const bgClass = type === 'success' ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-100' : 'bg-red-500/20 border-red-500/50 text-red-100';
+            const icon = type === 'success' ? 'fa-check-circle' : 'fa-triangle-exclamation';
+            
+            toast.className = `flex items-center gap-3 px-4 py-3 rounded-lg border ${bgClass} backdrop-blur-md shadow-lg transform transition-all duration-300 translate-y-[-100%] opacity-0 mb-2`;
+            toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span class="text-sm font-medium">${message}</span>`;
+            
+            container.appendChild(toast);
+            
+            // Animate in
+            setTimeout(() => {
+                toast.classList.remove('translate-y-[-100%]', 'opacity-0');
+            }, 10);
+            
+            // Remove after 3s
+            setTimeout(() => {
+                toast.classList.add('translate-y-[-100%]', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Boot
+        init();
+    </script>
+</body>
+</html>
