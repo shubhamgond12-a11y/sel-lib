@@ -1316,54 +1316,20 @@
         });
 
         // WhatsApp Form Logic
-        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('waName').value;
-            const msg = document.getElementById('waMessage').value;
-            const text = `Hi, I am ${name}. ${msg}`;
-            const url = `https://wa.me/919169340586?text=${encodeURIComponent(text)}`;
-            window.open(url, '_blank');
-        })
-
-        // Image Modal Logic
-        const imgModal = document.getElementById('imageModal')
-        const modalImg = document.getElementById('modalImg')
-
-        window.openImageModal = function(src) {
-            modalImg.src = src;
-            imgModal.classList.add('show')
-            document.body.style.overflow = 'hidden'
+        const whatsappForm = document.getElementById('whatsappForm');
+        if(whatsappForm) {
+            whatsappForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('waName').value;
+                const phone = document.getElementById('waPhone').value;
+                const message = document.getElementById('waMessage').value;
+                
+                const whatsappText = `Hello Selection Library, I have an inquiry.%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Message:* ${message}`;
+                
+                const whatsappUrl = `https://wa.me/919169340586?text=${whatsappText}`;
+                window.open(whatsappUrl, '_blank');
+            });
         }
-
-        window.closeImageModal = function() {
-            imgModal.classList.remove('show');
-            document.body.style.overflow = 'auto'
-        }
-
-        // Students Modal Logic
-        const studentsModal = document.getElementById('studentsModal')
-
-        window.openStudentsModal = function() {
-            studentsModal.classList.remove('hidden')
-            document.body.style.overflow = 'hidden'
-        }
-
-        window.closeStudentsModal = function() {
-            studentsModal.classList.add('hidden')
-            document.body.style.overflow = 'auto'
-        }
-
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('glass-nav');
-                nav.classList.remove('bg-black/40', 'border-white/10')
-            } else {
-                nav.classList.remove('glass-nav');
-                nav.classList.add('bg-black/40', 'border-white/10')
-            }
-        })
     </script>
 </body>
 </html>
