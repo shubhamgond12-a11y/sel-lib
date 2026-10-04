@@ -126,14 +126,14 @@
                     },
                     colors: {
                         brand: {
-                            light: '#38bdf8',
-                            DEFAULT: '#0EA5E9',
-                            dark: '#0284c7',
+                            light: '#F9D9A5',
+                            DEFAULT: '#C77C2D',
+                            dark: '#8A5315',
                         },
                         oasis: {
-                            ivory: '#FAFAF6',
-                            emerald: '#1E3A34',
-                            ink: '#0F172A',
+                            ivory: '#F7F1EA',
+                            emerald: '#182B27',
+                            ink: '#1A1A1A',
                         }
                     },
                     animation: {
@@ -156,7 +156,7 @@
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         
         .glass-nav {
-            background: rgba(30, 58, 52, 0.8);
+            background: rgba(17, 22, 20, 0.6);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -166,6 +166,25 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
         html, body { max-width: 100vw; overflow-x: hidden; }
+        body {
+            background:
+                radial-gradient(circle at top left, rgba(199, 124, 45, 0.12), transparent 24%),
+                radial-gradient(circle at top right, rgba(24, 43, 39, 0.1), transparent 26%),
+                linear-gradient(180deg, #f7efe7 0%, #f9f4ee 30%, #fdf9f5 100%);
+            color: #1a1a1a;
+        }
+        section {
+            position: relative;
+            isolation: isolate;
+        }
+        section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0) 32%, rgba(255,255,255,0.06));
+            pointer-events: none;
+            z-index: -1;
+        }
 
         .img-modal {
             display: none; position: fixed; z-index: 9999; left: 0; top: 0;
@@ -196,7 +215,7 @@
 
     <header>
         <!-- Floating Pill Navbar -->
-        <nav id="navbar" class="fixed top-0 md:top-4 left-0 md:left-1/2 md:-translate-x-1/2 right-0 md:right-auto md:w-[96%] max-w-7xl z-40 py-4 px-6 lg:px-8 flex justify-between items-center transition-all duration-500 bg-black/40 backdrop-blur-md md:rounded-full border-b md:border border-white/10 shadow-lg" aria-label="Main Navigation">
+        <nav id="navbar" class="fixed top-0 md:top-4 left-0 md:left-1/2 md:-translate-x-1/2 right-0 md:right-auto md:w-[96%] max-w-7xl z-40 py-4 px-6 lg:px-8 flex justify-between items-center transition-all duration-500 bg-[#162723]/75 backdrop-blur-md md:rounded-full border-b md:border border-white/10 shadow-[0_18px_45px_rgba(13,18,16,0.28)]" aria-label="Main Navigation">
             <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)" tabindex="0" role="button" aria-label="Scroll to top">
                 <img src="logo.webp" alt="Selection Library Logo" width="40" height="40" decoding="async" class="w-10 h-10 object-contain transition-transform hover:scale-105" onerror="this.outerHTML='<div class=\'w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-white text-lg shadow-lg shadow-brand/20 transition-transform hover:scale-105\'>SL</div>'">
                 <span class="font-bold text-white text-xl tracking-tight">Selection Library</span>
@@ -249,7 +268,7 @@
             <nav id="mobile-menu-container" class="absolute top-0 left-0 right-0 bg-oasis-ivory px-6 py-6 border-b border-gray-200 flex flex-col transition-all duration-300 ease-out transform -translate-y-full shadow-2xl" aria-label="Mobile Navigation">
                 <div class="flex justify-between items-center mb-10">
                     <div class="flex items-center gap-3">
-                        <img src="logo.png" alt="Selection Library Logo" width="40" height="40" loading="lazy" decoding="async" class="w-10 h-10 object-contain" onerror="this.outerHTML='<div class=\'w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-white text-lg\'>SL</div>'">
+                        <img src="logo.webp" alt="Selection Library Logo" width="40" height="40" loading="lazy" decoding="async" class="w-10 h-10 object-contain" onerror="this.outerHTML='<div class=\'w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-white text-lg\'>SL</div>'">
                         <span class="font-bold text-oasis-ink text-xl tracking-tight">Selection Library</span>
                     </div>
                     <button id="mobile-menu-close" class="w-10 h-10 bg-brand/10 hover:bg-brand/20 text-brand-dark rounded-xl flex items-center justify-center transition-transform hover:scale-105 shadow-sm focus:outline-none" aria-label="Close Mobile Menu">
@@ -280,17 +299,18 @@
             <!-- Background Image with Gradient Overlay -->
             <div class="absolute inset-0 z-0">
                 <img src="webp/9.webp" alt="Selection Library Study Room Interior" width="1920" height="1080" fetchpriority="high" loading="eager" decoding="sync" class="w-full h-full object-cover scale-105 animate-[pulse_20s_ease-in-out_infinite]" />
-                <div class="absolute inset-0 bg-gradient-to-b from-oasis-emerald/70 via-oasis-emerald/80 to-oasis-ink/70"></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-[#1b2d29]/80 via-[#1d2a27]/75 to-[#0d1110]/80"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(199,124,45,0.28),_transparent_30%)]"></div>
             </div>
 
             <div class="relative z-10 text-center max-w-4xl mx-auto mt-16" data-aos="fade-up" data-aos-duration="1000">
-                <p class="inline-block py-1.5 px-4 rounded-full bg-brand/20 border border-brand/40 text-brand-light text-sm font-semibold tracking-wider mb-6 animate-pulse">
+                <p class="inline-block py-1.5 px-4 rounded-full bg-[#f7d49c]/15 border border-[#f7d49c]/40 text-[#f7d49c] text-sm font-semibold tracking-[0.18em] uppercase mb-6 shadow-[0_0_30px_rgba(247,212,156,0.18)]">
                     Sultanpur's Premium Study Space
                 </p>
                 
                 <!-- Selection Library Heading -->
                 <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-2 tracking-tight drop-shadow-xl">
-                    <br class="md:hidden"/><span class="text-brand drop-shadow-lg">SELECTION LIBRARY</span>
+                    <br class="md:hidden"/><span class="text-[#f2c77a] drop-shadow-[0_0_28px_rgba(242,199,122,0.4)]">SELECTION LIBRARY</span>
                 </h1>
                 
                 <!-- Tagline -->
@@ -302,7 +322,7 @@
                     Experience a peaceful, air-conditioned environment in Sultanpur with individual desk lights, high-speed Wi-Fi, and wooden study cubicles designed to help you prepare for competitive exams like SSC, UPPSC, NEET, JEE, and achieve your academic dreams.
                 </p>
                 <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
-                    <a href="#contact" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-white px-8 py-4 rounded-full font-bold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(14,165,233,0.4)]">
+                    <a href="#contact" class="inline-flex items-center gap-2 bg-gradient-to-r from-[#d99b52] to-[#f0c77a] hover:brightness-110 text-[#18120d] px-8 py-4 rounded-full font-bold transition-all duration-300 transform hover:-translate-y-1 shadow-[0_16px_35px_rgba(217,155,82,0.38)]">
                         Book a Free Trial Seat
                         <i data-lucide="arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-1" aria-hidden="true"></i>
                     </a>
