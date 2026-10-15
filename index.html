@@ -204,6 +204,13 @@
         .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        #gallery figure { cursor: zoom-in; }
+        #gallery figure:focus-visible { outline: 3px solid #C77C2D; outline-offset: 4px; }
+        #gallery figure img { aspect-ratio: 4 / 3; object-fit: cover; }
+        @media (prefers-reduced-motion: reduce) {
+            #gallery figure img, #modalImage { transition: none !important; }
+        }
     </style>
 </head>
 <body class="font-sans text-slate-600 antialiased bg-oasis-ivory overflow-x-hidden w-full">
@@ -221,42 +228,17 @@
                 <span class="font-bold text-white text-xl tracking-tight">Selection Library</span>
             </div>
             
-            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-100">
-                <a href="#home" class="hover:text-brand transition-colors relative group">
-                    Home
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href="https://www.selectionlibrary.com/tools/" class="hover:text-brand transition-colors relative group">
-                    Essential tools
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href="#features" class="hover:text-brand transition-colors relative group">
-                    Amenities
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href="#gallery" class="hover:text-brand transition-colors relative group">
-                    Gallery
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href="#recognition" class="hover:text-brand transition-colors relative group">
-                    Recognition
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href="#testimonials" class="hover:text-brand transition-colors relative group">
-                    Selected Students
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href="#google-reviews" class="hover:text-brand transition-colors relative group">
-                    Reviews
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-                </a>
-                <a href="#contact" class="hover:text-brand transition-colors relative group">
-                    Contact
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-                </a>
+            <div class="hidden lg:flex items-center gap-5 text-sm font-medium text-gray-100">
+                <a href="#home" class="hover:text-brand transition-colors">Home</a>
+                <a href="#features" class="hover:text-brand transition-colors">Space</a>
+                <a href="#gallery" class="hover:text-brand transition-colors">Gallery</a>
+                <a href="#recognition" class="hover:text-brand transition-colors">Achievements</a>
+                <a href="#testimonials" class="hover:text-brand transition-colors">Students</a>
+                <a href="#google-reviews" class="hover:text-brand transition-colors">Reviews</a>
+                <a href="#contact" class="rounded-full bg-brand px-5 py-2.5 font-semibold text-white shadow-md shadow-brand/20 transition-colors hover:bg-brand-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-light">Contact</a>
             </div>
             <!-- Mobile Menu Trigger Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-white p-2 hover:bg-white/20 rounded-lg transition-colors focus:outline-none" aria-label="Open Mobile Menu" aria-expanded="false" aria-controls="mobile-menu">
+            <button id="mobile-menu-btn" class="lg:hidden text-white p-2 hover:bg-white/20 rounded-lg transition-colors focus:outline-none" aria-label="Open Mobile Menu" aria-expanded="false" aria-controls="mobile-menu">
                 <i data-lucide="menu" class="w-6 h-6" aria-hidden="true"></i>
             </button>
         </nav>
@@ -265,7 +247,7 @@
         <div id="mobile-menu" class="fixed inset-0 z-50 hidden transition-opacity duration-300" aria-modal="true" role="dialog">
             <div id="mobile-menu-backdrop" class="absolute inset-0 bg-oasis-emerald/80 backdrop-blur-md" aria-hidden="true"></div>
             
-            <nav id="mobile-menu-container" class="absolute top-0 left-0 right-0 bg-oasis-ivory px-6 py-6 border-b border-gray-200 flex flex-col transition-all duration-300 ease-out transform -translate-y-full shadow-2xl" aria-label="Mobile Navigation">
+            <nav id="mobile-menu-container" class="absolute top-0 left-0 right-0 max-h-[100dvh] overflow-y-auto bg-oasis-ivory px-6 py-6 border-b border-gray-200 flex flex-col transition-all duration-300 ease-out transform -translate-y-full shadow-2xl" aria-label="Mobile Navigation">
                 <div class="flex justify-between items-center mb-10">
                     <div class="flex items-center gap-3">
                         <img src="logo.webp" alt="Selection Library Logo" width="40" height="40" loading="lazy" decoding="async" class="w-10 h-10 object-contain" onerror="this.outerHTML='<div class=\'w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-white text-lg\'>SL</div>'">
@@ -276,18 +258,18 @@
                     </button>
                 </div>
                 
-                <div class="flex flex-col gap-8 pl-1 pb-10">
-                    <a href="#home" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Home</a>
-                    <a href="#features" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Amenities</a>
-                    <a href="#gallery" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Gallery</a>
-                    <a href="#recognition" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Recognition</a>
-                    <a href="#testimonials" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Selected Students</a>
-                    <a href="#google-reviews" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Reviews</a>
-                    <a href="#contact" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Contact</a>
-
-                     <!-- Admin / App Link (Subtle & Separated) -->
-                     <a href="/app" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Admin Portal</a>
-                     <a href="https://www.selectionlibrary.com/tools/" class="mobile-nav-link text-xl font-semibold text-oasis-ink hover:text-brand transition-all hover:translate-x-2">Essential Tools for Aspirants</a>
+                <div class="flex flex-col gap-5 pl-1 pb-6">
+                    <a href="#home" class="mobile-nav-link text-lg font-semibold text-oasis-ink hover:text-brand transition-colors">Home</a>
+                    <a href="#features" class="mobile-nav-link text-lg font-semibold text-oasis-ink hover:text-brand transition-colors">Study Space</a>
+                    <a href="#gallery" class="mobile-nav-link text-lg font-semibold text-oasis-ink hover:text-brand transition-colors">Gallery</a>
+                    <a href="#recognition" class="mobile-nav-link text-lg font-semibold text-oasis-ink hover:text-brand transition-colors">Achievements</a>
+                    <a href="#testimonials" class="mobile-nav-link text-lg font-semibold text-oasis-ink hover:text-brand transition-colors">Students</a>
+                    <a href="#google-reviews" class="mobile-nav-link text-lg font-semibold text-oasis-ink hover:text-brand transition-colors">Reviews</a>
+                    <a href="#contact" class="mobile-nav-link rounded-xl bg-brand px-5 py-3 text-center text-lg font-bold text-white hover:bg-brand-dark transition-colors">Contact Us</a>
+                </div>
+                <div class="border-t border-gray-200 pt-4 pb-2 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium text-slate-500">
+                    <a href="https://www.selectionlibrary.com/tools/" class="mobile-nav-link hover:text-brand-dark transition-colors">Aspirant Tools</a>
+                    <a href="/app" class="mobile-nav-link hover:text-brand-dark transition-colors">Admin Portal</a>
                 </div>
             </nav>
         </div>
@@ -457,10 +439,10 @@
                     <p class="text-slate-600 max-w-2xl mx-auto text-lg">Take a look inside our meticulously designed study spaces, meant to inspire and keep you motivated on your journey.</p>
                 </div>
 
-                <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
                     <figure class="break-inside-avoid rounded-2xl overflow-hidden group relative" data-aos="fade-up">
                         <img src="webp/12.webp" alt="Selection Library Sultanpur Event - Saraswati Pooja 2026" width="600" height="600" loading="lazy" decoding="async" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
-                        <figcaption class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pt-12 pb-4 px-5 text-white text-sm font-medium">
                             <span class="text-white font-medium">Saraswati Pooja 2026</span>
                         </figcaption>
                     </figure>
@@ -1240,6 +1222,7 @@
         <button class="absolute top-4 right-4 md:top-8 md:right-8 text-white/70 hover:text-white bg-black/50 hover:bg-brand rounded-full p-2 transition-colors z-50 shadow-lg" aria-label="Close Expanded Image">
             <i data-lucide="x" class="w-8 h-8 md:w-10 md:h-10" aria-hidden="true"></i>
         </button>
+        <div class="absolute bottom-5 left-4 right-4 text-center text-white text-sm md:text-base" id="imageModalCaption" aria-live="polite"></div>
         <img id="modalImage" src="" alt="Enlarged View" loading="lazy" decoding="async" onclick="event.stopPropagation()">
     </div>
 
@@ -1297,18 +1280,49 @@
         // Image Modal Logic for Selected students
         const imageModal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
+        const imageModalCaption = document.getElementById('imageModalCaption');
 
-        function openImageModal(imgSrc) {
+        function openImageModal(imgSrc, altText = 'Enlarged view', caption = '') {
             modalImage.src = imgSrc;
+            modalImage.alt = altText;
+            imageModalCaption.textContent = caption;
             imageModal.classList.add('show');
             document.body.style.overflow = 'hidden';
         }
 
         function closeImageModal() {
             imageModal.classList.remove('show');
-            setTimeout(() => { modalImage.src = ''; }, 300);
+            setTimeout(() => { modalImage.src = ''; imageModalCaption.textContent = ''; }, 300);
             document.body.style.overflow = '';
         }
+
+        // Make gallery photos consistent, captioned, and usable by mouse or keyboard.
+        document.querySelectorAll('#gallery figure').forEach((figure) => {
+            const photo = figure.querySelector('img');
+            if (!photo) return;
+            figure.setAttribute('tabindex', '0');
+            figure.setAttribute('role', 'button');
+            figure.setAttribute('aria-label', `View photo: ${photo.alt}`);
+            let caption = figure.querySelector('figcaption');
+            if (!caption) {
+                caption = document.createElement('figcaption');
+                caption.className = 'absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pt-12 pb-4 px-5 text-white text-sm font-medium';
+                caption.textContent = photo.alt;
+                figure.appendChild(caption);
+            }
+            const showPhoto = () => openImageModal(photo.currentSrc || photo.src, photo.alt, caption.textContent.trim());
+            figure.addEventListener('click', showPhoto);
+            figure.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    showPhoto();
+                }
+            });
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && imageModal.classList.contains('show')) closeImageModal();
+        });
 
         // Selected Students Modal Logic
         const studentsModal = document.getElementById('studentsModal');
