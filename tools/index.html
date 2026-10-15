@@ -3,16 +3,15 @@
 <head>
 
     <!-- Favicon Links -->
-    <link rel="icon" type="image/png" href="../logo.webp">
-    <link rel="shortcut icon" type="image/png" href="../logo.webp">
-    <link rel="apple-touch-icon" href="../logo.webp">
+    <link rel="icon" type="image/png" href="logo.webp">
+    <link rel="shortcut icon" type="image/png" href="logo.webp">
+    <link rel="apple-touch-icon" href="logo.webp">
 
     
     <meta charset="UTF-8">
-    <meta name="description" content="Free client-side student utilities for exam aspirants. Compress images, merge PDFs, and calculate your exact age securely in your browser without uploading data.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="canonical" href="[https://www.selectionlibrary.com/tools/](https://www.selectionlibrary.com/tools/)" />
-    <title>Exam Utilities Hub | Image Compressor, PDF Tools & Age Calculator | Selection Library</title>
+    <meta name="theme-color" content="#182B27">
+    <title>Student Utilities Hub - Selection Library</title>
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Tailwind Configuration for Custom Colors/Fonts -->
@@ -25,9 +24,21 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
+                        brand: {
+                            light: '#F9D9A5',
+                            DEFAULT: '#C77C2D',
+                            dark: '#8A5315',
+                        },
+                        oasis: {
+                            ivory: '#F7F1EA',
+                            emerald: '#182B27',
+                            ink: '#1A1A1A',
+                        },
                         slate: {
-                            850: '#151f32', // Custom shade between 800 and 900
-                            950: '#0b1120',
+                            800: '#243A35',
+                            850: '#203934',
+                            900: '#182B27',
+                            950: '#101D1A',
                         }
                     }
                 }
@@ -42,7 +53,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0b1120; /* slate-950 */
+            background-color: #101D1A; /* deep brand green */
             color: #f8fafc; /* slate-50 */
         }
         
@@ -51,21 +62,21 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #0f172a; /* slate-900 */
+            background: #182B27; /* oasis emerald */
         }
         ::-webkit-scrollbar-thumb {
-            background: #334155; /* slate-700 */
+            background: #36534B; /* muted emerald */
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #475569; /* slate-600 */
+            background: #49675D; /* muted emerald hover */
         }
 
         /* Input styling overrides for dark mode */
         input[type="file"]::file-selector-button {
             border: none;
-            background: #34d399; /* emerald-400 */
-            color: #064e3b; /* emerald-900 */
+            background: #C77C2D; /* brand gold */
+            color: #1A1A1A; /* oasis ink */
             padding: 0.5rem 1rem;
             border-radius: 0.375rem;
             cursor: pointer;
@@ -73,27 +84,26 @@
             font-weight: 500;
         }
         input[type="file"]::file-selector-button:hover {
-            background: #10b981; /* emerald-500 */
+            background: #8A5315; /* brand dark */
         }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
     <!-- Header -->
-    <header class="bg-slate-900 border-b border-slate-800 py-6 sticky top-0 z-40 shadow-md">
+    <header class="bg-oasis-emerald border-b border-white/10 py-6 sticky top-0 z-40 shadow-md">
         <div class="container mx-auto px-4 max-w-5xl flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <img src="../logo.webp" alt="Selection Library Logo" width="40" height="40" decoding="async" class="w-10 h-10 object-contain transition-transform hover:scale-105" onerror="this.outerHTML='<div class=\'w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-white text-lg shadow-lg shadow-brand/20 transition-transform hover:scale-105\'>SL</div>'">
+                <img src="logo.webp" alt="Selection Library Logo" width="40" height="40" decoding="async" class="w-10 h-10 object-contain transition-transform hover:scale-105" onerror="this.outerHTML='<div class=\'w-10 h-10 bg-brand rounded-lg flex items-center justify-center font-bold text-white text-lg shadow-lg shadow-brand/20 transition-transform hover:scale-105\'>SL</div>'">
                 
                 <h1 class="text-2xl font-bold tracking-tight text-white">
-                    Selection Library <span class="text-emerald-400">Utilities</span>
+                    Selection Library <span class="text-brand-light">Utilities</span>
                 </h1>
             </div>
             <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-400">
-                <a href="https://www.selectionlibrary.com/" class="hover:text-emerald-400 transition-colors">Selection Library</a>
-                <a href="#image-tool" class="hover:text-emerald-400 transition-colors">Image Compressor</a>
-                <a href="#pdf-tool" class="hover:text-emerald-400 transition-colors">PDF Tools</a>
-                <a href="#age-tool" class="hover:text-emerald-400 transition-colors">Age Calculator</a>
-                <a href="https://www.selectionlibrary.com/exam_update/" class="hover:text-emerald-400 transition-colors">Exam Calendar</a>
+                <a href="https://www.selectionlibrary.com/" class="hover:text-brand-light transition-colors">Selection Library</a>
+                <a href="#image-tool" class="hover:text-brand-light transition-colors">Image Compressor</a>
+                <a href="#pdf-tool" class="hover:text-brand-light transition-colors">PDF Tools</a>
+                <a href="#age-tool" class="hover:text-brand-light transition-colors">Age Calculator</a>
             </nav>
         </div>
     </header>
@@ -101,19 +111,34 @@
     <!-- Main Content -->
     <main class="flex-grow container mx-auto px-4 py-10 max-w-5xl">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Essential Tools for <span class="text-emerald-400">Aspirants</span></h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Essential Tools for <span class="text-brand-light">Aspirants</span></h2>
             <p class="text-slate-400 max-w-2xl mx-auto text-lg">Streamline your exam application process with our client-side, privacy-focused utilities. No data leaves your browser.</p>
         </div>
+
+        <nav aria-label="Choose a utility tool" class="mb-10 rounded-2xl border border-white/10 bg-slate-900/80 p-4 sm:p-5">
+            <p class="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Choose a tool</p>
+            <div class="flex flex-wrap gap-3">
+                <a href="#image-tool" class="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-sm font-semibold text-white transition-colors hover:border-brand/60 hover:text-brand-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-light">
+                    <i class="fa-solid fa-image text-brand-light" aria-hidden="true"></i> Image Formatter
+                </a>
+                <a href="#pdf-tool" class="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-sm font-semibold text-white transition-colors hover:border-brand/60 hover:text-brand-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-light">
+                    <i class="fa-solid fa-file-pdf text-brand-light" aria-hidden="true"></i> PDF Tools
+                </a>
+                <a href="#age-tool" class="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-sm font-semibold text-white transition-colors hover:border-brand/60 hover:text-brand-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-light">
+                    <i class="fa-solid fa-calendar-days text-brand-light" aria-hidden="true"></i> Age Calculator
+                </a>
+            </div>
+        </nav>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             
             <!-- Tool 1: Image Compressor & Resizer -->
-            <section id="image-tool" class="bg-slate-900 rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl flex flex-col relative overflow-hidden">
+            <section id="image-tool" class="scroll-mt-28 bg-slate-900 rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl flex flex-col relative overflow-hidden">
                 <!-- Decorative glow -->
-                <div class="absolute -top-20 -right-20 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -top-20 -right-20 w-40 h-40 bg-brand/10 rounded-full blur-3xl pointer-events-none"></div>
                 
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="bg-slate-800 p-2 rounded-md text-emerald-400">
+                    <div class="bg-slate-800 p-2 rounded-md text-brand-light">
                         <i class="fa-solid fa-crop-simple text-lg"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-white">Image Formatter & Cropper</h3>
@@ -129,19 +154,19 @@
                             <label for="img-upload" class="flex flex-col items-center justify-center w-full h-32 border-2 border-slate-700 border-dashed rounded-lg cursor-pointer bg-slate-850 hover:bg-slate-800 transition-colors">
                                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                     <i class="fa-solid fa-cloud-arrow-up text-3xl text-slate-500 mb-3"></i>
-                                    <p class="mb-2 text-sm text-slate-400"><span class="font-semibold text-emerald-400">Click to upload</span> or drag and drop</p>
+                                    <p class="mb-2 text-sm text-slate-400"><span class="font-semibold text-brand-light">Click to upload</span> or drag and drop</p>
                                 </div>
                                 <input id="img-upload" type="file" accept="image/jpeg, image/png" class="hidden" />
                             </label>
                         </div>
-                        <p id="file-info" class="text-xs text-emerald-400 mt-2 hidden">File selected: <span id="file-name"></span> (<span id="file-orig-size"></span>)</p>
+                        <p id="file-info" class="text-xs text-brand-light mt-2 hidden">File selected: <span id="file-name"></span> (<span id="file-orig-size"></span>)</p>
                     </div>
 
                     <!-- Guidelines & Specs -->
                     <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 space-y-4">
                         <div>
                             <label class="block text-sm font-medium text-slate-300 mb-2">Format Guidelines</label>
-                            <select id="doc-preset" class="w-full bg-slate-900 border border-slate-700 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-1 focus:ring-emerald-400 focus:border-emerald-400 transition-shadow text-sm cursor-pointer">
+                            <select id="doc-preset" class="w-full bg-slate-900 border border-slate-700 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand transition-shadow text-sm cursor-pointer">
                                 <option value="custom">Custom Format</option>
                                 <option value="photo" data-w="3.5" data-h="4.5" data-u="cm" data-kb="50" selected>Passport Photo (3.5 x 4.5 cm)</option>
                                 <option value="sig" data-w="4.0" data-h="2.0" data-u="cm" data-kb="20">Signature (4.0 x 2.0 cm)</option>
@@ -154,7 +179,7 @@
                             <div>
                                 <label class="block text-xs font-medium text-slate-400 mb-1">Max Size (KB)</label>
                                 <div class="relative">
-                                    <input type="number" id="target-kb" value="50" class="w-full bg-slate-900 border border-slate-700 rounded-md py-2 px-3 text-white text-sm focus:outline-none focus:ring-1 focus:ring-emerald-400 transition-shadow">
+                                    <input type="number" id="target-kb" value="50" class="w-full bg-slate-900 border border-slate-700 rounded-md py-2 px-3 text-white text-sm focus:outline-none focus:ring-1 focus:ring-brand transition-shadow">
                                     <span class="absolute right-3 top-2 text-slate-500 text-sm pointer-events-none">KB</span>
                                 </div>
                             </div>
@@ -162,9 +187,9 @@
                             <div>
                                  <label class="block text-xs font-medium text-slate-400 mb-1">Target Dimensions</label>
                                  <div class="flex items-center gap-1.5">
-                                    <input type="number" step="0.1" id="target-width" value="3.5" class="w-full bg-slate-900 border border-slate-700 rounded-md py-2 px-2 text-white text-sm focus:outline-none focus:ring-1 focus:ring-emerald-400 transition-shadow text-center">
+                                    <input type="number" step="0.1" id="target-width" value="3.5" class="w-full bg-slate-900 border border-slate-700 rounded-md py-2 px-2 text-white text-sm focus:outline-none focus:ring-1 focus:ring-brand transition-shadow text-center">
                                     <span class="text-slate-500 text-xs">x</span>
-                                    <input type="number" step="0.1" id="target-height" value="4.5" class="w-full bg-slate-900 border border-slate-700 rounded-md py-2 px-2 text-white text-sm focus:outline-none focus:ring-1 focus:ring-emerald-400 transition-shadow text-center">
+                                    <input type="number" step="0.1" id="target-height" value="4.5" class="w-full bg-slate-900 border border-slate-700 rounded-md py-2 px-2 text-white text-sm focus:outline-none focus:ring-1 focus:ring-brand transition-shadow text-center">
                                     <select id="dim-unit" class="bg-slate-800 border border-slate-700 rounded-md py-2 px-1 text-white text-sm focus:outline-none cursor-pointer">
                                         <option value="cm" selected>cm</option>
                                         <option value="px">px</option>
@@ -177,7 +202,7 @@
                     <!-- Interactive Cropper (Hidden initially) -->
                     <div id="cropper-ui" class="hidden flex-col items-center bg-slate-950 rounded-lg p-4 border border-slate-800">
                         <div class="w-full flex justify-between items-center mb-3">
-                            <span class="text-sm font-medium text-slate-300"><i class="fa-solid fa-expand text-emerald-400 mr-2"></i>Adjust & Crop</span>
+                            <span class="text-sm font-medium text-slate-300"><i class="fa-solid fa-expand text-brand-light mr-2"></i>Adjust & Crop</span>
                             <span class="text-xs px-2 py-1 bg-slate-800 text-slate-400 rounded">Drag to Pan</span>
                         </div>
                         
@@ -188,13 +213,13 @@
                         
                         <div class="w-full flex items-center gap-3 mt-4">
                             <i class="fa-solid fa-magnifying-glass-minus text-slate-500 text-sm"></i>
-                            <input type="range" id="zoom-slider" class="flex-grow accent-emerald-400 h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer" min="0.1" max="3" step="0.01">
+                            <input type="range" id="zoom-slider" class="flex-grow accent-brand h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer" min="0.1" max="3" step="0.01">
                             <i class="fa-solid fa-magnifying-glass-plus text-slate-500 text-sm"></i>
                         </div>
                     </div>
 
                     <!-- Action Button -->
-                    <button id="process-btn" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 px-4 rounded-md transition-all shadow-lg hover:shadow-emerald-500/20 flex items-center justify-center gap-2 mt-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <button id="process-btn" class="w-full bg-brand hover:bg-brand-dark text-slate-950 font-bold py-3 px-4 rounded-md transition-all shadow-lg hover:shadow-brand/20 flex items-center justify-center gap-2 mt-2 disabled:opacity-50 disabled:cursor-not-allowed">
                         <i class="fa-solid fa-wand-magic-sparkles"></i> Process Image
                     </button>
 
@@ -210,7 +235,7 @@
                             <div class="flex-grow w-full">
                                 <div class="flex justify-between text-sm mb-1">
                                     <span class="text-slate-400">Final Size:</span>
-                                    <span id="final-size" class="font-bold text-emerald-400"></span>
+                                    <span id="final-size" class="font-bold text-brand-light"></span>
                                 </div>
                                 <div class="flex justify-between text-sm mb-3">
                                     <span class="text-slate-400">Dimensions (px):</span>
@@ -227,12 +252,12 @@
             </section>
 
             <!-- Tool 1.5: PDF Editor Tool -->
-            <section id="pdf-tool" class="bg-slate-900 rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl flex flex-col relative overflow-hidden">
+            <section id="pdf-tool" class="scroll-mt-28 bg-slate-900 rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl flex flex-col relative overflow-hidden">
                 <!-- Decorative glow -->
-                <div class="absolute -top-20 -left-20 w-40 h-40 bg-rose-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -top-20 -left-20 w-40 h-40 bg-brand/10 rounded-full blur-3xl pointer-events-none"></div>
                 
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="bg-slate-800 p-2 rounded-md text-rose-400">
+                    <div class="bg-slate-800 p-2 rounded-md text-brand-light">
                         <i class="fa-solid fa-file-pdf text-lg"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-white">PDF Master Tools</h3>
@@ -243,7 +268,7 @@
                 <div class="space-y-5 flex-grow">
                     <!-- Tabs -->
                     <div class="flex gap-1 mb-2 border-b border-slate-800/50 pb-2 overflow-x-auto">
-                        <button class="pdf-tab-btn active bg-slate-800 text-rose-400 font-medium px-3 py-2 rounded-md text-sm transition-colors whitespace-nowrap" data-target="pdf-img2pdf">Img to PDF</button>
+                        <button class="pdf-tab-btn active bg-slate-800 text-brand-light font-medium px-3 py-2 rounded-md text-sm transition-colors whitespace-nowrap" data-target="pdf-img2pdf">Img to PDF</button>
                         <button class="pdf-tab-btn text-slate-400 hover:text-slate-200 font-medium px-3 py-2 rounded-md text-sm transition-colors whitespace-nowrap" data-target="pdf-merge">Merge</button>
                         <button class="pdf-tab-btn text-slate-400 hover:text-slate-200 font-medium px-3 py-2 rounded-md text-sm transition-colors whitespace-nowrap" data-target="pdf-split">Split</button>
                     </div>
@@ -255,7 +280,7 @@
                             <input type="file" id="pdf-img-upload" multiple accept="image/jpeg, image/png" class="w-full bg-slate-950 border border-slate-700 rounded-md p-2 text-sm text-slate-300">
                             <p class="text-xs text-slate-500 mt-1">Select multiple images to combine into one PDF document.</p>
                         </div>
-                        <button id="btn-img2pdf" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-3 px-4 rounded-md transition-all shadow-lg hover:shadow-rose-500/20 flex items-center justify-center gap-2">
+                        <button id="btn-img2pdf" class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-3 px-4 rounded-md transition-all shadow-lg hover:shadow-brand/20 flex items-center justify-center gap-2">
                             <i class="fa-solid fa-file-circle-plus"></i> Convert to PDF
                         </button>
                     </div>
@@ -267,7 +292,7 @@
                             <input type="file" id="pdf-merge-upload" multiple accept="application/pdf" class="w-full bg-slate-950 border border-slate-700 rounded-md p-2 text-sm text-slate-300">
                             <p class="text-xs text-slate-500 mt-1">Select multiple PDF files in the order you want them merged.</p>
                         </div>
-                        <button id="btn-merge-pdf" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-3 px-4 rounded-md transition-all shadow-lg hover:shadow-rose-500/20 flex items-center justify-center gap-2">
+                        <button id="btn-merge-pdf" class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-3 px-4 rounded-md transition-all shadow-lg hover:shadow-brand/20 flex items-center justify-center gap-2">
                             <i class="fa-solid fa-object-group"></i> Merge PDFs
                         </button>
                     </div>
@@ -280,17 +305,17 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-slate-300 mb-2">Pages to Extract</label>
-                            <input type="text" id="pdf-split-pages" placeholder="e.g. 1, 3, 5-8" class="w-full bg-slate-950 border border-slate-700 rounded-md py-2 px-3 text-white text-sm focus:outline-none focus:ring-1 focus:ring-rose-500 transition-shadow">
+                            <input type="text" id="pdf-split-pages" placeholder="e.g. 1, 3, 5-8" class="w-full bg-slate-950 border border-slate-700 rounded-md py-2 px-3 text-white text-sm focus:outline-none focus:ring-1 focus:ring-brand transition-shadow">
                             <p class="text-xs text-slate-500 mt-1">Specify page numbers or ranges separated by commas.</p>
                         </div>
-                        <button id="btn-split-pdf" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-3 px-4 rounded-md transition-all shadow-lg hover:shadow-rose-500/20 flex items-center justify-center gap-2">
+                        <button id="btn-split-pdf" class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-3 px-4 rounded-md transition-all shadow-lg hover:shadow-brand/20 flex items-center justify-center gap-2">
                             <i class="fa-solid fa-scissors"></i> Extract Pages
                         </button>
                     </div>
 
                     <!-- Global PDF Result -->
                     <div id="pdf-result" class="hidden mt-6 p-4 bg-slate-950 rounded-lg border border-slate-800 text-center">
-                        <p class="text-rose-400 text-sm font-medium mb-3" id="pdf-status-msg"><i class="fa-solid fa-circle-check"></i> Processing complete!</p>
+                        <p class="text-brand-light text-sm font-medium mb-3" id="pdf-status-msg"><i class="fa-solid fa-circle-check"></i> Processing complete!</p>
                         <a id="pdf-download-link" href="#" class="inline-flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium py-2.5 px-6 rounded-md transition-colors border border-slate-700">
                             <i class="fa-solid fa-download mr-2"></i> Download Document
                         </a>
@@ -299,12 +324,12 @@
             </section>
 
             <!-- Tool 2: Age Calculator -->
-            <section id="age-tool" class="bg-slate-900 rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl flex flex-col relative overflow-hidden">
+            <section id="age-tool" class="scroll-mt-28 bg-slate-900 rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl flex flex-col relative overflow-hidden">
                 <!-- Decorative glow -->
-                <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-brand/5 rounded-full blur-3xl pointer-events-none"></div>
 
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="bg-slate-800 p-2 rounded-md text-emerald-400">
+                    <div class="bg-slate-800 p-2 rounded-md text-brand-light">
                         <i class="fa-solid fa-calendar-days text-lg"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-white">Exact Age Calculator</h3>
@@ -316,16 +341,16 @@
                     <!-- Date Inputs -->
                     <div>
                         <label class="block text-sm font-medium text-slate-300 mb-2">Date of Birth (DOB)</label>
-                        <input type="date" id="dob-input" class="w-full bg-slate-950 border border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-1 focus:ring-emerald-400 focus:border-emerald-400 transition-shadow">
+                        <input type="date" id="dob-input" class="w-full bg-slate-950 border border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand transition-shadow">
                     </div>
 
                     <div>
                         <label class="block text-sm font-medium text-slate-300 mb-2">As of Date (from Notification)</label>
-                        <input type="date" id="as-of-date-input" class="w-full bg-slate-950 border border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-1 focus:ring-emerald-400 focus:border-emerald-400 transition-shadow">
+                        <input type="date" id="as-of-date-input" class="w-full bg-slate-950 border border-slate-700 rounded-md py-3 px-4 text-white focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand transition-shadow">
                     </div>
 
                     <!-- Action Button -->
-                    <button id="calc-age-btn" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold py-3 px-4 rounded-md transition-colors flex items-center justify-center gap-2 mt-4">
+                    <button id="calc-age-btn" class="w-full bg-brand hover:bg-brand-dark text-slate-950 font-semibold py-3 px-4 rounded-md transition-colors flex items-center justify-center gap-2 mt-4">
                         <i class="fa-solid fa-calculator"></i> Calculate Age
                     </button>
 
@@ -334,23 +359,23 @@
                         <p class="text-sm text-slate-400 mb-2">Your exact age is:</p>
                         <div class="flex justify-center items-end gap-2 mb-4">
                             <div class="text-center">
-                                <span id="res-years" class="text-3xl font-bold text-emerald-400 block">--</span>
+                                <span id="res-years" class="text-3xl font-bold text-brand-light block">--</span>
                                 <span class="text-xs text-slate-500 uppercase tracking-wide">Years</span>
                             </div>
                             <div class="text-slate-700 text-3xl font-light pb-5">/</div>
                             <div class="text-center">
-                                <span id="res-months" class="text-3xl font-bold text-emerald-400 block">--</span>
+                                <span id="res-months" class="text-3xl font-bold text-brand-light block">--</span>
                                 <span class="text-xs text-slate-500 uppercase tracking-wide">Months</span>
                             </div>
                             <div class="text-slate-700 text-3xl font-light pb-5">/</div>
                             <div class="text-center">
-                                <span id="res-days" class="text-3xl font-bold text-emerald-400 block">--</span>
+                                <span id="res-days" class="text-3xl font-bold text-brand-light block">--</span>
                                 <span class="text-xs text-slate-500 uppercase tracking-wide">Days</span>
                             </div>
                         </div>
                         <div class="bg-slate-900 rounded p-3 border border-slate-800 flex items-center justify-between">
                             <span id="copy-text" class="text-sm font-mono text-slate-300"></span>
-                            <button id="copy-btn" class="text-slate-400 hover:text-emerald-400 transition-colors" title="Copy to clipboard">
+                            <button id="copy-btn" class="text-slate-400 hover:text-brand-light transition-colors" title="Copy to clipboard">
                                 <i class="fa-regular fa-copy text-lg"></i>
                             </button>
                         </div>
@@ -359,32 +384,15 @@
             </section>
         </div>
 
-        <!-- Tool 3: Live Exam Calendar Redirect -->
-        <section id="exam-tool" class="mt-12 bg-slate-900 rounded-2xl border border-slate-800 p-6 sm:p-10 shadow-xl relative overflow-hidden flex flex-col items-center text-center">
-            <!-- Decorative glow -->
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
-
-            <div class="bg-slate-800 p-4 rounded-full text-emerald-400 border border-slate-700/50 mb-5 inline-flex relative z-10">
-                <i class="fa-solid fa-calendar-check text-3xl"></i>
-            </div>
-            
-            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-3 relative z-10">Live Exam Calendar</h3>
-            <p class="text-slate-400 max-w-xl mb-8 text-sm sm:text-base relative z-10">We've moved our Live Exam Calendar, notifications, and application deadlines to a brand new, dedicated page with advanced tracking features.</p>
-            
-            <a href="https://www.selectionlibrary.com/exam_update/" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 px-8 rounded-xl transition-all shadow-lg hover:shadow-emerald-500/20 flex items-center gap-3 text-sm sm:text-base relative z-10">
-                Open Live Exam Calendar <i class="fa-solid fa-arrow-right"></i>
-            </a>
-        </section>
-
         <!-- Sultanpur Dedicated Study Desk Conversion Card -->
-        <div class="mt-8 bg-gradient-to-r from-slate-900 via-slate-850 to-emerald-950/30 border border-emerald-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+        <div class="mt-8 bg-gradient-to-r from-slate-900 via-slate-850 to-[#182B27]/30 border border-brand/30 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-6 relative z-10">
                 <div class="flex items-start gap-4">
-                    <div class="bg-emerald-500/10 p-3.5 rounded-2xl border border-emerald-500/20 text-emerald-400 shrink-0 hidden sm:block">
+                    <div class="bg-brand/10 p-3.5 rounded-2xl border border-brand/20 text-brand-light shrink-0 hidden sm:block">
                         <i class="fa-solid fa-chair text-3xl"></i>
                     </div>
                     <div>
-                        <div class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 tracking-wider uppercase mb-1">
+                        <div class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-light tracking-wider uppercase mb-1">
                             <i class="fa-solid fa-location-dot"></i> Selection Library, Sultanpur
                         </div>
                         <h4 class="text-xl sm:text-2xl font-bold text-white mb-2">Never miss a deadline while studying in peace.</h4>
@@ -393,17 +401,17 @@
                         </p>
                     </div>
                 </div>
-                <button id="check-seats-btn" class="shrink-0 bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold py-3.5 px-6 rounded-xl transition-all shadow-lg hover:shadow-emerald-400/20 flex items-center gap-2 text-sm">
+                <button id="check-seats-btn" class="shrink-0 bg-brand hover:bg-brand-dark text-slate-950 font-bold py-3.5 px-6 rounded-xl transition-all shadow-lg hover:shadow-brand/20 flex items-center gap-2 text-sm">
                     <i class="fa-solid fa-square-check text-base"></i> Check Seat Availability
                 </button>
             </div>
         </div>
 
         <!-- Promotional Banner -->
-        <div class="mt-12 bg-gradient-to-r from-slate-900 via-slate-850 to-emerald-950/20 border border-slate-800 rounded-xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg">
+        <div class="mt-12 bg-gradient-to-r from-slate-900 via-slate-850 to-[#182B27]/20 border border-slate-800 rounded-xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg">
             <div class="flex items-start gap-4">
                 <div class="bg-slate-950 p-3 rounded-full border border-slate-800 shrink-0 mt-1">
-                    <i class="fa-solid fa-graduation-cap text-2xl text-emerald-400"></i>
+                    <i class="fa-solid fa-graduation-cap text-2xl text-brand-light"></i>
                 </div>
                 <div>
                     <h4 class="text-xl font-bold text-white mb-2">Need a quiet place to prepare for your exams?</h4>
@@ -430,7 +438,7 @@
             </button>
 
             <div class="flex items-center gap-3 mb-4">
-                <div class="bg-emerald-400/10 p-2.5 rounded-lg border border-emerald-400/20 text-emerald-400">
+                <div class="bg-brand/10 p-2.5 rounded-lg border border-brand/20 text-brand-light">
                     <i class="fa-solid fa-graduation-cap text-xl"></i>
                 </div>
                 <div>
@@ -447,7 +455,7 @@
                         <div class="text-xs text-slate-400">07:00 AM - 02:00 PM</div>
                     </div>
                     <div class="text-right">
-                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-semibold bg-brand/10 text-brand-light border border-brand/20">
                             14 Seats Left
                         </span>
                     </div>
@@ -460,7 +468,7 @@
                         <div class="text-xs text-slate-400">02:00 PM - 9:00 PM</div>
                     </div>
                     <div class="text-right">
-                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-semibold bg-brand/10 text-brand-light border border-brand/20">
                             8 Seats Left
                         </span>
                     </div>
@@ -482,11 +490,11 @@
 
             <div class="bg-slate-850 p-4 rounded-xl border border-slate-800 text-center mb-6">
                 <p class="text-xs text-slate-300">
-                    <i class="fa-solid fa-location-dot text-emerald-400 mr-1"></i> nirala nagar, Sultanpur, Uttar Pradesh
+                    <i class="fa-solid fa-location-dot text-brand-light mr-1"></i> nirala nagar, Sultanpur, Uttar Pradesh
                 </p>
             </div>
 
-            <a href="https://wa.me/919169340586?text=Hi%20Selection%20Library%20Sultanpur%2C%20I%20would%20like%20to%20reserve%20a%20study%20desk." target="_blank" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm">
+            <a href="https://wa.me/919169340586?text=Hi%20Selection%20Library%20Sultanpur%2C%20I%20would%20like%20to%20reserve%20a%20study%20desk." target="_blank" class="w-full bg-brand hover:bg-brand-dark text-slate-950 font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm">
                 <i class="fa-brands fa-whatsapp text-lg"></i> Reserve Desk via WhatsApp
             </a>
         </div>
@@ -684,7 +692,7 @@
             ctx.fill('evenodd'); 
             
             // 3. Draw Cutout Border
-            ctx.strokeStyle = '#34d399'; // emerald-400
+            ctx.strokeStyle = '#F9D9A5'; // brand light
             ctx.lineWidth = 2;
             ctx.strokeRect(cx, cy, cropState.cropW, cropState.cropH);
             
@@ -837,7 +845,7 @@
                 compressionMsg.className = "text-xs mt-3 text-center text-amber-400";
             } else {
                 compressionMsg.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Success! Image optimized for upload.';
-                compressionMsg.className = "text-xs mt-3 text-center text-emerald-400";
+                compressionMsg.className = "text-xs mt-3 text-center text-brand-light";
             }
 
             resultArea.classList.remove('hidden');
@@ -864,10 +872,10 @@
         pdfTabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 pdfTabBtns.forEach(b => {
-                    b.classList.remove('bg-slate-800', 'text-rose-400');
+                    b.classList.remove('bg-slate-800', 'text-brand-light');
                     b.classList.add('text-slate-400');
                 });
-                btn.classList.add('bg-slate-800', 'text-rose-400');
+                btn.classList.add('bg-slate-800', 'text-brand-light');
                 btn.classList.remove('text-slate-400');
                 
                 pdfPanes.forEach(p => p.classList.add('hidden'));
@@ -882,7 +890,7 @@
             pdfDownloadLink.href = url;
             pdfDownloadLink.download = filename;
             pdfStatusMsg.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Processing complete!';
-            pdfStatusMsg.className = 'text-emerald-400 text-sm font-medium mb-3';
+            pdfStatusMsg.className = 'text-brand-light text-sm font-medium mb-3';
             pdfDownloadLink.classList.remove('hidden');
             pdfResult.classList.remove('hidden');
         }
@@ -1138,7 +1146,7 @@
                 document.execCommand('copy');
                 // Visual feedback on button
                 const icon = copyBtn.querySelector('i');
-                icon.className = 'fa-solid fa-check text-emerald-400';
+                icon.className = 'fa-solid fa-check text-brand-light';
                 setTimeout(() => {
                     icon.className = 'fa-regular fa-copy text-lg';
                 }, 2000);
